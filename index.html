@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Company</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 100px 20px;
-      background-color: #f2f2f2;
-    }
-    a.button {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-    a.button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirCore</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>Welcome to Our Company</h1>
-  <p>
-    <a class="button" href="brochure.html">Click to download our brochure</a>
-  </p>
+  <header id="header">
+    <div class="logo-container">
+      <img src="assets/aircore_black_transparent.svg" alt="AirCore Logo" id="logo" />
+    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <nav id="nav-menu" class="hidden">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to AirCore</h1>
+      <p>This is your homepage.</p>
+    </section>
+  </main>
 </body>
 </html>
