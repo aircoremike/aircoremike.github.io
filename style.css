@@ -33,6 +33,7 @@
     padding: 15px 30px;
     z-index: 1000;
     background: black;
+    height: 60px; /* Add explicit height for the header */
   }
   
   .logo-container img {
@@ -96,9 +97,9 @@
     body::before {
         content: "";
         position: fixed;
-        top: 0;
+        top: 60px; /* Start below the navbar */
         left: 0;
-        height: 100%;
+        height: calc(100% - 60px); /* Adjust height to exclude navbar */
         width: 100%;
         background-image: url('assets/index_bg.jpg');
         background-size: cover;
@@ -108,7 +109,7 @@
         z-index: -1;
       }
       .hero {
-        padding: 160px 20px 80px;
+        padding: 100px 20px 80px; /* Adjust padding to account for navbar height */
         text-align: center;
       }
       
