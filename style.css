@@ -30,7 +30,7 @@
   
   .hamburger {
     font-size: 2rem;
-    color: rgb(255, 255, 255);
+    color: white;
     cursor: pointer;
     display: none;
   }
@@ -64,7 +64,7 @@
       top: 60px;
       left: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: black;
     }
   
     nav#nav-menu.show {
@@ -82,21 +82,25 @@
   }
   
   /* HERO SECTION WITH PARALLAX */
-  .body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-image: url('assets/index_bg.jpg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
-  }
-  
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url('assets/index_bg.jpg');
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        z-index: -1;
+      }
+      .hero {
+        padding: 160px 20px 80px;
+        text-align: center;
+      }
+      
   /* CONTENT BELOW HERO */
   .content {
     background-color: #f6f6f6;
