@@ -128,6 +128,7 @@
         padding-right: 10px;
         text-align: center;
         box-sizing: border-box;
+        min-height: 2.2em; /* Ensure space for heading even if font-size is small */
       }
       
       .hero-title::before {
@@ -138,6 +139,7 @@
         line-height: 1.2;
         color: white;
         word-break: break-word;
+        min-height: 1em;
       }
       
       .hero-block {
@@ -174,9 +176,15 @@
       padding-left: 16px;
       padding-right: 16px;
       margin-bottom: 24px;
+      min-height: 1.6em; /* Ensure space for heading */
     }
     .hero-title::before {
-      font-size: 1.4rem;
+      font-size: 1.6rem; /* Increase from 1.4rem to 1.6rem for better visibility */
+      color: white !important; /* Ensure color is enforced */
+      display: block;
+      font-weight: bold;
+      line-height: 1.2;
+      word-break: break-word;
     }
     body::before {
         top: calc(120px + env(safe-area-inset-top)); /* Also increase for mobile */
