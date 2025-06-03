@@ -27,53 +27,52 @@ body {
 /* HEADER */
 header {
     position: fixed;
-    top: 0; /* Ensure the header stays fixed at the top */
-    left: 0; /* Add left: 0 to prevent any horizontal shifting */
+    top: 0;
+    left: 0;
     right: 0;
     width: 100%;
-    padding: calc(15px + env(safe-area-inset-top)) 20px 15px; /* Adjust padding for safe area */
+    padding: calc(15px + env(safe-area-inset-top)) 20px 15px;
     z-index: 1000;
     background: black;
-    height: calc(60px + env(safe-area-inset-top)); /* Adjust height for safe area */
-    margin: 0; /* Remove any margin that could cause shifting */
-  }
+    height: calc(60px + env(safe-area-inset-top));
+}
   
-  .logo-container img {
+.logo-container img {
     height: 40px;
-  }
+}
   
-  .hamburger {
+.hamburger {
     font-size: 2rem;
     color: white;
     cursor: pointer;
     display: none;
-  }
+}
   
-  /* NAVIGATION */
-  nav#nav-menu {
+/* NAVIGATION */
+nav#nav-menu {
     display: flex;
-  }
+}
   
-  nav#nav-menu ul {
+nav#nav-menu ul {
     display: flex;
     list-style: none;
-  }
+}
   
-  nav#nav-menu ul li a {
+nav#nav-menu ul li a {
     color: white;
     text-decoration: none;
     margin-left: 20px;
     font-weight: bold;
-  }
+}
   
-  /* MOBILE NAV */
-  @media (max-width: 768px) {
+/* MOBILE NAV */
+@media (max-width: 768px) {
     .hamburger {
       display: block;
     }
   
     nav#nav-menu {
-      display: none; /* Hide by default */
+      display: none;
       position: absolute;
       top: 60px;
       left: 0;
@@ -82,7 +81,7 @@ header {
     }
   
     nav#nav-menu.show {
-      display: block; /* Show when .show class is present */
+      display: block;
     }
   
     nav#nav-menu ul {
@@ -93,74 +92,89 @@ header {
     nav#nav-menu ul li {
       margin: 10px 0;
     }
-  }
+}
   
-  /* HERO SECTION WITH PARALLAX */
-  .hero {
+/* HERO SECTION WITH PARALLAX */
+body::before {
+    content: "";
+    position: fixed;
+    top: calc(60px + env(safe-area-inset-top));
+    left: 0;
+    width: 100%;
+    height: calc(100% - (60px + env(safe-area-inset-top)));
+    background-image: url('assets/index_bg.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.hero {
     width: 100%;
     max-width: 100%;
-    padding: 100px 20px 80px; /* Adjust padding to account for navbar height */
+    padding: 100px 20px 80px;
     text-align: center;
     overflow-x: hidden;
 }
 
 .hero-title, .hero-block {
     width: 100%;
-    max-width: min(600px, 90%);
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: border-box;
-  }
+}
   
-  .hero-title {
-        max-width: 600px;
-        margin: 0 auto 32px auto;
-        padding-left: 10px;
-        padding-right: 10px;
-        text-align: center;
-        box-sizing: border-box;
-        min-height: 2.2em; /* Ensure space for heading even if font-size is small */
-      }
+.hero-title {
+    max-width: 600px;
+    margin: 0 auto 32px auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    min-height: 2.2em;
+}
       
-      .hero-title::before {
-        content: "The world's finest lightweight bearings balls";
-        display: block;
-        font-size: 2.2rem;
-        font-weight: bold;
-        line-height: 1.2;
-        color: white;
-        word-break: break-word;
-        min-height: 1em;
-      }
+.hero-title::before {
+    content: "The world's finest lightweight bearings balls";
+    display: block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    line-height: 1.2;
+    color: white;
+    word-break: break-word;
+    min-height: 1em;
+}
       
-      .hero-block {
-        max-width: 600px;
-        margin: 0 auto;
-        color: white;
-        font-size: 1.1rem;
-        line-height: 1.7;
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
-        box-sizing: border-box;
-      }
+.hero-block {
+    max-width: 600px;
+    margin: 0 auto;
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
       
-      .hero-block-1::before {
-        content: "Large bearing balls are heavy, but they don’t need to be. Many applications that require large bearing balls don’t require the tremendous load-bearing capacity they offer, so most of the material of a solid steel bearing ball is wasted. You could opt for a lighter material, like titanium or aluminum, but these materials are either too expensive or aren’t hard enough. Or you could choose a hollow ball, but material options and load capacity were limited, until now.";
-        display: block;
-        padding-bottom: 32px;
-      }
+.hero-block-1::before {
+    content: "Large bearing balls are heavy, but they don’t need to be. Many applications that require large bearing balls don’t require the tremendous load-bearing capacity they offer, so most of the material of a solid steel bearing ball is wasted. You could opt for a lighter material, like titanium or aluminum, but these materials are either too expensive or aren’t hard enough. Or you could choose a hollow ball, but material options and load capacity were limited, until now.";
+    display: block;
+    padding-bottom: 32px;
+}
       
-      .hero-block-2::before {
-        content: "Aircore Bearings offers the world’s first and only hollow 440C stainless steel bearing balls. Our proprietary manufacturing process allows customers to dial in the load capacity to their requirements in a variety of materials and diameters.";
-        display: block;
-        padding-bottom: 0;
-      }
+.hero-block-2::before {
+    content: "Aircore Bearings offers the world’s first and only hollow 440C stainless steel bearing balls. Our proprietary manufacturing process allows customers to dial in the load capacity to their requirements in a variety of materials and diameters.";
+    display: block;
+    padding-bottom: 0;
+}
   
-  /* Responsive: bring heading down for mobile */
-  @media (max-width: 768px) {
+/* Responsive: bring heading down for mobile */
+@media (max-width: 768px) {
     .hero {
       padding-top: 150px;
       padding-left: 16px;
@@ -177,34 +191,34 @@ header {
       padding-left: 16px;
       padding-right: 16px;
       margin-bottom: 24px;
-      min-height: 1.6em; /* Ensure space for heading */
+      min-height: 1.6em;
     }
     .hero-title::before {
-      font-size: 1.6rem; /* Increase from 1.4rem to 1.6rem for better visibility */
-      color: white !important; /* Ensure color is enforced */
+      font-size: 1.6rem;
+      color: white !important;
       display: block;
       font-weight: bold;
       line-height: 1.2;
       word-break: break-word;
     }
     body::before {
-        top: calc(60px + env(safe-area-inset-top)); /* Match mobile header height */
+        top: calc(60px + env(safe-area-inset-top));
         height: calc(100% - (60px + env(safe-area-inset-top)));
-      }
-      .hero-block {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-  }
+    }
+    .hero-block {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+}
   
-  /* CONTENT BELOW HERO */
-  .content {
+/* CONTENT BELOW HERO */
+.content {
     background-color: #f6f6f6;
     color: #333;
     padding: 80px 20px;
-  }
+}
   
-  .container {
+.container {
     max-width: 800px;
     margin: 0 auto;
-  }
+}
