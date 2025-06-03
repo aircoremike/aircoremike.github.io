@@ -115,6 +115,41 @@
         text-align: center;
       }
       
+      .hero h1 {
+        margin-bottom: 32px;
+      }
+      
+      .hero-block {
+        max-width: 700px;
+        margin: 0 auto;
+        color: white;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        text-align: center;
+      }
+      
+      .hero-block-1::before {
+        content: "Large bearing balls are heavy, but they don’t need to be. Many applications that require large bearing balls don’t require the tremendous load-bearing capacity they offer, so most of the material of a solid steel bearing ball is wasted. You could opt for a lighter material, like titanium or aluminum, but these materials are either too expensive or aren’t hard enough. Or you could choose a hollow ball, but material options and load capacity were limited, until now.";
+        display: block;
+        padding-bottom: 32px;
+      }
+      
+      .hero-block-2::before {
+        content: "Aircore Bearings offers the world’s first and only hollow 440C stainless steel bearing balls. Our proprietary manufacturing process allows customers to dial in the load capacity to their requirements in a variety of materials and diameters.";
+        display: block;
+        padding-bottom: 0;
+      }
+  
+  /* Responsive: bring heading down for mobile */
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 150px;
+    }
+    .hero h1 {
+      margin-bottom: 24px;
+    }
+  }
+  
   /* CONTENT BELOW HERO */
   .content {
     background-color: #f6f6f6;
