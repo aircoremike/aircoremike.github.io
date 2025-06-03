@@ -1,6 +1,6 @@
 // Shrink header on scroll
 window.addEventListener("scroll", () => {
-    const header = document.getElementById("header");
+    const header = document.querySelector("header");
     if (window.scrollY > 50) {
       header.classList.add("shrink");
     } else {
@@ -9,6 +9,6 @@ window.addEventListener("scroll", () => {
   });
   
   // Toggle mobile nav
-  document.getElementById("hamburger").addEventListener("click", () => {
-    document.getElementById("nav-menu").classList.toggle("hidden");
+  document.querySelector(".hamburger").addEventListener("click", () => {
+    document.getElementById("nav-menu").classList.toggle("show");
   });

@@ -73,7 +73,7 @@ header {
     }
   
     nav#nav-menu {
-      display: none;
+      display: none; /* Hide by default */
       position: absolute;
       top: 60px;
       left: 0;
@@ -82,7 +82,7 @@ header {
     }
   
     nav#nav-menu.show {
-      display: block;
+      display: block; /* Show when .show class is present */
     }
   
     nav#nav-menu ul {
