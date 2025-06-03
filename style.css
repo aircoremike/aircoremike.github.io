@@ -31,10 +31,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: calc(15px + env(safe-area-inset-top)) 30px 15px; /* Adjust padding for safe area */
     z-index: 1000;
     background: black;
-    height: 60px; /* Explicit height for consistency */
+    height: calc(60px + env(safe-area-inset-top)); /* Adjust height for safe area */
     margin: 0; /* Remove any margin that could cause shifting */
   }
   
