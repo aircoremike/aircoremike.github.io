@@ -107,7 +107,7 @@
         position: fixed;
         top: calc(80px + env(safe-area-inset-top)); /* Increased to push image lower */
         left: 0;
-        height: calc(100% - (200px + env(safe-area-inset-top))); /* Adjusted to match new top */
+        height: calc(100% - (80px + env(safe-area-inset-top))); /* Adjusted to match new top */
         width: 100%;
         background-image: url('assets/index_bg.jpg');
         background-size: cover;
@@ -121,19 +121,34 @@
         text-align: center;
       }
       
-      .hero h1 {
-        margin-bottom: 32px;
+      .hero-title {
+        max-width: 600px;
+        margin: 0 auto 32px auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      
+      .hero-title::before {
+        content: "The world's finest lightweight bearings balls";
+        display: block;
+        font-size: 2.2rem;
+        font-weight: bold;
+        line-height: 1.2;
+        color: white;
+        word-break: break-word;
       }
       
       .hero-block {
-        max-width: 700px;
+        max-width: 600px;
         margin: 0 auto;
         color: white;
         font-size: 1.1rem;
         line-height: 1.7;
         text-align: center;
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 10px;
+        padding-right: 10px;
         box-sizing: border-box;
       }
       
@@ -154,8 +169,14 @@
     .hero {
       padding-top: 150px;
     }
-    .hero h1 {
+    .hero-title {
+      max-width: 90vw;
+      padding-left: 16px;
+      padding-right: 16px;
       margin-bottom: 24px;
+    }
+    .hero-title::before {
+      font-size: 1.4rem;
     }
     body::before {
         top: calc(120px + env(safe-area-inset-top)); /* Also increase for mobile */
