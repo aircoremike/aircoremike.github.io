@@ -8,39 +8,30 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
-  html {
+}
+
+html {
     overflow-x: hidden;
     width: 100%;
-    max-width: 100%;
-  }
-  
-  body {
+}
+
+body {
     font-family: sans-serif;
     color: white;
     background-color: black;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* prevents side-scrolling */
-  }
-  
-  /* HEADER */
-  header {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* HEADER */
+header {
     position: fixed;
     top: 0; /* Ensure the header stays fixed at the top */
     left: 0; /* Add left: 0 to prevent any horizontal shifting */
+    right: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: calc(15px + env(safe-area-inset-top)) 30px 15px; /* Adjust padding for safe area */
+    padding: calc(15px + env(safe-area-inset-top)) 20px 15px; /* Adjust padding for safe area */
     z-index: 1000;
     background: black;
     height: calc(60px + env(safe-area-inset-top)); /* Adjust height for safe area */
@@ -105,26 +96,25 @@
   }
   
   /* HERO SECTION WITH PARALLAX */
-    body::before {
-        content: "";
-        position: fixed;
-        top: calc(60px + env(safe-area-inset-top)); /* Match header height */
-        left: 0;
-        height: calc(100% - (60px + env(safe-area-inset-top))); /* Fill below navbar */
-        width: 100%;
-        background-image: url('assets/index_bg.jpg');
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        z-index: -1;
-      }
-      .hero {
-        padding: 100px 20px 80px; /* Adjust padding to account for navbar height */
-        text-align: center;
-      }
-      
-      .hero-title {
+  .hero {
+    width: 100%;
+    max-width: 100%;
+    padding: 100px 20px 80px; /* Adjust padding to account for navbar height */
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.hero-title, .hero-block {
+    width: 100%;
+    max-width: min(600px, 90%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  
+  .hero-title {
         max-width: 600px;
         margin: 0 auto 32px auto;
         padding-left: 10px;
@@ -173,6 +163,14 @@
   @media (max-width: 768px) {
     .hero {
       padding-top: 150px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    
+    .hero-title, .hero-block {
+      max-width: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
     }
     .hero-title {
       max-width: 90vw;
