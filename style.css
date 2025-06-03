@@ -99,9 +99,9 @@
     body::before {
         content: "";
         position: fixed;
-        top: 60px; /* Start below the navbar */
+        top: calc(60px + env(safe-area-inset-top)); /* Start below the navbar */
         left: 0;
-        height: calc(100% - 60px); /* Adjust height to exclude navbar */
+        height: calc(100% - (60px + env(safe-area-inset-top))); /* Adjust height to exclude navbar */
         width: 100%;
         background-image: url('assets/index_bg.jpg');
         background-size: cover;
