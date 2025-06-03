@@ -5,12 +5,13 @@ body {
   }
   
   .hero {
-    min-height: 100vh;
-    background-image: url('assets/index_bg.jpg');
-    background-attachment: fixed;
+    min-height: 100vh; /* full viewport height */
+    width: 100%;
+    background-image: url('assets/your-background.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,56 +56,40 @@ body {
   header {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 30px;
-    transition: all 0.3s ease;
     z-index: 1000;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  header.shrink {
-    padding: 10px 20px;
+    background: transparent; /* <-- this makes it overlay without white */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
   }
   
   .logo-container img {
-    height: 60px;
-    transition: height 0.3s ease;
-  }
-  
-  header.shrink .logo-container img {
     height: 40px;
   }
   
-  /* Hamburger Menu */
+  /* Optional: style nav and hamburger button */
   .hamburger {
-    font-size: 26px;
+    font-size: 2rem;
     cursor: pointer;
-    display: none;
+    color: white; /* Make sure the hamburger is visible over the background */
   }
   
-  /* Navigation Menu */
-  nav {
-    margin-left: auto;
-  }
-  nav ul {
+  nav#nav-menu ul {
     list-style: none;
-    display: flex;
-    gap: 20px;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Optional: translucent dropdown */
   }
-  nav a {
+  
+  nav#nav-menu ul li a {
+    color: white;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
+    display: block;
+    padding: 10px 20px;
   }
-  
-  .hidden {
-    display: none;
-  }
-  
   /* Responsive */
   @media (max-width: 768px) {
     nav {
