@@ -25,7 +25,8 @@
   /* HEADER */
   header {
     position: fixed;
-    top: 0;
+    top: 0; /* Ensure the header stays fixed at the top */
+    left: 0; /* Add left: 0 to prevent any horizontal shifting */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -33,7 +34,8 @@
     padding: 15px 30px;
     z-index: 1000;
     background: black;
-    height: 60px; /* Add explicit height for the header */
+    height: 60px; /* Explicit height for consistency */
+    margin: 0; /* Remove any margin that could cause shifting */
   }
   
   .logo-container img {
