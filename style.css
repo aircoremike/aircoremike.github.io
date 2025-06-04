@@ -116,8 +116,7 @@ header {
   }
 
   .nav-links {
-    display: flex;
-    flex-direction: column;
+    display: none;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
@@ -136,10 +135,21 @@ header {
   }
 
   .nav-links.open {
-    max-height: 500px; /* Large enough for all menu items */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #222;
+    max-height: 500px;
+    overflow: visible;
+    transition: max-height 0.3s ease, padding 0.3s ease, gap 0.3s ease;
+    z-index: 1050;
+    box-sizing: border-box;
     padding: 1rem 0 !important;
     gap: 1rem !important;
-    overflow: visible;
     visibility: visible;
     opacity: 1;
   }
