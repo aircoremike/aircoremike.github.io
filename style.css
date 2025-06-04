@@ -1,70 +1,88 @@
-.navbar {
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    padding-left: env(safe-area-inset-left, 20px); /* Safe zone for notched displays */
-    padding-right: env(safe-area-inset-right, 20px); /* Safe zone for notched displays */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-.logo a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5em;
+header {
+  width: 100%;
+  background: #222;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-links li {
-    margin-left: 20px;
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
+.nav-links li a:hover {
+  color: #00bcd4;
 }
 
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5em;
-    cursor: pointer;
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
 }
 
-/* Mobile Styles */
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  display: block;
+}
+
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px; /* Height of navbar */
-        right: 0;
-        background-color: #333;
-        width: 100%;
-        text-align: center;
-    }
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #222;
+    flex-direction: column;
+    width: 200px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    gap: 0;
+  }
 
-    .nav-links li {
-        margin: 0;
-        padding: 15px;
-        border-bottom: 1px solid #444;
-    }
+  .nav-links.open {
+    height: 180px;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
 
-    .hamburger {
-        display: block;
-    }
+  .nav-links li {
+    text-align: right;
+    padding: 0.5rem 2rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
