@@ -10,6 +10,7 @@ body {
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position-y: var(--navbar-height);
+  font-size: 1.15rem;
 }
 
 header, .navbar {
