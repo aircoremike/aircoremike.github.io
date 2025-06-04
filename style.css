@@ -1,10 +1,15 @@
+:root {
+  --navbar-height: 80px;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: 130px; /* Increased offset for fixed navbar + extra space */
+  padding-top: calc(var(--navbar-height) + 50px); /* 50px extra space as before */
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
+  background-position-y: var(--navbar-height);
 }
 
 header, .navbar {
@@ -15,9 +20,10 @@ header {
   width: 100%;
   background: #181818; /* Off-black navbar background */
   position: fixed;
-  top: 0; /* Move navbar back to the very top */
+  top: 0;
   left: 0;
   z-index: 1000;
+  height: var(--navbar-height);
 }
 
 .navbar {
@@ -81,10 +87,14 @@ header {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --navbar-height: 80px;
+  }
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
-    padding-top: 130px;
+    padding-top: calc(var(--navbar-height) + 50px);
+    background-position-y: var(--navbar-height);
   }
 
   .navbar {
@@ -140,9 +150,16 @@ html {
   box-sizing: inherit;
 }
 
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #home h1 {
   color: #f6f6f6;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 #home p {
@@ -151,4 +168,5 @@ html {
   border-radius: 8px;
   max-width: 700px;
   margin-bottom: 1.5rem;
+  text-align: left;
 }
