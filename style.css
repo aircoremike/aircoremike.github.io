@@ -73,7 +73,7 @@ header {
   display: block;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar {
     padding-left: 0;
     padding-right: 0;
