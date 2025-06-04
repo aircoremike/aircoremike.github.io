@@ -120,18 +120,18 @@ header {
     top: var(--navbar-height);
     left: 0;
     right: 0;
-    width: 100vw;
+    width: 100%;
     background: #222;
     flex-direction: column;
-    height: 0;
+    max-height: 0;
     overflow: hidden;
-    transition: height 0.3s ease;
+    transition: max-height 0.3s ease;
     z-index: 1050;
     box-sizing: border-box;
   }
 
   .nav-links.open {
-    height: 220px; /* Adjust as needed for your menu items */
+    max-height: 500px; /* Large enough for all menu items */
     padding: 1rem 0;
     gap: 1rem;
     overflow: visible;
