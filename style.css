@@ -76,8 +76,9 @@ header {
     left: 0;
     background: #222;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     min-width: 0;
+    box-sizing: border-box;
     height: 0;
     overflow: hidden;
     transition: height 0.3s ease;
