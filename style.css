@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
+  padding-top: 80px; /* Offset for fixed navbar */
 }
 
 header, .navbar {
@@ -11,6 +12,10 @@ header, .navbar {
 header {
   width: 100%;
   background: #181818; /* Off-black navbar background */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .navbar {
