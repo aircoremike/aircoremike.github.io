@@ -106,6 +106,12 @@ header {
     margin: 0;
     left: 0;
     right: 0;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  .logo {
+    margin-right: auto;
   }
 
   .nav-links {
@@ -138,6 +144,11 @@ header {
 
   .menu-toggle {
     display: flex;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100;
   }
 }
 
