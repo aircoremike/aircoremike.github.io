@@ -125,14 +125,9 @@ header {
     right: 0;
     width: 100%;
     background: #222;
-    max-height: 0;
-    overflow: hidden;
     z-index: 1050;
     box-sizing: border-box;
-    padding: 0 !important;
-    gap: 0 !important;
-    visibility: hidden;
-    opacity: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
 
   .nav-links.open {
@@ -144,15 +139,11 @@ header {
     right: 0;
     width: 100%;
     background: #222;
-    max-height: 500px;
-    overflow: visible;
     z-index: 1050;
     box-sizing: border-box;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     padding: 1rem 0;
     gap: 1rem;
-    visibility: visible;
-    opacity: 1;
-    transition: none;
   }
 
   .nav-links li {
@@ -167,23 +158,6 @@ header {
     top: 50%;
     transform: translateY(-50%);
     z-index: 1100;
-  }
-}
-
-@media (min-width: 769px) {
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-    position: static;
-    flex-direction: row;
-    width: auto;
-    background: none;
-    max-height: none;
-    overflow: visible;
-    visibility: visible;
-    opacity: 1;
   }
 }
 
