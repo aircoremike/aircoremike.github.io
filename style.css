@@ -15,6 +15,7 @@ header {
   width: 100%;
   background: #181818; /* Off-black navbar background */
   position: fixed;
+  top: 0; /* Move navbar back to the very top */
   left: 0;
   z-index: 1000;
 }
