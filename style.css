@@ -170,6 +170,23 @@ header {
   }
 }
 
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    position: static;
+    flex-direction: row;
+    width: auto;
+    background: none;
+    max-height: none;
+    overflow: visible;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 html {
   overflow-x: hidden;
   box-sizing: border-box;
