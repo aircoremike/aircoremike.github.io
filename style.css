@@ -4,6 +4,10 @@ body {
   overflow-x: hidden;
 }
 
+header, .navbar {
+  overflow-x: hidden;
+}
+
 header {
   width: 100%;
   background: #181818; /* Off-black navbar background */
@@ -71,7 +75,8 @@ header {
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem 1rem;
+    padding-left: 0;
+    padding-right: 0;
     max-width: 100%;
     width: 100%;
   }
