@@ -5,7 +5,7 @@ body {
 
 header {
   width: 100%;
-  background: #222;
+  background: #181818; /* Off-black background */
 }
 
 .navbar {
@@ -21,6 +21,16 @@ header {
   color: #fff;
   font-size: 1.5rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .nav-links {
@@ -52,7 +62,7 @@ header {
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background: #fff;
+  background: #f6f6f6; /* Off-white hamburger */
   border-radius: 2px;
   display: block;
 }
