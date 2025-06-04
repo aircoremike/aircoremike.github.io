@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: 80px; /* Offset for fixed navbar */
+  padding-top: 130px; /* Increased offset for fixed navbar + extra space */
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
 }
@@ -15,7 +15,7 @@ header {
   width: 100%;
   background: #181818; /* Off-black navbar background */
   position: fixed;
-  top: 0;
+  top: 50px; /* Bring header down by 50px */
   left: 0;
   z-index: 1000;
 }
@@ -31,7 +31,7 @@ header {
 }
 
 .logo {
-  color: #fff;
+  color: #f6f6f6;
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;
@@ -55,7 +55,7 @@ header {
 }
 
 .nav-links li a {
-  color: #fff;
+  color: #f6f6f6;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.2s;
@@ -84,6 +84,7 @@ header {
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
+    padding-top: 130px;
   }
 
   .navbar {
@@ -140,13 +141,13 @@ html {
 }
 
 #home h1 {
-  color: #fff;
-  text-shadow: 0 2px 8px #000;
+  color: #f6f6f6;
+  /* Removed text-shadow */
   margin-bottom: 2rem;
 }
 
 #home p {
-  color: #fff;
+  color: #f6f6f6;
   background: rgba(0,0,0,0.4);
   padding: 1rem;
   border-radius: 8px;
