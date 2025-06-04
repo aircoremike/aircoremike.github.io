@@ -1,224 +1,27 @@
-/*TEMPORARY DEBUG*/
-* {
-    box-sizing: border-box;
-    outline: 1px solid rgba(255, 0, 0, 0.1); /* helps you see boundaries */
-  }
-/* RESET & BASE */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-body {
-    font-family: sans-serif;
+.navbar {
+    background-color: #333;
     color: white;
-    background-color: black;
-    overflow-x: hidden;
-    width: 100%;
-    position: relative;
-}
-
-/* HEADER */
-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
     width: 100%;
-    padding: calc(15px + env(safe-area-inset-top)) 20px 15px;
-    z-index: 1000;
-    background: black;
-    height: calc(60px + env(safe-area-inset-top));
+    z-index: 100;
 }
-  
-.logo-container img {
-    height: 40px;
-}
-  
-.hamburger {
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    display: none;
-}
-  
-/* NAVIGATION */
-nav#nav-menu {
-    display: flex;
-}
-  
-nav#nav-menu ul {
-    display: flex;
-    list-style: none;
-}
-  
-nav#nav-menu ul li a {
+
+.logo a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-}
-  
-/* MOBILE NAV */
-@media (max-width: 768px) {
-    .hamburger {
-      display: block;
-    }
-  
-    nav#nav-menu {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background-color: black;
-    }
-  
-    nav#nav-menu.show {
-      display: block;
-    }
-  
-    nav#nav-menu ul {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    nav#nav-menu ul li {
-      margin: 10px 0;
-    }
-}
-  
-/* HERO SECTION WITH PARALLAX */
-body::before {
-    content: "";
-    position: fixed;
-    top: calc(60px + env(safe-area-inset-top));
-    left: 0;
-    width: 100%;
-    height: calc(100% - (60px + env(safe-area-inset-top)));
-    background-image: url('assets/index_bg.jpg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
+    font-size: 1.5em;
 }
 
-.hero {
-    width: 100%;
-    max-width: 100%;
-    padding: 100px 20px 80px;
-    text-align: center;
-    overflow-x: hidden;
-}
-
-.hero-title, .hero-block {
-    width: 100%;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-sizing: border-box;
-}
-  
-.hero-title {
-    max-width: 600px;
-    margin: 0 auto 32px auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: center;
-    box-sizing: border-box;
-    min-height: 2.2em;
-}
-      
-.hero-title::before {
-    content: "The world's finest lightweight bearings balls";
-    display: block;
-    font-size: 2.2rem;
-    font-weight: bold;
-    line-height: 1.2;
+.hamburger {
+    background: none;
+    border: none;
     color: white;
-    word-break: break-word;
-    min-height: 1em;
-}
-      
-.hero-block {
-    max-width: 600px;
-    margin: 0 auto;
-    color: white;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    box-sizing: border-box;
-}
-      
-.hero-block-1::before {
-    content: "Large bearing balls are heavy, but they don’t need to be. Many applications that require large bearing balls don’t require the tremendous load-bearing capacity they offer, so most of the material of a solid steel bearing ball is wasted. You could opt for a lighter material, like titanium or aluminum, but these materials are either too expensive or aren’t hard enough. Or you could choose a hollow ball, but material options and load capacity were limited, until now.";
-    display: block;
-    padding-bottom: 32px;
-}
-      
-.hero-block-2::before {
-    content: "Aircore Bearings offers the world’s first and only hollow 440C stainless steel bearing balls. Our proprietary manufacturing process allows customers to dial in the load capacity to their requirements in a variety of materials and diameters.";
-    display: block;
-    padding-bottom: 0;
-}
-  
-/* Responsive: bring heading down for mobile */
-@media (max-width: 768px) {
-    .hero {
-      padding-top: 150px;
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-    
-    .hero-title, .hero-block {
-      max-width: 100%;
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-    .hero-title {
-      max-width: 90vw;
-      padding-left: 16px;
-      padding-right: 16px;
-      margin-bottom: 24px;
-      min-height: 1.6em;
-    }
-    .hero-title::before {
-      font-size: 1.6rem;
-      color: white !important;
-      display: block;
-      font-weight: bold;
-      line-height: 1.2;
-      word-break: break-word;
-    }
-    body::before {
-        top: calc(60px + env(safe-area-inset-top));
-        height: calc(100% - (60px + env(safe-area-inset-top)));
-    }
-    .hero-block {
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-}
-  
-/* CONTENT BELOW HERO */
-.content {
-    background-color: #f6f6f6;
-    color: #333;
-    padding: 80px 20px;
-}
-  
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+    font-size: 1.5em;
+    cursor: pointer;
 }
