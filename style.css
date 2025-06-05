@@ -43,9 +43,9 @@ header {
 }
 
 .logo img {
-  height: 64px; /* Double the logo size by default */
+  height: 128px; /* Increased logo size for desktop */
   width: auto;
-  transition: height 0.3s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
+  transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
 }
 
 .nav-links {
@@ -161,6 +161,14 @@ header {
   #home h1 {
     font-size: 2rem; 
   }
+
+  .logo img {
+    height: 96px; /* Increased logo size for mobile */
+  }
+
+  .navbar.scrolled .logo img {
+    height: 48px; /* Shrink logo size on scroll for mobile */
+  }
 }
 
 @media (min-width: 769px) {
@@ -176,6 +184,10 @@ header {
   #home p {
     font-size: 1.725rem;
     margin-top: 0 !important;
+  }
+
+  .navbar.scrolled .logo img {
+    height: 64px; /* Shrink logo size on scroll */
   }
 }
 
@@ -217,9 +229,4 @@ html {
 
 body, html {
   overscroll-behavior-y: none;
-}
-
-/* Shrink logo when .navbar.scrolled is present */
-.navbar.scrolled .logo img {
-  height: 32px;
 }
