@@ -43,7 +43,7 @@ header {
 }
 
 .logo img {
-  height: 128px; /* Increased logo size for desktop */
+  height: 128px !important; /* Increased logo size for desktop */
   width: auto;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
 }
@@ -163,11 +163,11 @@ header {
   }
 
   .logo img {
-    height: 96px; /* Increased logo size for mobile */
+    height: 96px !important; /* Increased logo size for mobile */
   }
 
   .navbar.scrolled .logo img {
-    height: 48px; /* Shrink logo size on scroll for mobile */
+    height: 48px !important; /* Shrink logo size on scroll for mobile */
   }
 }
 
@@ -187,7 +187,7 @@ header {
   }
 
   .navbar.scrolled .logo img {
-    height: 64px; /* Shrink logo size on scroll */
+    height: 64px !important; /* Shrink logo size on scroll */
   }
 }
 
