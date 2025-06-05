@@ -171,7 +171,7 @@ header {
 
   #home h1 {
     font-size: 4rem;
-    margin-bottom: 300; /* Increase gap by 100px on desktop */
+    margin-bottom: 100px;
   }
 
   #home p {
