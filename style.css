@@ -130,8 +130,8 @@ header {
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
 
-  .nav-links.open {
-    display: flex;
+  ul.nav-links.open {
+    display: flex !important;
     flex-direction: column;
     position: fixed;
     top: var(--navbar-height);
