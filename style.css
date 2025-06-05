@@ -160,7 +160,7 @@ header {
   }
 
   #home h1 {
-    font-size: 2rem; /* keep the same as before for mobile */
+    font-size: 2rem; 
   }
 }
 
@@ -170,7 +170,13 @@ header {
   }
 
   #home h1 {
-    font-size: 4rem; /* doubled from default for desktop */
+    font-size: 4rem;
+    margin-bottom: 100px; /* Increase gap by 100px on desktop */
+  }
+
+  #home p {
+    font-size: 1.725rem; /* 1.5x the original 1.15rem (1.15 * 1.5 = 1.725) */
+    margin-top: 0; /* Remove any extra top margin if present */
   }
 }
 
