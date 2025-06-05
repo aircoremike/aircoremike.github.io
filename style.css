@@ -158,11 +158,19 @@ header {
     z-index: 1100;
     cursor: pointer;
   }
+
+  #home h1 {
+    font-size: 2rem; /* keep the same as before for mobile */
+  }
 }
 
 @media (min-width: 769px) {
   .menu-toggle {
     display: none !important;
+  }
+
+  #home h1 {
+    font-size: 4rem; /* doubled from default for desktop */
   }
 }
 
