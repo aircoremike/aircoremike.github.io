@@ -109,6 +109,7 @@ header {
     right: 0;
     justify-content: flex-start;
     position: relative;
+    overflow: visible !important; /* Prevent internal scrolling */
     z-index: 1100;
   }
 
@@ -117,28 +118,29 @@ header {
   }
 
   .nav-links {
-    display: none !important; /* Always hidden unless .open */
-    flex-direction: column;
+    display: none;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
+    right: 0;
     width: 100%;
     background: #222;
     z-index: 1050;
+    box-sizing: border-box;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    padding: 1rem 0;
-    gap: 1rem;
   }
 
   .nav-links.open {
-    display: flex !important; /* Show when open */
+    display: flex;
     flex-direction: column;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
+    right: 0;
     width: 100%;
     background: #222;
     z-index: 1050;
+    box-sizing: border-box;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     padding: 1rem 0;
     gap: 1rem;
@@ -157,8 +159,6 @@ header {
     transform: translateY(-50%);
     z-index: 1100;
     cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
   }
 }
 
