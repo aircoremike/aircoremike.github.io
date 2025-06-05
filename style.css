@@ -23,7 +23,7 @@ header {
   top: 0;
   left: 0;
   z-index: 1000;
-  height: var(--navbar-height-large);
+  height: 160px;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
@@ -98,6 +98,10 @@ header {
     background-size: cover;
     padding-top: calc(var(--navbar-height) + 50px);
     background-position-y: var(--navbar-height);
+  }
+
+  header {
+    height: 120px;
   }
 
   .navbar {
@@ -178,7 +182,7 @@ header {
   }
 
   .navbar.scrolled header {
-    height: var(--navbar-height-small) !important;
+    height: 48px !important;
   }
 }
 
@@ -202,7 +206,7 @@ header {
   }
 
   .navbar.scrolled header {
-    height: var(--navbar-height-small) !important;
+    height: 64px !important;
   }
 }
 
