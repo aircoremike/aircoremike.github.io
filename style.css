@@ -1,5 +1,8 @@
 :root {
   --navbar-height: 80px;
+  --navbar-height-large: 160px;
+  --navbar-height-medium: 120px;
+  --navbar-height-small: 64px;
 }
 
 body {
@@ -20,7 +23,8 @@ header {
   top: 0;
   left: 0;
   z-index: 1000;
-  height: var(--navbar-height);
+  height: var(--navbar-height-large);
+  transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
 .navbar {
@@ -31,6 +35,7 @@ header {
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
+  height: 100%;
 }
 
 .logo {
@@ -85,6 +90,8 @@ header {
 @media (max-width: 768px) {
   :root {
     --navbar-height: 80px;
+    --navbar-height-large: 120px;
+    --navbar-height-small: 48px;
   }
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
@@ -169,6 +176,10 @@ header {
   .navbar.scrolled .logo img {
     height: 48px !important; /* Shrink logo size on scroll for mobile */
   }
+
+  .navbar.scrolled header {
+    height: var(--navbar-height-small) !important;
+  }
 }
 
 @media (min-width: 769px) {
@@ -188,6 +199,10 @@ header {
 
   .navbar.scrolled .logo img {
     height: 64px !important; /* Shrink logo size on scroll */
+  }
+
+  .navbar.scrolled header {
+    height: var(--navbar-height-small) !important;
   }
 }
 
