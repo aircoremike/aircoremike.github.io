@@ -6,4 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
       navLinks.classList.toggle('open');
     });
   }
+
+  // Navbar logo shrink on scroll
+  const navbar = document.querySelector('.navbar');
+  function handleNavbarShrink() {
+    if (window.scrollY > 10) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', handleNavbarShrink);
+  handleNavbarShrink(); // Run on load
 });

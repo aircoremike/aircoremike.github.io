@@ -43,10 +43,9 @@ header {
 }
 
 .logo img {
-  height: 32px;
+  height: 64px; /* Double the logo size by default */
   width: auto;
-  display: inline-block;
-  vertical-align: middle;
+  transition: height 0.3s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
 }
 
 .nav-links {
@@ -218,4 +217,9 @@ html {
 
 body, html {
   overscroll-behavior-y: none;
+}
+
+/* Shrink logo when .navbar.scrolled is present */
+.navbar.scrolled .logo img {
+  height: 32px;
 }
