@@ -27,6 +27,10 @@ header {
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
+header.scrolled {
+  height: 64px !important;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -103,6 +107,9 @@ header {
   header {
     height: 120px;
     transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  header.scrolled {
+    height: 48px !important;
   }
 
   .navbar {
