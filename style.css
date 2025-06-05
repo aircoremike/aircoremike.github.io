@@ -13,10 +13,6 @@ body {
   font-size: 1.15rem;
 }
 
-header, .navbar {
-  overflow-x: hidden;
-}
-
 header {
   width: 100%;
   background: #181818; /* Off-black navbar background */
@@ -144,6 +140,8 @@ header {
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     padding: 1rem 0;
     gap: 1rem;
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   .nav-links li {
@@ -201,4 +199,8 @@ html {
 
 #home p:first-of-type {
   margin-top: -15px;
+}
+
+body, html {
+  overscroll-behavior-y: none;
 }
