@@ -34,12 +34,17 @@ header.scrolled {
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 1rem 2rem;
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
   height: 100%;
+  transition: align-items 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+header.scrolled .navbar {
+  align-items: center;
 }
 
 .logo {
