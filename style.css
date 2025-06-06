@@ -16,32 +16,26 @@ body {
   font-size: 1.15rem;
 }
 
-header {
-  width: 100%;
-  background: #181818; /* Off-black navbar background */
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   z-index: 1000;
+  background: #181818;
   height: 160px;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-  overflow: hidden;
-}
-
-header.scrolled {
-  height: 64px !important;
-}
-
-.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   margin: 0 auto;
   max-width: 1200px;
-  height: 100%;
   padding: 0 2rem;
   min-height: 0;
+}
+
+.navbar.scrolled {
+  height: 64px !important;
 }
 
 .logo {
@@ -105,11 +99,11 @@ header.scrolled {
     background-position-y: var(--navbar-height);
   }
 
-  header {
+  .navbar {
     height: 120px;
     transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
   }
-  header.scrolled {
+  .navbar.scrolled {
     height: 48px !important;
   }
 
@@ -190,7 +184,7 @@ header.scrolled {
     height: 48px !important; /* Shrink logo size on scroll for mobile */
   }
 
-  .navbar.scrolled header {
+  .navbar.scrolled {
     height: 48px !important;
   }
 }
@@ -214,7 +208,7 @@ header.scrolled {
     height: 64px !important; /* Shrink logo size on scroll */
   }
 
-  .navbar.scrolled header {
+  .navbar.scrolled {
     height: 64px !important;
   }
 }
