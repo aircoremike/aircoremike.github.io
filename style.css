@@ -1,56 +1,70 @@
+/* --- Navbar & Logo Animation Refactor --- */
 :root {
-  --navbar-height: 80px;
-  --navbar-height-large: 160px;
-  --navbar-height-medium: 120px;
-  --navbar-height-small: 64px;
+  --navbar-height: 160px;
+  --navbar-height-scrolled: 64px;
+  --logo-height: 128px;
+  --logo-height-scrolled: 64px;
+  --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
+  --max-width: 1200px;
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: calc(var(--navbar-height) + 50px); /* 50px extra space as before */
+  padding-top: var(--navbar-height);
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position-y: var(--navbar-height);
   font-size: 1.15rem;
-}
-
-header {
-  width: 100%;
-  background: #181818; /* Off-black navbar background */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  height: 160px;
-  transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+  transition: padding-top var(--transition);
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin: 0 auto;
-  max-width: 1200px;
+  background: #181818;
+  z-index: 1000;
+  height: var(--navbar-height);
+  transition: height var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.navbar.scrolled {
+  height: var(--navbar-height-scrolled);
+}
+
+.navbar-content {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
 
 .logo {
-  color: #f6f6f6;
-  font-size: 1.5rem;
-  font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  flex: 0 0 auto;
 }
 
 .logo img {
-  height: 128px !important; /* Increased logo size for desktop */
+  height: var(--logo-height);
   width: auto;
-  transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
+  transition: height var(--transition);
+  display: block;
+}
+
+.navbar.scrolled .logo img {
+  height: var(--logo-height-scrolled);
 }
 
 .nav-links {
@@ -59,6 +73,9 @@ header {
   gap: 2rem;
   margin: 0;
   padding: 0;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
 }
 
 .nav-links li a {
@@ -77,12 +94,13 @@ header {
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
+  margin-left: auto;
 }
 
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background: #f6f6f6; /* Off-white hamburger */
+  background: #f6f6f6;
   border-radius: 2px;
   display: block;
 }
@@ -90,124 +108,39 @@ header {
 @media (max-width: 768px) {
   :root {
     --navbar-height: 80px;
-    --navbar-height-large: 120px;
-    --navbar-height-small: 48px;
+    --navbar-height-scrolled: 48px;
+    --logo-height: 48px;
+    --logo-height-scrolled: 32px;
   }
   body {
-    background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
-    background-size: cover;
-    padding-top: calc(var(--navbar-height) + 50px);
-    background-position-y: var(--navbar-height);
+    padding-top: var(--navbar-height);
   }
-
-  header {
-    height: 120px;
-    transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+  .navbar-content {
+    padding: 0 1rem;
   }
-
-  .navbar {
-    box-sizing: border-box;
-    padding-left: 0;
-    padding-right: 0;
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    left: 0;
-    right: 0;
-    justify-content: flex-start;
-    position: relative;
-    overflow: visible !important; /* Prevent internal scrolling */
-    z-index: 1100;
-  }
-
-  .logo {
-    margin-right: auto;
-  }
-
   .nav-links {
-    display: none;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
-    right: 0;
-    width: 100%;
-    background: #222;
-    z-index: 1050;
-    box-sizing: border-box;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-  }
-
-  ul.nav-links.open {
-    display: flex !important;
+    background: #181818;
     flex-direction: column;
-    position: fixed;
-    top: var(--navbar-height);
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: #222;
-    z-index: 1050;
-    box-sizing: border-box;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     padding: 1rem 0;
     gap: 1rem;
-    max-height: 100vh;
-    overflow-y: auto;
+    transform: translateY(-150%);
+    transition: transform 0.3s var(--transition);
+    display: none;
   }
-
-  .nav-links li {
-    text-align: right;
-    padding: 0.5rem 1rem;
+  .nav-links.open {
+    transform: translateY(0);
+    display: flex;
   }
-
   .menu-toggle {
     display: flex;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1100;
-    cursor: pointer;
-  }
-
-  #home h1 {
-    font-size: 2rem; 
-  }
-
-  .logo img {
-    height: 96px !important; /* Increased logo size for mobile */
-  }
-
-  .navbar.scrolled .logo img {
-    height: 48px !important; /* Shrink logo size on scroll for mobile */
-  }
-
-  .navbar.scrolled header {
-    height: 48px !important;
-  }
-}
-
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none !important;
-  }
-
-  #home h1 {
-    font-size: 4rem;
-    margin-bottom: 100px !important;
-  }
-
-  #home p {
-    font-size: 1.725rem;
-    margin-top: 0 !important;
-  }
-
-  .navbar.scrolled .logo img {
-    height: 64px !important; /* Shrink logo size on scroll */
-  }
-
-  .navbar.scrolled header {
-    height: 64px !important;
+    z-index: 1001;
+    margin-left: auto;
   }
 }
 

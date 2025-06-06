@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       navbar.classList.remove('scrolled');
     }
+    // Always update body padding to match navbar height
+    document.body.style.paddingTop = navbar.offsetHeight + 'px';
   }
   window.addEventListener('scroll', handleNavbarShrink);
+  window.addEventListener('resize', handleNavbarShrink);
   handleNavbarShrink(); // Run on load
 });
