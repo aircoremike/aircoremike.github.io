@@ -17,7 +17,6 @@ body {
   background-size: cover;
   background-position-y: var(--navbar-height);
   font-size: 1.15rem;
-  transition: padding-top var(--transition);
 }
 
 .navbar {
@@ -152,17 +151,6 @@ body {
     align-items: center;
     width: auto;
     flex: 0 1 auto;
-  }
-  body {
-    padding-top: var(--navbar-height);
-    transition: padding-top var(--transition);
-  }
-  .navbar {
-    height: var(--navbar-height);
-    transition: height var(--transition);
-  }
-  .navbar.scrolled {
-    height: var(--navbar-height-scrolled);
   }
 }
 
