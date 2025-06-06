@@ -28,10 +28,12 @@ body {
   background: #181818;
   z-index: 1000;
   height: var(--navbar-height);
-  transition: height var(--transition);
+  transition: height var(--transition), min-height var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: height;
+  backface-visibility: hidden;
 }
 
 .navbar.scrolled {
