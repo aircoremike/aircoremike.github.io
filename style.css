@@ -1,3 +1,26 @@
+/* General Styles */
+:root {
+  --logo-height-desktop: 128px;
+  --logo-height-mobile: 64px;
+  --max-width: 1200px;
+  --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
+  --navbar-height-desktop: calc(var(--logo-height-desktop) * 0.25); /* Padding is 25% of logo height */
+  --navbar-height-mobile: calc(var(--logo-height-mobile) * 0.15); /* Mobile padding */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  padding-top: var(--navbar-height);
+  background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-position-y: var(--navbar-height-desktop);
+  font-size: 1.15rem;
+  transition: padding-top var(--transition);
+  background-color: var(--safe-area-color); /* fallback for safe area */
+}
+
 html {
   overflow-x: hidden;
   box-sizing: border-box;
