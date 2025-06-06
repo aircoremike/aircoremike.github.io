@@ -19,16 +19,14 @@ body {
 }
 
 .navbar {
-  position: fixed;
+  position: fixed !important; /* Force fixed positioning */
   top: 0;
   left: 0;
-  right: 0;
   width: 100%;
+  background-color: #181818;
+  z-index: 9999;
   height: var(--navbar-height);
-  background: #181818;
-  z-index: 1000;
-  transition: height 0.4s var(--transition-timing);
-  will-change: height;
+  transition: height 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -39,11 +37,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--max-width);
   height: 100%;
-  margin: 0 auto;
   padding: 0 1rem;
-  box-sizing: border-box;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 .logo {
@@ -55,7 +52,7 @@ body {
 .logo img {
   height: var(--logo-height);
   width: auto;
-  transition: height 0.4s var(--transition-timing);
+  transition: height 0.3s ease;
 }
 
 .navbar.scrolled .logo img {
@@ -110,11 +107,11 @@ body {
   }
 
   .navbar {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
-    right: 0;
-    width: 100%;
+    width: 100vw;
+    height: var(--navbar-height);
   }
 
   .navbar-content {
@@ -125,21 +122,23 @@ body {
     position: fixed;
     top: var(--navbar-height);
     left: 0;
-    right: 0;
+    width: 100%;
     background: #181818;
     flex-direction: column;
+    align-items: center;
     padding: 1rem 0;
-    gap: 1rem;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
+    transform: translateY(-150%);
+    transition: transform 0.3s ease-in-out;
+    display: none;
   }
 
   .nav-links.open {
     transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
   }
 
   .menu-toggle {
