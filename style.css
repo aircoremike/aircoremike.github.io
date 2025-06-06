@@ -27,22 +27,18 @@ body {
   width: 100%;
   background: #181818;
   z-index: 1000;
-  height: var(--navbar-height);
-  transition: height var(--transition), min-height var(--transition);
+  height: auto;
+  max-height: var(--navbar-height);
+  transition: max-height var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: height, transform;
-  backface-visibility: hidden;
+  will-change: max-height;
   overflow: hidden;
-  /* Force hardware-accelerated repaint for Chrome/Safari */
-  transform: translateZ(0);
 }
 
 .navbar.scrolled {
-  height: var(--navbar-height-scrolled);
-  /* Nudge transform to force repaint on height change */
-  transform: translateZ(0) scaleY(0.9999);
+  max-height: var(--navbar-height-scrolled);
 }
 
 .navbar-content {
