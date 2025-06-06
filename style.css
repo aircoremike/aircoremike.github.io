@@ -104,6 +104,31 @@ body, html {
   display: block;
 }
 
+/* Nav Links Styles */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+  color: #f6f6f6;
+}
+
 /* --- Desktop & Tablet Styles --- */
 @media (min-width: 769px) {
   .logo img {
