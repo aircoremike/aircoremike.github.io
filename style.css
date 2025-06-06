@@ -7,6 +7,7 @@
   --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
+  --logo-padding: calc(var(--logo-height) * 0.25); /* Padding is 25% of logo height */
 }
 
 body {
@@ -68,16 +69,16 @@ body, html {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--navbar-height);
   background: var(--safe-area-color); /* match safe area color */
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding-top: env(safe-area-inset-top);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding));
+  padding-bottom: var(--logo-padding);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 .navbar-inner {
@@ -106,6 +107,20 @@ body, html {
 @media (min-width: 769px) {
   .logo img {
     height: 96px;
+  }
+  :root {
+    --logo-height: 96px;
+    --logo-padding: calc(var(--logo-height) * 0.25);
+  }
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    height: 48px;
+  }
+  :root {
+    --logo-height: 48px;
+    --logo-padding: calc(var(--logo-height) * 0.25);
   }
 }
 
