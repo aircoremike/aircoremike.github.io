@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Navbar logo and header shrink on scroll
+  // Navbar logo shrink on scroll
   const navbar = document.querySelector('.navbar');
   function handleNavbarShrink() {
     if (window.scrollY > 10) {
@@ -15,11 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       navbar.classList.remove('scrolled');
     }
-    // Use computed max-height for body padding
-    const computedMaxHeight = window.getComputedStyle(navbar).maxHeight;
-    document.body.style.paddingTop = computedMaxHeight;
   }
   window.addEventListener('scroll', handleNavbarShrink);
-  window.addEventListener('resize', handleNavbarShrink); // Ensure correct state on resize
   handleNavbarShrink(); // Run on load
 });

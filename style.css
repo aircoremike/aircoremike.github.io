@@ -1,72 +1,56 @@
-/* --- Navbar & Logo Animation Refactor --- */
 :root {
-  --navbar-height: 160px;
-  --navbar-height-scrolled: 64px;
-  --logo-height: 128px;
-  --logo-height-scrolled: 64px;
-  --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
-  --max-width: 1200px;
+  --navbar-height: 80px;
+  --navbar-height-large: 160px;
+  --navbar-height-medium: 120px;
+  --navbar-height-small: 64px;
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: var(--navbar-height);
+  padding-top: calc(var(--navbar-height) + 50px); /* 50px extra space as before */
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position-y: var(--navbar-height);
   font-size: 1.15rem;
-  transition: padding-top var(--transition);
 }
 
-.navbar {
+header {
+  width: 100%;
+  background: #181818; /* Off-black navbar background */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background: #181818;
   z-index: 1000;
-  height: auto;
-  max-height: var(--navbar-height);
-  transition: max-height var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  will-change: max-height;
-  overflow: hidden;
+  height: 160px;
+  transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
-.navbar.scrolled {
-  max-height: var(--navbar-height-scrolled);
-}
-
-.navbar-content {
-  width: 100%;
-  max-width: var(--max-width);
+.navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
   height: 100%;
-  padding: 0 2rem;
-  box-sizing: border-box;
 }
 
 .logo {
+  color: #f6f6f6;
+  font-size: 1.5rem;
+  font-weight: bold;
   display: flex;
   align-items: center;
-  flex: 0 0 auto;
+  gap: 0.5rem;
 }
 
 .logo img {
-  height: var(--logo-height);
+  height: 128px !important; /* Increased logo size for desktop */
   width: auto;
-  transition: height var(--transition);
-  display: block;
-}
-
-.navbar.scrolled .logo img {
-  height: var(--logo-height-scrolled);
+  transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
 }
 
 .nav-links {
@@ -75,9 +59,6 @@ body {
   gap: 2rem;
   margin: 0;
   padding: 0;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 0 1 auto;
 }
 
 .nav-links li a {
@@ -96,13 +77,12 @@ body {
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
-  margin-left: auto;
 }
 
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background: #f6f6f6;
+  background: #f6f6f6; /* Off-white hamburger */
   border-radius: 2px;
   display: block;
 }
@@ -110,39 +90,124 @@ body {
 @media (max-width: 768px) {
   :root {
     --navbar-height: 80px;
-    --navbar-height-scrolled: 48px;
-    --logo-height: 48px;
-    --logo-height-scrolled: 32px;
+    --navbar-height-large: 120px;
+    --navbar-height-small: 48px;
   }
   body {
-    padding-top: var(--navbar-height);
+    background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding-top: calc(var(--navbar-height) + 50px);
+    background-position-y: var(--navbar-height);
   }
-  .navbar-content {
-    padding: 0 1rem;
+
+  header {
+    height: 120px;
+    transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
   }
-  .nav-links {
-    justify-content: flex-end;
-    align-items: flex-end;
+
+  .navbar {
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
     width: 100%;
+    margin: 0;
+    left: 0;
+    right: 0;
+    justify-content: flex-start;
+    position: relative;
+    overflow: visible !important; /* Prevent internal scrolling */
+    z-index: 1100;
+  }
+
+  .logo {
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: none;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
-    background: #181818;
+    right: 0;
+    width: 100%;
+    background: #222;
+    z-index: 1050;
+    box-sizing: border-box;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  ul.nav-links.open {
+    display: flex !important;
     flex-direction: column;
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #222;
+    z-index: 1050;
+    box-sizing: border-box;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     padding: 1rem 0;
     gap: 1rem;
-    transform: translateY(-150%);
-    transition: transform 0.3s var(--transition);
-    display: none;
+    max-height: 100vh;
+    overflow-y: auto;
   }
-  .nav-links.open {
-    transform: translateY(0);
-    display: flex;
+
+  .nav-links li {
+    text-align: right;
+    padding: 0.5rem 1rem;
   }
+
   .menu-toggle {
     display: flex;
-    z-index: 1001;
-    margin-left: auto;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100;
+    cursor: pointer;
+  }
+
+  #home h1 {
+    font-size: 2rem; 
+  }
+
+  .logo img {
+    height: 96px !important; /* Increased logo size for mobile */
+  }
+
+  .navbar.scrolled .logo img {
+    height: 48px !important; /* Shrink logo size on scroll for mobile */
+  }
+
+  .navbar.scrolled header {
+    height: 48px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
+  }
+
+  #home h1 {
+    font-size: 4rem;
+    margin-bottom: 100px !important;
+  }
+
+  #home p {
+    font-size: 1.725rem;
+    margin-top: 0 !important;
+  }
+
+  .navbar.scrolled .logo img {
+    height: 64px !important; /* Shrink logo size on scroll */
+  }
+
+  .navbar.scrolled header {
+    height: 64px !important;
   }
 }
 
