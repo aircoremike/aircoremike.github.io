@@ -60,7 +60,7 @@ body, html {
   overscroll-behavior-y: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
