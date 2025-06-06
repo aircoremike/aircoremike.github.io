@@ -35,16 +35,17 @@ header.scrolled {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 2rem 2rem; /* Add extra bottom padding for large navbar */
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
   height: 100%;
-  transition: align-items 0.4s cubic-bezier(0.4,0,0.2,1);
+  transition: align-items 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
 header.scrolled .navbar {
   align-items: center;
+  padding: 1rem 2rem; /* Remove extra bottom padding when shrunk */
 }
 
 .logo {
