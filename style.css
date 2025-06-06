@@ -1,25 +1,24 @@
+/* Reset and base styles */
 :root {
   --navbar-height: 160px;
   --navbar-height-scrolled: 64px;
   --logo-height: 128px;
   --logo-height-scrolled: 48px;
   --max-width: 1200px;
-  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-duration: 0.4s;
 }
 
 body {
   margin: 0;
+  padding-top: var(--navbar-height);
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: var(--navbar-height);
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position-y: var(--navbar-height);
   font-size: 1.15rem;
 }
 
-/* Navbar base styles */
+/* Core navbar styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -28,44 +27,40 @@ body {
   width: 100%;
   background-color: #181818;
   z-index: 9999;
-  transform-origin: top;
   height: var(--navbar-height);
-  transition: height var(--transition-duration) var(--transition-timing);
+  transition: height 0.3s ease;
 }
 
-/* Scrolled state */
 .navbar.scrolled {
   height: var(--navbar-height-scrolled);
-  transition: height var(--transition-duration) var(--transition-timing);
 }
 
 .navbar-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 100%;
-  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   max-width: var(--max-width);
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  height: 100%;
 }
 
 .logo img {
   height: var(--logo-height);
   width: auto;
-  transition: height var(--transition-duration) var(--transition-timing);
-  will-change: height;
+  transition: height 0.3s ease;
 }
 
 .navbar.scrolled .logo img {
   height: var(--logo-height-scrolled);
 }
 
+/* Navigation links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -171,45 +166,18 @@ body {
 }
 
 @media (min-width: 769px) {
-  :root {
-    --navbar-height: 160px;
-    --navbar-height-scrolled: 64px;
-    --logo-height: 128px;
-    --logo-height-scrolled: 48px;
-  }
-
-  .menu-toggle {
-    display: none !important;
-  }
-
-  #home h1 {
-    font-size: 4rem;
-    margin-bottom: 100px !important;
-  }
-
-  #home p {
-    font-size: 1.725rem;
-    margin-top: 0 !important;
-  }
-
-  /* Desktop navbar styles */
   .navbar {
     height: var(--navbar-height);
   }
-
+  
   .navbar.scrolled {
     height: var(--navbar-height-scrolled);
   }
-
-  .logo {
-    height: 100%;
-  }
-
+  
   .logo img {
     height: var(--logo-height);
-    transform-origin: center;
   }
-
+  
   .navbar.scrolled .logo img {
     height: var(--logo-height-scrolled);
   }
