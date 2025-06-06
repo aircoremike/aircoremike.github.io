@@ -26,7 +26,7 @@ body {
   background-color: #181818;
   z-index: 9999;
   height: var(--navbar-height);
-  transition: height 0.3s ease;
+  transition: all 0.4s var(--transition-timing);
 }
 
 .navbar.scrolled {
@@ -178,12 +178,21 @@ body {
     margin-top: 0 !important;
   }
 
-  .navbar.scrolled .logo img {
-    height: 64px !important; /* Shrink logo size on scroll */
+  .navbar {
+    height: var(--navbar-height);
+    transition: height 0.4s var(--transition-timing);
   }
 
-  .navbar.scrolled header {
-    height: 64px !important;
+  .navbar.scrolled {
+    height: var(--navbar-height-scrolled);
+  }
+
+  .logo img {
+    height: var(--logo-height);
+  }
+
+  .navbar.scrolled .logo img {
+    height: var(--logo-height-scrolled);
   }
 }
 
