@@ -98,6 +98,12 @@ body, html {
   display: block;
 }
 
+@media (min-width: 769px) {
+  .logo img {
+    height: 96px;
+  }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
