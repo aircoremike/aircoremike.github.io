@@ -162,3 +162,14 @@ body, html {
     display: flex;
   }
 }
+
+@media (min-width: 601px) {
+  .nav-links {
+    display: flex !important;
+  }
+  .menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Remove previous menu-toggle/nav-links display rules from the tablet media query if present */
