@@ -17,6 +17,9 @@ body {
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   background: #181818; /* Off-black navbar background */
   position: fixed;
@@ -25,8 +28,6 @@ header {
   z-index: 1000;
   height: 160px;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-  display: flex;
-  align-items: center;
 }
 
 header.scrolled {
@@ -35,28 +36,19 @@ header.scrolled {
 
 .navbar {
   display: flex;
+  flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
   height: 100%;
-  position: relative;
-}
-
-header.scrolled .navbar {
-  align-items: center;
-  padding: 1rem 2rem; /* Remove extra bottom padding when shrunk */
+  padding: 0 2rem;
 }
 
 .logo {
-  color: #f6f6f6;
-  font-size: 1.5rem;
-  font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   height: 100%;
 }
 
@@ -65,7 +57,6 @@ header.scrolled .navbar {
   width: auto;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
   display: block;
-  margin: auto 0;
 }
 
 .nav-links {
