@@ -22,11 +22,13 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   height: var(--navbar-height);
   background: #181818;
   z-index: 1000;
   transition: height 0.4s var(--transition-timing);
+  will-change: height;
 }
 
 .navbar.scrolled {
@@ -40,7 +42,8 @@ body {
   max-width: var(--max-width);
   height: 100%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -96,90 +99,52 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --navbar-height: 120px;
+    --navbar-height: 80px;
     --navbar-height-scrolled: 48px;
-    --logo-height: 96px;
-    --logo-height-scrolled: 32px;
+    --logo-height: 60px;
+    --logo-height-scrolled: 40px;
   }
 
   body {
-    background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
-    background-size: cover;
-    padding-top: calc(var(--navbar-height) + 50px);
-    background-position-y: var(--navbar-height);
-  }
-
-  header {
-    height: 120px;
-    transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-  }
-  header.scrolled {
-    height: 48px !important;
+    padding-top: var(--navbar-height);
   }
 
   .navbar {
-    box-sizing: border-box;
-    padding-left: 0;
-    padding-right: 0;
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
-    justify-content: flex-start;
-    position: relative;
-    overflow: visible !important; /* Prevent internal scrolling */
-    z-index: 1100;
+    width: 100%;
   }
 
-  .logo {
-    margin-right: auto;
+  .navbar-content {
+    padding: 0 1rem;
   }
 
   .nav-links {
-    display: none;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
     right: 0;
-    width: 100%;
-    background: #222;
-    z-index: 1050;
-    box-sizing: border-box;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-  }
-
-  ul.nav-links.open {
-    display: flex !important;
+    background: #181818;
     flex-direction: column;
-    position: fixed;
-    top: var(--navbar-height);
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: #222;
-    z-index: 1050;
-    box-sizing: border-box;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     padding: 1rem 0;
     gap: 1rem;
-    max-height: 100vh;
-    overflow-y: auto;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
   }
 
-  .nav-links li {
-    text-align: right;
-    padding: 0.5rem 1rem;
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
 
   .menu-toggle {
     display: flex;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1100;
-    cursor: pointer;
+    z-index: 1001;
   }
 
   #home h1 {
