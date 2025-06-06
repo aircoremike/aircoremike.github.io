@@ -1,30 +1,3 @@
-/* --- Navbar & Logo Animation Refactor --- */
-:root {
-  --navbar-height: 160px;
-  --navbar-height-scrolled: 64px;
-  --logo-height: 128px;
-  --logo-height-scrolled: 64px;
-  --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
-  --max-width: 1200px;
-  --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
-  --logo-padding: calc(var(--logo-height) * 0.25); /* Padding is 25% of logo height */
-  --navbar-height-desktop: calc(var(--logo-height) + 2 * var(--logo-padding));
-  --navbar-height-mobile: calc(var(--logo-height) + 2 * var(--logo-padding));
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-  padding-top: var(--navbar-height-desktop);
-  background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-position-y: var(--navbar-height-desktop);
-  font-size: 1.15rem;
-  transition: padding-top var(--transition);
-  background-color: var(--safe-area-color); /* fallback for safe area */
-}
-
 html {
   overflow-x: hidden;
   box-sizing: border-box;
