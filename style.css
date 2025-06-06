@@ -54,6 +54,7 @@ body {
   display: flex;
   align-items: center;
   flex: 0 0 auto;
+  height: 100%;
 }
 
 .logo img {
@@ -75,6 +76,7 @@ body {
   padding: 0;
   align-items: center;
   justify-content: flex-end;
+  height: 100%;
   flex: 0 1 auto;
 }
 
@@ -83,6 +85,9 @@ body {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .nav-links li a:hover {
@@ -95,6 +100,9 @@ body {
   cursor: pointer;
   gap: 5px;
   margin-left: auto;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
 }
 
 .menu-toggle span {
@@ -119,19 +127,19 @@ body {
     padding: 0 1rem;
   }
   .nav-links {
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: 100%;
     position: fixed;
     top: var(--navbar-height);
     left: 0;
+    width: 100%;
     background: #181818;
     flex-direction: column;
+    align-items: flex-end;
     padding: 1rem 0;
     gap: 1rem;
     transform: translateY(-150%);
     transition: transform 0.3s var(--transition);
     display: none;
+    height: auto;
   }
   .nav-links.open {
     transform: translateY(0);
