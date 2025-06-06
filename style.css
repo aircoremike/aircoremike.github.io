@@ -17,7 +17,7 @@ body {
   padding-top: var(--navbar-height);
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-position-y: var(--navbar-height);
+  background-position-y: calc(var(--navbar-height) + env(safe-area-inset-top, 0px));
   font-size: 1.15rem;
   transition: padding-top var(--transition);
   background-color: var(--safe-area-color); /* fallback for safe area */
@@ -145,7 +145,7 @@ body, html {
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-position-y: var(--navbar-height);
+    background-position-y: calc(var(--navbar-height) + env(safe-area-inset-top, 0px));
     background-color: var(--safe-area-color);
   }
   .logo img {
