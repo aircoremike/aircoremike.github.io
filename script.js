@@ -7,18 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Navbar logo and navbar shrink on scroll
+  // Navbar logo and header shrink on scroll
   const navbar = document.querySelector('.navbar');
+  const header = document.querySelector('header');
   function handleNavbarShrink() {
     if (window.scrollY > 10) {
       navbar.classList.add('scrolled');
-      document.body.style.paddingTop = navbar.classList.contains('scrolled') ? '64px' : '160px';
+      header.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
-      document.body.style.paddingTop = '160px';
+      header.classList.remove('scrolled');
     }
   }
   window.addEventListener('scroll', handleNavbarShrink);
-  window.addEventListener('resize', handleNavbarShrink);
+  window.addEventListener('resize', handleNavbarShrink); // Ensure correct state on resize
   handleNavbarShrink(); // Run on load
 });

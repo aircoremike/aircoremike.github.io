@@ -9,41 +9,39 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: calc(160px + 50px); /* 160px = initial .navbar height */
+  padding-top: calc(var(--navbar-height) + 50px); /* 50px extra space as before */
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-position-y: 160px;
+  background-position-y: var(--navbar-height);
   font-size: 1.15rem;
 }
 
-.navbar {
+header {
+  width: 100%;
+  background: #181818; /* Off-black navbar background */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 1000;
-  background: #181818;
   height: 160px;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-  display: flex;
-  align-items: center;
-  padding: 0;
-  min-height: 0;
+  overflow: hidden;
 }
 
-.navbar-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+header.scrolled {
+  height: 64px !important;
+}
+
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
   height: 100%;
-}
-
-.navbar.scrolled {
-  height: 64px !important;
+  padding: 0 2rem;
+  min-height: 0;
 }
 
 .logo {
@@ -103,15 +101,15 @@ body {
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
-    padding-top: calc(120px + 50px); /* 120px = initial .navbar height on mobile */
-    background-position-y: 120px;
+    padding-top: calc(var(--navbar-height) + 50px);
+    background-position-y: var(--navbar-height);
   }
 
-  .navbar {
+  header {
     height: 120px;
     transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
   }
-  .navbar.scrolled {
+  header.scrolled {
     height: 48px !important;
   }
 
@@ -192,7 +190,7 @@ body {
     height: 48px !important; /* Shrink logo size on scroll for mobile */
   }
 
-  .navbar.scrolled {
+  .navbar.scrolled header {
     height: 48px !important;
   }
 }
@@ -216,7 +214,7 @@ body {
     height: 64px !important; /* Shrink logo size on scroll */
   }
 
-  .navbar.scrolled {
+  .navbar.scrolled header {
     height: 64px !important;
   }
 }
