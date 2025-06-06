@@ -5,6 +5,7 @@
   --logo-height-scrolled: 48px;
   --max-width: 1200px;
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration: 0.4s;
 }
 
 body {
@@ -18,19 +19,24 @@ body {
   font-size: 1.15rem;
 }
 
+/* Navbar base styles */
 .navbar {
-  position: fixed !important; /* Force fixed positioning */
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   background-color: #181818;
   z-index: 9999;
+  transform-origin: top;
   height: var(--navbar-height);
-  transition: all 0.4s var(--transition-timing);
+  transition: height var(--transition-duration) var(--transition-timing);
 }
 
+/* Scrolled state */
 .navbar.scrolled {
   height: var(--navbar-height-scrolled);
+  transition: height var(--transition-duration) var(--transition-timing);
 }
 
 .navbar-content {
@@ -52,7 +58,8 @@ body {
 .logo img {
   height: var(--logo-height);
   width: auto;
-  transition: height 0.3s ease;
+  transition: height var(--transition-duration) var(--transition-timing);
+  will-change: height;
 }
 
 .navbar.scrolled .logo img {
@@ -164,6 +171,13 @@ body {
 }
 
 @media (min-width: 769px) {
+  :root {
+    --navbar-height: 160px;
+    --navbar-height-scrolled: 64px;
+    --logo-height: 128px;
+    --logo-height-scrolled: 48px;
+  }
+
   .menu-toggle {
     display: none !important;
   }
@@ -178,17 +192,22 @@ body {
     margin-top: 0 !important;
   }
 
+  /* Desktop navbar styles */
   .navbar {
     height: var(--navbar-height);
-    transition: height 0.4s var(--transition-timing);
   }
 
   .navbar.scrolled {
     height: var(--navbar-height-scrolled);
   }
 
+  .logo {
+    height: 100%;
+  }
+
   .logo img {
     height: var(--logo-height);
+    transform-origin: center;
   }
 
   .navbar.scrolled .logo img {
