@@ -25,6 +25,7 @@ header {
   z-index: 1000;
   height: 160px;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
 }
 
 header.scrolled {
@@ -40,6 +41,7 @@ header.scrolled {
   max-width: 1200px;
   height: 100%;
   padding: 0 2rem;
+  min-height: 0;
 }
 
 .logo {
@@ -53,6 +55,7 @@ header.scrolled {
   width: auto;
   transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
   display: block;
+  max-height: 100%;
 }
 
 .nav-links {
