@@ -1,25 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('open');
-    });
-  }
-
-  // Navbar logo and header shrink on scroll
-  const navbar = document.querySelector('.navbar');
-  const header = document.querySelector('header');
-  function handleNavbarShrink() {
-    if (window.scrollY > 10) {
-      navbar.classList.add('scrolled');
-      header.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-      header.classList.remove('scrolled');
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
     }
-  }
-  window.addEventListener('scroll', handleNavbarShrink);
-  window.addEventListener('resize', handleNavbarShrink); // Ensure correct state on resize
-  handleNavbarShrink(); // Run on load
+
+    // Navbar shrink on scroll
+    const navbar = document.querySelector('.navbar');
+    const scrollThreshold = 10;
+
+    function handleScroll() {
+        if (window.scrollY > scrollThreshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
+    // Add scroll and resize event listeners
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    
+    // Run on initial load
+    handleScroll();
+
+    // Update body padding when navbar height changes
+    const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+            document.body.style.paddingTop = entry.contentRect.height + 'px';
+        }
+    });
+
+    observer.observe(navbar);
 });

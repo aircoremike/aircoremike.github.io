@@ -1,47 +1,46 @@
 :root {
-  --navbar-height: 80px;
-  --navbar-height-large: 160px;
-  --navbar-height-medium: 120px;
-  --navbar-height-small: 64px;
+  --navbar-height: 160px;
+  --navbar-height-scrolled: 64px;
+  --logo-height: 128px;
+  --logo-height-scrolled: 48px;
+  --max-width: 1200px;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: calc(var(--navbar-height) + 50px); /* 50px extra space as before */
+  padding-top: var(--navbar-height);
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position-y: var(--navbar-height);
   font-size: 1.15rem;
 }
 
-header {
-  width: 100%;
-  background: #181818; /* Off-black navbar background */
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  background: #181818;
   z-index: 1000;
-  height: 160px;
-  transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-  overflow: hidden;
+  transition: height 0.4s var(--transition-timing);
 }
 
-header.scrolled {
-  height: 64px !important;
+.navbar.scrolled {
+  height: var(--navbar-height-scrolled);
 }
 
-.navbar {
+.navbar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1200px;
+  max-width: var(--max-width);
   height: 100%;
+  margin: 0 auto;
   padding: 0 2rem;
-  min-height: 0;
 }
 
 .logo {
@@ -51,11 +50,13 @@ header.scrolled {
 }
 
 .logo img {
-  height: 128px !important; /* Increased logo size for desktop */
+  height: var(--logo-height);
   width: auto;
-  transition: height 0.4s cubic-bezier(0.4,0,0.2,1); /* Smooth transition for logo size */
-  display: block;
-  max-height: 100%;
+  transition: height 0.4s var(--transition-timing);
+}
+
+.navbar.scrolled .logo img {
+  height: var(--logo-height-scrolled);
 }
 
 .nav-links {
@@ -64,6 +65,7 @@ header.scrolled {
   gap: 2rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links li a {
@@ -87,17 +89,19 @@ header.scrolled {
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background: #f6f6f6; /* Off-white hamburger */
+  background: #f6f6f6;
   border-radius: 2px;
   display: block;
 }
 
 @media (max-width: 768px) {
   :root {
-    --navbar-height: 80px;
-    --navbar-height-large: 120px;
-    --navbar-height-small: 48px;
+    --navbar-height: 120px;
+    --navbar-height-scrolled: 48px;
+    --logo-height: 96px;
+    --logo-height-scrolled: 32px;
   }
+
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
