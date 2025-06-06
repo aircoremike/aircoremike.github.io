@@ -17,10 +17,6 @@ body {
 }
 
 header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   background: #181818; /* Off-black navbar background */
   position: fixed;
@@ -33,13 +29,10 @@ header {
 
 header.scrolled {
   height: 64px !important;
-  justify-content: center;
-  align-items: center;
 }
 
 .navbar {
   display: flex;
-  flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
   width: 100%;
