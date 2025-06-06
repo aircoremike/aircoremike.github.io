@@ -17,6 +17,7 @@ body {
   background-size: cover;
   background-position-y: var(--navbar-height);
   font-size: 1.15rem;
+  transition: padding-top var(--transition);
 }
 
 .navbar {
@@ -139,18 +140,6 @@ body {
     display: flex;
     z-index: 1001;
     margin-left: auto;
-  }
-}
-
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none !important;
-  }
-  .nav-links {
-    justify-content: flex-end;
-    align-items: center;
-    width: auto;
-    flex: 0 1 auto;
   }
 }
 
