@@ -51,7 +51,6 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  height: 100%;
   flex: 0 0 auto;
 }
 
@@ -73,9 +72,8 @@ body {
   margin: 0;
   padding: 0;
   align-items: center;
-  height: 100%;
   justify-content: flex-end;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 }
 
 .nav-links li a {
@@ -83,9 +81,6 @@ body {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.2s;
-  display: flex;
-  align-items: center;
-  height: 100%;
 }
 
 .nav-links li a:hover {
@@ -153,6 +148,9 @@ body {
   }
   .nav-links {
     justify-content: flex-end;
+    align-items: center;
+    width: auto;
+    flex: 0 1 auto;
   }
 }
 
