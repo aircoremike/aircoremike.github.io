@@ -129,8 +129,8 @@ body, html {
 }
 
 .nav-links li a:hover {
-  color: #00bcd4;
   text-decoration: underline;
+  color: #fff;
 }
 
 .menu-toggle {
