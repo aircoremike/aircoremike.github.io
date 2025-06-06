@@ -7,8 +7,6 @@
   --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
-  --logo-padding-desktop: 12px;
-  --logo-padding-mobile: 6px;
   --logo-padding: calc(var(--logo-height) * 0.25); /* Padding is 25% of logo height */
 }
 
@@ -77,8 +75,8 @@ body, html {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding-desktop));
-  padding-bottom: var(--logo-padding-desktop);
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding));
+  padding-bottom: var(--logo-padding);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
@@ -115,15 +113,10 @@ body, html {
     --logo-height: 96px;
     --logo-padding: calc(var(--logo-height) * 0.25);
   }
-  /* Tablets (landscape) and desktops use desktop padding */
-  .navbar {
-    padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding-desktop));
-    padding-bottom: var(--logo-padding-desktop);
-  }
 }
 
 /* --- Mobile & Tablet Portrait Styles --- */
-@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 768px) {
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
