@@ -17,6 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   window.addEventListener('scroll', handleNavbarShrink);
-  window.addEventListener('resize', handleNavbarShrink); // Ensure correct state on resize
+  window.addEventListener('resize', handleNavbarShrink);
   handleNavbarShrink(); // Run on load
 });

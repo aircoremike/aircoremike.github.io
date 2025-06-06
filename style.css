@@ -9,10 +9,10 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-top: calc(var(--navbar-height) + 50px); /* 50px extra space as before */
+  padding-top: calc(160px + 50px); /* 160px = initial .navbar height */
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-position-y: var(--navbar-height);
+  background-position-y: 160px;
   font-size: 1.15rem;
 }
 
@@ -95,8 +95,8 @@ body {
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
-    padding-top: calc(var(--navbar-height) + 50px);
-    background-position-y: var(--navbar-height);
+    padding-top: calc(120px + 50px); /* 120px = initial .navbar height on mobile */
+    background-position-y: 120px;
   }
 
   .navbar {
