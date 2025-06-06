@@ -7,6 +7,8 @@
   --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
+  --logo-padding-desktop: 12px;
+  --logo-padding-mobile: 6px;
   --logo-padding: calc(var(--logo-height) * 0.25); /* Padding is 25% of logo height */
 }
 
@@ -75,8 +77,8 @@ body, html {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding));
-  padding-bottom: var(--logo-padding);
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding-desktop));
+  padding-bottom: var(--logo-padding-desktop);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
@@ -104,6 +106,7 @@ body, html {
   display: block;
 }
 
+/* --- Desktop & Tablet Styles --- */
 @media (min-width: 769px) {
   .logo img {
     height: 96px;
@@ -112,9 +115,21 @@ body, html {
     --logo-height: 96px;
     --logo-padding: calc(var(--logo-height) * 0.25);
   }
+  /* Tablets (landscape) and desktops use desktop padding */
+  .navbar {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding-desktop));
+    padding-bottom: var(--logo-padding-desktop);
+  }
 }
 
-@media (max-width: 768px) {
+/* --- Mobile & Tablet Portrait Styles --- */
+@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
+  body {
+    background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position-y: var(--navbar-height);
+    background-color: var(--safe-area-color);
+  }
   .logo img {
     height: 48px;
   }
@@ -122,56 +137,10 @@ body, html {
     --logo-height: 48px;
     --logo-padding: calc(var(--logo-height) * 0.25);
   }
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.nav-links li a:hover {
-  text-decoration: underline;
-  color: #fff;
-}
-
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-}
-
-.menu-toggle span {
-  width: 25px;
-  height: 3px;
-  background: #f6f6f6;
-  border-radius: 2px;
-  display: block;
-}
-
-@media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
-  body {
-    background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
-    background-size: cover;
-    background-position-y: var(--navbar-height);
-    background-color: var(--safe-area-color);
+  /* Mobile and tablet portrait use mobile padding */
+  .navbar {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding-mobile));
+    padding-bottom: var(--logo-padding-mobile);
   }
   .navbar-inner {
     padding: 0 1rem;
@@ -184,6 +153,7 @@ body, html {
   }
 }
 
+/* --- Force nav links visible on desktop/tablet landscape --- */
 @media (min-width: 601px) {
   .nav-links {
     display: flex !important;
@@ -192,5 +162,3 @@ body, html {
     display: none !important;
   }
 }
-
-/* Remove previous menu-toggle/nav-links display rules from the tablet media query if present */
