@@ -5,6 +5,7 @@
   --logo-height: 128px;
   --logo-height-scrolled: 48px;
   --max-width: 1200px;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -27,12 +28,14 @@ body {
   width: 100%;
   background-color: #181818;
   z-index: 9999;
+  min-height: var(--navbar-height-scrolled);
   height: var(--navbar-height);
-  transition: height 0.3s ease;
+  transform-origin: top;
+  transition: transform 0.3s var(--transition-timing);
 }
 
 .navbar.scrolled {
-  height: var(--navbar-height-scrolled);
+  transform: scaleY(calc(var(--navbar-height-scrolled) / var(--navbar-height)));
 }
 
 .navbar-content {
@@ -43,6 +46,11 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 2rem;
+  transition: transform 0.3s var(--transition-timing);
+}
+
+.navbar.scrolled .navbar-content {
+  transform: scaleY(calc(var(--navbar-height) / var(--navbar-height-scrolled)));
 }
 
 .logo {
@@ -53,7 +61,8 @@ body {
 .logo img {
   height: var(--logo-height);
   width: auto;
-  transition: height 0.3s ease;
+  transition: height 0.3s var(--transition-timing);
+  transform-origin: left center;
 }
 
 .navbar.scrolled .logo img {
@@ -166,20 +175,28 @@ body {
 }
 
 @media (min-width: 769px) {
+  :root {
+    --navbar-height: 160px;
+    --navbar-height-scrolled: 64px;
+    --logo-height: 128px;
+    --logo-height-scrolled: 48px;
+  }
+
   .navbar {
+    min-height: var(--navbar-height-scrolled);
     height: var(--navbar-height);
   }
-  
-  .navbar.scrolled {
-    height: var(--navbar-height-scrolled);
-  }
-  
+
   .logo img {
     height: var(--logo-height);
   }
-  
+
   .navbar.scrolled .logo img {
     height: var(--logo-height-scrolled);
+  }
+
+  .nav-links {
+    transform: none;
   }
 }
 
