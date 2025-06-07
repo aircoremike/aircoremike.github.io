@@ -41,7 +41,7 @@ html {
   color: #f6f6f6;
   margin-bottom: 0.85rem;
   text-align: center;
-  margin-top: 350px;
+  margin-top: calc(var(--navbar-height-desktop) + 300px);
 }
 
 #home p {
@@ -251,6 +251,9 @@ body, html {
   }
   .mobile-nav.open {
     display: flex;
+  }
+  #home h1 {
+    margin-top: calc(var(--navbar-height-mobile) + 80px);
   }
 }
 
