@@ -1,7 +1,7 @@
 /* General Styles */
 :root {
   --logo-height-desktop: 128px;
-  --logo-height-mobile: 96px;
+  --logo-height-mobile: 64px;
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
   --navbar-height-desktop: calc(var(--logo-height-desktop) * 1.25); /* Padding is 25% of logo height */
@@ -203,12 +203,7 @@ body, html {
 /* --- Desktop & Tablet Styles --- */
 @media (min-width: 769px) {
   .logo img {
-    height: 96px;
-  }
-  :root {
-    --logo-height: 96px;
-    --logo-padding: calc(var(--logo-height) * 0.25);
-    --navbar-height-desktop: calc(var(--logo-height) + 2 * var(--logo-padding));
+    height: var(--logo-height-desktop);
   }
 }
 
