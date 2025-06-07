@@ -4,8 +4,8 @@
   --logo-height-mobile: 64px;
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
-  --navbar-height-desktop: calc(var(--logo-height-desktop) * 0.25); /* Padding is 25% of logo height */
-  --navbar-height-mobile: calc(var(--logo-height-mobile) * 0.15); /* Mobile padding */
+  --navbar-height-desktop: calc(var(--logo-height-desktop) * 1.25); /* Padding is 25% of logo height */
+  --navbar-height-mobile: calc(var(--logo-height-mobile) * 1.15); /* Mobile padding */
 }
 
 body {
@@ -162,15 +162,16 @@ body, html {
 /* Mobile dropdown menu styles */
 .mobile-nav {
   display: none;
-  position: absolute;
+  position: fixed;
+  top: var(--navbar-height-mobile);
   left: 0;
   right: 0;
-  top: 100%; /* Attach directly to the bottom of the navbar-inner */
   background: var(--safe-area-color);
   width: 100vw;
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   z-index: 1099;
-  padding: 1.5rem 0 1.5rem 0;
+  padding-top: var(--navbar-height-mobile);
+  padding-bottom: 1.5rem;
   animation: dropdownFadeIn 0.3s;
   flex-direction: column;
   align-items: flex-end;
