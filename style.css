@@ -88,6 +88,7 @@ body, html {
   height: 100%;
   padding: 0 1.5rem;
   box-sizing: border-box;
+  position: relative; /* Ensure .mobile-nav is positioned relative to navbar-inner */
 }
 
 .logo {
@@ -171,6 +172,8 @@ body, html {
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   z-index: 1099;
   padding: 0 0 1.5rem 0; /* Remove top padding to eliminate gap */
+  margin-top: 0; /* Ensure no margin is causing a gap */
+  border-top: none; /* Ensure no border is causing a gap */
   animation: dropdownFadeIn 0.3s;
   flex-direction: column;
   align-items: flex-end;
