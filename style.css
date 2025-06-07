@@ -8,6 +8,7 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
+}
 
 body {
   margin: 0;
@@ -251,6 +252,7 @@ body, html {
   }
   .mobile-nav.open {
     display: flex;
+}
 }
 
 /* --- Force nav links visible on desktop/tablet landscape --- */
