@@ -41,7 +41,7 @@ html {
   color: #f6f6f6;
   margin-bottom: 0.85rem;
   text-align: center;
-  margin-top: calc(var(--navbar-height-desktop) + 300px);
+  margin-top: calc(var(--navbar-height-desktop) + 600px);
 }
 
 #home p {
