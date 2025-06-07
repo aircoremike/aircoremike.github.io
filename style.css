@@ -141,11 +141,7 @@ body, html {
 
 /* --- Mobile & Tablet Portrait Styles --- */
 @media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
-  :root {
-    --logo-height: 48px;
-    --logo-padding: calc(var(--logo-height) * 0.25);
-    --navbar-height-mobile: calc(var(--logo-height) + 2 * var(--logo-padding));
-  }
+
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -153,7 +149,7 @@ body, html {
     background-color: var(--safe-area-color);
   }
   .logo img {
-    height: 48px;
+    height: var(--logo-height-mobile);
   }
   /* Mobile and tablet portrait use mobile padding */
   .navbar {
