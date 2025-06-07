@@ -1,7 +1,7 @@
 /* General Styles */
 :root {
   --logo-height-desktop: 128px;
-  --logo-height-mobile: 64px;
+  --logo-height-mobile: 96px;
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
   --navbar-height-desktop: calc(var(--logo-height-desktop) * 1.25); /* Padding is 25% of logo height */
