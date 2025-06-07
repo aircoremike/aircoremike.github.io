@@ -4,8 +4,10 @@
   --logo-height-mobile: 64px;
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
-  --navbar-height-desktop: calc(var(--logo-height-desktop) * 1.25); /* Padding is 25% of logo height */
-  --navbar-height-mobile: calc(var(--logo-height-mobile) * 1.15); /* Mobile padding */
+  --navbar-height-desktop: calc(var(--logo-height-desktop) * 1.25);
+  --navbar-height-mobile: calc(var(--logo-height-mobile) * 1.15);
+  --logo-padding: 0; /* Remove or set to 0 if not used */
+  --logo-padding-mobile: 0; /* Remove or set to 0 if not used */
 }
 
 body {
