@@ -127,6 +127,77 @@ body, html {
   color: #f6f6f6;
 }
 
+/* Hamburger menu animation */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  z-index: 1100;
+  background: none;
+  border: none;
+}
+.menu-toggle span {
+  width: 28px;
+  height: 3px;
+  background: #f6f6f6;
+  border-radius: 2px;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile dropdown menu styles */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--safe-area-color);
+  width: 100vw;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 1099;
+  padding: 1.5rem 0 1.5rem 0;
+  animation: dropdownFadeIn 0.3s;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2rem;
+}
+.mobile-nav.open {
+  display: flex;
+}
+.mobile-nav li {
+  list-style: none;
+  margin: 0 2rem;
+}
+.mobile-nav li a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-size: 1.25rem;
+  padding: 0.5rem 0;
+  display: block;
+  text-align: right;
+}
+.mobile-nav li a:hover {
+  text-decoration: underline;
+}
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- Desktop & Tablet Styles --- */
 @media (min-width: 769px) {
   .logo img {
@@ -165,6 +236,12 @@ body, html {
   .menu-toggle {
     display: flex;
   }
+  .mobile-nav {
+    display: none;
+  }
+  .mobile-nav.open {
+    display: flex;
+  }
 }
 
 /* --- Force nav links visible on desktop/tablet landscape --- */
@@ -173,6 +250,12 @@ body, html {
     display: flex !important;
   }
   .menu-toggle {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-nav {
     display: none !important;
   }
 }
