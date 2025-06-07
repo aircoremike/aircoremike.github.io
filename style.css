@@ -4,10 +4,10 @@
   --logo-height-mobile: 64px;
   --max-width: 1200px;
   --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
-  --navbar-height-desktop: calc(var(--logo-height-desktop) * 1.25);
-  --navbar-height-mobile: calc(var(--logo-height-mobile) * 1.15);
-  --logo-padding: 0; /* Remove or set to 0 if not used */
-  --logo-padding-mobile: 0; /* Remove or set to 0 if not used */
+  --logo-padding: 16px;
+  --logo-padding-mobile: 8px;
+  --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
+  --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
 }
 
 body {
@@ -210,6 +210,10 @@ body, html {
 /* --- Mobile & Tablet Portrait Styles --- */
 @media (max-width: 768px), (max-width: 1024px) and (orientation: portrait) {
 
+  :root {
+    --logo-padding-mobile: 8px;
+    --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
+  }
   body {
     background: url('assets/index_bg_mobile.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -251,7 +255,12 @@ body, html {
   }
 }
 
+/* --- Desktop Styles --- */
 @media (min-width: 769px) {
+  :root {
+    --logo-padding: 16px;
+    --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
+  }
   .mobile-nav {
     display: none !important;
   }
