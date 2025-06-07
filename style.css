@@ -162,16 +162,15 @@ body, html {
 /* Mobile dropdown menu styles */
 .mobile-nav {
   display: none;
-  position: fixed;
-  top: 0;
+  position: absolute;
   left: 0;
   right: 0;
+  top: 100%; /* Attach directly to the bottom of the navbar-inner */
   background: var(--safe-area-color);
   width: 100vw;
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   z-index: 1099;
-  padding-top: var(--navbar-height-mobile);
-  padding-bottom: 1.5rem;
+  padding: 1.5rem 0 1.5rem 0;
   animation: dropdownFadeIn 0.3s;
   flex-direction: column;
   align-items: flex-end;
