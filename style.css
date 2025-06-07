@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
   background: url('assets/index_bg_landscape.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-position-y: var(--navbar-height-desktop);
+  background-position-y: top var(--navbar-height-desktop);
   font-size: 1.15rem;
   background-color: var(--safe-area-color); /* fallback for safe area */
 }
