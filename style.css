@@ -163,10 +163,10 @@ body, html {
 .mobile-nav {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 0; /* Remove gap by aligning to top of navbar-inner */
   right: 0;
   background: var(--safe-area-color);
-  width: 100vw;
+  width: 100vw; 
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   z-index: 1099;
   padding: 1.5rem 0 1.5rem 0;
