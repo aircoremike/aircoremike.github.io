@@ -162,20 +162,21 @@ body, html {
 /* Mobile dropdown menu styles */
 .mobile-nav {
   display: none;
-  position: fixed;
-  top: var(--navbar-height-mobile);
+  position: absolute;
   left: 0;
   right: 0;
+  top: 100%; /* Attach directly to the bottom of the navbar-inner */
   background: var(--safe-area-color);
   width: 100vw;
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   z-index: 1099;
-  padding-top: var(--navbar-height-mobile);
-  padding-bottom: 1.5rem;
+  padding: 0 0 1.5rem 0; /* Remove top padding to eliminate gap */
   animation: dropdownFadeIn 0.3s;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: flex-start; /* Ensure links start at the top */
   gap: 2rem;
+  min-height: 0;
 }
 .mobile-nav.open {
   display: flex;
@@ -183,14 +184,19 @@ body, html {
 .mobile-nav li {
   list-style: none;
   margin: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 48px; /* Match hamburger height for vertical centering */
 }
 .mobile-nav li a {
   color: #f6f6f6;
   text-decoration: none;
   font-size: 1.25rem;
   padding: 0.5rem 0;
-  display: block;
+  display: flex;
+  align-items: center;
   text-align: right;
+  height: 100%;
 }
 .mobile-nav li a:hover {
   text-decoration: underline;
