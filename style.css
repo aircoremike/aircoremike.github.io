@@ -58,9 +58,9 @@ html {
 }
 
 #home p:nth-of-type(2) {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   margin-bottom: 1.5rem;
-  padding: 0 0 0 15rem;
+  padding: 0 0 0 25rem;
 }
 
 body, html {
@@ -258,7 +258,6 @@ body, html {
   .mobile-nav.open {
     display: flex;
 }
-}
 
 /* --- Force nav links visible on desktop/tablet landscape --- */
 @media (min-width: 601px) {
@@ -298,9 +297,10 @@ body, html {
     line-height: 1.7;
   }
   #home p:nth-of-type(2) {
-  margin-top: 10rem;
-  margin-bottom: 1.5rem;
-}
+    margin-top: 15rem;
+    margin-bottom: 1.5rem;
+    padding: 0;
+  }
 }
 
 /* Mobile */
@@ -318,9 +318,10 @@ body, html {
     font-size: 1.1rem !important;
   }
   #home p:nth-of-type(2) {
-  margin-top: 10rem;
-  margin-bottom: 1.5rem;
-}
+    margin-top: 20rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
 }
 
 /* --- Shrinking Navbar on Scroll (Desktop & Landscape Tablet Only) --- */
