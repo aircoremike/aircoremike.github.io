@@ -14,9 +14,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  background: url('assets/index_bg_landscape.jpg') no-repeat center center;
-  background-size: 100vw 100vh;
-  background-position: center top var(--navbar-height-desktop);
+  background: url('assets/index_bg_landscape.jpg') no-repeat center top var(--navbar-height-desktop);
+  background-size: contain;
+  background-repeat: no-repeat;
   font-size: 1.15rem;
   background-color: var(--safe-area-color); /* fallback for safe area */
 }
