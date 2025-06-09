@@ -14,4 +14,37 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileNav.classList.remove('open');
     });
   });
+
+  // Shrinking navbar on scroll (desktop/landscape tablet only)
+  const navbar = document.querySelector('.navbar');
+  const logoImg = document.querySelector('.logo img');
+  let hasShrunk = false;
+  let lastScrollY = 0;
+
+  // Helper: Only enable on desktop/landscape tablet
+  function isDesktopOrLandscapeTablet() {
+    return window.matchMedia('(min-width: 769px), (min-width: 1025px) and (orientation: landscape)').matches;
+  }
+
+  function handleNavbarShrink() {
+    if (!isDesktopOrLandscapeTablet()) {
+      // Remove shrink if resizing to mobile/tablet portrait
+      navbar.classList.remove('navbar-shrink');
+      hasShrunk = false;
+      return;
+    }
+    if (window.scrollY > 10 && !hasShrunk) {
+      navbar.classList.add('navbar-shrink');
+      hasShrunk = true;
+    } else if (window.scrollY <= 10 && hasShrunk) {
+      navbar.classList.remove('navbar-shrink');
+      hasShrunk = false;
+    }
+  }
+
+  // Listen for scroll and resize
+  window.addEventListener('scroll', handleNavbarShrink);
+  window.addEventListener('resize', handleNavbarShrink);
+  // Initial check
+  handleNavbarShrink();
 });

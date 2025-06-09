@@ -312,3 +312,36 @@ body, html {
     font-size: 1.1rem !important;
   }
 }
+
+/* --- Shrinking Navbar on Scroll (Desktop & Landscape Tablet Only) --- */
+@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
+  .navbar {
+    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1), padding-bottom 0.35s cubic-bezier(0.4,0,0.2,1), background 0.25s;
+  }
+  .navbar-inner {
+    transition: padding 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .logo img {
+    transition: height 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  body {
+    transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  #home h1 {
+    transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  /* Shrunk state */
+  .navbar.navbar-shrink {
+    padding-top: calc(env(safe-area-inset-top, 0px) + calc(var(--logo-padding) / 2));
+    padding-bottom: calc(var(--logo-padding) / 2);
+  }
+  .navbar.navbar-shrink .logo img {
+    height: calc(var(--logo-height-desktop) / 2);
+  }
+  body.navbar-shrink {
+    background-position-y: calc(var(--navbar-height-desktop) / 2);
+  }
+  #home h1.navbar-shrink {
+    margin-top: 175px !important;
+  }
+}
