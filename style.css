@@ -331,11 +331,11 @@ body, html {
   }
   #home p:nth-of-type(2) {
     margin-top: 25rem;
-    margin-bottom: 0;
+    margin-bottom: 0rem;
     padding: 2rem;
   }
   #home p:nth-of-type(3) {
-    margin-top: 0;
+    margin-top: 0rem;
     margin-bottom: 1.5rem;
     padding: 2rem;
   }
@@ -352,7 +352,7 @@ body, html {
     font-size: 1.6rem !important;
   }
   #home p {
-    margin-bottom: 0;
+    margin-bottom: 0rem;
     font-size: 1.1rem !important;
     padding: 1rem;
   }
