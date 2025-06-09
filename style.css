@@ -60,6 +60,7 @@ html {
 #home p:nth-of-type(2) {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    padding: 1em
   }
 
 #home p:nth-of-type(3) {
@@ -293,7 +294,7 @@ body, html {
   body {
     line-height: 1.6;
     letter-spacing: 0.005em;
-    max-width: 800px;
+    max-width: 600px;
   }
   #home h1 {
     margin-top: 400px !important;
@@ -302,16 +303,17 @@ body, html {
     margin-bottom: 1.2rem;
     font-size: 1.5rem;
     line-height: 1.7;
+    padding: 2rem;
   }
   #home p:nth-of-type(2) {
     margin-top: 15rem;
     margin-bottom: 1.5rem;
-    padding: 0;
+    padding: 2rem;
   }
   #home p:nth-of-type(3) {
     margin-top: 15rem;
     margin-bottom: 1.5rem;
-    padding: 0;
+    padding: 2rem;
   }
 }
 
@@ -330,6 +332,11 @@ body, html {
     font-size: 1.1rem !important;
   }
   #home p:nth-of-type(2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  #home p:nth-of-type(3) {
     margin-top: 20rem;
     margin-bottom: 1rem;
     padding: 1rem;
