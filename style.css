@@ -58,6 +58,11 @@ html {
 }
 
 #home p:nth-of-type(2) {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+#home p:nth-of-type(3) {
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   padding: 0 0 0 25rem;
@@ -257,6 +262,7 @@ body, html {
   }
   .mobile-nav.open {
     display: flex;
+  }
 }
 
 /* --- Force nav links visible on desktop/tablet landscape --- */
@@ -287,6 +293,7 @@ body, html {
   body {
     line-height: 1.6;
     letter-spacing: 0.005em;
+    max-width: 800px;
   }
   #home h1 {
     margin-top: 400px !important;
@@ -297,6 +304,11 @@ body, html {
     line-height: 1.7;
   }
   #home p:nth-of-type(2) {
+    margin-top: 15rem;
+    margin-bottom: 1.5rem;
+    padding: 0;
+  }
+  #home p:nth-of-type(3) {
     margin-top: 15rem;
     margin-bottom: 1.5rem;
     padding: 0;
@@ -367,4 +379,3 @@ body, html {
     padding-top: calc(var(--navbar-height-desktop) / 2);
   }
 }
-
