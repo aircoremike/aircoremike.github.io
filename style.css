@@ -357,13 +357,13 @@ body, html {
   }
 }
 
-/* --- iPad Landscape Fix: Ensure background covers full width and disables fixed attachment bug --- */
+/* --- iPad Landscape Fix: Use 100vw/100vh and force cover for background --- */
 @media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) {
   body {
     background: url('assets/index_bg_landscape.jpg') no-repeat center center;
-    background-size: cover;
-    background-attachment: scroll; /* Fixes iPad Safari bug with fixed+cover */
-    background-position-y: var(--navbar-height-desktop);
+    background-size: 100vw 100vh;
+    background-attachment: scroll;
+    background-position: center top var(--navbar-height-desktop);
     background-color: var(--safe-area-color);
   }
 }
