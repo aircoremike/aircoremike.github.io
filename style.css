@@ -57,8 +57,12 @@ html {
   line-height: 1.7;
 }
 
-#home p:first-of-type {
-  margin-top: -15px;
+#home p:nth-of-type(2) {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0 0 5rem;
+  background: rgba(0,0,0,0.18); /* Optional: subtle highlight */
+  border-left: 4px solid #f6f6f6; /* Optional: visual accent */
 }
 
 body, html {
@@ -295,6 +299,13 @@ body, html {
     font-size: 1.5rem;
     line-height: 1.7;
   }
+  #home p:nth-of-type(2) {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0 0 5rem;
+  background: rgba(0,0,0,0.18); /* Optional: subtle highlight */
+  border-left: 4px solid #f6f6f6; /* Optional: visual accent */
+}
 }
 
 /* Mobile */
@@ -311,6 +322,13 @@ body, html {
     margin-bottom: 1rem;
     font-size: 1.1rem !important;
   }
+  #home p:nth-of-type(2) {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0 0 5rem;
+  background: rgba(0,0,0,0.18); /* Optional: subtle highlight */
+  border-left: 4px solid #f6f6f6; /* Optional: visual accent */
+}
 }
 
 /* --- Shrinking Navbar on Scroll (Desktop & Landscape Tablet Only) --- */
