@@ -332,12 +332,12 @@ body, html {
   #home p:nth-of-type(2) {
     margin-top: 25rem;
     margin-bottom: 0rem;
-    padding: 2rem;
+    padding: 2rem 2rem 0rem 2rem;
   }
   #home p:nth-of-type(3) {
     margin-top: 0rem;
     margin-bottom: 1.5rem;
-    padding: 2rem;
+    padding: 0rem 2rem 2rem 2rem;
   }
 }
 
@@ -354,12 +354,12 @@ body, html {
   #home p {
     margin-bottom: 0rem;
     font-size: 1.1rem !important;
-    padding: 1rem;
+    padding: 1rem 1rem 0rem 1rem;
   }
   #home p:nth-of-type(2) {
     margin-top: 1rem;
     margin-bottom: 0;
-    padding: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
   }
   #home p:nth-of-type(3) {
     margin-top: 12rem;
