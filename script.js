@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Shrinking navbar on scroll (desktop/landscape tablet only)
   const navbar = document.querySelector('.navbar');
   const logoImg = document.querySelector('.logo img');
+  const mainContent = document.querySelector('.main-content');
   let hasShrunk = false;
   let lastScrollY = 0;
 
@@ -30,14 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isDesktopOrLandscapeTablet()) {
       // Remove shrink if resizing to mobile/tablet portrait
       navbar.classList.remove('navbar-shrink');
+      document.body.classList.remove('navbar-shrink');
+      if (mainContent) mainContent.classList.remove('navbar-shrink');
       hasShrunk = false;
       return;
     }
     if (window.scrollY > 10 && !hasShrunk) {
       navbar.classList.add('navbar-shrink');
+      document.body.classList.add('navbar-shrink');
+      if (mainContent) mainContent.classList.add('navbar-shrink');
       hasShrunk = true;
     } else if (window.scrollY <= 10 && hasShrunk) {
       navbar.classList.remove('navbar-shrink');
+      document.body.classList.remove('navbar-shrink');
+      if (mainContent) mainContent.classList.remove('navbar-shrink');
       hasShrunk = false;
     }
   }

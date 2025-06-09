@@ -345,3 +345,14 @@ body, html {
     margin-top: 175px !important;
   }
 }
+
+/* --- Main Content Wrapper for Shrinking Navbar Animation --- */
+@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
+  .main-content {
+    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
+    padding-top: var(--navbar-height-desktop);
+  }
+  body.navbar-shrink .main-content {
+    padding-top: calc(var(--navbar-height-desktop) / 2);
+  }
+}
