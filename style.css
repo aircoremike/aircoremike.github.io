@@ -443,38 +443,45 @@ body, html {
 }
 
 /* Application icon and text styles */
-.application-item {
+#home .application-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   margin: 2rem 0 1.5rem 0;
+  max-width: 700px;
 }
-.application-icon {
+#home .application-icon {
   width: 100px;
   height: 100px;
   flex-shrink: 0;
   display: inline-block;
+  align-self: flex-start;
 }
-.application-text {
+#home .application-text {
   color: #f6f6f6;
   font-size: 1.25rem;
   line-height: 1.5;
 }
 @media (max-width: 768px) {
-  .application-icon {
+  #home .application-item {
+    max-width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #home .application-icon {
     width: 48px;
     height: 48px;
   }
-  .application-text {
+  #home .application-text {
     font-size: 1rem;
   }
 }
 @media (min-width: 1025px) {
-  .application-icon {
+  #home .application-icon {
     width: 80px;
     height: 80px;
   }
-  .application-text {
+  #home .application-text {
     font-size: 1.35rem;
   }
 }
@@ -485,12 +492,15 @@ body, html {
   font-size: 1.25rem;
   margin: 2.5rem 0 2rem 2.5rem;
   padding-left: 1.5em;
-  list-style: disc inside;
+  list-style: disc outside;
   max-width: 700px;
 }
 #home .advantages-list li {
   margin-bottom: 1.1rem;
   line-height: 1.6;
+  text-indent: 0;
+  padding-left: 0;
+  display: list-item;
 }
 @media (max-width: 768px) {
   #home .advantages-list {
