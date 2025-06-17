@@ -427,3 +427,40 @@ body, html {
     padding-top: calc(var(--navbar-height-desktop) / 2);
   }
 }
+
+/* Application icon and text styles */
+.application-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 1.5rem 0;
+}
+.application-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.application-text {
+  color: #f6f6f6;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .application-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .application-text {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1025px) {
+  .application-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .application-text {
+    font-size: 1.35rem;
+  }
+}
