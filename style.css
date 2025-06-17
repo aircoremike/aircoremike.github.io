@@ -450,8 +450,8 @@ body, html {
   margin: 2rem 0 1.5rem 0;
 }
 .application-icon {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
   display: inline-block;
 }
@@ -471,8 +471,8 @@ body, html {
 }
 @media (min-width: 1025px) {
   .application-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
   }
   .application-text {
     font-size: 1.35rem;
