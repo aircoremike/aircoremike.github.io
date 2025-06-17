@@ -45,6 +45,15 @@ html {
   font-size: 3rem;
 }
 
+#home h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.01em;
+}
+
 #home p {
   color: #f6f6f6;
   padding: 1rem;
@@ -362,6 +371,11 @@ body, html {
     margin-top: 17rem !important;
     font-size: 1.6rem !important;
   }
+  #home h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem !important;
+  }
   #home p {
     margin-bottom: 0rem;
     font-size: 1.1rem !important;
@@ -436,8 +450,8 @@ body, html {
   margin: 2rem 0 1.5rem 0;
 }
 .application-icon {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
   display: inline-block;
 }
@@ -448,8 +462,8 @@ body, html {
 }
 @media (max-width: 768px) {
   .application-icon {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
   }
   .application-text {
     font-size: 1rem;
@@ -457,8 +471,8 @@ body, html {
 }
 @media (min-width: 1025px) {
   .application-icon {
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
   }
   .application-text {
     font-size: 1.35rem;
