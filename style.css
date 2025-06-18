@@ -586,6 +586,6 @@ body, html {
     position: relative;
     z-index: 1;
     /* Push content below the background image visually */
-    margin-top: calc(var(--navbar-height-desktop) + 40vw);
+    margin-top: calc(var(--navbar-height-desktop) + 10vw);
   }
 }
