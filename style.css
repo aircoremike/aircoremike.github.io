@@ -507,6 +507,35 @@ body, html {
   }
 }
 
+/* --- Application icon and text alignment fix for desktop and tablet portrait --- */
+@media (min-width: 769px), (min-width: 600px) and (orientation: portrait) {
+  #home .application-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 700px;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+  #home .application-icon {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    display: block;
+    object-fit: contain;
+  }
+  #home .application-text {
+    flex: 1;
+    color: #f6f6f6;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    display: block;
+    margin-left: 0;
+  }
+}
+
 /* Advantages List Styles */
 #home .advantages-list {
   color: #f6f6f6;
