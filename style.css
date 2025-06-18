@@ -35,7 +35,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 
 #home h1 {
@@ -362,7 +361,7 @@ body, html {
     padding: 0rem 2rem 2rem 2rem;
   }
   #home p:nth-of-type(4) {
-    margin-top: 5rem;
+    margin-top: 10rem;
     margin-bottom: 1.5rem;
     padding: 2rem;
   }
@@ -584,17 +583,16 @@ body, html {
 /* --- Push content below the background image on desktop and tablet landscape --- */
 @media (min-width: 1025px), (min-width: 769px) and (orientation: landscape) {
   .below-bg {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    top: 38vw; /* Adjust this value to match the bottom of your background image */
-    margin-top: 0;
-    z-index: 2;
-    padding-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    /* Push content below the background image visually */
+    margin-top: calc(var(--navbar-height-desktop) + 10vw);
   }
-  #home {
-    padding-bottom: 4rem; /* Prevent overlap with following sections */
-    min-height: 120vh;
+  .below-bg-spacer {
+    width: 100%;
+    height: 38vw; /* Adjust this value to match the visible height of your background image */
+    min-height: 350px; /* fallback for very wide screens */
+    max-height: 600px;
+    display: block;
   }
 }
