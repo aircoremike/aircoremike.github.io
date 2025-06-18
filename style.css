@@ -461,22 +461,26 @@ body, html {
 /* Application icon and text styles */
 #home .application-item {
   display: flex;
-  align-items: center; /* Changed from flex-start to center for vertical centering */
-  gap: 1rem;
+  align-items: center; /* Vertically center icon and text */
+  gap: 1.5rem; /* Slightly more space for clarity */
   margin: 1.2rem 0 1rem 0;
   max-width: 700px;
+  /* Optional: align all items to the same left margin */
+  margin-left: 0;
 }
 #home .application-icon {
   width: 100px;
   height: 100px;
   flex-shrink: 0;
   display: inline-block;
-  align-self: flex-start;
+  /* Remove align-self: flex-start to allow vertical centering */
 }
 #home .application-text {
   color: #f6f6f6;
   font-size: 1.25rem;
   line-height: 1.5;
+  /* Ensure text always starts at the same left margin */
+  display: block;
 }
 @media (max-width: 768px) {
   #home .application-item {
