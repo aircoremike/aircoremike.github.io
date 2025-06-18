@@ -580,14 +580,12 @@ body, html {
   }
 }
 
-/* --- Force paragraphs below background image on desktop and tablet landscape --- */
-@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
-  /* If paragraphs are wrapped in .below-bg, push them below the background image */
+/* --- Push content below the background image on desktop and tablet landscape --- */
+@media (min-width: 1025px), (min-width: 769px) and (orientation: landscape) {
   .below-bg {
-    margin-top: calc(var(--navbar-height-desktop) + 600px); /* Adjust 600px to match your background image height */
-  }
-  /* If not wrapped, force 4th and later paragraphs below the background image */
-  #home p:nth-of-type(n+4) {
-    margin-top: calc(var(--navbar-height-desktop) + 600px) !important;
+    position: relative;
+    z-index: 1;
+    /* Push content below the background image visually */
+    margin-top: calc(var(--navbar-height-desktop) + 40vw);
   }
 }
