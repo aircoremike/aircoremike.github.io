@@ -84,6 +84,12 @@ html {
     padding: .5rem;
 }
 
+#home p:nth-of-type(5) {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: .5rem;
+}
+
 body, html {
   overscroll-behavior-y: none;
 }
@@ -359,6 +365,11 @@ body, html {
     margin-bottom: 1.5rem;
     padding: 2rem;
   }
+  #home p:nth-of-type(5) {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 2rem;
+  }
 }
 
 /* Mobile */
@@ -392,6 +403,11 @@ body, html {
     padding: 1rem;
   }
   #home p:nth-of-type(4) {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+  #home p:nth-of-type(5) {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     padding: 1rem;
