@@ -646,36 +646,34 @@ html {
 
 @media (min-width: 769px) {
   .hero-flex {
-    background: none;
     background-image: url('assets/index_hero_landscape.jpg');
-    background-size: auto 100%; /* Always show full image height */
+    background-size: auto 100%;
     background-position: center top;
-    background-repeat: no-repeat; /* Prevent image repeat */
+    background-repeat: no-repeat;
     min-height: 40vw;
     height: 40vw;
     max-height: 60vh;
     width: 100%;
-    transition: height 0.35s cubic-bezier(0.4,0,0.2,1), min-height 0.35s cubic-bezier(0.4,0,0.2,1);
+    transition: none;
     overflow: hidden;
-    background-color: var(--safe-area-color); /* Color on sides if window is too wide */
+    background-color: var(--safe-area-color);
+    position: relative;
+    /* Remove shrinking on scroll */
   }
   body.navbar-shrink .hero-flex {
-    min-height: 20vw;
-    height: 20vw;
-    max-height: 30vh;
+    min-height: 40vw;
+    height: 40vw;
+    max-height: 60vh;
+    /* Keep image size fixed */
+    position: relative;
+    top: calc((var(--navbar-height-desktop) / 2) - var(--navbar-height-desktop));
   }
-  .hero-flex h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    color: #f6f6f6;
-    font-size: 3rem;
-    text-align: center;
-    margin: 0;
-    padding: 0 1rem;
-    z-index: 2;
-    text-shadow: 0 2px 16px #000, 0 1px 2px #222;
+  .main-content {
+    /* Ensure content below hero moves up with navbar shrink */
+    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
+    padding-top: var(--navbar-height-desktop);
+  }
+  body.navbar-shrink .main-content {
+    padding-top: calc(var(--navbar-height-desktop) / 2);
   }
 }
