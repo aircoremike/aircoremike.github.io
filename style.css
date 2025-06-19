@@ -337,6 +337,37 @@ html {
   }
 }
 
+/* --- Responsive Navbar & Hamburger Only --- */
+@media (max-width: 768px) {
+  .version-badge {
+    font-size: 0.85rem;
+    padding: 0.1em 0.5em;
+    border-width: 1.5px;
+  }
+  .logo img {
+    height: var(--logo-height-mobile);
+  }
+  .navbar {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding-mobile));
+    padding-bottom: var(--logo-padding-mobile);
+  }
+  .navbar-inner {
+    padding: 0 1rem;
+  }
+  .nav-links {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .mobile-nav {
+    display: none;
+  }
+  .mobile-nav.open {
+    display: flex;
+  }
+}
+
 /* --- Force nav links visible on desktop/tablet landscape --- */
 @media (min-width: 601px) {
   .nav-links {
