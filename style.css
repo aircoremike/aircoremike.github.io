@@ -175,8 +175,6 @@ html {
   padding: 0 1rem;
 }
 .advantages-list {
-  align-items: center;
-  text-align: center;
   color: #fff;
   font-size: 1.2rem;
   max-width: 800px;
@@ -187,6 +185,7 @@ html {
 }
 .advantages-list li {
   margin-bottom: 0.8rem;
+  align-items: center;
 }
 
 @media (max-width: 900px) {
