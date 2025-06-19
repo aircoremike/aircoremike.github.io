@@ -95,21 +95,6 @@ html {
   padding: 1rem 1.5rem;
   width: 100%;
 }
-.heading-flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 2.5rem 0 1.2rem 0;
-}
-.heading-flex h2 {
-  color: #f6f6f6; /* Match body text color */
-  font-size: 2.2rem;
-  font-weight: 600;
-  text-align: center;
-  margin: 0;
-  padding: 0 1rem;
-}
 .applications-flex {
   display: flex;
   flex-direction: column;
@@ -118,25 +103,47 @@ html {
   align-items: center;
   margin-bottom: 2rem;
 }
+.applications-section-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2.5rem auto;
+  background: none;
+}
+.applications-list-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
 .application-item-flex {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1.2rem;
-  max-width: 800px;
   width: 100%;
+  gap: 1.5rem;
   background: rgba(0,0,0,0.35);
   border-radius: 8px;
   padding: 1rem 1.5rem;
+  box-sizing: border-box;
 }
 .application-icon {
   width: 64px;
   height: 64px;
   flex-shrink: 0;
+  display: block;
 }
 .application-text {
   color: #f6f6f6;
   font-size: 1.2rem;
   line-height: 1.5;
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+  margin-left: 0;
+  display: block;
 }
 
 .advantages-flex {
