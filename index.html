@@ -89,6 +89,30 @@
     </section>
     <section id="contact">
         <!-- Contact section content -->
+        <div class="contact-section-flex">
+          <div class="contact-text-flex">
+            <h2>Contact Us</h2>
+            <p>Ready to learn more? Whether you'd like to request a quote or discuss a specific engineering challenge, we are excited to collaborate with you!<br>
+            Please fill out the form below and we will respond as soon as we can. Thank you!</p>
+          </div>
+          <form class="contact-form-flex" action="https://formsubmit.co/info@aircorebearings.com" method="POST">
+            <input type="hidden" name="_next" value="https://aircoremike.github.io/thankyou">
+            <input type="hidden" name="_captcha" value="true">
+            <div class="form-row-flex">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-row-flex">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-row-flex">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
     </section>
   </div>
 

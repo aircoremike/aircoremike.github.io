@@ -197,7 +197,88 @@ html {
   max-width: 800px;
   width: 100%;
   padding: 1rem 1.5rem;
-  margin: 0 auto;
+  margin: 0 auto 10rem auto;
+}
+
+.contact-section-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  background: none;
+}
+.contact-text-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #f6f6f6;
+  gap: 1.5rem;
+}
+.contact-text-flex h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0 0 1.2rem 0;
+}
+.contact-text-flex p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 600px;
+}
+
+.contact-form-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 2.5rem auto 0 auto;
+  background: none;
+}
+.form-row-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.contact-form-flex label {
+  color: #f6f6f6;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.contact-form-flex input,
+.contact-form-flex textarea {
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1.1rem;
+  background: #181818;
+  color: #f6f6f6;
+  resize: vertical;
+}
+.contact-form-flex input:focus,
+.contact-form-flex textarea:focus {
+  outline: 2px solid #4fa3ff;
+  border-color: #4fa3ff;
+}
+.contact-form-flex button[type="submit"] {
+  background: #4fa3ff;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 0.9rem 0;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.contact-form-flex button[type="submit"]:hover {
+  background: #357fd6;
 }
 
 @media (max-width: 900px) {
