@@ -96,15 +96,6 @@ html {
   padding: 1rem 1.5rem;
   width: 100%;
 }
-.applications-flex {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-  align-items: center;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
 .applications-section-flex {
   display: flex;
   flex-direction: column;
@@ -112,10 +103,10 @@ html {
   justify-content: center;
   width: 100%;
   max-width: 800px;
-  margin: 0 auto 2.5rem auto;
+  margin: 0 4rem 2.5rem auto;
   background: none;
 }
-.applications-unified-flex {
+.applications-flex {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -164,7 +155,7 @@ html {
   padding: 0 1rem;
 }
 
-.advantages-flex {
+.advantages-section-flex {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,6 +185,7 @@ html {
   justify-content: center;
 }
 .advantages-list li {
+  margin-bottom: 0.8rem;
   width: 100%;
   max-width: 800px;
   font-size: 1.5rem;
