@@ -102,8 +102,8 @@ html {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto 6rem auto;
+  max-width: 900px;
+  margin: 0 auto 20rem auto;
   background: none;
 }
 .applications-flex {
