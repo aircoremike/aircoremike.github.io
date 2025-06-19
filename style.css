@@ -14,11 +14,8 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  background: url('assets/index_bg_landscape.jpg') no-repeat center top;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: var(--safe-area-color);
   font-size: 1.15rem;
-  background-color: var(--safe-area-color);
 }
 
 html {
@@ -44,10 +41,12 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40vw;
   width: 100%;
+  min-height: 40vw;
   background: none;
+  position: relative;
 }
+
 .hero-flex h1 {
   color: #f6f6f6;
   font-size: 3rem;
@@ -645,19 +644,34 @@ html {
   }
 }
 
-/* --- Push content below the background image on desktop and tablet landscape --- */
-@media (min-width: 1025px), (min-width: 769px) and (orientation: landscape) {
-  .below-bg {
-    position: relative;
-    z-index: 1;
-    /* Push content below the background image visually */
-    margin-top: calc(var(--navbar-height-desktop) + 10vw);
+@media (min-width: 769px) {
+  .hero-flex {
+    background: none;
+    background-image: url('assets/index_hero_landscape.jpg');
+    background-size: cover;
+    background-position: center top;
+    min-height: 40vw;
+    height: 40vw;
+    max-height: 60vh;
+    transition: height 0.35s cubic-bezier(0.4,0,0.2,1), min-height 0.35s cubic-bezier(0.4,0,0.2,1);
   }
-  .below-bg-spacer {
+  body.navbar-shrink .hero-flex {
+    min-height: 20vw;
+    height: 20vw;
+    max-height: 30vh;
+  }
+  .hero-flex h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    height: 20vw; /* Adjust this value to match the visible height of your background image */
-    min-height: 350px; /* fallback for very wide screens */
-    max-height: 600px;
-    display: block;
+    color: #f6f6f6;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+    padding: 0 1rem;
+    z-index: 2;
+    text-shadow: 0 2px 16px #000, 0 1px 2px #222;
   }
 }
