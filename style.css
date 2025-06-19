@@ -103,7 +103,7 @@ html {
   justify-content: center;
   width: 100%;
   max-width: 800px;
-  margin: 0 4rem 2.5rem auto;
+  margin: 0 auto 2.5rem auto;
   background: none;
 }
 .applications-flex {
@@ -146,7 +146,7 @@ html {
   height: 64px;
 }
 
-.heading-flex h2 {
+.applications-heading h2 {
   color: #fff;
   font-size: 2.2rem;
   font-weight: 600;
