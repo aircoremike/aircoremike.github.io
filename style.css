@@ -103,7 +103,7 @@ html {
   width: 100%;
   align-items: center;
   margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 .applications-section-flex {
   display: flex;
@@ -198,6 +198,15 @@ html {
   width: 100%;
   max-width: 800px;
   font-size: 1.5rem;
+}
+.body-about-short {
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  max-width: 800px;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {
