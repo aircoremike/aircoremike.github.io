@@ -496,6 +496,10 @@ html {
     margin-bottom: 1.5rem;
     padding: 1rem;
   }
+  .hero-flex {
+    background-image: none;
+    background-color: var(--safe-area-color);
+  }
 }
 
 /* --- Shrinking Navbar on Scroll (Desktop & Landscape Tablet Only) --- */
