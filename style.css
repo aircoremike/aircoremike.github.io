@@ -115,7 +115,7 @@ html {
 .applications-unified-flex {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   gap: 2.5rem;
   justify-content: flex-start;
@@ -124,14 +124,14 @@ html {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
 }
 .applications-texts-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
   flex: 1;
 }
@@ -147,7 +147,18 @@ html {
   line-height: 1.5;
   text-align: left;
   min-width: 0;
-  display: block;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.heading-flex h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  padding: 0 1rem;
 }
 
 .advantages-flex {
