@@ -112,22 +112,28 @@ html {
   margin: 0 auto 2.5rem auto;
   background: none;
 }
-.applications-list-flex {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-}
-.application-item-flex {
+.applications-unified-flex {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
+  gap: 2.5rem;
+  justify-content: flex-start;
+}
+.applications-icons-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   gap: 1.5rem;
-  background: rgba(0,0,0,0.35);
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  box-sizing: border-box;
+}
+.applications-texts-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+  flex: 1;
 }
 .application-icon {
   width: 64px;
@@ -140,9 +146,7 @@ html {
   font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
-  flex: 1;
   min-width: 0;
-  margin-left: 0;
   display: block;
 }
 
