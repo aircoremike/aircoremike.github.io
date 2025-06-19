@@ -86,8 +86,6 @@ html {
 }
 .body-row p {
   color: #f6f6f6;
-  background: rgba(0,0,0,0.45);
-  border-radius: 8px;
   max-width: 800px;
   font-size: 1.5rem;
   line-height: 1.7;
@@ -177,10 +175,9 @@ html {
   padding: 0 1rem;
 }
 .advantages-list {
+  align-items: center;
   color: #fff;
   font-size: 1.2rem;
-  background: rgba(0,0,0,0.35);
-  border-radius: 8px;
   max-width: 800px;
   width: 100%;
   padding: 1.5rem 2rem;
