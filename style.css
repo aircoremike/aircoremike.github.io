@@ -78,7 +78,7 @@ html {
   gap: 1.5rem;
   width: 100%;
   align-items: center;
-  margin-bottom: 6rem;
+  margin-bottom: 10rem;
 }
 .body-rows-flex {
   display: flex;
@@ -103,7 +103,7 @@ html {
   justify-content: center;
   width: 100%;
   max-width: 900px;
-  margin: 0 auto 20rem auto;
+  margin: 0 auto 10rem auto;
   background: none;
 }
 .applications-flex {
@@ -160,7 +160,7 @@ html {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 6rem;
+  margin-bottom: 10rem;
 }
 .advantages-heading {
   color: #fff;
