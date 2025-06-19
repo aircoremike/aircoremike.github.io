@@ -650,12 +650,14 @@ html {
     background-image: url('assets/index_hero_landscape.jpg');
     background-size: auto 100%; /* Always show full image height */
     background-position: center top;
+    background-repeat: no-repeat; /* Prevent image repeat */
     min-height: 40vw;
     height: 40vw;
     max-height: 60vh;
     width: 100%;
     transition: height 0.35s cubic-bezier(0.4,0,0.2,1), min-height 0.35s cubic-bezier(0.4,0,0.2,1);
     overflow: hidden;
+    background-color: var(--safe-area-color); /* Color on sides if window is too wide */
   }
   body.navbar-shrink .hero-flex {
     min-height: 20vw;
