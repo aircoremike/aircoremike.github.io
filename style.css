@@ -78,6 +78,7 @@ html {
   gap: 1.5rem;
   width: 100%;
   align-items: center;
+  margin-bottom: 4rem;
 }
 .body-rows-flex {
   display: flex;
