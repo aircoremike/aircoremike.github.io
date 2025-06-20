@@ -160,7 +160,7 @@ html {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 3.5rem; /* Reduced gap below advantages section */
+  margin-bottom: 3.5rem;
 }
 .advantages-heading {
   color: #fff;
@@ -197,7 +197,7 @@ html {
   max-width: 800px;
   width: 100%;
   padding: 1rem 1.5rem;
-  margin: 0 auto 10rem auto;
+  margin: 0 auto 4rem auto;
 }
 
 .contact-section-flex {
@@ -266,7 +266,7 @@ html {
   border-color: #4fa3ff;
 }
 .contact-form-flex button[type="submit"] {
-  background: #4fa3ff;
+  background: #132D3E;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 600;
@@ -579,7 +579,7 @@ html {
   justify-content: center;
   height: 40px;
   width: 100%;
-  background: #41618d; /* grey-blue */
+  background: #132D3E;
   color: #111;
   position: relative;
   bottom: 0;
