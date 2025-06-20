@@ -133,6 +133,13 @@ html {
   flex: 1;
   min-width: 0;
 }
+.application-icon {
+  width: 60px;
+  max-width: 60px;
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+}
 
 .advantages-section-flex {
   display: flex;
