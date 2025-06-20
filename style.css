@@ -611,28 +611,4 @@ html {
   .footer-flex span {
     font-size: 0.8rem !important;
   }
-  .applications-list {
-    gap: 1.2rem;
-  }
-  .application-item {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .application-icon-title {
-    min-width: 64px;
-    max-width: 80px;
-  }
-  .application-title {
-    font-size: 1rem;
-    margin-top: 0.3rem;
-  }
-  .application-desc {
-    font-size: 0.95rem;
-    text-align: left;
-    white-space: normal;
-    word-break: break-word;
-  }
 }
-
-
