@@ -48,7 +48,6 @@ html {
     width: 100vw;
     height: 100vh;
     min-height: 100vh; /* Ensure hero image covers full viewport height */
-
     position: relative;
     transition: none;
     overflow: visible;
@@ -66,11 +65,11 @@ html {
 .hero-flex h1 {
   color: #f6f6f6;
   font-size: 3rem;
+  align-items: center;
   text-align: center;
   margin: 0;
   width: 100%;
   padding: 3rem 1rem 2rem 1rem;
-  margin-bottom: 4rem;
 }
 
 .body-flex {
