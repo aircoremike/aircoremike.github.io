@@ -147,6 +147,9 @@ html {
   align-items: center;
   height: 64px;
 }
+.application-text b {
+  white-space: nowrap;
+}
 
 .applications-heading h2 {
   color: #fff;
