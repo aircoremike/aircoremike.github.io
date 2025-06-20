@@ -46,7 +46,9 @@ html {
     background-position: top center;
     background-repeat: no-repeat;
     width: 100vw;
-    height: auto;
+    height: 60vh;
+    min-height: 300px;
+    max-height: 100vh;
     position: relative;
     transition: none;
     overflow: visible;
@@ -54,9 +56,9 @@ html {
     margin-bottom: 4rem;
   }
   body.navbar-shrink .hero-flex {
-    min-height: 40vw;
-    height: 40vw;
-    max-height: 60vh;
+    height: 60vh;
+    min-height: 300px;
+    max-height: 100vh;
     position: relative;
     top: 0; /* Fix: prevent hero image from jumping up on scroll */
   }
