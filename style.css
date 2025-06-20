@@ -211,6 +211,7 @@ html {
   max-width: 800px;
   margin: 4rem auto 0 auto;
   background: none;
+  padding: 1.5rem;
 }
 .contact-text-flex {
   display: flex;
