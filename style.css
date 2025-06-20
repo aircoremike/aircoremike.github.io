@@ -106,6 +106,7 @@ html {
   max-width: 900px;
   margin: 0 auto 10rem auto;
   background: none;
+  padding: 1.5rem;
 }
 .applications-flex {
   display: flex;
@@ -282,34 +283,7 @@ html {
   background: #357fd6;
 }
 
-@media (max-width: 900px) {
-  .hero-flex h1 {
-    font-size: 2.1rem;
-    padding: 2rem 0.5rem 1.5rem 0.5rem;
-  }
-  .application-item-flex, .advantages-list, .body-row p {
-    max-width: 98vw;
-    font-size: 1.05rem;
-    padding: 1rem 0.5rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-flex h1 {
-    font-size: 1.3rem;
-    padding: 1.5rem 0.2rem 1rem 0.2rem;
-  }
-  .application-item-flex, .advantages-list, .body-row p {
-    font-size: 0.95rem;
-    padding: 0.7rem 0.2rem;
-  }
-  .application-icon {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* Navbar Styles */
+/* ---Navbar Styles--- */
 .navbar {
   position: fixed;
   top: 0;
