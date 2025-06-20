@@ -117,6 +117,7 @@ html {
   text-align: center;
   margin: 0;
   padding: 0 1rem;
+  margin-bottom: 1.5rem;
 }
 .applications-list {
   display: flex;
@@ -187,7 +188,7 @@ html {
   width: 100%;
   padding: 1.5rem 2rem;
   margin: 0 auto;
-  list-style: disc inside;
+  list-style: disc outside;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -199,6 +200,8 @@ html {
   width: 100%;
   max-width: 800px;
   font-size: 1.5rem;
+  padding-left: 1em;
+  text-indent: -1em;
 }
 .body-about-short {
   color: #fff;
@@ -619,8 +622,5 @@ html {
     width: 60px;
     max-width: 60px;
     height: auto;
-  }
-  .applications-heading {
-    margin-bottom: 2.2rem;
   }
 }
