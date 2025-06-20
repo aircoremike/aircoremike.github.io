@@ -42,17 +42,20 @@ html {
     align-items: center;
     justify-content: center;
     background-image: url('assets/index_hero_landscape.jpg');
-    background-size: cover; /* Fill the window, maintain aspect ratio */
-    background-position: center top;
+    background-size: contain; /* Show entire image, no cropping or distortion */
+    background-position: top center;
     background-repeat: no-repeat;
     width: 100vw;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: unset;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
     position: relative;
     transition: none;
-    overflow: hidden;
+    overflow: visible;
     background-color: var(--safe-area-color);
     margin-bottom: 4rem;
   }
