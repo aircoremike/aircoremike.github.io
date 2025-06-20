@@ -98,6 +98,26 @@ html {
   width: 100%;
 }
 
+.applications-section-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 10rem auto;
+  background: none;
+  padding: 1.5rem;
+  text-align: center;
+}
+.applications-heading h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  padding: 0 1rem;
+}
 .applications-list {
   display: flex;
   flex-direction: column;
@@ -614,3 +634,5 @@ html {
     word-break: break-word;
   }
 }
+
+
