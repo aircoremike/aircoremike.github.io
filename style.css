@@ -225,7 +225,7 @@ html {
   margin: 0 0 1.2rem 0;
 }
 .contact-text-flex p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.7;
   margin: 0;
   max-width: 800px;
@@ -255,7 +255,7 @@ html {
   padding: 0.7rem 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   background: #181818;
   color: #f6f6f6;
   resize: vertical;
