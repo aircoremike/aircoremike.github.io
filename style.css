@@ -42,13 +42,11 @@ html {
     align-items: center;
     justify-content: center;
     background-image: url('assets/index_hero_landscape.jpg');
-    background-size: 100% auto; /* Scale to width, maintain aspect ratio */
-    background-position: top center; /* Anchor image to the top so bottom is not cropped */
+    background-size: contain; /* Always show the whole image, no cropping */
+    background-position: center top;
     background-repeat: no-repeat;
-    min-height: 40vw;
-    height: 40vw;
-    max-height: 60vh;
     width: 100vw;
+    aspect-ratio: 3/1; /* Adjust this to match your image's aspect ratio */
     left: 50%;
     right: 50%;
     margin-left: -50vw;
