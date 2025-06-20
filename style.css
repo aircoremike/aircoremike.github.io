@@ -49,10 +49,6 @@ html {
     height: 60vh; /* Ensure the hero image fills the window height */
     min-height: 300px;
     max-height: 100vh;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     position: relative;
     transition: none;
     overflow: visible;
