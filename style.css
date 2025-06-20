@@ -70,6 +70,7 @@ html {
   margin: 0;
   width: 100%;
   padding: 3rem 1rem 2rem 1rem;
+  margin-bottom: 4rem;
 }
 
 .body-flex {
@@ -604,13 +605,13 @@ html {
     padding-top: var(--navbar-height-mobile);
   }
   html, body {
-    font-size: 0.85rem !important;
+    font-size: 1rem !important;
   }
   h1 {
-    font-size: 1.2rem !important;
+    font-size: 2rem !important;
   }
   h2 {
-    font-size: 1rem !important;
+    font-size: 1.5rem !important;
   }
   .body-rows-flex p,
   .body-about-short,
@@ -620,15 +621,15 @@ html {
   .contact-form-flex label,
   .contact-form-flex input,
   .contact-form-flex textarea {
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
   }
   .advantages-heading,
   .heading-flex h2,
   .applications-heading h2,
   .contact-text-flex h2 {
-    font-size: 1.1rem !important;
+    font-size: 1.5rem !important;
   }
   .footer-flex span {
-    font-size: 0.9rem !important;
+    font-size: 0.8rem !important;
   }
 }
