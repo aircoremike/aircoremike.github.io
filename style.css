@@ -59,7 +59,7 @@ html {
     height: 40vw;
     max-height: 60vh;
     position: relative;
-    top: calc((var(--navbar-height-desktop) / 2) - var(--navbar-height-desktop));
+    top: 0; /* Fix: prevent hero image from jumping up on scroll */
   }
 
 
