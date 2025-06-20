@@ -46,9 +46,9 @@ html {
     background-position: top center;
     background-repeat: no-repeat;
     width: 100vw;
-    height: auto;
-    min-height: 0;
-    aspect-ratio: unset;
+    height: 60vh; /* Ensure the hero image fills the window height */
+    min-height: 300px;
+    max-height: 100vh;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
