@@ -46,9 +46,6 @@ html {
     background-position: center top;
     background-repeat: no-repeat;
     width: 100vw;
-    height: 60vh;
-    min-height: 300px;
-    max-height: 100vh;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
