@@ -97,72 +97,41 @@ html {
   padding: 1rem 1.5rem;
   width: 100%;
 }
-.applications-section-flex {
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  width: 100%;
+}
+.application-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.2rem;
+  width: 100%;
+}
+.application-icon-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 10rem auto;
-  background: none;
-  padding: 1.5rem;
+  min-width: 90px;
+  max-width: 120px;
 }
-.applications-flex {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 100%;
-  gap: 2.5rem;
-  justify-content: flex-start;
+.application-title {
+  font-weight: bold;
+  color: #f6f6f6;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  white-space: nowrap;
 }
-.applications-icons-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 1.5rem;
-}
-.applications-texts-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 1.5rem;
-  flex: 1;
-}
-.application-icon {
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-  display: block;
-}
-.application-text {
+.application-desc {
   color: #f6f6f6;
   font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
+  flex: 1;
   min-width: 0;
-  display: flex;
-  align-items: center;
-  height: 64px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  font-size: clamp(0.8rem, 2vw, 1.5rem);
-}
-.application-text b {
-  white-space: nowrap;
-}
-
-.applications-heading h2 {
-  color: #fff;
-  font-size: 2.2rem;
-  font-weight: 600;
-  text-align: center;
-  margin: 0;
-  padding: 0 1rem;
 }
 
 .advantages-section-flex {
@@ -615,97 +584,6 @@ html {
   .footer-flex span {
     font-size: 0.8rem !important;
   }
-  .applications-flex {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-  }
-  .applications-icons-col,
-  .applications-texts-col {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 0.5rem;
-  }
-  .application-text {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    text-align: center;
-    font-size: 0.95rem;
-    width: 100%;
-    margin-bottom: 1.5rem;
-    display: block;
-  }
-  .applications-icons-col {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .applications-texts-col {
-    margin-top: 0;
-  }
-  /* Stack each icon and its text */
-  .applications-flex {
-    flex-wrap: wrap;
-  }
-  .applications-icons-col, .applications-texts-col {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-  }
-  .applications-icons-col .application-icon,
-  .applications-texts-col .application-text {
-    display: block;
-    width: 100%;
-    margin: 0 auto 0.2rem auto;
-  }
-  .applications-texts-col .application-text {
-    margin-bottom: 1.5rem;
-  }
-}
-
-/* New Applications Section Styles */
-.applications-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2.2rem;
-  width: 100%;
-}
-.application-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2.2rem;
-  width: 100%;
-}
-.application-icon-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 90px;
-  max-width: 120px;
-}
-.application-title {
-  font-weight: bold;
-  color: #f6f6f6;
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-  white-space: nowrap;
-}
-.application-desc {
-  color: #f6f6f6;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  text-align: left;
-  flex: 1;
-  min-width: 0;
-}
-@media (max-width: 768px) {
   .applications-list {
     gap: 1.2rem;
   }
