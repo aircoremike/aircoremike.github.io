@@ -127,7 +127,7 @@ html {
 .application-item {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Center icons and content vertically */
+  align-items: stretch;
   gap: 2.2rem;
   width: 100%;
 }
@@ -138,6 +138,7 @@ html {
   justify-content: center; /* Ensure icon and title are centered vertically */
   min-width: 90px;
   max-width: 120px;
+  height: 100%;
 }
 .application-title {
   font-weight: bold;
@@ -153,10 +154,13 @@ html {
   text-align: left;
   flex: 1;
   min-width: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .application-icon {
-  width: 60px;
-  max-width: 60px;
+  width: 80px;
+  max-width: 80px;
   height: auto;
   flex-shrink: 0;
   display: block;
@@ -611,5 +615,10 @@ html {
   }
   .footer-flex span {
     font-size: 0.8rem !important;
+  }
+  .application-icon {
+    width: 60px;
+    max-width: 60px;
+    height: auto;
   }
 }
