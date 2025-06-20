@@ -42,17 +42,21 @@ html {
     align-items: center;
     justify-content: center;
     background-image: url('assets/index_hero_landscape.jpg');
-    background-size: auto 100%;
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
     min-height: 40vw;
     height: 40vw;
     max-height: 60vh;
-    width: 100%;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    position: relative;
     transition: none;
     overflow: hidden;
     background-color: var(--safe-area-color);
-    position: relative;
   }
   body.navbar-shrink .hero-flex {
     min-height: 40vw;
