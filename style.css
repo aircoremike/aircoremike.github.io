@@ -43,7 +43,7 @@ html {
     justify-content: center;
     background-image: url('assets/index_hero_landscape.jpg');
     background-size: 100% auto; /* Scale to width, maintain aspect ratio */
-    background-position: center top;
+    background-position: top center; /* Anchor image to the top so bottom is not cropped */
     background-repeat: no-repeat;
     min-height: 40vw;
     height: 40vw;
