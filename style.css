@@ -214,7 +214,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
   color: #f6f6f6;
   gap: 1.5rem;
 }
@@ -225,10 +225,10 @@ html {
   margin: 0 0 1.2rem 0;
 }
 .contact-text-flex p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.7;
   margin: 0;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 .contact-form-flex {
@@ -237,7 +237,7 @@ html {
   gap: 1.5rem;
   width: 100%;
   max-width: 500px;
-  margin: 2.5rem auto 0 auto;
+  margin: 2.5rem auto 10rem auto;
   background: none;
 }
 .form-row-flex {
