@@ -139,13 +139,18 @@ html {
 }
 .application-text {
   color: #f6f6f6;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
   min-width: 0;
   display: flex;
   align-items: center;
   height: 64px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
 }
 .application-text b {
   white-space: nowrap;
