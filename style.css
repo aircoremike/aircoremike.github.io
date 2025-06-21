@@ -45,7 +45,7 @@ html {
   width: 100vw;
   min-height: 0;
   height: auto;
-  display: block;
+  display: block !important;
   background: none;
   margin-bottom: 4rem;
   position: relative;
@@ -666,6 +666,6 @@ html {
  
 @media (orientation: portrait) {
 h1 {
-    font-size: 1.4rem !important;
+    font-size: 4rem !important;
   }
 }
