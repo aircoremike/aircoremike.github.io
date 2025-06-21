@@ -117,5 +117,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
+    // Logo click scrolls to #home with offset
+    var logo = document.querySelector('.logo');
+    if (logo) {
+      logo.style.cursor = 'pointer';
+      logo.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToHash('#home');
+        if (history.pushState) {
+          history.pushState(null, null, '#home');
+        } else {
+          window.location.hash = '#home';
+        }
+      });
+    }
   });
 })();
