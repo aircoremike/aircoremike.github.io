@@ -567,7 +567,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 50px;
   width: 100%;
   background: #132D3E;
   color: #fff;
@@ -663,8 +663,9 @@ html {
 
 /* ---Tablet Styles Overrides--- */
  
-@media (orientation: portrait) {
+@media (min-width: 769px) and (orientation: portrait){
 h1 {
     font-size: 3rem !important;
+    top: 36% !important;
   }
 }
