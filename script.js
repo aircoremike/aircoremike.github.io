@@ -83,3 +83,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 })();
+
+// Smooth scroll to anchor with navbar offset
+(function() {
+  function getNavbarHeight() {
+    var navbar = document.querySelector('.navbar');
+    if (!navbar) return 0;
+    var styles = window.getComputedStyle(navbar);
+    return navbar.offsetHeight + parseInt(styles.marginTop || 0) + parseInt(styles.marginBottom || 0);
+  }
+  function scrollToHash(hash) {
+    var el = document.getElementById(hash.replace('#', ''));
+    if (!el) return;
+    var navbarHeight = getNavbarHeight();
+    var rect = el.getBoundingClientRect();
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var top = rect.top + scrollTop - navbarHeight - 8; // 8px extra spacing
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      var hash = link.getAttribute('href');
+      if (hash && hash.length > 1 && document.getElementById(hash.replace('#', ''))) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToHash(hash);
+          // Update URL hash without jumping
+          if (history.pushState) {
+            history.pushState(null, null, hash);
+          } else {
+            window.location.hash = hash;
+          }
+        });
+      }
+    });
+  });
+})();
