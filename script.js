@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
   handleNavbarShrink();
 });
 
-// Fade-in on scroll for .section-fade
+// Fade-in on scroll for .section-fade, but only after hero image loads
 (function() {
   function onEntry(entries, observer) {
     entries.forEach(entry => {
@@ -66,12 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  document.addEventListener('DOMContentLoaded', function() {
+  function enableSectionFade() {
     var observer = new window.IntersectionObserver(onEntry, {
       threshold: 0.15
     });
     document.querySelectorAll('.section-fade').forEach(function(el) {
       observer.observe(el);
     });
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var heroImg = document.querySelector('.hero-img');
+    if (heroImg && !heroImg.complete) {
+      heroImg.addEventListener('load', enableSectionFade);
+    } else {
+      enableSectionFade();
+    }
   });
 })();
