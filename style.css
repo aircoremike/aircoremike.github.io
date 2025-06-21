@@ -617,6 +617,9 @@ html {
   .contact-text-flex h2 {
     font-size: 1.5rem !important;
   }
+  .application-desc {
+    font-size: 1rem !important;
+  }
   .footer-flex span {
     font-size: 0.8rem !important;
   }
