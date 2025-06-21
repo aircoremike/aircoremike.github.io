@@ -55,3 +55,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial check
   handleNavbarShrink();
 });
+
+// Fade-in on scroll for .section-fade
+(function() {
+  function onEntry(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section-fade-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var observer = new window.IntersectionObserver(onEntry, {
+      threshold: 0.15
+    });
+    document.querySelectorAll('.section-fade').forEach(function(el) {
+      observer.observe(el);
+    });
+  });
+})();
