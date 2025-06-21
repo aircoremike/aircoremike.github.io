@@ -1,0 +1,193 @@
+/* materials.css - Styles specific to the Aircore Bearings Materials page */
+
+/* Import shared base styles if needed (optional, not required if using <link rel="stylesheet" href="style.css">) */
+
+body {
+  background: var(--safe-area-color);
+}
+
+/* Navbar and footer styles (copied for standalone use, but can be omitted if style.css is included) */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--safe-area-color);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--logo-padding));
+  padding-bottom: var(--logo-padding);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 0.75rem;
+}
+
+.logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.version-badge {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(10,10,10,0.85);
+  border: 2px solid #f6f6f6;
+  border-radius: 6px;
+  padding: 0.15em 0.7em;
+  margin-left: 0.25em;
+  letter-spacing: 0.04em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+  color: #f6f6f6;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  z-index: 1100;
+  background: none;
+  border: none;
+}
+.menu-toggle span {
+  width: 28px;
+  height: 3px;
+  background: #f6f6f6;
+  border-radius: 2px;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--safe-area-color);
+  width: 100vw;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 1099;
+  padding: 0 0 1.5rem 0;
+  margin-top: 0;
+  border-top: none;
+  animation: dropdownFadeIn 0.3s;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 2rem;
+  min-height: 0;
+}
+.mobile-nav.open {
+  display: flex;
+}
+.mobile-nav li {
+  list-style: none;
+  margin: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+.mobile-nav li a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-size: 1.25rem;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  height: 100%;
+}
+.mobile-nav li a:hover {
+  text-decoration: underline;
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  background: #132D3E;
+  color: #fff;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  z-index: 10;
+}
+.footer-flex span {
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* Add any additional materials-specific styles below this line */
+
