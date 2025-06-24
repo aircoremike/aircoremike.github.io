@@ -114,7 +114,7 @@ html {
 }
 .applications-heading h2 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
   margin: 0;
@@ -177,7 +177,7 @@ html {
 }
 .advantages-heading {
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
   margin: 0 0 1.5rem 0;
@@ -205,9 +205,9 @@ html {
   padding-left: 1em;
 }
 
-.body-about-short-heading {
+.body-about-short-heading h2 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
   margin: 0 0 1.5rem 0;
@@ -244,7 +244,7 @@ html {
 }
 .contact-text-flex h2 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
   margin: 0 0 1.2rem 0;
 }
@@ -481,18 +481,6 @@ html {
 @media (min-width: 769px) {
   .logo img {
     height: var(--logo-height-desktop);
-  }
-  .applications-heading h2,
-  .advantages-heading,
-  .body-about-short-heading,
-  .contact-text-flex h2,
-  .heading-flex h2 {
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 600;
-    text-align: center;
-    margin: 0 0 1.5rem 0;
-    padding: 0 1rem;
   }
 }
 
