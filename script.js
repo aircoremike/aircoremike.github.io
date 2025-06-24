@@ -134,21 +134,33 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })();
 
-// Highlight active nav link based on current page or hash
+// Improved: Highlight active nav link based on current page or hash
 (function() {
   function setActiveNavLink() {
-    var path = window.location.pathname.split('/').pop() || 'index.html';
+    var path = window.location.pathname.split('/').pop();
     var hash = window.location.hash;
     var navLinks = document.querySelectorAll('.nav-links a, .mobile-nav a');
+    var found = false;
     navLinks.forEach(function(link) {
       link.classList.remove('active');
       var href = link.getAttribute('href');
-      // Home: index.html, /, or #home
-      if ((path === 'index.html' && (href === 'index.html' || href === '/' || href === '#home')) ||
-          (path === '' && (href === 'index.html' || href === '/' || href === '#home')) ||
-          (path === 'materials.html' && href === 'materials.html') ||
-          (href.charAt(0) === '#' && hash && href === hash)) {
+      // Homepage: index.html, /, or empty
+      if (!found && (
+        (href === 'index.html' && (path === '' || path === 'index.html')) ||
+        (href === '/' && (path === '' || path === '/'))
+      )) {
         link.classList.add('active');
+        found = true;
+      }
+      // Page match (e.g. materials.html)
+      else if (!found && href.endsWith('.html') && path === href) {
+        link.classList.add('active');
+        found = true;
+      }
+      // Hash/anchor match (e.g. #about)
+      else if (!found && href.charAt(0) === '#' && hash && href === hash) {
+        link.classList.add('active');
+        found = true;
       }
     });
   }
