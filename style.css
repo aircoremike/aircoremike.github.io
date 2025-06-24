@@ -189,16 +189,17 @@ html {
   max-width: 800px;
   width: 100%;
   padding: 1.5rem 2rem;
-  margin: 0 auto;
+  margin: 0 auto 6rem auto;
   list-style: disc outside;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 .advantages-list li {
-  margin-bottom: 6rem;
+  margin-bottom: 0.8rem;
   width: 100%;
   max-width: 800px;
   font-size: 1.5rem;
