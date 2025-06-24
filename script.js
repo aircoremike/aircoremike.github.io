@@ -117,18 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
-    // Logo click scrolls to #home with offset
-    var logo = document.querySelector('.logo');
-    if (logo) {
-      logo.style.cursor = 'pointer';
-      logo.addEventListener('click', function(e) {
+    
+  });
+})();
+
+// Global: Always navigate to index.html when clicking the logo in the navbar
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var logoLink = document.querySelector('.logo a');
+    if (logoLink) {
+      logoLink.addEventListener('click', function(e) {
         e.preventDefault();
-        scrollToHash('#home');
-        if (history.pushState) {
-          history.pushState(null, null, '#home');
-        } else {
-          window.location.hash = '#home';
-        }
+        window.location.href = 'index.html';
       });
     }
   });
