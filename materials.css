@@ -353,6 +353,10 @@ h1 {
   padding: 0 0 0 0;
   box-sizing: border-box;
   overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 @media (max-width: 768px) {
   .materials-flexbox {
@@ -384,7 +388,7 @@ h1 {
   min-height: 0;
   min-width: 0;
   position: relative;
-  margin: 2rem 2rem 0 2rem;
+  margin: 0;
   overflow: hidden;
 }
 .material-slide-content {
@@ -397,14 +401,14 @@ h1 {
   max-width: 55%;
 }
 .material-title {
-  color: #fff;
+  color: #fff !important;
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
   letter-spacing: 0.02em;
 }
 .material-desc {
-  color: #e0e0e0;
+  color: #fff !important;
   font-size: 1.15rem;
   line-height: 1.6;
   margin: 0;
