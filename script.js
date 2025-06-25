@@ -133,3 +133,79 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 })();
+
+// Carousel functionality
+(function() {
+  const track = document.querySelector('.carousel-track');
+  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+  const pagination = document.getElementById('carouselPagination');
+  let current = 0;
+  const slideCount = slides.length;
+
+  // Pagination dots (only for non-touch devices)
+  function isTouchDevice() {
+    return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+  }
+
+  function renderPagination() {
+    if (!pagination) return;
+    if (isTouchDevice()) {
+      pagination.style.display = 'none';
+      return;
+    }
+    pagination.innerHTML = '';
+    for (let i = 0; i < slideCount; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'carousel-dot' + (i === current ? ' active' : '');
+      dot.addEventListener('click', () => goToSlide(i));
+      pagination.appendChild(dot);
+    }
+  }
+
+  function goToSlide(idx) {
+    current = idx;
+    track.style.transform = `translateX(-${100 * current}%)`;
+    renderPagination();
+  }
+
+  // Touch/click navigation
+  let startX = null;
+  let dragging = false;
+
+  function onTouchStart(e) {
+    dragging = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+  }
+  function onTouchMove(e) {
+    if (!dragging) return;
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const dx = x - startX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0 && current < slideCount - 1) goToSlide(current + 1);
+      else if (dx > 0 && current > 0) goToSlide(current - 1);
+      dragging = false;
+    }
+  }
+  function onTouchEnd() {
+    dragging = false;
+  }
+
+  // Click for desktop: advance to next slide
+  function onClick() {
+    if (isTouchDevice()) return;
+    goToSlide((current + 1) % slideCount);
+  }
+
+  // Add listeners
+  track.addEventListener('mousedown', onTouchStart);
+  track.addEventListener('mousemove', onTouchMove);
+  track.addEventListener('mouseup', onTouchEnd);
+  track.addEventListener('mouseleave', onTouchEnd);
+  track.addEventListener('touchstart', onTouchStart);
+  track.addEventListener('touchmove', onTouchMove);
+  track.addEventListener('touchend', onTouchEnd);
+  track.addEventListener('click', onClick);
+
+  // Init
+  goToSlide(0);
+})();
