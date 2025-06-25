@@ -337,3 +337,34 @@ h1 {
     top: 38% !important;
   }
 }
+
+/* --- Materials Slideshow Flexbox --- */
+.materials-flexbox {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  max-width: 100%;
+  min-height: calc(100vh - var(--navbar-height-desktop));
+  max-height: 800px;
+  background: #232323;
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .materials-flexbox {
+    min-height: calc(100vh - var(--navbar-height-mobile));
+    max-height: 800px;
+  }
+}
+.materials-heading {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 2rem 0 0 2rem;
+  align-self: flex-start;
+  letter-spacing: 0.03em;
+  z-index: 2;
+}
