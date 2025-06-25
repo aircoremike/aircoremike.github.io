@@ -45,7 +45,6 @@ html {
   padding-bottom: var(--logo-padding);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
-  border: 4px solid red !important; /* Debugging border */
 }
 
 .navbar-inner {
@@ -339,118 +338,43 @@ h1 {
   }
 }
 
-/* --- Materials Slideshow Flexbox --- */
-.materials-flexbox {
+/* --- Materials Hero Section Styles --- */
+.materials-hero {
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  max-width: 100%;
-  min-height: calc(100vh - var(--navbar-height-desktop));
-  max-height: 800px;
-  background: #232323;
-  position: relative;
-  margin: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  justify-content: center;
   align-items: center;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  z-index: 1;
+  justify-content: center;
+  background: #000;
+  color: #FFF;
+  padding: 3rem 1.5rem 2.5rem 1.5rem;
+  margin: 2rem auto 2.5rem auto;
+  border-radius: 1.25rem;
+  max-width: 900px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
-@media (max-width: 768px) {
-  .materials-flexbox {
-    min-height: calc(100vh - var(--navbar-height-mobile));
-    max-height: 800px;
-  }
-}
-.materials-heading {
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 2rem 0;
-  align-self: flex-start;
-  letter-spacing: 0.03em;
-  z-index: 2;
-  position: relative;
-}
-
-/* --- Material Slide Styles --- */
-.material-slide {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  background: #111;
-  border-radius: 24px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  min-width: 0;
-  position: relative;
-  margin: 0;
-  overflow: hidden;
-}
-.material-slide-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 2.5rem 2rem 2rem 2.5rem;
-  z-index: 2;
-  max-width: 55%;
-}
-.material-title {
-  color: #fff !important;
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
+.materials-hero h1 {
+  color: #FFF;
+  font-size: 2.8rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
   letter-spacing: 0.02em;
 }
-.material-desc {
-  color: #fff !important;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  margin: 0;
+.materials-hero p {
+  color: #FFF;
+  font-size: 1.18rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
 }
-.material-image {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 320px;
-  max-width: 45vw;
-  height: auto;
-  object-fit: contain;
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
-}
-@media (max-width: 900px) {
-  .material-slide-content {
-    max-width: 65%;
-    padding: 1.5rem 1rem 1rem 1.5rem;
+@media (max-width: 768px) {
+  .materials-hero {
+    padding: 2rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
   }
-  .material-image {
-    width: 180px;
-    max-width: 40vw;
+  .materials-hero h1 {
+    font-size: 2rem;
   }
-}
-@media (max-width: 600px) {
-  .material-slide {
-    flex-direction: column;
-    min-height: 320px;
-    margin: 1rem 0.5rem 0 0.5rem;
-  }
-  .material-slide-content {
-    max-width: 100%;
-    padding: 1rem 1rem 0.5rem 1rem;
-  }
-  .material-image {
-    position: static;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 1rem;
-    display: block;
+  .materials-hero p {
+    font-size: 1rem;
   }
 }
