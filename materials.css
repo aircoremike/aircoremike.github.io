@@ -481,7 +481,7 @@ h1 {
   margin-right: 0.7em;
 }
 .slide-desc {
-  flex: 1 1 0;
+  flex: 1 1 auto;
   min-width: 0;
 }
 .slide-title h2, .slide-desc p {
@@ -552,10 +552,11 @@ h1 {
     max-width: 100%;
     min-width: 0;
     margin: 0;
-    display: block;
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    flex: none;
+    flex: 1 1 auto;
     height: auto;
     overflow: visible;
     visibility: visible;
@@ -568,13 +569,14 @@ h1 {
     padding-left: 1.1em;
     margin: 0;
     display: block;
-    visibility: visible;
-    opacity: 1;
     width: 100%;
     min-width: 0;
     max-width: 100%;
     word-break: break-word;
     overflow-wrap: break-word;
+    color: #fff;
+    background: none;
+    z-index: 2;
   }
 }
 /* Desktop Carousel Overrides */
