@@ -384,18 +384,28 @@ h1 {
 }
 
 /* --- Carousel Styles --- */
+.materials-carousel-bg {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 0;
+  margin-left: -50vw;
+  margin-right: 0;
+  background: #23242a;
+  border-radius: 0;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+  padding: 2.5rem 0 2.5rem 0;
+  z-index: 0;
+}
 .materials-carousel {
+  position: relative;
   width: 100%;
   max-width: 900px;
-  margin: 0 auto 3rem auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  min-height: 350px;
-  background: #23242a; /* Add contrasting dark background to carousel section */
+  margin: 0 auto;
+  background: none;
   border-radius: 1.5rem;
-  padding: 2.5rem 0.5rem 2.5rem 0.5rem;
+  padding: 0;
+  z-index: 1;
 }
 .carousel-track {
   display: flex;
