@@ -491,9 +491,14 @@ h1 {
   min-width: 0;
 }
 .slide-title h2 {
-  font-size: 1.2rem;
+  font-size: 1.35rem; /* Increased font size */
   font-weight: bold;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  text-align: left;
+  padding-left: 0.5em; /* Added left padding */
+  padding-top: 0.3em;  /* Added top padding */
+  margin-bottom: 0.18em; /* Reduce space below heading */
 }
 .slide-image {
   display: flex;
@@ -544,18 +549,20 @@ h1 {
   }
   .slide-title {
     width: 100%;
-    margin-bottom: 0.18em;
+    margin-bottom: 0.08em; /* Reduce space between heading and desc */
     display: block;
     align-items: flex-start;
     justify-content: flex-start;
   }
   .slide-title h2 {
-    font-size: 1.1rem;
+    font-size: 1.35rem; /* Increased font size */
     font-weight: bold;
     white-space: normal;
     word-break: break-word;
     text-align: left;
-    padding-left: 0;
+    padding-left: 0.5em; /* Added left padding */
+    padding-top: 0.3em;  /* Added top padding */
+    margin-bottom: 0.18em; /* Reduce space below heading */
   }
   .slide-desc {
     width: 100%;
