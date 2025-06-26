@@ -539,9 +539,9 @@ h1 {
   color: #F5F5E7;
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 1.5rem;
+  width: 38px;
+  height: 38px;
+  font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
   pointer-events: auto;
