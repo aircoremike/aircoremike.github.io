@@ -145,7 +145,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function goToSlide(idx) {
     current = idx;
-    track.style.transform = `translateX(-${100 * current}%)`;
+    // Responsive centering logic
+    if (window.innerWidth <= 700) {
+      // Mobile: slide is 84vw, margin 2vw each side, so total 88vw
+      const slideWidth = 84; // vw
+      const slideMargin = 2; // vw
+      const totalSlide = slideWidth + 2 * slideMargin; // 88vw
+      const offset = (100 - slideWidth) / 2; // 8vw
+      const translate = offset - current * totalSlide;
+      track.style.transform = `translateX(${translate}vw)`;
+    } else {
+      // Desktop: fallback to old logic
+      track.style.transform = `translateX(-${100 * current}%)`;
+    }
     updateArrows();
   }
 
