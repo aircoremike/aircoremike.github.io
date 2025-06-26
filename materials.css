@@ -587,11 +587,11 @@ h1 {
     gap: 0.7rem;
   }
 }
-@media (hover: none) and (pointer: coarse) {
+/* @media (hover: none) and (pointer: coarse) {
   .carousel-arrows {
     display: none !important;
   }
-}
+} */
 
 @media (max-width: 700px) {
   .materials-carousel-bg {
@@ -603,8 +603,8 @@ h1 {
   }
   .carousel-track {
     overflow: visible;
-    justify-content: center; /* Center the active slide */
-    padding: 0; /* Remove side padding for true centering */
+    justify-content: flex-start; /* Restore left alignment for correct navigation */
+    padding: 0;
   }
   .carousel-slide {
     min-width: 84vw;
