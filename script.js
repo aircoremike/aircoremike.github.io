@@ -172,17 +172,28 @@ document.addEventListener('DOMContentLoaded', function() {
   let startX = null;
   let endX = null;
   let dragging = false;
+  let isTouch = false;
+
+  // Use the carousel container for touch events
+  const carouselContainer = track.parentElement.parentElement;
 
   function onTouchStart(e) {
+    if (e.touches && e.touches.length > 1) return; // Only single-finger
     dragging = true;
+    isTouch = !!e.touches;
     startX = e.touches ? e.touches[0].clientX : e.clientX;
     endX = startX;
   }
   function onTouchMove(e) {
     if (!dragging) return;
+    if (e.touches && e.touches.length > 1) return;
     endX = e.touches ? e.touches[0].clientX : e.clientX;
+    // Prevent vertical scroll if horizontal swipe is detected
+    if (isTouch && Math.abs(endX - startX) > 10) {
+      e.preventDefault();
+    }
   }
-  function onTouchEnd() {
+  function onTouchEnd(e) {
     if (!dragging || startX === null || endX === null) return;
     const dx = endX - startX;
     if (Math.abs(dx) > 50) {
@@ -192,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dragging = false;
     startX = null;
     endX = null;
+    isTouch = false;
   }
 
   // Click for desktop: advance to next slide
@@ -200,15 +212,25 @@ document.addEventListener('DOMContentLoaded', function() {
     goToSlide((current + 1) % slideCount);
   }
 
-  // Add listeners
-  track.addEventListener('mousedown', onTouchStart);
-  track.addEventListener('mousemove', onTouchMove);
-  track.addEventListener('mouseup', onTouchEnd);
-  track.addEventListener('mouseleave', onTouchEnd);
-  track.addEventListener('touchstart', onTouchStart);
-  track.addEventListener('touchmove', onTouchMove);
-  track.addEventListener('touchend', onTouchEnd);
-  track.addEventListener('click', onClick);
+  // Remove old listeners from track
+  track.removeEventListener('mousedown', onTouchStart);
+  track.removeEventListener('mousemove', onTouchMove);
+  track.removeEventListener('mouseup', onTouchEnd);
+  track.removeEventListener('mouseleave', onTouchEnd);
+  track.removeEventListener('touchstart', onTouchStart);
+  track.removeEventListener('touchmove', onTouchMove);
+  track.removeEventListener('touchend', onTouchEnd);
+  track.removeEventListener('click', onClick);
+
+  // Add listeners to carousel container
+  carouselContainer.addEventListener('mousedown', onTouchStart);
+  carouselContainer.addEventListener('mousemove', onTouchMove);
+  carouselContainer.addEventListener('mouseup', onTouchEnd);
+  carouselContainer.addEventListener('mouseleave', onTouchEnd);
+  carouselContainer.addEventListener('touchstart', onTouchStart, { passive: false });
+  carouselContainer.addEventListener('touchmove', onTouchMove, { passive: false });
+  carouselContainer.addEventListener('touchend', onTouchEnd);
+  carouselContainer.addEventListener('click', onClick);
 
   // Init
   goToSlide(0);
