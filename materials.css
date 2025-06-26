@@ -469,7 +469,7 @@ h1 {
   z-index: 2;
   height: auto;
   /* Remove gap and height for tighter grouping */
-  gap: 0;
+  gap: 1rem;
 }
 .slide-title, .slide-desc {
   display: flex;
