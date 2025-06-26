@@ -439,36 +439,28 @@ h1 {
   max-width: 55%;
   z-index: 2;
 }
-.slide-text h2 {
-  margin: 0 0 0.5rem 0;
-  font-size: 2rem;
-  font-weight: 700;
-}
-.slide-text p {
-  margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.5;
-}
 .slide-image {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   flex: 1 1 0;
-  padding: 0 2rem 1.5rem 0;
   min-width: 0;
   z-index: 1;
+  height: 100%;
+  padding: 0 0 0 0; /* Remove right/bottom padding */
 }
 .slide-image img {
-  max-height: 320px;
-  max-width: 320px;
+  max-height: 100%;
+  max-width: 500px;
   object-fit: contain;
   display: block;
   background: none;
+  margin-right: 0;
+  margin-bottom: 0;
 }
-@media (min-width: 700px) {
+@media (max-width: 699px) {
   .slide-image img {
-    max-height: 500px;
-    max-width: 500px;
+    max-width: 320px;
   }
 }
 .carousel-pagination {
