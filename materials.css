@@ -460,13 +460,40 @@ h1 {
 }
 .slide-text {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
   padding: 2rem 1.5rem 1rem 2rem;
   color: #fff;
   max-width: 55%;
   z-index: 2;
+  height: 100%;
+}
+.slide-title, .slide-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  min-width: 0;
+}
+.slide-title {
+  flex: 0 0 auto;
+  margin-right: 0.7em;
+}
+.slide-desc {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.slide-title h2, .slide-desc p {
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  min-width: 0;
+}
+.slide-title h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
 .slide-image {
   display: flex;
@@ -493,7 +520,7 @@ h1 {
   }
   .slide-text {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.7em;
     max-width: 90%;
     min-width: 0;
@@ -501,16 +528,30 @@ h1 {
     padding: 1.2rem 1.2rem 0.7rem 1.2rem;
     overflow-wrap: break-word;
     word-break: break-word;
+    height: 100%;
   }
-  .slide-text h2, .slide-text p {
-    width: auto;
-    flex: none;
+  .slide-title, .slide-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    min-width: 0;
+  }
+  .slide-title {
+    flex: 0 0 auto;
+    margin-right: 0.7em;
+  }
+  .slide-desc {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .slide-title h2, .slide-desc p {
     margin: 0;
     padding: 0;
     font-size: 1.1rem;
     min-width: 0;
   }
-  .slide-text h2 {
+  .slide-title h2 {
     font-size: 1.2rem;
     font-weight: bold;
     white-space: nowrap;
