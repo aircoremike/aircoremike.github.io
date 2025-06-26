@@ -552,9 +552,10 @@ h1 {
     max-width: 100%;
     min-width: 0;
     margin: 0;
-    display: block !important;
-    align-items: flex-start;
-    justify-content: flex-start;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
     flex: none !important;
     height: auto !important;
     overflow: visible !important;
@@ -570,9 +571,13 @@ h1 {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }
-
 /* Desktop Carousel Overrides */
 @media (min-width: 700px) {
   .slide-text {
