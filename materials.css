@@ -481,7 +481,7 @@ h1 {
 .slide-title {
   flex: 0 0 auto;
   margin-right: 0.7em;
-  margin-bottom: 0; /* Ensure no extra margin */
+  margin-bottom: .5rem; /* Ensure no extra margin */
 }
 .slide-desc {
   flex: 1 1 auto;
