@@ -557,6 +557,41 @@ h1 {
     white-space: nowrap;
   }
 }
+
+/* Desktop: stack slide-title above slide-desc in .slide-text */
+@media (min-width: 700px) {
+  .slide-text {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 55%;
+    height: 100%;
+    padding: 2rem 1.5rem 1rem 2rem;
+    gap: 0.7em;
+  }
+  .slide-title, .slide-desc {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    min-width: 0;
+    height: auto;
+  }
+  .slide-title {
+    margin-right: 0;
+    margin-bottom: 0.3em;
+  }
+  .slide-desc {
+    margin: 0;
+  }
+  .slide-title h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    white-space: normal;
+  }
+  .slide-desc p {
+    font-size: 1.1rem;
+  }
+}
 .carousel-pagination {
   display: flex;
   justify-content: center;
