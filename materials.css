@@ -467,18 +467,21 @@ h1 {
   color: #fff;
   max-width: 55%;
   z-index: 2;
-  height: 100%;
+  height: auto;
+  /* Remove gap and height for tighter grouping */
+  gap: 0;
 }
 .slide-title, .slide-desc {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
+  height: auto;
   min-width: 0;
 }
 .slide-title {
   flex: 0 0 auto;
   margin-right: 0.7em;
+  margin-bottom: 0; /* Ensure no extra margin */
 }
 .slide-desc {
   flex: 1 1 auto;
@@ -673,7 +676,7 @@ h1 {
   }
 }
 
-/* --- New Carousel Navigation Arrows Styles --- */
+/* --- Carousel Navigation Arrows Styles --- */
 .carousel-arrows {
   position: static;
   margin-top: 2.5rem;
