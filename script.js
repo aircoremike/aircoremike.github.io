@@ -138,34 +138,32 @@ document.addEventListener('DOMContentLoaded', function() {
 (function() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-  const pagination = document.getElementById('carouselPagination');
+  const arrowLeft = document.getElementById('carouselArrowLeft');
+  const arrowRight = document.getElementById('carouselArrowRight');
   let current = 0;
   const slideCount = slides.length;
-
-  // Pagination dots (only for non-touch devices)
-  function isTouchDevice() {
-    return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
-  }
-
-  function renderPagination() {
-    if (!pagination) return;
-    if (isTouchDevice()) {
-      pagination.style.display = 'none';
-      return;
-    }
-    pagination.innerHTML = '';
-    for (let i = 0; i < slideCount; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'carousel-dot' + (i === current ? ' active' : '');
-      dot.addEventListener('click', () => goToSlide(i));
-      pagination.appendChild(dot);
-    }
-  }
 
   function goToSlide(idx) {
     current = idx;
     track.style.transform = `translateX(-${100 * current}%)`;
-    renderPagination();
+    updateArrows();
+  }
+
+  function updateArrows() {
+    if (!arrowLeft || !arrowRight) return;
+    arrowLeft.disabled = current === 0;
+    arrowRight.disabled = current === slideCount - 1;
+  }
+
+  if (arrowLeft && arrowRight) {
+    arrowLeft.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (current > 0) goToSlide(current - 1);
+    });
+    arrowRight.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (current < slideCount - 1) goToSlide(current + 1);
+    });
   }
 
   // Touch/click navigation
