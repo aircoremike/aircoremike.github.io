@@ -170,24 +170,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Touch/click navigation
   let startX = null;
+  let endX = null;
   let dragging = false;
 
   function onTouchStart(e) {
     dragging = true;
     startX = e.touches ? e.touches[0].clientX : e.clientX;
+    endX = startX;
   }
   function onTouchMove(e) {
     if (!dragging) return;
-    const x = e.touches ? e.touches[0].clientX : e.clientX;
-    const dx = x - startX;
+    endX = e.touches ? e.touches[0].clientX : e.clientX;
+  }
+  function onTouchEnd() {
+    if (!dragging || startX === null || endX === null) return;
+    const dx = endX - startX;
     if (Math.abs(dx) > 50) {
       if (dx < 0 && current < slideCount - 1) goToSlide(current + 1);
       else if (dx > 0 && current > 0) goToSlide(current - 1);
-      dragging = false;
     }
-  }
-  function onTouchEnd() {
     dragging = false;
+    startX = null;
+    endX = null;
   }
 
   // Click for desktop: advance to next slide
