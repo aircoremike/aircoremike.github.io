@@ -603,8 +603,8 @@ h1 {
   }
   .carousel-track {
     overflow: visible;
-    padding: 0 8vw;
-    justify-content: flex-start;
+    justify-content: center; /* Center the active slide */
+    padding: 0; /* Remove side padding for true centering */
   }
   .carousel-slide {
     min-width: 84vw;
