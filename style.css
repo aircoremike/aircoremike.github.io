@@ -3,7 +3,7 @@
   --logo-height-desktop: 128px;
   --logo-height-mobile: 64px;
   --max-width: 1200px;
-  --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
+  --safe-area-color: #000; /* <-- Change this to update all safe area and navbar colors */
   --logo-padding: 16px;
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
