@@ -441,7 +441,9 @@ h1 {
 }
 @media (min-width: 700px) {
   .carousel-slide {
-    height: 500px;
+    height: 100%; /* Fill parent height on larger screens */
+    min-height: 0;
+    max-height: 100%;
   }
 }
 .slide-content {
