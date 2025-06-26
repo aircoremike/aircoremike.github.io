@@ -762,8 +762,8 @@ h1 {
     padding: 0;
   }
   .carousel-slide {
-    min-width: 84vw;
-    max-width: 84vw;
+    min-width: 80vw;
+    max-width: 80vw;
     height: 85vh;
     margin: 0 2vw;
   }
@@ -775,6 +775,11 @@ h1 {
     max-width: 84vw;
     height: 85vh;
     margin: 0 2vw;
+  }
+  .carousel-track {
+    width: auto;
+    overflow: visible;
+    justify-content: flex-start;
   }
 }
 /* --- End Carousel Styles --- */
