@@ -565,8 +565,9 @@ h1 {
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
-  line-height: normal;
-  margin: 0;
+  line-height: 1;
+  margin-top: -2px; /* Nudge chevron up for perfect vertical centering */
+  margin-bottom: 0;
   padding: 0;
 }
 
