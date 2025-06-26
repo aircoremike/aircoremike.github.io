@@ -587,11 +587,11 @@ h1 {
     gap: 0.7rem;
   }
 }
-/* @media (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .carousel-arrows {
     display: none !important;
   }
-} */
+}
 
 @media (max-width: 700px) {
   .materials-carousel-bg {
