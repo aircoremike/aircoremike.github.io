@@ -393,6 +393,9 @@ h1 {
   flex-direction: column;
   align-items: stretch;
   min-height: 350px;
+  background: #23242a; /* Add contrasting dark background to carousel section */
+  border-radius: 1.5rem;
+  padding: 2.5rem 0.5rem 2.5rem 0.5rem;
 }
 .carousel-track {
   display: flex;
@@ -400,7 +403,6 @@ h1 {
   transition: transform 0.5s cubic-bezier(.77,0,.18,1);
   will-change: transform;
   width: 100%;
-  background-color: #444;
 }
 .carousel-slide {
   min-width: 100%;
