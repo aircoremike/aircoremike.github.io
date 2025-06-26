@@ -592,4 +592,25 @@ h1 {
     display: none !important;
   }
 }
+
+@media (max-width: 700px) {
+  .materials-carousel-bg {
+    height: 85vh;
+    min-height: 85vh;
+  }
+  .materials-carousel {
+    overflow: visible;
+  }
+  .carousel-track {
+    overflow: visible;
+    padding: 0 8vw;
+    justify-content: flex-start;
+  }
+  .carousel-slide {
+    min-width: 84vw;
+    max-width: 84vw;
+    height: 85vh;
+    margin: 0 2vw;
+  }
+}
 /* --- End Carousel Styles --- */
