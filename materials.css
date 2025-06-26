@@ -549,7 +549,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1; /* Ensure vertical centering of chevron */
+  line-height: normal; /* Use normal for best vertical centering */
   vertical-align: unset;
   padding: 0;
   font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
@@ -560,12 +560,12 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: auto;
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
-  line-height: 1;
+  line-height: normal;
   margin: 0;
   padding: 0;
 }
