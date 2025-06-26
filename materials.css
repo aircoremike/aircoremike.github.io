@@ -535,12 +535,12 @@ h1 {
   transform: none;
 }
 .carousel-arrow {
-  background: #fff;
-  color: #18191c;
+  background: #37373A;
+  color: #F5F5E7;
   border: none;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
@@ -556,8 +556,8 @@ h1 {
 }
 .carousel-arrow:active,
 .carousel-arrow:focus {
-  background: #e5e5e5;
-  color: #18191c;
+  background: #202022;
+  color: #F5F5E7;
   outline: none;
 }
 .carousel-arrow[disabled] {
