@@ -146,8 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
   function goToSlide(idx) {
     current = idx;
     // Responsive centering logic
-    if (window.innerWidth <= 700) {
-      // Mobile: slide is 84vw, margin 2vw each side, so total 88vw
+    if (
+      window.innerWidth <= 700 ||
+      (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
+    ) {
+      // Mobile & tablet portrait: slide is 84vw, margin 2vw each side, so total 88vw
       const slideWidth = 84; // vw
       const slideMargin = 2; // vw
       const totalSlide = slideWidth + 2 * slideMargin; // 88vw
