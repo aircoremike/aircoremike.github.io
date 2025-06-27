@@ -762,8 +762,8 @@ h1 {
     padding: 0;
   }
   .carousel-slide {
-    min-width: 80vw;
-    max-width: 80vw;
+    min-width: 84vw;
+    max-width: 84vw;
     height: 85vh;
     margin: 0 2vw;
   }
