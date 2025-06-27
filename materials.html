@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aircore Bearings</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="materials.css">
     <!-- Safe area color for browser UI and notches, matches --safe-area-color in CSS -->
     <meta name="theme-color" content="#0a0a0a">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -16,7 +16,7 @@
         <a href="index.html">
           <img src="assets/aircore_white_transparent.svg" alt="Logo" />
         </a>
-        <span class="version-badge">v2.1</span> <!-- Version number, update as needed -->
+        <span class="version-badge">v3.25</span> <!-- Version number, update as needed -->
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -40,7 +40,70 @@
     </div>
   </nav>
 
- 
+  <main class="main-content">
+    <div class="materials-hero">
+      <h1>Materials</h1>
+      <p>
+        Aircore Bearings has developed a proprietary manufacturing process that enables the bonding of materials once considered unweldable. This approach delivers greater stability and a more uniform, balanced structure than traditional welding methods. No other supplier offers hollow balls in such a broad range of materials with the same level of quality. Explore our material library below.
+      </p>
+    </div>
+    <div class="materials-carousel-bg">
+      <div class="materials-carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide" data-slide="0">
+            <div class="slide-content">
+              <div class="slide-text">
+                <div class="slide-title">
+                  <h2>Stainless Bearing Steels</h2>
+                </div>
+                <div class="slide-desc">
+                  <p>High-strength, corrosion-resistant steels designed for bearings in demanding environments.</p>
+                </div>
+              </div>
+              <div class="slide-image">
+                <img src="assets/steel.png" alt="Steel">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide" data-slide="1">
+            <div class="slide-content">
+              <div class="slide-text">
+                <div class="slide-title">
+                  <h2>Copper</h2>
+                </div>
+                <div class="slide-desc">
+                  <p>Exceptional electrical and thermal conductivity, excellent formability, and inherent antimicrobial properties. </p>
+                </div>
+              </div>
+              <div class="slide-image">
+                <img src="assets/copper.png" alt="Copper">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide" data-slide="2">
+            <div class="slide-content">
+              <div class="slide-text">
+                <div class="slide-title">
+                  <h2>Tungsten</h2>
+                </div>
+                <div class="slide-desc">
+                  <p>Outstanding density and strength, extreme heat resistance, and excellent wear and creep performance.</p>
+                </div>
+              </div>
+              <div class="slide-image">
+                <img src="assets/tungsten.png" alt="Tungsten">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-arrows">
+          <button class="carousel-arrow carousel-arrow-left" id="carouselArrowLeft" aria-label="Previous slide"><span>&#8249;</span></button>
+          <button class="carousel-arrow carousel-arrow-right" id="carouselArrowRight" aria-label="Next slide"><span>&#8250;</span></button>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <footer class="footer-flex">
     <span>&copy; Aircore Bearings LLC</span>
   </footer>

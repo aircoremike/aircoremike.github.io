@@ -3,7 +3,7 @@
   --logo-height-desktop: 128px;
   --logo-height-mobile: 64px;
   --max-width: 1200px;
-  --safe-area-color: #0a0a0a; /* <-- Change this to update all safe area and navbar colors */
+  --safe-area-color: #000; /* <-- Change this to update all safe area and navbar colors */
   --logo-padding: 16px;
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
@@ -113,7 +113,7 @@ html {
   text-align: center;
 }
 .applications-heading h2 {
-  color: #fff;
+  color: #f5f5f7;
   font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
@@ -175,7 +175,7 @@ html {
   width: 100%;
 }
 .advantages-heading {
-  color: #fff;
+  color: #f5f5f7;
   font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
@@ -183,7 +183,7 @@ html {
   padding: 0 1rem;
 }
 .advantages-list {
-  color: #fff;
+  color: #f5f5f7;
   font-size: 1.2rem;
   max-width: 800px;
   width: 100%;
@@ -206,7 +206,7 @@ html {
 }
 
 .body-about-short-heading h2 {
-  color: #fff;
+  color: #f5f5f7;
   font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
@@ -214,7 +214,7 @@ html {
   padding: 0 1rem;
 }
 .body-about-short {
-  color: #fff;
+  color: #f5f5f7;
   font-size: 1.5rem;
   line-height: 1.7;
   max-width: 800px;
@@ -243,7 +243,7 @@ html {
   gap: 1.5rem;
 }
 .contact-text-flex h2 {
-  color: #fff;
+  color: #f5f5f7;
   font-size: 2.2rem;
   font-weight: 600;
   margin: 0 0 1.2rem 0;
@@ -291,7 +291,7 @@ html {
 }
 .contact-form-flex button[type="submit"] {
   background: #132D3E;
-  color: #fff;
+  color: #f5f5f7;
   font-size: 1.2rem;
   font-weight: 600;
   border: none;
@@ -353,7 +353,7 @@ html {
   display: inline-block;
   font-size: 1rem;
   font-weight: bold;
-  color: #fff;
+  color: #f5f5f7;
   background: rgba(10,10,10,0.85);
   border: 2px solid #f6f6f6;
   border-radius: 6px;
@@ -578,8 +578,8 @@ html {
   justify-content: center;
   height: 50px;
   width: 100%;
-  background: #132D3E;
-  color: #fff;
+  background: #000;
+  color: #f5f5f7;
   position: relative;
   bottom: 0;
   left: 0;
@@ -588,7 +588,7 @@ html {
   z-index: 10;
 }
 .footer-flex span {
-  color: #fff;
+  color: #f5f5f7;
   width: 100%;
   text-align: center;
   letter-spacing: 0.03em;

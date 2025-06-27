@@ -133,3 +133,118 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 })();
+
+// Carousel functionality
+(function() {
+  const track = document.querySelector('.carousel-track');
+  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+  const arrowLeft = document.getElementById('carouselArrowLeft');
+  const arrowRight = document.getElementById('carouselArrowRight');
+  let current = 0;
+  const slideCount = slides.length;
+
+  function goToSlide(idx) {
+    current = idx;
+    // Responsive centering logic
+    if (
+      window.innerWidth <= 700 ||
+      (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
+    ) {
+      // Mobile & tablet portrait: slide is 84vw, margin 2vw each side, so total 88vw
+      const slideWidth = 84; // vw
+      const slideMargin = 2; // vw
+      const totalSlide = slideWidth + 2 * slideMargin; // 88vw
+      const offset = (100 - slideWidth) / 2; // 8vw
+      const translate = offset - current * totalSlide;
+      track.style.transform = `translateX(${translate}vw)`;
+    } else {
+      // Desktop: fallback to old logic
+      track.style.transform = `translateX(-${100 * current}%)`;
+    }
+    updateArrows();
+  }
+
+  function updateArrows() {
+    if (!arrowLeft || !arrowRight) return;
+    arrowLeft.disabled = current === 0;
+    arrowRight.disabled = current === slideCount - 1;
+  }
+
+  if (arrowLeft && arrowRight) {
+    arrowLeft.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (current > 0) goToSlide(current - 1);
+    });
+    arrowRight.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (current < slideCount - 1) goToSlide(current + 1);
+    });
+  }
+
+  // Touch/click navigation
+  let startX = null;
+  let endX = null;
+  let dragging = false;
+  let isTouch = false;
+
+  // Use the carousel container for touch events
+  const carouselContainer = track.parentElement.parentElement;
+
+  function onTouchStart(e) {
+    if (e.touches && e.touches.length > 1) return; // Only single-finger
+    dragging = true;
+    isTouch = !!e.touches;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+    endX = startX;
+  }
+  function onTouchMove(e) {
+    if (!dragging) return;
+    if (e.touches && e.touches.length > 1) return;
+    endX = e.touches ? e.touches[0].clientX : e.clientX;
+    // Prevent vertical scroll if horizontal swipe is detected
+    if (isTouch && Math.abs(endX - startX) > 10) {
+      e.preventDefault();
+    }
+  }
+  function onTouchEnd(e) {
+    if (!dragging || startX === null || endX === null) return;
+    const dx = endX - startX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0 && current < slideCount - 1) goToSlide(current + 1);
+      else if (dx > 0 && current > 0) goToSlide(current - 1);
+    }
+    dragging = false;
+    startX = null;
+    endX = null;
+    isTouch = false;
+  }
+
+  // Click for desktop: advance to next slide
+  function onClick() {
+    if (isTouchDevice()) return;
+    goToSlide((current + 1) % slideCount);
+  }
+
+  // Remove old listeners from track
+  track.removeEventListener('mousedown', onTouchStart);
+  track.removeEventListener('mousemove', onTouchMove);
+  track.removeEventListener('mouseup', onTouchEnd);
+  track.removeEventListener('mouseleave', onTouchEnd);
+  track.removeEventListener('touchstart', onTouchStart);
+  track.removeEventListener('touchmove', onTouchMove);
+  track.removeEventListener('touchend', onTouchEnd);
+  track.removeEventListener('click', onClick);
+
+  // Add listeners to carousel container
+  carouselContainer.addEventListener('mousedown', onTouchStart);
+  carouselContainer.addEventListener('mousemove', onTouchMove);
+  carouselContainer.addEventListener('mouseup', onTouchEnd);
+  carouselContainer.addEventListener('mouseleave', onTouchEnd);
+  carouselContainer.addEventListener('touchstart', onTouchStart, { passive: false });
+  carouselContainer.addEventListener('touchmove', onTouchMove, { passive: false });
+  carouselContainer.addEventListener('touchend', onTouchEnd);
+  carouselContainer.addEventListener('click', onClick);
+
+  // Init
+  goToSlide(0);
+})();
