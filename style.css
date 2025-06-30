@@ -216,9 +216,28 @@ body {
   align-items: center;
   text-align: right;
   height: 100%;
+  position: relative;
 }
-.mobile-nav li a:hover {
-  text-decoration: underline;
+.mobile-nav li a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: #f6f6f6;
+  opacity: 0;
+  transition: opacity 0.2s, height 0.2s;
+}
+.mobile-nav li a:hover::after {
+  opacity: 1;
+  height: 2px;
+}
+.mobile-nav li a.active-link::after {
+  opacity: 1;
+  height: 4px;
+  background: #f6f6f6;
 }
 
 @keyframes dropdownFadeIn {
