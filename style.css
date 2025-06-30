@@ -115,11 +115,33 @@ body {
   display: flex;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 
-.nav-links li a:hover {
-  text-decoration: underline;
-  color: #f6f6f6;
+/* Thin underline on hover */
+.nav-links li a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: #f6f6f6;
+  opacity: 0;
+  transition: opacity 0.2s, height 0.2s;
+}
+
+.nav-links li a:hover::after {
+  opacity: 1;
+  height: 2px;
+}
+
+/* Bold underline for active link */
+.nav-links li a.active-link::after {
+  opacity: 1;
+  height: 4px;
+  background: #f6f6f6;
 }
 
 /* Hamburger Menu */

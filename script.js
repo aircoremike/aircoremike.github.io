@@ -15,6 +15,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Active link underline for nav links
+  function setActiveNavLink(link) {
+    document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(a => {
+      a.classList.remove('active-link');
+    });
+    if (link) link.classList.add('active-link');
+  }
+
+  // Set active on click for both desktop and mobile nav links
+  document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
+    link.addEventListener('click', function() {
+      setActiveNavLink(this);
+    });
+  });
+
+  // Optionally, set the active link on page load based on URL
+  function setActiveLinkByUrl() {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && (href === '#' + path.replace('.html', '') || href === path || (path === 'index.html' && (href === '#' || href === 'index.html')))) {
+        link.classList.add('active-link');
+      }
+    });
+  }
+  setActiveLinkByUrl();
+
   // Shrinking navbar on scroll (desktop/landscape tablet only)
   const navbar = document.querySelector('.navbar');
   const logoImg = document.querySelector('.logo img');
