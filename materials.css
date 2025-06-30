@@ -227,6 +227,22 @@ body {
   }
 }
 
+/* Force hamburger menu in portrait orientation */
+@media (orientation: portrait) {
+  .nav-links {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: flex !important;
+  }
+  .mobile-nav {
+    display: none;
+  }
+  .mobile-nav.open {
+    display: flex;
+  }
+}
+
 @media (min-width: 601px) {
   .nav-links {
     display: flex !important;

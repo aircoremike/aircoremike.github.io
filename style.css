@@ -245,6 +245,22 @@ body {
   }
 }
 
+/* Force hamburger menu in portrait orientation */
+@media (orientation: portrait) {
+  .nav-links {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: flex !important;
+  }
+  .mobile-nav {
+    display: none;
+  }
+  .mobile-nav.open {
+    display: flex;
+  }
+}
+
 /* Shrinking Navbar on Scroll */
 @media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
   .navbar {
