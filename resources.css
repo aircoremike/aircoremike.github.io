@@ -1,0 +1,42 @@
+/* resources.css - Additional styles for the Resources page */
+
+.resources-section {
+  padding: 3rem 1.5rem 4rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.resources-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary-text, #fff);
+  letter-spacing: 0.04em;
+}
+
+.resources-placeholder {
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.12);
+  text-align: center;
+  color: var(--secondary-text, #ccc);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .resources-section {
+    padding: 2rem 0.5rem 3rem 0.5rem;
+  }
+  .resources-section h1 {
+    font-size: 2rem;
+  }
+  .resources-placeholder {
+    padding: 1.5rem 0.5rem;
+    font-size: 1rem;
+  }
+}
