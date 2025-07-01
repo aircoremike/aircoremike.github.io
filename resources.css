@@ -1,6 +1,6 @@
 /* resources.css - Additional styles for the Resources page */
 
-.resources-section {
+.resources {
   padding: 3rem 1.5rem 4rem 1.5rem;
   max-width: 900px;
   margin: 0 auto;
@@ -11,7 +11,7 @@
   justify-content: flex-start;
 }
 
-.resources-section h1 {
+.resources h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: var(--primary-text, #f5f5f7);
@@ -29,10 +29,10 @@
 }
 
 @media (max-width: 600px) {
-  .resources-section {
+  .resources {
     padding: 2rem 0.5rem 3rem 0.5rem;
   }
-  .resources-section h1 {
+  .resources h1 {
     font-size: 2rem;
   }
   .resources-placeholder {
