@@ -20,14 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set active link on page load based on URL only
   function setActiveLinkByUrl() {
     // Special handling for Home: treat both "/" and "/index.html" as Home
-    const isHome = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+    const path = window.location.pathname;
+    const isHome = path === '/' || path.endsWith('/index.html');
     let found = false;
     document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
       const href = link.getAttribute('href');
       // For Home, match href="#", href="index.html", or href="/"
       if (
-        (isHome && (href === '#' || href === 'index.html' || href === '/')) ||
-        (!isHome && href && (href === window.location.pathname.split('/').pop() || href === '#' + window.location.pathname.split('/').pop().replace('.html', '')))
+        (isHome && (href === '#' || href === 'index.html' || href === '/' || href === './' || href === './index.html')) ||
+        (!isHome && href && (href === path.split('/').pop() || href === '#' + path.split('/').pop().replace('.html', '')))
       ) {
         link.classList.add('active-link');
         found = true;
