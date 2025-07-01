@@ -204,7 +204,10 @@ body {
 
 /* Mobile Dropdown Menu */
 .mobile-nav {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+  display: flex;
   position: absolute;
   left: 0;
   right: 0;
@@ -222,53 +225,85 @@ body {
   justify-content: flex-start;
   gap: 2rem;
   min-height: 0;
+  pointer-events: none;
 }
 .mobile-nav.open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
-.mobile-nav li {
-  list-style: none;
-  margin: 0 2rem;
-  display: flex;
-  align-items: center;
-  height: 48px;
+
+@media (max-width: 900px) {
+  .mobile-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #18181a;
+    z-index: 1000;
+    border-radius: 0 0 1.2rem 1.2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 1.2rem 0 1.5rem 0;
+    margin: 0;
+    pointer-events: none;
+  }
+  .mobile-nav.open {
+    pointer-events: auto;
+  }
 }
-.mobile-nav li a {
-  color: #f6f6f6;
-  text-decoration: none;
-  font-size: 1.25rem;
-  padding: 0.5rem 0;
-  display: flex;
-  align-items: center;
-  text-align: right;
-  height: 100%;
-  position: relative;
-}
+
+/* Remove old display:none/flex rules for .mobile-nav and .mobile-nav.open below this comment if present */
+
+/* Remove hover underline and update active-link underline animation */
+.nav-links li a::after,
 .mobile-nav li a::after {
   content: '';
   display: block;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
+  right: 50%;
   bottom: -4px;
-  height: 2px;
-  background: #f6f6f6;
-  opacity: 0;
-  transition: opacity 0.2s, height 0.2s;
-}
-.mobile-nav li a:hover::after {
-  opacity: 1;
-  height: 2px;
-}
-.mobile-nav li a.active-link::after {
-  opacity: 1;
   height: 4px;
   background: #f6f6f6;
+  opacity: 0;
+  width: 0%;
+  transition: none;
+  pointer-events: none;
 }
 
-@keyframes dropdownFadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Remove hover underline */
+.nav-links li a:hover::after,
+.mobile-nav li a:hover::after {
+  opacity: 0;
+  width: 0%;
+  transition: none;
+}
+
+/* Animated underline for active link */
+.nav-links li a.active-link::after,
+.mobile-nav li a.active-link::after {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #f6f6f6;
+  animation: underline-grow 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+  transition: none;
+}
+
+@keyframes underline-grow {
+  from {
+    left: 50%;
+    right: 50%;
+    width: 0%;
+    opacity: 1;
+  }
+  to {
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 1;
+  }
 }
 
 /* Responsive Navbar & Hamburger */
@@ -321,7 +356,17 @@ body {
     display: flex !important;
   }
   .mobile-nav {
-    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #18181a;
+    z-index: 1000;
+    border-radius: 0 0 1.2rem 1.2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 1.2rem 0 1.5rem 0;
+    margin: 0;
+    pointer-events: none;
   }
   .mobile-nav.open {
     display: flex;
@@ -333,49 +378,9 @@ body {
   .navbar {
     transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1), padding-bottom 0.35s cubic-bezier(0.4,0,0.2,1), background 0.25s;
   }
-  .navbar-inner {
-    transition: padding 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
-  .logo img {
-    transition: height 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
-  body {
-    transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
-  #home h1 {
-    transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
-  .navbar.navbar-shrink {
-    padding-top: calc(env(safe-area-inset-top, 0px) + calc(var(--logo-padding) / 2));
-    padding-bottom: calc(var(--logo-padding) / 2);
-  }
-  .navbar.navbar-shrink .logo img {
-    height: calc(var(--logo-height-desktop) / 2);
-  }
-  body.navbar-shrink {
-    background-position-y: calc(var(--navbar-height-desktop) / 2);
-  }
-  #home h1.navbar-shrink {
-    margin-top: 175px !important;
-  }
 }
 
-/* Main Content Wrapper for Shrinking Navbar Animation */
-@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
-  .main-content {
-    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
-    padding-top: var(--navbar-height-desktop);
-  }
-  body.navbar-shrink .main-content {
-    padding-top: calc(var(--navbar-height-desktop) / 2);
-  }
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    padding-top: var(--navbar-height-mobile);
-  }
-}
+/* Remove old display:none/flex rules for .mobile-nav and .mobile-nav.open below this comment if present */
 
 /* =====================
    Hero Section

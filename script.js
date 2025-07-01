@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Optional: Close menu when a link is clicked
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      mobileNav.classList.remove('open');
-    });
-  });
+  // mobileNav.querySelectorAll('a').forEach(link => {
+  //   link.addEventListener('click', () => {
+  //     menuToggle.classList.remove('active');
+  //     mobileNav.classList.remove('open');
+  //   });
+  // });
 
   // Active link underline for nav links
   function setActiveNavLink(link) {
