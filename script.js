@@ -19,19 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Set active link on page load based on URL only
   function setActiveLinkByUrl() {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
+    // Special handling for Home: treat both "/" and "/index.html" as Home
+    const isHome = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
     let found = false;
-    let homeLink = null;
     document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
       const href = link.getAttribute('href');
-      // Identify the Home link for fallback
-      if (href === '#' || href === 'index.html' || href === '/') {
-        if (!homeLink) homeLink = link;
-      }
-      // Match index.html, /, or # for home
+      // For Home, match href="#", href="index.html", or href="/"
       if (
-        (path === 'index.html' && (href === '#' || href === 'index.html' || href === '/')) ||
-        (href && (href === path || href === '#' + path.replace('.html', '')))
+        (isHome && (href === '#' || href === 'index.html' || href === '/')) ||
+        (!isHome && href && (href === window.location.pathname.split('/').pop() || href === '#' + window.location.pathname.split('/').pop().replace('.html', '')))
       ) {
         link.classList.add('active-link');
         found = true;
@@ -39,9 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
         link.classList.remove('active-link');
       }
     });
-    // If no match, default to Home link
-    if (!found && homeLink) {
-      homeLink.classList.add('active-link');
+    // If no match, default to first nav link
+    if (!found) {
+      const first = document.querySelector('.nav-links li a, .mobile-nav li a');
+      if (first) first.classList.add('active-link');
     }
   }
   setActiveLinkByUrl();
