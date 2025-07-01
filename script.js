@@ -23,22 +23,28 @@ document.addEventListener('DOMContentLoaded', function() {
     if (link) link.classList.add('active-link');
   }
 
-  // Set active on click for both desktop and mobile nav links
-  document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
-    link.addEventListener('click', function() {
-      setActiveNavLink(this);
-    });
-  });
-
-  // Optionally, set the active link on page load based on URL
+  // Set active link on page load based on URL only
   function setActiveLinkByUrl() {
     const path = window.location.pathname.split('/').pop() || 'index.html';
+    let found = false;
     document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
       const href = link.getAttribute('href');
-      if (href && (href === '#' + path.replace('.html', '') || href === path || (path === 'index.html' && (href === '#' || href === 'index.html')))) {
+      // Match index.html, /, or # for home
+      if (
+        (path === 'index.html' && (href === '#' || href === 'index.html' || href === '/')) ||
+        (href && (href === path || href === '#' + path.replace('.html', '')))
+      ) {
         link.classList.add('active-link');
+        found = true;
+      } else {
+        link.classList.remove('active-link');
       }
     });
+    // If no match, default to first nav link
+    if (!found) {
+      const first = document.querySelector('.nav-links li a, .mobile-nav li a');
+      if (first) first.classList.add('active-link');
+    }
   }
   setActiveLinkByUrl();
 
