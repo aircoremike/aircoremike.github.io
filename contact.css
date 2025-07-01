@@ -10,15 +10,16 @@
 }
 
 #contact h1 {
-  margin-bottom: 1.5rem;
-  font-size: 2.2rem;
+  color: #f5f5f7;
+  font-size: 2.8rem;
+  margin-bottom: 1.25rem;
   text-align: center;
-  color: #222;
+  letter-spacing: 0.02em;
 }
 
 /* Optionally, tweak form width for this page */
 .contact-section-flex {
-  flex-direction: row;
+  flex-direction: column;
   gap: 2.5rem;
 }
 
