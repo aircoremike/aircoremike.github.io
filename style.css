@@ -768,7 +768,7 @@ body {
   .heading-flex h2,
   .applications-heading h2,
   .advantages-heading,
-  .body-about-short-heading,
+  .body-about-short-heading h2,
   .contact-text-flex h2 {
     font-size: 1.5rem !important;
   }
