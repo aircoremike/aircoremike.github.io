@@ -56,8 +56,8 @@
   transform: translateY(-4px) scale(1.025);
 }
 .resource-thumb {
-  width: 100px;
-  height: 100px;
+  width: 85px;
+  height: 110px;
   object-fit: contain;
   margin-bottom: 1.2rem;
   background: #fff;
