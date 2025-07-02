@@ -14,40 +14,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Aircore" />
     <link rel="manifest" href="/favicons/site.webmanifest" />
-  </head>
+</head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <div class="logo">
-        <a href="index.html">
-          <img src="assets/aircore_white_transparent.svg" alt="Logo" />
-        </a>
-        <span class="version-badge">v4</span> <!-- Version number, update as needed -->
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="materials.html">Materials</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="mobile-nav" id="mobileNav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="materials.html">Materials</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
+  <div id="navbar-container"></div>
   <div class="main-content">
     <section id="materials-hero" class="materials-hero section-fade">
       <h1>Materials</h1>
@@ -57,7 +26,7 @@
         balanced structure than traditional welding methods. No other supplier offers hollow balls in 
         such a broad range of materials with the same level of quality. <strong>Browse our material library below.</strong>
       </p>
-    </div>
+    </section>
     <div class="materials-carousel-bg">
       <div class="materials-carousel">
         <div class="carousel-track">
@@ -113,11 +82,22 @@
         </div>
       </div>
     </div>
-  </main>
-
-  <footer class="footer-flex">
-    <span>&copy; Aircore Bearings LLC</span>
-  </footer>
-    <script src="script.js"></script>
+  </div>
+  <div id="footer-container"></div>
+  <script src="script.js"></script>
+  <script>
+    function loadPartial(id, url, callback) {
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
+        });
+    }
+    loadPartial('navbar-container', 'navbar.html', function() {
+      if (window.initNavbarScripts) window.initNavbarScripts();
+    });
+    loadPartial('footer-container', 'footer.html');
+  </script>
 </body>
 </html>

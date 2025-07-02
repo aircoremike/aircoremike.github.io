@@ -16,37 +16,7 @@
     <link rel="manifest" href="/favicons/site.webmanifest" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <div class="logo">
-        <a href="index.html">
-          <img src="assets/aircore_white_transparent.svg" alt="Logo" />
-        </a>
-        <span class="version-badge">v4</span>
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="materials.html">Materials</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="mobile-nav" id="mobileNav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="materials.html">Materials</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="navbar-container"></div>
   <div class="main-content">
     <section id="contact" class="section-fade">
       <h1>Contact Us</h1>
@@ -77,9 +47,21 @@
       </div>
     </section>
   </div>
-  <footer class="footer-flex">
-    <span>&copy; Aircore Bearings LLC</span>
-  </footer>
+  <div id="footer-container"></div>
   <script src="script.js"></script>
+  <script>
+    function loadPartial(id, url, callback) {
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
+        });
+    }
+    loadPartial('navbar-container', 'navbar.html', function() {
+      if (window.initNavbarScripts) window.initNavbarScripts();
+    });
+    loadPartial('footer-container', 'footer.html');
+  </script>
 </body>
 </html>

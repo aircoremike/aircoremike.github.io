@@ -1,6 +1,5 @@
 Tasks
     - Global Edits:
-        - animate navbar underlining
 
     - Materials page
         - Learn more buttons and specs
@@ -15,11 +14,7 @@ Tasks
         - drawings of common products
         
     - Services
-        - holes, threads, shafts, variable wall thicknesses, 
 
     - About Us
-        - expand on mission
 
     - Contact
-        - heading color
-        - layout
