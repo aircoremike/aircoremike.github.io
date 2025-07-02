@@ -470,6 +470,30 @@ body {
   .materials-carousel {
     overflow: visible;
   }
+  .carousel-track {
+    overflow: visible;
+    justify-content: flex-start;
+    padding: 0;
+  }
+  .carousel-slide {
+    min-width: 84vw;
+    max-width: 84vw;
+    height: 85vh;
+    margin: 0 2vw;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) and (orientation: portrait) {
+  .carousel-slide {
+    min-width: 84vw;
+    max-width: 84vw;
+    height: 85vh;
+    margin: 0 2vw;
+  }
+  .carousel-track {
+    overflow: visible;
+    justify-content: flex-start;
+  }
 }
 
 /* =====================

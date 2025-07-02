@@ -9,7 +9,6 @@ Tasks
 
     - Research page
         - white papers:
-            - passivation
             - galvanic corrosion potential  
         - drawings of common products
         
