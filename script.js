@@ -424,12 +424,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     btn.onclick = function(e) {
       e.stopPropagation();
-      // Placeholder: 10 paragraphs of lorem ipsum
-      let content = '';
-      for (let i = 0; i < 10; ++i) {
-        content += `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod.</p>`;
-      }
-      showOverlay(content);
+      // Show overlay with static HTML content from passivation-paper.html
+      fetch('passivation-paper.html')
+        .then(res => res.text())
+        .then(html => {
+          // Extract only the .overlay-content innerHTML
+          const temp = document.createElement('div');
+          temp.innerHTML = html;
+          const contentDiv = temp.querySelector('.overlay-content');
+          if (contentDiv) {
+            showOverlay(contentDiv.innerHTML);
+          }
+        });
     };
   });
 })();
