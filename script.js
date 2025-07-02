@@ -343,10 +343,8 @@ document.addEventListener('DOMContentLoaded', function() {
     overlayBg.className = 'materials-overlay-bg';
     overlayBg.style.display = 'none';
     overlayBg.innerHTML = `
-      <div class="materials-overlay-box">
-        <div class="materials-overlay-content">
-          <!-- Placeholder content will be injected here -->
-        </div>
+      <div class="materials-overlay" tabindex="-1">
+        <!-- Placeholder content will be injected here -->
         <button class="materials-overlay-close" aria-label="Close overlay"><span class="close-x">&times;</span></button>
       </div>
     `;
@@ -357,8 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Get or create the overlay
   let overlayBg = document.querySelector('.materials-overlay-bg');
   if (!overlayBg) overlayBg = createOverlay();
-  const overlayBox = overlayBg.querySelector('.materials-overlay-box');
-  const overlayContent = overlayBg.querySelector('.materials-overlay-content');
+  const overlay = overlayBg.querySelector('.materials-overlay');
   const closeBtn = overlayBg.querySelector('.materials-overlay-close');
   const closeX = closeBtn.querySelector('.close-x');
 
@@ -366,23 +363,23 @@ document.addEventListener('DOMContentLoaded', function() {
   function hideOverlay() {
     overlayBg.classList.remove('show');
     overlayBg.classList.add('hide');
-    setBodyScroll(true);
     setTimeout(() => {
       overlayBg.style.display = 'none';
       overlayBg.classList.remove('hide');
       closeBtn.classList.remove('show-x');
       closeBtn.classList.remove('expand');
       closeX.style.opacity = '0';
+      document.body.style.overflow = '';
     }, 500);
   }
 
   // Show overlay utility
   function showOverlay(contentHtml) {
-    overlayContent.innerHTML = contentHtml;
+    overlay.innerHTML = contentHtml + overlay.innerHTML.substring(overlay.innerHTML.indexOf('<button'));
     overlayBg.style.display = 'block';
     setTimeout(() => {
       overlayBg.classList.add('show');
-      setBodyScroll(false);
+      document.body.style.overflow = 'hidden';
       // Animate close button after overlay is fully visible
       setTimeout(() => {
         closeBtn.classList.add('expand');
@@ -403,14 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
     e.stopPropagation();
     hideOverlay();
   });
-
-  // Prevent scroll bleed on overlay
-  overlayBox.addEventListener('touchmove', function(e) {
-    e.stopPropagation();
-  }, { passive: false });
-  overlayContent.addEventListener('touchmove', function(e) {
-    e.stopPropagation();
-  }, { passive: false });
 
   // Add Learn More buttons to each slide
   document.querySelectorAll('.carousel-slide').forEach((slide, idx) => {
