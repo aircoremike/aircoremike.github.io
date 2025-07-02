@@ -1,10 +1,6 @@
 /* contact.css */
-/* Import shared styles if needed */
 @import url('style.css');
 
-/* You can add page-specific overrides below if needed */
-
-/* Example: ensure the contact section has spacing at the top for the h1 */
 #contact.section-fade {
   padding-top: 2.5rem;
 }
@@ -17,7 +13,6 @@
   letter-spacing: 0.02em;
 }
 
-/* Optionally, tweak form width for this page */
 .contact-section-flex {
   flex-direction: column;
   gap: 2.5rem;
