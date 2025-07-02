@@ -352,10 +352,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isOpen) return;
     isOpen = true;
     // Set content
-    overlayContent.innerHTML = overlayContents[idx] +
-      '<button class="materials-overlay-close" aria-label="Close overlay"><span class="materials-overlay-close-inner">&times;</span></button>';
-    closeBtn = overlayContent.querySelector('.materials-overlay-close');
-    closeBtnInner = overlayContent.querySelector('.materials-overlay-close-inner');
+    overlayContent.innerHTML = overlayContents[idx];
+    // Add close button after content for bottom-center
+    const closeBtnEl = document.createElement('button');
+    closeBtnEl.className = 'materials-overlay-close';
+    closeBtnEl.setAttribute('aria-label', 'Close overlay');
+    closeBtnEl.innerHTML = '<span class="materials-overlay-close-inner">&times;</span>';
+    document.body.appendChild(closeBtnEl);
+    closeBtn = closeBtnEl;
+    closeBtnInner = closeBtnEl.querySelector('.materials-overlay-close-inner');
     // Show backdrop and overlay
     backdrop.classList.add('active');
     overlay.classList.add('active');
@@ -383,6 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animate fade out
     overlay.classList.add('fading');
     backdrop.classList.add('fading');
+    if (closeBtn) closeBtn.classList.add('fading');
     // Remove listeners
     if (closeBtn) closeBtn.removeEventListener('click', closeOverlay);
     backdrop.removeEventListener('click', closeOverlay);
@@ -393,6 +399,9 @@ document.addEventListener('DOMContentLoaded', function() {
       backdrop.classList.remove('active', 'fading');
       overlayContent.innerHTML = '';
       unlockBodyScroll();
+      if (closeBtn && closeBtn.parentNode) closeBtn.parentNode.removeChild(closeBtn);
+      closeBtn = null;
+      closeBtnInner = null;
     }, 340);
   }
 
