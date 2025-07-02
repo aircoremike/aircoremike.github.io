@@ -322,3 +322,92 @@ document.addEventListener('DOMContentLoaded', function() {
   // Init
   goToSlide(0);
 })();
+
+// === Materials Carousel Overlay Logic ===
+(function() {
+  // Placeholder content for each slide (10 paragraphs of lorem ipsum)
+  const overlayContents = [
+    `<h2>Stainless Bearing Steels</h2>\n${'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod.</p>'.repeat(10)}`,
+    `<h2>Copper</h2>\n${'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod.</p>'.repeat(10)}`,
+    `<h2>Tungsten</h2>\n${'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod.</p>'.repeat(10)}`
+  ];
+
+  const overlay = document.getElementById('materials-overlay');
+  const overlayContent = overlay.querySelector('.materials-overlay-content');
+  const backdrop = document.getElementById('materials-overlay-backdrop');
+  let closeBtn = null;
+  let closeBtnInner = null;
+  let isOpen = false;
+  let fadeTimeout = null;
+
+  // Prevent scroll bleed
+  function lockBodyScroll() {
+    document.body.classList.add('overlay-open');
+  }
+  function unlockBodyScroll() {
+    document.body.classList.remove('overlay-open');
+  }
+
+  function openOverlay(idx) {
+    if (isOpen) return;
+    isOpen = true;
+    // Set content
+    overlayContent.innerHTML = overlayContents[idx] +
+      '<button class="materials-overlay-close" aria-label="Close overlay"><span class="materials-overlay-close-inner">&times;</span></button>';
+    closeBtn = overlayContent.querySelector('.materials-overlay-close');
+    closeBtnInner = overlayContent.querySelector('.materials-overlay-close-inner');
+    // Show backdrop and overlay
+    backdrop.classList.add('active');
+    overlay.classList.add('active');
+    lockBodyScroll();
+    // Focus for accessibility
+    overlay.focus();
+    // Add close listeners
+    setTimeout(() => {
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeOverlay);
+        closeBtn.tabIndex = 0;
+      }
+    }, 10);
+    // Dismiss on click outside
+    setTimeout(() => {
+      backdrop.addEventListener('click', closeOverlay);
+    }, 10);
+    // Dismiss on Escape
+    document.addEventListener('keydown', escListener);
+  }
+
+  function closeOverlay() {
+    if (!isOpen) return;
+    isOpen = false;
+    // Animate fade out
+    overlay.classList.add('fading');
+    backdrop.classList.add('fading');
+    // Remove listeners
+    if (closeBtn) closeBtn.removeEventListener('click', closeOverlay);
+    backdrop.removeEventListener('click', closeOverlay);
+    document.removeEventListener('keydown', escListener);
+    // After animation, hide
+    fadeTimeout = setTimeout(() => {
+      overlay.classList.remove('active', 'fading');
+      backdrop.classList.remove('active', 'fading');
+      overlayContent.innerHTML = '';
+      unlockBodyScroll();
+    }, 340);
+  }
+
+  function escListener(e) {
+    if (e.key === 'Escape') closeOverlay();
+  }
+
+  // Attach to all Learn More buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.learn-more-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const idx = parseInt(btn.getAttribute('data-slide'), 10);
+        openOverlay(idx);
+      });
+    });
+  });
+})();

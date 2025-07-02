@@ -44,6 +44,7 @@
                 <img src="assets/steel.png" alt="Steel">
               </div>
             </div>
+            <button class="learn-more-btn" data-slide="0">Learn More</button>
           </div>
           <div class="carousel-slide" data-slide="1">
             <div class="slide-content">
@@ -59,6 +60,7 @@
                 <img src="assets/copper.png" alt="Copper">
               </div>
             </div>
+            <button class="learn-more-btn" data-slide="1">Learn More</button>
           </div>
           <div class="carousel-slide" data-slide="2">
             <div class="slide-content">
@@ -74,6 +76,7 @@
                 <img src="assets/tungsten.png" alt="Tungsten">
               </div>
             </div>
+            <button class="learn-more-btn" data-slide="2">Learn More</button>
           </div>
         </div>
         <div class="carousel-arrows">
@@ -84,6 +87,13 @@
     </div>
   </div>
   <div id="footer-container"></div>
+  <!-- Overlay for Learn More -->
+  <div id="materials-overlay-backdrop" class="materials-overlay-backdrop"></div>
+  <div id="materials-overlay" class="materials-overlay" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="materials-overlay-content">
+      <!-- Close button and content will be injected by JS -->
+    </div>
+  </div>
   <script src="script.js"></script>
   <script>
     function loadPartial(id, url, callback) {
