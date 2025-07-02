@@ -353,15 +353,13 @@ document.addEventListener('DOMContentLoaded', function() {
   function openOverlay(idx) {
     if (isOpen) return;
     isOpen = true;
-    // Set content
     overlayContent.innerHTML = overlayContents[idx];
-    // Show backdrop and overlay
     backdrop.classList.add('active');
     overlay.classList.add('active');
     lockBodyScroll();
     overlay.focus();
-    // Insert close button after overlay animates in
-    setTimeout(() => {
+    // Insert close button after overlay is visible (using transitionend for reliability)
+    function showCloseBtn() {
       if (closeBtn && closeBtn.parentNode) closeBtn.parentNode.removeChild(closeBtn);
       const closeBtnEl = document.createElement('button');
       closeBtnEl.className = 'materials-overlay-close';
@@ -372,7 +370,15 @@ document.addEventListener('DOMContentLoaded', function() {
       closeBtnInner = closeBtnEl.querySelector('.materials-overlay-close-inner');
       closeBtn.addEventListener('click', closeOverlay);
       closeBtn.tabIndex = 0;
-    }, 450); // Wait for overlay animation
+      // Remove listener after first run
+      overlayContent.removeEventListener('transitionend', showCloseBtn);
+    }
+    // Listen for overlay content transition end (opacity/transform)
+    overlayContent.addEventListener('transitionend', showCloseBtn);
+    // Fallback: if transitionend doesn't fire, show after 600ms
+    setTimeout(() => {
+      if (!closeBtn) showCloseBtn();
+    }, 600);
     // Dismiss on click outside
     setTimeout(() => {
       backdrop.addEventListener('click', closeOverlay);
