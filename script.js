@@ -342,9 +342,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Prevent scroll bleed
   function lockBodyScroll() {
+    document.body.style.overflow = 'hidden';
     document.body.classList.add('overlay-open');
   }
   function unlockBodyScroll() {
+    document.body.style.overflow = '';
     document.body.classList.remove('overlay-open');
   }
 
@@ -353,55 +355,48 @@ document.addEventListener('DOMContentLoaded', function() {
     isOpen = true;
     // Set content
     overlayContent.innerHTML = overlayContents[idx];
-    // Add close button after content for bottom-center
-    const closeBtnEl = document.createElement('button');
-    closeBtnEl.className = 'materials-overlay-close';
-    closeBtnEl.setAttribute('aria-label', 'Close overlay');
-    closeBtnEl.innerHTML = '<span class="materials-overlay-close-inner">&times;</span>';
-    document.body.appendChild(closeBtnEl);
-    closeBtn = closeBtnEl;
-    closeBtnInner = closeBtnEl.querySelector('.materials-overlay-close-inner');
     // Show backdrop and overlay
     backdrop.classList.add('active');
     overlay.classList.add('active');
     lockBodyScroll();
-    // Focus for accessibility
     overlay.focus();
-    // Add close listeners
+    // Insert close button after overlay animates in
     setTimeout(() => {
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closeOverlay);
-        closeBtn.tabIndex = 0;
-      }
-    }, 10);
+      if (closeBtn && closeBtn.parentNode) closeBtn.parentNode.removeChild(closeBtn);
+      const closeBtnEl = document.createElement('button');
+      closeBtnEl.className = 'materials-overlay-close';
+      closeBtnEl.setAttribute('aria-label', 'Close overlay');
+      closeBtnEl.innerHTML = '<span class="materials-overlay-close-inner">&times;</span>';
+      document.body.appendChild(closeBtnEl);
+      closeBtn = closeBtnEl;
+      closeBtnInner = closeBtnEl.querySelector('.materials-overlay-close-inner');
+      closeBtn.addEventListener('click', closeOverlay);
+      closeBtn.tabIndex = 0;
+    }, 450); // Wait for overlay animation
     // Dismiss on click outside
     setTimeout(() => {
       backdrop.addEventListener('click', closeOverlay);
     }, 10);
-    // Dismiss on Escape
     document.addEventListener('keydown', escListener);
   }
 
   function closeOverlay() {
     if (!isOpen) return;
     isOpen = false;
-    // Animate fade out
     overlay.classList.add('fading');
     backdrop.classList.add('fading');
     if (closeBtn) closeBtn.classList.add('fading');
-    // Remove listeners
     if (closeBtn) closeBtn.removeEventListener('click', closeOverlay);
     backdrop.removeEventListener('click', closeOverlay);
     document.removeEventListener('keydown', escListener);
-    // After animation, hide
     fadeTimeout = setTimeout(() => {
       overlay.classList.remove('active', 'fading');
       backdrop.classList.remove('active', 'fading');
       overlayContent.innerHTML = '';
-      unlockBodyScroll();
       if (closeBtn && closeBtn.parentNode) closeBtn.parentNode.removeChild(closeBtn);
       closeBtn = null;
       closeBtnInner = null;
+      unlockBodyScroll();
     }, 340);
   }
 
