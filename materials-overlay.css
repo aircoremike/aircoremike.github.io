@@ -20,14 +20,13 @@
   pointer-events: none;
 }
 .materials-overlay {
-  position: fixed; /* Changed back to fixed so overlay stays in viewport */
+  position: absolute; /* Overlay moves with page scroll */
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 900px;
   max-width: 96vw;
-  height: auto;
-  max-height: 100vh; /* Prevent overlay from exceeding viewport */
+  height: 100vh;
   background: #18181a;
   color: #f5f5f7;
   border-radius: 1.5rem 1.5rem 0 0;
@@ -35,8 +34,7 @@
   padding: 2.2rem 2.2rem 5.5rem 2.2rem;
   opacity: 0.98;
   transition: transform 0.5s cubic-bezier(.77,0,.18,1), opacity 0.5s cubic-bezier(.77,0,.18,1);
-  overflow-y: auto; /* Allow overlay content to scroll if needed */
-  overflow-x: hidden;
+  overflow: visible; /* No internal scroll */
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -138,4 +136,8 @@
 /* Prevent background scroll when overlay is open */
 body.overlay-open {
   overflow: hidden;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
 }

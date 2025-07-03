@@ -359,6 +359,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeBtn = overlayBg.querySelector('.materials-overlay-close');
   const closeX = closeBtn.querySelector('.close-x');
 
+  // Store scroll position for background lock
+  let scrollY = 0;
+
   // Hide overlay utility
   function hideOverlay() {
     overlayBg.classList.remove('show');
@@ -369,7 +372,10 @@ document.addEventListener('DOMContentLoaded', function() {
       closeBtn.classList.remove('show-x');
       closeBtn.classList.remove('expand');
       closeX.style.opacity = '0';
-      document.body.classList.remove('overlay-open'); // Remove overlay-open class
+      document.body.classList.remove('overlay-open');
+      // Restore scroll position
+      window.scrollTo(0, scrollY);
+      document.body.style.top = '';
     }, 500);
   }
 
@@ -377,9 +383,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function showOverlay(contentHtml) {
     overlay.innerHTML = contentHtml + overlay.innerHTML.substring(overlay.innerHTML.indexOf('<button'));
     overlayBg.style.display = 'block';
+    // Store scroll position and lock background
+    scrollY = window.scrollY;
+    document.body.style.top = `-${scrollY}px`;
     setTimeout(() => {
       overlayBg.classList.add('show');
-      document.body.classList.add('overlay-open'); // Add overlay-open class
+      document.body.classList.add('overlay-open');
       // Animate close button after overlay is fully visible
       setTimeout(() => {
         closeBtn.classList.add('expand');
