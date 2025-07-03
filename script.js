@@ -422,8 +422,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     btn.onclick = function(e) {
       e.stopPropagation();
-      // Show overlay with static HTML content from passivation-paper.html
-      fetch('passivation-paper.html')
+      // Show overlay with static HTML content from materials.html
+      fetch('materials.html')
         .then(res => res.text())
         .then(html => {
           // Extract only the .overlay-content innerHTML
