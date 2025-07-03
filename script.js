@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
       closeBtn.classList.remove('show-x');
       closeBtn.classList.remove('expand');
       closeX.style.opacity = '0';
-      document.body.style.overflow = '';
+      document.body.classList.remove('overlay-open'); // Remove overlay-open class
     }, 500);
   }
 
@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
     overlayBg.style.display = 'block';
     setTimeout(() => {
       overlayBg.classList.add('show');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('overlay-open'); // Add overlay-open class
       // Animate close button after overlay is fully visible
       setTimeout(() => {
         closeBtn.classList.add('expand');
