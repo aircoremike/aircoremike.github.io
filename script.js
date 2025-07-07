@@ -331,6 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Modal logic for Stainless Steel slide
 (function() {
+  let scrollY = 0;
   function showModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay) return;
@@ -343,10 +344,12 @@ document.addEventListener('DOMContentLoaded', function() {
         checker.style.display = '';
       }
     }
+    // Lock scroll position
+    scrollY = window.scrollY;
+    document.body.style.top = `-${scrollY}px`;
+    document.body.classList.add('modal-open');
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    // Focus for accessibility
     setTimeout(() => {
       overlay.focus();
     }, 10);
@@ -357,6 +360,9 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    // Restore scroll position
+    window.scrollTo(0, scrollY);
+    document.body.style.top = '';
   }
   document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('stainlessLearnMoreBtn');
@@ -368,12 +374,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeBtn) {
       closeBtn.addEventListener('click', hideModal);
     }
-    // Close on click outside modal-content
     if (overlay) {
       overlay.addEventListener('mousedown', function(e) {
         if (e.target === overlay) hideModal();
       });
-      // Keyboard: ESC to close
       overlay.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') hideModal();
       });
