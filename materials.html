@@ -38,6 +38,7 @@
                 </div>
                 <div class="slide-desc">
                   <p>High-strength, corrosion-resistant steels designed for bearings in demanding environments.</p>
+                  <button class="learn-more-btn" id="stainlessLearnMoreBtn" type="button">Learn More</button>
                 </div>
               </div>
               <div class="slide-image">
@@ -133,6 +134,25 @@
     </div>
   </div>
   <div id="footer-container"></div>
+  <div id="stainless-modal-overlay" class="modal-overlay" tabindex="-1" aria-hidden="true" style="display:none;">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="stainless-modal-title">
+      <button class="modal-close" id="stainlessModalClose" aria-label="Close modal">&times;</button>
+      <h2 id="stainless-modal-title">Stainless Steel</h2>
+      <div class="checkerboard">
+        <div class="checker-item checker-img"><img src="assets/c5-galaxy_1280.jpg" alt="C-5 Galaxy"></div>
+        <div class="checker-item checker-text" id="checker-text-1" style="display:none;">Placeholder 1</div>
+        <div class="checker-item checker-text" id="checker-text-2" style="display:none;">Placeholder 2</div>
+        <div class="checker-item checker-img"><img src="assets/c17-globemaster-iii_1280.jpg" alt="C-17 Globemaster III"></div>
+        <div class="checker-item checker-img"><img src="assets/pallet-drop_1280.jpg" alt="Pallet Drop"></div>
+        <div class="checker-item checker-text" id="checker-text-3" style="display:none;">Placeholder 3</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:none;">
+    <span id="modal-placeholder-1">Used in aerospace for critical load-bearing applications.</span>
+    <span id="modal-placeholder-2">Exceptional corrosion resistance in harsh environments.</span>
+    <span id="modal-placeholder-3">Precision manufacturing for demanding industries.</span>
+  </div>
   <script src="script.js"></script>
   <script>
     function loadPartial(id, url, callback) {
