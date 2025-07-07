@@ -344,16 +344,25 @@ document.addEventListener('DOMContentLoaded', function() {
         checker.style.display = '';
       }
     }
-    // Lock scroll position using html instead of body
+    // Lock scroll position by moving main content instead of body
     scrollY = window.scrollY;
     document.body.classList.add('modal-open');
-    document.documentElement.style.scrollBehavior = 'auto'; // Prevent smooth scroll jump
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    document.body.style.overflowY = 'scroll'; // Keep scrollbar width
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.position = 'relative';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflowY = 'hidden';
+    // Move main content up by scrollY so it appears fixed
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.style.position = 'fixed';
+      mainContent.style.top = `-${scrollY}px`;
+      mainContent.style.left = '0';
+      mainContent.style.right = '0';
+      mainContent.style.width = '100%';
+    }
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
     setTimeout(() => {
@@ -372,7 +381,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.right = '';
     document.body.style.width = '';
     document.body.style.overflowY = '';
-    window.scrollTo(0, scrollY);
+    // Restore main content position
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.style.position = '';
+      mainContent.style.top = '';
+      mainContent.style.left = '';
+      mainContent.style.right = '';
+      mainContent.style.width = '';
+    }
     document.documentElement.style.scrollBehavior = '';
   }
   document.addEventListener('DOMContentLoaded', function() {
