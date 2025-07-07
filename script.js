@@ -25,13 +25,19 @@ document.addEventListener('DOMContentLoaded', function() {
       let found = false;
       document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
         const href = link.getAttribute('href');
-        // For Home, match href="#", href="index.html", or href="/"
-        if (
+        // Special case: highlight 'resources' link for passivation-paper.html and other resources subpages
+        if (path.endsWith('/passivation-paper.html') && (href === 'resources.html' || href === './resources.html')) {
+          link.classList.add('active-link');
+          found = true;
+        } else if (
           (isHome && (href === '#' || href === 'index.html' || href === '/' || href === './' || href === './index.html')) ||
           (!isHome && href && (href === path.split('/').pop() || href === '#' + path.split('/').pop().replace('.html', '')))
         ) {
-          link.classList.add('active-link');
-          found = true;
+          // Only highlight if not already found (so resources.html takes precedence for passivation-paper.html)
+          if (!found) {
+            link.classList.add('active-link');
+            found = true;
+          }
         } else {
           link.classList.remove('active-link');
         }
