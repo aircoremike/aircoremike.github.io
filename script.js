@@ -344,10 +344,14 @@ document.addEventListener('DOMContentLoaded', function() {
         checker.style.display = '';
       }
     }
-    // Lock scroll position
+    // Lock scroll position using html instead of body
     scrollY = window.scrollY;
-    document.body.style.top = `-${scrollY}px`;
     document.body.classList.add('modal-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
     setTimeout(() => {
@@ -360,25 +364,13 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
-    // Restore scroll position
-    window.scrollTo(0, scrollY);
+    document.body.style.position = '';
     document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollY);
   }
-  // Patch: When body is fixed, also set left/right to 0 and set width to 100% to prevent jump
-  const observer = new MutationObserver(() => {
-    if (document.body.classList.contains('modal-open')) {
-      document.body.style.position = 'fixed';
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.width = '100%';
-    } else {
-      document.body.style.position = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-    }
-  });
-  observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
   document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('stainlessLearnMoreBtn');
     const overlay = document.getElementById('stainless-modal-overlay');
