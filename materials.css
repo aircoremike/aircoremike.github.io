@@ -532,7 +532,7 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.85); /* Increased opacity */
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -642,4 +642,6 @@ body {
 
 body.modal-open {
   overflow: hidden !important;
+  position: fixed;
+  width: 100vw;
 }
