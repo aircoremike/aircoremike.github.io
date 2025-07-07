@@ -332,6 +332,21 @@ document.addEventListener('DOMContentLoaded', function() {
 // Modal logic for Stainless Steel slide
 (function() {
   let scrollY = 0;
+  let shrinkListenersActive = true;
+  let handleNavbarShrink = null;
+  function disableNavbarShrink() {
+    if (!shrinkListenersActive) return;
+    window.removeEventListener('scroll', handleNavbarShrink);
+    window.removeEventListener('resize', handleNavbarShrink);
+    shrinkListenersActive = false;
+  }
+  function enableNavbarShrink() {
+    if (shrinkListenersActive) return;
+    window.addEventListener('scroll', handleNavbarShrink);
+    window.addEventListener('resize', handleNavbarShrink);
+    shrinkListenersActive = true;
+    if (typeof handleNavbarShrink === 'function') handleNavbarShrink();
+  }
   function showModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay) return;
@@ -354,7 +369,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.right = '';
     document.body.style.width = '';
     document.body.style.overflowY = 'hidden';
-    // Move main content up by scrollY so it appears fixed
     const mainContent = document.querySelector('.main-content');
     if (mainContent) {
       mainContent.style.position = 'fixed';
@@ -365,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
+    disableNavbarShrink();
     setTimeout(() => {
       overlay.focus();
     }, 10);
@@ -381,7 +396,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.right = '';
     document.body.style.width = '';
     document.body.style.overflowY = '';
-    // Restore main content position
     const mainContent = document.querySelector('.main-content');
     if (mainContent) {
       mainContent.style.position = '';
@@ -391,8 +405,20 @@ document.addEventListener('DOMContentLoaded', function() {
       mainContent.style.width = '';
     }
     document.documentElement.style.scrollBehavior = '';
+    enableNavbarShrink();
   }
   document.addEventListener('DOMContentLoaded', function() {
+    // Capture the handleNavbarShrink function from the navbar logic
+    handleNavbarShrink = window.handleNavbarShrink || null;
+    if (!handleNavbarShrink) {
+      // Try to find it in the closure
+      const navInit = window.initNavbarScripts;
+      if (navInit) {
+        // Patch: re-initialize and grab the function
+        navInit();
+        handleNavbarShrink = window.handleNavbarShrink || null;
+      }
+    }
     const btn = document.getElementById('stainlessLearnMoreBtn');
     const overlay = document.getElementById('stainless-modal-overlay');
     const closeBtn = document.getElementById('stainlessModalClose');
