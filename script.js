@@ -347,11 +347,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lock scroll position using html instead of body
     scrollY = window.scrollY;
     document.body.classList.add('modal-open');
+    document.documentElement.style.scrollBehavior = 'auto'; // Prevent smooth scroll jump
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollY}px`;
     document.body.style.left = '0';
     document.body.style.right = '0';
     document.body.style.width = '100%';
+    document.body.style.overflowY = 'scroll'; // Keep scrollbar width
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
     setTimeout(() => {
@@ -369,7 +371,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.left = '';
     document.body.style.right = '';
     document.body.style.width = '';
+    document.body.style.overflowY = '';
     window.scrollTo(0, scrollY);
+    document.documentElement.style.scrollBehavior = '';
   }
   document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('stainlessLearnMoreBtn');
