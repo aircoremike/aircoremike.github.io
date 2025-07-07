@@ -3,9 +3,6 @@ Tasks
 
     - Materials page
         - Learn more buttons and specs
-        - add slides for
-            - inconel
-            - 
 
     - Research page
         - white papers:
