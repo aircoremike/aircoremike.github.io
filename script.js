@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleNavbarShrink() {
+      if (window.__modalOpen) return; // Prevent shrink logic if modal is open
       if (!isDesktopOrLandscapeTablet()) {
-        // Remove shrink if resizing to mobile/tablet portrait
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
         if (mainContent) mainContent.classList.remove('navbar-shrink');
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hasShrunk = false;
       }
     }
+    window.handleNavbarShrink = handleNavbarShrink;
 
     // Listen for scroll and resize
     window.addEventListener('scroll', handleNavbarShrink);
@@ -350,6 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function showModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay) return;
+    window.__modalOpen = true;
     // Inject placeholder text
     for (let i = 1; i <= 3; i++) {
       const text = document.getElementById('modal-placeholder-' + i)?.textContent;
@@ -387,6 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function hideModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay) return;
+    window.__modalOpen = false;
     overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
