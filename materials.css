@@ -592,12 +592,12 @@ body {
 .modal-overlay.modal-active .modal-content {
   opacity: 1;
   transform: translateY(0);
-  transition: transform 0.75s cubic-bezier(.77,0,.18,1);
+  transition: transform 0.75s cubic-bezier(.77,0,.18,1); /* Only transform */
 }
 .modal-overlay.modal-close .modal-content {
   opacity: 0;
   transform: translateY(0); /* Fade out in place */
-  transition: opacity 0.75s cubic-bezier(.77,0,.18,1);
+  transition: opacity 0.75s cubic-bezier(.77,0,.18,1); /* Only opacity */
 }
 
 @media (max-width: 700px) {
