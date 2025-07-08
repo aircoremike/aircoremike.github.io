@@ -330,6 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const overlay   = document.getElementById('site-overlay');
 const openBtns  = document.querySelectorAll('[data-modal-target]');
 const ESC       = 27;
+let scrollY = 0;
 
 openBtns.forEach(btn =>
   btn.addEventListener('click', () => openModal(btn.dataset.modalTarget))
@@ -342,8 +343,11 @@ function openModal(id){
   overlay.classList.add('overlay--visible','overlay--fade-in');
   modal.classList.add('modal--opening');
   modal.setAttribute('aria-hidden','false');
+  // Scroll lock logic
+  scrollY = window.scrollY;
+  document.body.classList.add('no-scroll');
+  document.body.style.top = `-${scrollY}px`;
   setTimeout(() => modal.classList.replace('modal--opening','modal--open'), 500);
-  document.body.style.overflow='hidden';
 }
 
 function closeModal(){
@@ -355,6 +359,9 @@ function closeModal(){
     overlay.className='overlay';
     modal.className='modal';
     modal.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
+    // Remove scroll lock and restore scroll position
+    document.body.classList.remove('no-scroll');
+    document.body.style.top = '';
+    window.scrollTo({ top: scrollY });
   },500);
 }

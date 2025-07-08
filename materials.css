@@ -538,21 +538,21 @@ body {
 
 /* modal */
 .modal              {
-  opacity:0;
+  opacity: 0;
   background: #18181a;
   /* Ensures modal is fully opaque regardless of overlay */
-  transform:translate(-50%,30%);
-  pointer-events:none;
-  position:fixed;
-  left:50%;
-  top:5%;
-  width:100%;
-  max-width:900px;
-  max-height:90vh;
-  overflow-y:auto;
-  transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .5s;
-  margin:0 auto;
-  z-index:10001;
+  transform: translate(-50%,30%);
+  pointer-events: none;
+  position: fixed;
+  left: 50%;
+  top: 5%;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .5s;
+  margin: 0 auto;
+  z-index: 10001;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -635,4 +635,10 @@ body {
   background: linear-gradient(90deg, #00e6d0 0%, #2d7fff 100%);
   color: #fff;
   box-shadow: 0 4px 24px 0 rgba(0,230,208,0.13);
+}
+
+.no-scroll {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
 }
