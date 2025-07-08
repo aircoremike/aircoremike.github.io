@@ -535,7 +535,7 @@ body {
   height: 100vh;
   background: rgba(0,0,0,0.93); /* More opaque */
   z-index: 10000;
-  display: flex;
+  display: flex !important;
   align-items: flex-start; /* Align modal to top, not center */
   justify-content: center;
   overflow-y: scroll !important;
@@ -544,6 +544,7 @@ body {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
+  border: 3px solid red !important; /* DEBUG: Remove after confirming overlay is present */
 }
 .modal-overlay[aria-hidden="false"] {
   opacity: 1;
