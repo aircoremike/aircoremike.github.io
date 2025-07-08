@@ -527,88 +527,29 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* Modal Overlay Styles */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.93); /* More opaque */
-  z-index: 10000;
-  display: flex !important;
-  align-items: flex-start; /* Align modal to top, not center */
-  justify-content: center;
-  overflow-y: auto !important; /* Overlay scrolls, so window scrollbar is used */
-  opacity: 0;
-  pointer-events: none;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
-}
-.modal-overlay.overlay-open {
-  opacity: 1;
-  pointer-events: auto;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
-}
-.modal-overlay.overlay-close {
-  opacity: 0;
-  pointer-events: none;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
-}
-.modal-overlay.hidden {
-  display: none !important;
-}
+/* =====================
+   Modal & Overlay
+   ===================== */
+/* overlay */
+.overlay            {opacity:0; pointer-events:none; position:fixed; inset:0; background:rgba(0,0,0,.6); transition:opacity .4s;}
+.overlay--visible   {pointer-events:auto;}
+.overlay--fade-in   {opacity:.6;}
+.overlay--fade-out  {opacity:0;}
 
-:root {
-  --navbar-shrink-height: 64px;
-}
+/* modal */
+.modal              {opacity:0; transform:translateY(30%); pointer-events:none; position:fixed; left:50%; top:5%; width:900px; max-width:100%; max-height:90vh; overflow-y:auto;
+                      transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .5s;}
+.modal--opening     {opacity:1; transform:translateY(0);}
+.modal--open        {opacity:1; transform:translateY(0); pointer-events:auto;}
+.modal--closing     {opacity:0; transform:translateY(30%);}
 
-.modal-content {
-  background: #18181a;
-  color: #f5f5f7;
-  border-radius: 1.2rem;
-  max-width: 800px;
-  width: 95vw;
-  /* Remove max-height and overflow-y for desktop */
-  padding: 2.2rem 2rem 2rem 2rem;
-  box-shadow: 0 8px 48px 0 rgba(0,0,0,0.32);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: translateY(100vh); /* Off-screen by default */
-  margin-top: var(--navbar-shrink-height);
-  transition: none;
-}
-.modal-overlay .modal-content.modal-open {
-  /* Animate from bottom to below navbar */
-  transform: translateY(100vh);
-  transition: transform 0.75s cubic-bezier(.77,0,.18,1);
-}
-.modal-overlay .modal-content.modal-active {
-  transform: translateY(0);
-  transition: transform 0.75s cubic-bezier(.77,0,.18,1);
-}
-.modal-overlay .modal-content.modal-close {
-  opacity: 0;
-  transform: translateY(0); /* Fade out in place */
-  transition: opacity 0.75s cubic-bezier(.77,0,.18,1); /* Only opacity */
-}
+/* hide scroll bars inside modal */
+.modal {scrollbar-width:none;}
+.modal::-webkit-scrollbar {display:none;}
 
-@media (max-width: 700px) {
-  .modal-content {
-    padding: 1.1rem 0.5rem 1.2rem 0.5rem;
-    max-width: 99vw;
-    margin-top: var(--navbar-shrink-height);
-    /* Remove max-height and overflow-y so modal never scrolls, overlay always scrolls */
-    max-height: none;
-    overflow-y: visible;
-  }
-}
+/* =====================
+   Checkerboard Section
+   ===================== */
 .checkerboard {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -655,7 +596,9 @@ body {
   }
 }
 
-/* Learn More Button */
+/* =====================
+   Buttons
+   ===================== */
 .learn-more-btn {
   margin-top: 1.1em;
   background: linear-gradient(90deg, #2d7fff 0%, #00e6d0 100%);
@@ -674,11 +617,4 @@ body {
   background: linear-gradient(90deg, #00e6d0 0%, #2d7fff 100%);
   color: #fff;
   box-shadow: 0 4px 24px 0 rgba(0,230,208,0.13);
-}
-
-body.modal-open {
-  overflow: hidden !important;
-  /* Optionally prevent horizontal scroll as well */
-  overscroll-behavior: contain;
-  touch-action: none;
 }

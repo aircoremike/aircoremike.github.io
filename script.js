@@ -324,74 +324,37 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 // =====================
-// Modal Overlay & Content Animation Logic (per-material modals)
+// Modal Overlay & Content Animation Logic (shared overlay, minimal JS)
 // =====================
-// Usage: Call openStainlessModal() to open, closeStainlessModal() to close.
 
-let stainlessModalScrollY = 0;
+const overlay   = document.getElementById('site-overlay');
+const openBtns  = document.querySelectorAll('[data-modal-target]');
+const ESC       = 27;
 
-function openStainlessModal() {
-  const overlay = document.getElementById('modalStainlessOverlay');
-  const modal = overlay.querySelector('.modal-content');
-  if (!overlay || !modal) return;
+openBtns.forEach(btn =>
+  btn.addEventListener('click', () => openModal(btn.dataset.modalTarget))
+);
+overlay.addEventListener('click', closeModal);
+document.addEventListener('keyup', e => { if (e.keyCode === ESC) closeModal(); });
 
-  // Lock scroll by setting overflow hidden on body (no position: fixed/top)
-  document.body.classList.add('modal-open');
-
-  overlay.classList.remove('overlay-close', 'hidden');
-  // Force reflow to ensure transition triggers
-  void overlay.offsetWidth;
-  overlay.classList.add('overlay-open');
-  modal.classList.remove('modal-close');
-  modal.classList.add('modal-open');
-  setTimeout(() => {
-    modal.classList.remove('modal-open');
-    modal.classList.add('modal-active');
-  }, 10);
+function openModal(id){
+  const modal = document.getElementById(id);
+  overlay.classList.add('overlay--visible','overlay--fade-in');
+  modal.classList.add('modal--opening');
+  modal.setAttribute('aria-hidden','false');
+  setTimeout(() => modal.classList.replace('modal--opening','modal--open'), 500);
+  document.body.style.overflow='hidden';
 }
 
-function closeStainlessModal() {
-  const overlay = document.getElementById('modalStainlessOverlay');
-  const modal = overlay.querySelector('.modal-content');
-  if (!overlay || !modal) return;
-
-  overlay.classList.remove('overlay-open');
-  overlay.classList.add('overlay-close');
-  modal.classList.remove('modal-active');
-  modal.classList.add('modal-close');
-  setTimeout(() => {
-    // Unlock scroll
-    document.body.classList.remove('modal-open');
-    overlay.classList.add('hidden');
-  }, 800);
+function closeModal(){
+  const modal = document.querySelector('.modal--open');
+  if(!modal) return;
+  overlay.classList.replace('overlay--fade-in','overlay--fade-out');
+  modal.classList.replace('modal--open','modal--closing');
+  setTimeout(()=>{
+    overlay.className='overlay';
+    modal.className='modal';
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  },500);
 }
-
-// =====================
-// Modal Button Wiring (per-material)
-// =====================
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Stainless Steel Learn More button
-  var learnMoreBtn = document.getElementById('learnMoreStainless');
-  if (learnMoreBtn) {
-    learnMoreBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      openStainlessModal();
-    });
-  }
-  // Stainless Steel modal close button
-  var modalCloseBtn = document.querySelector('#modalStainlessOverlay .modal-close-btn');
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      closeStainlessModal();
-    });
-  }
-  // Overlay click closes only if clicking overlay, not modal content
-  var overlay = document.getElementById('modalStainlessOverlay');
-  if (overlay) {
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) closeStainlessModal();
-    });
-  }
-});
