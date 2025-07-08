@@ -339,7 +339,14 @@ overlay.addEventListener('click', closeModal);
 document.addEventListener('keyup', e => { if (e.keyCode === ESC) closeModal(); });
 
 function openModal(id){
-  const modal = document.getElementById(id);
+  // Fix: support both old and new modal IDs
+  // Accept both 'steelModal' and 'stainlessModal' for compatibility
+  let modal = document.getElementById(id);
+  if (!modal) {
+    // Try fallback for legacy or mismatched button/section
+    modal = document.getElementById('stainlessModal');
+  }
+  if (!modal) return;
   overlay.classList.add('overlay--visible','overlay--fade-in');
   modal.classList.add('modal--opening');
   modal.setAttribute('aria-hidden','false');
