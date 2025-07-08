@@ -531,17 +531,34 @@ body {
    Modal & Overlay
    ===================== */
 /* overlay */
-.overlay            {opacity:0; pointer-events:none; position:fixed; inset:0; background:rgba(0,0,0,.6); transition:opacity .4s;}
-.overlay--visible   {pointer-events:auto;}
-.overlay--fade-in   {opacity:.6;}
-.overlay--fade-out  {opacity:0;}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 0.75s ease, background-color 0.75s ease;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 10000;
+}
+.overlay--visible {
+  pointer-events: auto;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+}
+.overlay--fade-in {
+  /* No extra effect needed, handled by .overlay--visible */
+}
+.overlay--fade-out {
+  background: rgba(0,0,0,0);
+  backdrop-filter: blur(0px);
+}
 
 /* modal */
-.modal              {
-  opacity: 0;
+.modal {
+  opacity: 1;
   background: #18181a;
-  /* Ensures modal is fully opaque regardless of overlay */
-  transform: translate(-50%,30%);
+  transform: translate(-50%, 100%);
   pointer-events: none;
   position: fixed;
   left: 50%;
@@ -550,16 +567,21 @@ body {
   max-width: 900px;
   max-height: 90vh;
   overflow-y: auto;
-  transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .5s;
+  transition: transform 0.75s cubic-bezier(.4,0,.2,1);
   margin: 0 auto;
   z-index: 10001;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.modal--opening     {opacity:1; transform:translate(-50%,0);}
-.modal--open        {opacity:1; transform:translate(-50%,0); pointer-events:auto;}
-.modal--closing     {opacity:0; transform:translate(-50%,30%);}
+.modal--opening,
+.modal--open {
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+.modal--closing {
+  transform: translate(-50%, 100%);
+}
 
 /* hide scroll bars inside modal */
 .modal {scrollbar-width:none;}
