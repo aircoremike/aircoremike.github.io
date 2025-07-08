@@ -537,11 +537,29 @@ body {
 .overlay--fade-out  {opacity:0;}
 
 /* modal */
-.modal              {opacity:0; transform:translateY(30%); pointer-events:none; position:fixed; left:50%; top:5%; width:900px; max-width:100%; max-height:90vh; overflow-y:auto;
-                      transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .5s;}
-.modal--opening     {opacity:1; transform:translateY(0);}
-.modal--open        {opacity:1; transform:translateY(0); pointer-events:auto;}
-.modal--closing     {opacity:0; transform:translateY(30%);}
+.modal              {
+  opacity:0;
+  background: #18181a;
+  /* Ensures modal is fully opaque regardless of overlay */
+  transform:translate(-50%,30%);
+  pointer-events:none;
+  position:fixed;
+  left:50%;
+  top:5%;
+  width:100%;
+  max-width:900px;
+  max-height:90vh;
+  overflow-y:auto;
+  transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .5s;
+  margin:0 auto;
+  z-index:10001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal--opening     {opacity:1; transform:translate(-50%,0);}
+.modal--open        {opacity:1; transform:translate(-50%,0); pointer-events:auto;}
+.modal--closing     {opacity:0; transform:translate(-50%,30%);}
 
 /* hide scroll bars inside modal */
 .modal {scrollbar-width:none;}
