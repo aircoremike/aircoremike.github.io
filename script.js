@@ -335,11 +335,14 @@ function openStainlessModal() {
   const modal = overlay.querySelector('.modal-content');
   if (!overlay || !modal) return;
 
-  // Store scroll position and lock body
+  // Store scroll position and lock body (using left/top for iOS/desktop compatibility)
   stainlessModalScrollY = window.scrollY || window.pageYOffset;
-  document.body.style.top = `-${stainlessModalScrollY}px`;
   document.body.style.position = 'fixed';
+  document.body.style.left = '0';
+  document.body.style.right = '0';
   document.body.style.width = '100vw';
+  document.body.style.overflowY = 'scroll';
+  document.body.style.top = `-${stainlessModalScrollY}px`;
   document.body.classList.add('modal-open');
 
   overlay.classList.remove('overlay-close', 'hidden');
@@ -364,8 +367,11 @@ function closeStainlessModal() {
   setTimeout(() => {
     // Restore scroll position and unlock body
     document.body.style.position = '';
-    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
     document.body.style.width = '';
+    document.body.style.overflowY = '';
+    document.body.style.top = '';
     document.body.classList.remove('modal-open');
     window.scrollTo(0, stainlessModalScrollY);
     overlay.classList.add('hidden');
