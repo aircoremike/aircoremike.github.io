@@ -702,7 +702,6 @@ body {
   object-fit: cover;
   border-radius: 1.1rem;
   flex-shrink: 0;
-  background: #222;
 }
 .modal-hero-text {
   max-width: 340px;
