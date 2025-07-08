@@ -351,6 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function showModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay || window.__modalOpen) return;
+    overlay.classList.remove('hidden'); // Ensure overlay is visible
     window.__modalOpen = true;
     // Inject placeholder text
     for (let i = 1; i <= 3; i++) {
@@ -430,11 +431,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay || !window.__modalOpen) return;
     window.__modalOpen = false;
+    overlay.classList.remove('hidden'); // Ensure it's visible for transition
     overlay.classList.remove('modal-active');
     // Wait for transition to finish before hiding and unlocking scroll
     const onTransitionEnd = (e) => {
       if (e.target !== overlay) return;
       overlay.setAttribute('aria-hidden', 'true');
+      overlay.classList.add('hidden'); // Fully hide overlay after transition
       document.body.classList.remove('modal-open');
       document.body.style.position = '';
       document.body.style.top = '';
