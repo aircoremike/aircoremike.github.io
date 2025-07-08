@@ -585,15 +585,16 @@ body {
   margin-top: var(--navbar-shrink-height);
   transition: none;
 }
-.modal-overlay.modal-open .modal-content,
-.modal-overlay.modal-active .modal-content {
-  transition: none;
+.modal-overlay .modal-content.modal-open {
+  /* Animate from bottom to below navbar */
+  transform: translateY(100vh);
+  transition: transform 0.75s cubic-bezier(.77,0,.18,1);
 }
-.modal-overlay.modal-active .modal-content {
+.modal-overlay .modal-content.modal-active {
   transform: translateY(0);
   transition: transform 0.75s cubic-bezier(.77,0,.18,1);
 }
-.modal-overlay.modal-close .modal-content {
+.modal-overlay .modal-content.modal-close {
   opacity: 0;
   transform: translateY(0); /* Fade out in place */
   transition: opacity 0.75s cubic-bezier(.77,0,.18,1); /* Only opacity */
