@@ -538,7 +538,7 @@ body {
   display: flex !important;
   align-items: flex-start; /* Align modal to top, not center */
   justify-content: center;
-  overflow-y: auto !important; /* Allow overlay to scroll, so viewport scrollbar is used */
+  overflow: hidden !important; /* Prevent overlay from scrolling */
   opacity: 0;
   pointer-events: none;
   backdrop-filter: blur(0px);
@@ -573,7 +573,8 @@ body {
   border-radius: 1.2rem;
   max-width: 800px;
   width: 95vw;
-  /* Remove max-height and overflow-y for desktop */
+  max-height: calc(100vh - var(--navbar-shrink-height) - 2.5rem);
+  overflow-y: auto;
   padding: 2.2rem 2rem 2rem 2rem;
   box-shadow: 0 8px 48px 0 rgba(0,0,0,0.32);
   position: relative;
