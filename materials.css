@@ -10,6 +10,7 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
+  --navbar-shrink-height: 64px; /* Added variable for shrunken navbar height */
 }
 
 html {
@@ -532,13 +533,16 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.93); /* More opaque */
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow-y: scroll !important;
-  transition: opacity 0.25s;
+  transition: background 0.75s, backdrop-filter 0.75s, opacity 0.75s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 1;
 }
 .modal-overlay[aria-hidden="true"] {
   pointer-events: none;
@@ -558,21 +562,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Animation setup */
+  opacity: 0;
+  transform: translateY(100px);
+  margin-top: var(--navbar-shrink-height);
+  transition: opacity 0.75s cubic-bezier(.77,0,.18,1), transform 0.75s cubic-bezier(.77,0,.18,1);
 }
-.modal-close {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.3rem;
-  background: none;
-  border: none;
-  color: #f5f5f7;
-  font-size: 2.2rem;
-  cursor: pointer;
-  z-index: 2;
-  transition: color 0.2s;
-}
-.modal-close:hover {
-  color: #ff5252;
+.modal-overlay.modal-active .modal-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .checkerboard {

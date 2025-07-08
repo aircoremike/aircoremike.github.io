@@ -382,9 +382,39 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
     disableNavbarShrink();
-    setTimeout(() => {
-      overlay.focus();
-    }, 10);
+    // Preload all images in the modal before animating in
+    const modalContent = overlay.querySelector('.modal-content');
+    const images = modalContent ? Array.from(modalContent.querySelectorAll('img')) : [];
+    let loaded = 0;
+    if (images.length === 0) {
+      overlay.classList.add('modal-active');
+      setTimeout(() => { overlay.focus(); }, 10);
+    } else {
+      images.forEach(img => {
+        if (img.complete && img.naturalWidth !== 0) {
+          loaded++;
+        } else {
+          img.addEventListener('load', () => {
+            loaded++;
+            if (loaded === images.length) {
+              overlay.classList.add('modal-active');
+              setTimeout(() => { overlay.focus(); }, 10);
+            }
+          }, { once: true });
+          img.addEventListener('error', () => {
+            loaded++;
+            if (loaded === images.length) {
+              overlay.classList.add('modal-active');
+              setTimeout(() => { overlay.focus(); }, 10);
+            }
+          }, { once: true });
+        }
+      });
+      if (loaded === images.length) {
+        overlay.classList.add('modal-active');
+        setTimeout(() => { overlay.focus(); }, 10);
+      }
+    }
   }
   function hideModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
@@ -392,6 +422,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.__modalOpen = false;
     overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('modal-active');
     document.body.classList.remove('modal-open');
     document.body.style.position = '';
     document.body.style.top = '';
