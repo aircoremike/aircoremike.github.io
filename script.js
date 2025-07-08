@@ -339,6 +339,8 @@ function openStainlessModal() {
   document.body.classList.add('modal-open');
 
   overlay.classList.remove('overlay-close', 'hidden');
+  // Force reflow to ensure transition triggers
+  void overlay.offsetWidth;
   overlay.classList.add('overlay-open');
   modal.classList.remove('modal-close');
   modal.classList.add('modal-open');
