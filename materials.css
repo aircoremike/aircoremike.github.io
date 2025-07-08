@@ -591,7 +591,7 @@ body {
 .checkerboard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 120px);
   gap: 0;
   width: 100%;
   margin-top: 1.5rem;
@@ -611,26 +611,42 @@ body {
   justify-content: center;
 }
 .checker-img img {
-  max-width: 100%;
-  max-height: 700px;
-  width: 100%;
-  height: auto;
-  border-radius: 0;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  box-shadow: none;
+  border-radius: 0.7em;
+  background: #222;
+  display: block;
+  margin: 0 auto;
 }
 @media (max-width: 700px) {
   .modal-content {
     padding: 1.1rem 0.5rem 1.2rem 0.5rem;
     max-width: 99vw;
   }
+  .modal-hero {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+  }
+  .modal-hero-img {
+    width: 98vw;
+    max-width: 99vw;
+    height: 160px;
+  }
+  .modal-hero-text {
+    max-width: 99vw;
+    min-width: 0;
+    padding: 0;
+  }
   .checkerboard {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 90px);
     gap: 0.7rem;
   }
   .checker-img img {
-    max-height: 220px;
+    width: 90px;
+    height: 90px;
   }
 }
 
@@ -659,4 +675,49 @@ body {
 
 .modal-open {
   overflow-y: hidden;
+}
+
+.modal-content h2 {
+  color: #fff;
+  padding: 0.5em 1.2em 0.5em 0.5em;
+  margin: 0 0 0.5em 0;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: left;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.modal-hero {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+.modal-hero-img {
+  width: 320px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 1.1rem;
+  flex-shrink: 0;
+  background: #222;
+}
+.modal-hero-text {
+  max-width: 340px;
+  min-width: 180px;
+  background: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.2em 0 0 0;
+}
+.modal-hero-desc {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin: 0.5em 0 0 0;
+  line-height: 1.5;
 }
