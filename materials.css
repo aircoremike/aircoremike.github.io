@@ -679,8 +679,7 @@ body {
 
 body.modal-open {
   overflow: hidden !important;
-  position: fixed;
-  width: 100vw;
-  top: 0 !important;
-  left: 0 !important;
+  /* Optionally prevent horizontal scroll as well */
+  overscroll-behavior: contain;
+  touch-action: none;
 }
