@@ -351,7 +351,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function showModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay || window.__modalOpen) return;
-    overlay.classList.remove('hidden'); // Ensure overlay is visible
+    overlay.classList.remove('hidden', 'modal-close', 'modal-active');
+    overlay.classList.add('modal-open'); // Set initial state
     window.__modalOpen = true;
     // Inject placeholder text
     for (let i = 1; i <= 3; i++) {
@@ -390,10 +391,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function activateModal() {
       if (activated) return;
       activated = true;
-      requestAnimationFrame(() => {
-        overlay.classList.add('modal-active');
-        setTimeout(() => { overlay.focus(); }, 10);
-      });
+      overlay.classList.remove('modal-open');
+      overlay.classList.add('modal-active'); // Trigger slide-in
+      setTimeout(() => { overlay.focus(); }, 10);
     }
     // Fallback: always show modal after 1s
     const fallbackTimeout = setTimeout(activateModal, 1000);
@@ -431,14 +431,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay || !window.__modalOpen) return;
     window.__modalOpen = false;
-    overlay.classList.remove('hidden'); // Ensure it's visible for transition
-    overlay.classList.remove('modal-active');
-    overlay.setAttribute('aria-hidden', 'true'); // Hide from accessibility immediately
+    overlay.classList.remove('modal-active', 'modal-open');
+    overlay.classList.add('modal-close'); // Trigger fade-out
+    overlay.setAttribute('aria-hidden', 'true');
     // Wait for modal-content transition to finish before hiding overlay
     const modalContent = overlay.querySelector('.modal-content');
     const onTransitionEnd = (e) => {
       if (e.target !== modalContent) return;
       overlay.classList.add('hidden'); // Fully hide overlay after transition
+      overlay.classList.remove('modal-close');
       document.body.classList.remove('modal-open');
       document.body.style.position = '';
       document.body.style.top = '';
@@ -462,8 +463,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (modalContent) {
       modalContent.addEventListener('transitionend', onTransitionEnd, { once: true });
     } else {
-      // Fallback: hide immediately if modal-content not found
       overlay.classList.add('hidden');
+      overlay.classList.remove('modal-close');
     }
   }
 
