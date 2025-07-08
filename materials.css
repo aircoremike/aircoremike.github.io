@@ -551,9 +551,6 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
-.modal-overlay.modal-active {
-  /* No change to overlay, just for modal-content animation */
-}
 .modal-overlay[aria-hidden="true"] {
   pointer-events: none;
   opacity: 0;
