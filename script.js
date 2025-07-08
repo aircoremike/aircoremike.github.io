@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function showModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
-    if (!overlay) return;
+    if (!overlay || window.__modalOpen) return;
     window.__modalOpen = true;
     // Inject placeholder text
     for (let i = 1; i <= 3; i++) {
@@ -386,7 +386,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const images = modalContent ? Array.from(modalContent.querySelectorAll('img')) : [];
     let loaded = 0;
     function activateModal() {
-      // Use rAF to ensure initial state is rendered before animating
       requestAnimationFrame(() => {
         overlay.classList.add('modal-active');
         setTimeout(() => { overlay.focus(); }, 10);
@@ -414,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function hideModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
-    if (!overlay) return;
+    if (!overlay || !window.__modalOpen) return;
     window.__modalOpen = false;
     overlay.classList.remove('modal-active');
     // Wait for transition to finish before hiding and unlocking scroll
@@ -436,7 +435,10 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.style.right = '';
         mainContent.style.width = '';
       }
+      document.documentElement.style.scrollBehavior = '';
       enableNavbarShrink();
+      window.scrollTo(0, scrollY);
+      overlay.removeEventListener('transitionend', onTransitionEnd);
     };
     overlay.addEventListener('transitionend', onTransitionEnd, { once: true });
   }
