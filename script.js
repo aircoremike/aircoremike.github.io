@@ -379,16 +379,21 @@ document.addEventListener('DOMContentLoaded', function() {
       mainContent.style.right = '0';
       mainContent.style.width = '100%';
     }
-    overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
     disableNavbarShrink();
     // Preload all images in the modal before animating in
     const modalContent = overlay.querySelector('.modal-content');
     const images = modalContent ? Array.from(modalContent.querySelectorAll('img')) : [];
     let loaded = 0;
+    function activateModal() {
+      // Use rAF to ensure initial state is rendered before animating
+      requestAnimationFrame(() => {
+        overlay.classList.add('modal-active');
+        setTimeout(() => { overlay.focus(); }, 10);
+      });
+    }
     if (images.length === 0) {
-      overlay.classList.add('modal-active');
-      setTimeout(() => { overlay.focus(); }, 10);
+      activateModal();
     } else {
       images.forEach(img => {
         if (img.complete && img.naturalWidth !== 0) {
@@ -396,81 +401,68 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           img.addEventListener('load', () => {
             loaded++;
-            if (loaded === images.length) {
-              overlay.classList.add('modal-active');
-              setTimeout(() => { overlay.focus(); }, 10);
-            }
+            if (loaded === images.length) activateModal();
           }, { once: true });
           img.addEventListener('error', () => {
             loaded++;
-            if (loaded === images.length) {
-              overlay.classList.add('modal-active');
-              setTimeout(() => { overlay.focus(); }, 10);
-            }
+            if (loaded === images.length) activateModal();
           }, { once: true });
         }
       });
-      if (loaded === images.length) {
-        overlay.classList.add('modal-active');
-        setTimeout(() => { overlay.focus(); }, 10);
-      }
+      if (loaded === images.length) activateModal();
     }
   }
   function hideModal() {
     const overlay = document.getElementById('stainless-modal-overlay');
     if (!overlay) return;
     window.__modalOpen = false;
-    overlay.style.display = 'none';
-    overlay.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('modal-active');
-    document.body.classList.remove('modal-open');
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    document.body.style.overflowY = '';
-    const mainContent = document.querySelector('.main-content');
-    if (mainContent) {
-      mainContent.style.position = '';
-      mainContent.style.top = '';
-      mainContent.style.left = '';
-      mainContent.style.right = '';
-      mainContent.style.width = '';
-    }
-    document.documentElement.style.scrollBehavior = '';
-    enableNavbarShrink();
-    // Restore scroll position after styles are reset
-    window.scrollTo(0, scrollY);
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    // Capture the handleNavbarShrink function from the navbar logic
-    handleNavbarShrink = window.handleNavbarShrink || null;
-    if (!handleNavbarShrink) {
-      // Try to find it in the closure
-      const navInit = window.initNavbarScripts;
-      if (navInit) {
-        // Patch: re-initialize and grab the function
-        navInit();
-        handleNavbarShrink = window.handleNavbarShrink || null;
+    // Wait for transition to finish before hiding and unlocking scroll
+    const onTransitionEnd = (e) => {
+      if (e.target !== overlay) return;
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflowY = '';
+      const mainContent = document.querySelector('.main-content');
+      if (mainContent) {
+        mainContent.style.position = '';
+        mainContent.style.top = '';
+        mainContent.style.left = '';
+        mainContent.style.right = '';
+        mainContent.style.width = '';
       }
-    }
-    const btn = document.getElementById('stainlessLearnMoreBtn');
+      enableNavbarShrink();
+    };
+    overlay.addEventListener('transitionend', onTransitionEnd, { once: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('stainless-modal-overlay');
-    const closeBtn = document.getElementById('stainlessModalClose');
-    if (btn && overlay) {
-      btn.addEventListener('click', showModal);
-    }
-    if (closeBtn) {
-      closeBtn.addEventListener('click', hideModal);
-    }
-    if (overlay) {
-      overlay.addEventListener('mousedown', function(e) {
-        if (e.target === overlay) hideModal();
-      });
-      overlay.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') hideModal();
-      });
-    }
+    if (!overlay) return;
+    overlay.setAttribute('aria-hidden', 'true');
+    // Close modal on overlay click
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        hideModal();
+      }
+    });
+    // Close modal on Esc key
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        if (window.__modalOpen) {
+          e.preventDefault();
+          hideModal();
+        }
+      }
+    });
   });
+
+  // Expose showModal and hideModal to global for manual control
+  window.showStainlessModal = showModal;
+  window.hideStainlessModal = hideModal;
 })();
