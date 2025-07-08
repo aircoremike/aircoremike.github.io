@@ -528,6 +528,23 @@ body {
 }
 
 /* Modal Overlay Styles */
+
+body.modal-open {
+  overflow: hidden !important;
+  /* Optionally prevent horizontal scroll as well */
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.modal {
+  display: none;
+}
+.modal.modal--open,
+.modal.modal--opening,
+.modal.modal--closing {
+  display: block;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -680,11 +697,4 @@ body {
   color: #fff;
   box-shadow: 0 4px 24px 0 rgba(37,99,235,0.13), 0 2px 8px 0 rgba(0,0,0,0.10);
   transform: scale(1.045);
-}
-
-body.modal-open {
-  overflow: hidden !important;
-  /* Optionally prevent horizontal scroll as well */
-  overscroll-behavior: contain;
-  touch-action: none;
 }
