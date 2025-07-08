@@ -556,13 +556,13 @@ body {
 
 /* modal */
 .modal {
-  opacity: 1;
-  background: #18181a;
-  transform: translate(-50%, 100%);
-  pointer-events: none;
   position: fixed;
   left: 50%;
-  top: 5%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  opacity: 1;
+  pointer-events: none;
+  background: #18181a;
   width: 100%;
   max-width: 900px;
   max-height: 90vh;
@@ -581,6 +581,7 @@ body {
 }
 .modal--closing {
   transform: translate(-50%, 100%);
+  pointer-events: none;
 }
 
 /* hide scroll bars inside modal */
