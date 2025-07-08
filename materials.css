@@ -543,22 +543,24 @@ body {
   pointer-events: none;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
+  transition: none;
 }
-.modal-overlay.hidden {
-  display: none !important;
-}
-.modal-overlay[aria-hidden="false"] {
+.modal-overlay.overlay-open {
   opacity: 1;
   pointer-events: auto;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
 }
-.modal-overlay[aria-hidden="true"] {
-  pointer-events: none;
+.modal-overlay.overlay-close {
   opacity: 0;
+  pointer-events: none;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
+  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
+}
+.modal-overlay.hidden {
+  display: none !important;
 }
 
 :root {

@@ -25,19 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
       let found = false;
       document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(link => {
         const href = link.getAttribute('href');
-        // Special case: highlight 'resources' link for passivation-paper.html and other resources subpages
-        if (path.endsWith('/passivation-paper.html') && (href === 'resources.html' || href === './resources.html')) {
-          link.classList.add('active-link');
-          found = true;
-        } else if (
+        // For Home, match href="#", href="index.html", or href="/"
+        if (
           (isHome && (href === '#' || href === 'index.html' || href === '/' || href === './' || href === './index.html')) ||
           (!isHome && href && (href === path.split('/').pop() || href === '#' + path.split('/').pop().replace('.html', '')))
         ) {
-          // Only highlight if not already found (so resources.html takes precedence for passivation-paper.html)
-          if (!found) {
-            link.classList.add('active-link');
-            found = true;
-          }
+          link.classList.add('active-link');
+          found = true;
         } else {
           link.classList.remove('active-link');
         }
@@ -63,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleNavbarShrink() {
-      if (window.__modalOpen) return; // Prevent shrink logic if modal is open
       if (!isDesktopOrLandscapeTablet()) {
+        // Remove shrink if resizing to mobile/tablet portrait
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
         if (mainContent) mainContent.classList.remove('navbar-shrink');
@@ -83,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
         hasShrunk = false;
       }
     }
-    window.handleNavbarShrink = handleNavbarShrink;
 
     // Listen for scroll and resize
     window.addEventListener('scroll', handleNavbarShrink);
@@ -330,196 +323,55 @@ document.addEventListener('DOMContentLoaded', function() {
   goToSlide(0);
 })();
 
-// Modal logic for Stainless Steel slide
-(function() {
-  let scrollY = 0;
-  let shrinkListenersActive = true;
-  let handleNavbarShrink = null;
-  function disableNavbarShrink() {
-    if (!shrinkListenersActive) return;
-    window.removeEventListener('scroll', handleNavbarShrink);
-    window.removeEventListener('resize', handleNavbarShrink);
-    shrinkListenersActive = false;
-  }
-  function enableNavbarShrink() {
-    if (shrinkListenersActive) return;
-    window.addEventListener('scroll', handleNavbarShrink);
-    window.addEventListener('resize', handleNavbarShrink);
-    shrinkListenersActive = true;
-    if (typeof handleNavbarShrink === 'function') handleNavbarShrink();
-  }
-  function showModal() {
-    const overlay = document.getElementById('stainless-modal-overlay');
-    if (!overlay || window.__modalOpen) return;
-    overlay.classList.remove('hidden', 'modal-close', 'modal-active');
-    overlay.classList.add('modal-open'); // Set initial state
-    window.__modalOpen = true;
-    // Inject placeholder text
-    for (let i = 1; i <= 3; i++) {
-      const text = document.getElementById('modal-placeholder-' + i)?.textContent;
-      const checker = document.getElementById('checker-text-' + i);
-      if (checker && text) {
-        checker.textContent = text;
-        checker.style.display = '';
-      }
-    }
-    // Lock scroll position by moving main content instead of body
-    scrollY = window.scrollY;
-    document.body.classList.add('modal-open');
-    document.documentElement.style.scrollBehavior = 'auto';
-    document.body.style.position = 'relative';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    document.body.style.overflowY = 'hidden';
-    const mainContent = document.querySelector('.main-content');
-    if (mainContent) {
-      mainContent.style.position = 'fixed';
-      mainContent.style.top = `-${scrollY}px`;
-      mainContent.style.left = '0';
-      mainContent.style.right = '0';
-      mainContent.style.width = '100%';
-    }
-    overlay.setAttribute('aria-hidden', 'false');
-    disableNavbarShrink();
-    // Preload all images in the modal before animating in, with fallback
-    const modalContent = overlay.querySelector('.modal-content');
-    if (modalContent) {
-      modalContent.style.opacity = '1'; // Force opacity to 1 on open
-    }
-    const images = modalContent ? Array.from(modalContent.querySelectorAll('img')) : [];
-    let loaded = 0;
-    let activated = false;
-    function activateModal() {
-      if (activated) return;
-      activated = true;
-      overlay.classList.remove('modal-open');
-      overlay.classList.add('modal-active'); // Trigger slide-in
-      if (modalContent) {
-        // Remove inline opacity after slide-in transition
-        modalContent.addEventListener('transitionend', function handler(e) {
-          if (e.propertyName === 'transform') {
-            modalContent.style.opacity = '';
-            modalContent.removeEventListener('transitionend', handler);
-          }
-        });
-      }
-      setTimeout(() => { overlay.focus(); }, 10);
-    }
-    // Fallback: always show modal after 1s
-    const fallbackTimeout = setTimeout(activateModal, 1000);
-    if (images.length === 0) {
-      clearTimeout(fallbackTimeout);
-      activateModal();
-    } else {
-      images.forEach(img => {
-        if (img.complete && img.naturalWidth !== 0) {
-          loaded++;
-        } else {
-          img.addEventListener('load', () => {
-            loaded++;
-            if (loaded === images.length) {
-              clearTimeout(fallbackTimeout);
-              activateModal();
-            }
-          }, { once: true });
-          img.addEventListener('error', () => {
-            loaded++;
-            if (loaded === images.length) {
-              clearTimeout(fallbackTimeout);
-              activateModal();
-            }
-          }, { once: true });
-        }
-      });
-      if (loaded === images.length) {
-        clearTimeout(fallbackTimeout);
-        activateModal();
-      }
-    }
-  }
-  function hideModal() {
-    const overlay = document.getElementById('stainless-modal-overlay');
-    if (!overlay || !window.__modalOpen) return;
-    window.__modalOpen = false;
-    overlay.classList.remove('modal-active', 'modal-open');
-    overlay.classList.add('modal-close'); // Trigger fade-out
-    overlay.setAttribute('aria-hidden', 'true');
-    // Wait for modal-content transition to finish before hiding overlay
-    const modalContent = overlay.querySelector('.modal-content');
-    const onTransitionEnd = (e) => {
-      if (e.target !== modalContent) return;
-      overlay.classList.add('hidden'); // Fully hide overlay after transition
-      overlay.classList.remove('modal-close');
-      document.body.classList.remove('modal-open');
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      document.body.style.overflowY = '';
-      const mainContent = document.querySelector('.main-content');
-      if (mainContent) {
-        mainContent.style.position = '';
-        mainContent.style.top = '';
-        mainContent.style.left = '';
-        mainContent.style.right = '';
-        mainContent.style.width = '';
-      }
-      document.documentElement.style.scrollBehavior = '';
-      enableNavbarShrink();
-      window.scrollTo(0, scrollY);
-      modalContent.removeEventListener('transitionend', onTransitionEnd);
-    };
-    if (modalContent) {
-      modalContent.addEventListener('transitionend', onTransitionEnd, { once: true });
-    } else {
-      overlay.classList.add('hidden');
-      overlay.classList.remove('modal-close');
-    }
-  }
+// =====================
+// Modal Overlay & Content Animation Logic
+// =====================
+// Usage: Call openModal() to open, closeModal() to close.
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Capture the handleNavbarShrink function from the navbar logic
-    handleNavbarShrink = window.handleNavbarShrink || null;
-    if (!handleNavbarShrink) {
-      // Try to find it in the closure
-      const navInit = window.initNavbarScripts;
-      if (navInit) {
-        // Patch: re-initialize and grab the function
-        navInit();
-        handleNavbarShrink = window.handleNavbarShrink || null;
-      }
-    }
-    const btn = document.getElementById('stainlessLearnMoreBtn');
-    const overlay = document.getElementById('stainless-modal-overlay');
-    const closeBtn = document.getElementById('stainlessModalClose');
-    if (btn && overlay) {
-      btn.addEventListener('click', showModal);
-    }
-    if (closeBtn) {
-      closeBtn.addEventListener('click', hideModal);
-    }
-    if (overlay) {
-      overlay.setAttribute('aria-hidden', 'true');
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-          hideModal();
-        }
-      });
-    }
-    window.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' || e.keyCode === 27) {
-        if (window.__modalOpen) {
-          e.preventDefault();
-          hideModal();
-        }
-      }
-    });
-  });
+function openModal() {
+  const overlay = document.querySelector('.modal-overlay');
+  const modal = overlay.querySelector('.modal-content');
+  if (!overlay || !modal) return;
 
-  // Expose showModal and hideModal to global for manual control
-  window.showStainlessModal = showModal;
-  window.hideStainlessModal = hideModal;
-})();
+  // Overlay: open (fade/blur in)
+  overlay.classList.remove('overlay-close', 'hidden');
+  overlay.classList.add('overlay-open');
+
+  // Modal: open (slide in)
+  modal.classList.remove('modal-close');
+  modal.classList.add('modal-open');
+  // Activate slide-in after a tick
+  setTimeout(() => {
+    modal.classList.remove('modal-open');
+    modal.classList.add('modal-active');
+  }, 10);
+
+  // Scroll lock
+  document.body.classList.add('modal-open');
+  // Optionally: disable navbar shrink logic here if needed
+}
+
+function closeModal() {
+  const overlay = document.querySelector('.modal-overlay');
+  const modal = overlay.querySelector('.modal-content');
+  if (!overlay || !modal) return;
+
+  // Overlay: close (fade/blur out)
+  overlay.classList.remove('overlay-open');
+  overlay.classList.add('overlay-close');
+
+  // Modal: close (fade out)
+  modal.classList.remove('modal-active');
+  modal.classList.add('modal-close');
+
+  // Remove scroll lock after transition
+  setTimeout(() => {
+    document.body.classList.remove('modal-open');
+    overlay.classList.add('hidden'); // Hide overlay after fade out
+    // Optionally: re-enable navbar shrink logic here if needed
+  }, 800); // Match overlay/modal transition duration
+}
+
+// Example: Attach to your "Learn More" button and close button
+// document.querySelector('.learn-more-btn').addEventListener('click', openModal);
+// document.querySelector('.modal-close-btn').addEventListener('click', closeModal);
