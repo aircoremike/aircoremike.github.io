@@ -328,14 +328,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // =====================
 // Usage: Call openStainlessModal() to open, closeStainlessModal() to close.
 
+let stainlessModalScrollY = 0;
+
 function openStainlessModal() {
   const overlay = document.getElementById('modalStainlessOverlay');
   const modal = overlay.querySelector('.modal-content');
   if (!overlay || !modal) return;
 
-  // Prevent scroll jump: store scroll position and lock body
-  const scrollY = window.scrollY || window.pageYOffset;
-  document.body.style.top = `-${scrollY}px`;
+  // Store scroll position and lock body
+  stainlessModalScrollY = window.scrollY || window.pageYOffset;
+  document.body.style.top = `-${stainlessModalScrollY}px`;
   document.body.style.position = 'fixed';
   document.body.style.width = '100vw';
   document.body.classList.add('modal-open');
@@ -361,12 +363,11 @@ function closeStainlessModal() {
   modal.classList.add('modal-close');
   setTimeout(() => {
     // Restore scroll position and unlock body
-    const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
     document.body.classList.remove('modal-open');
-    window.scrollTo(0, scrollY);
+    window.scrollTo(0, stainlessModalScrollY);
     overlay.classList.add('hidden');
   }, 800);
 }
