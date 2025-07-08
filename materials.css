@@ -586,7 +586,7 @@ body {
 }
 .modal-overlay.modal-active .modal-content {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(100vh); /* Slide in from bottom */
 }
 .modal-overlay:not(.modal-active) .modal-content {
   opacity: 0;
