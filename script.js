@@ -409,6 +409,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     document.documentElement.style.scrollBehavior = '';
     enableNavbarShrink();
+    // Restore scroll position after styles are reset
+    window.scrollTo(0, scrollY);
   }
   document.addEventListener('DOMContentLoaded', function() {
     // Capture the handleNavbarShrink function from the navbar logic
