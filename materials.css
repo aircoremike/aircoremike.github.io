@@ -543,7 +543,7 @@ body {
   pointer-events: none;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  transition: none;
+  transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
 }
 .modal-overlay.overlay-open {
   opacity: 1;
