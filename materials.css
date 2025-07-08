@@ -540,14 +540,19 @@ body {
   justify-content: center;
   overflow-y: scroll !important;
   opacity: 0;
+  pointer-events: none;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   transition: opacity 0.75s, backdrop-filter 0.75s, -webkit-backdrop-filter 0.75s;
 }
-.modal-overlay.modal-active {
+.modal-overlay[aria-hidden="false"] {
   opacity: 1;
+  pointer-events: auto;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+.modal-overlay.modal-active {
+  /* No change to overlay, just for modal-content animation */
 }
 .modal-overlay[aria-hidden="true"] {
   pointer-events: none;
