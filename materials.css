@@ -546,9 +546,6 @@ body {
   background: rgba(0,0,0,0.55);
   backdrop-filter: blur(8px);
 }
-.overlay--fade-in {
-  /* No extra effect needed, handled by .overlay--visible */
-}
 .overlay--fade-out {
   background: rgba(0,0,0,0);
   backdrop-filter: blur(0px);
