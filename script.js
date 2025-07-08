@@ -433,10 +433,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.__modalOpen = false;
     overlay.classList.remove('hidden'); // Ensure it's visible for transition
     overlay.classList.remove('modal-active');
-    // Wait for transition to finish before hiding and unlocking scroll
+    overlay.setAttribute('aria-hidden', 'true'); // Hide from accessibility immediately
+    // Wait for modal-content transition to finish before hiding overlay
+    const modalContent = overlay.querySelector('.modal-content');
     const onTransitionEnd = (e) => {
-      if (e.target !== overlay) return;
-      overlay.setAttribute('aria-hidden', 'true');
+      if (e.target !== modalContent) return;
       overlay.classList.add('hidden'); // Fully hide overlay after transition
       document.body.classList.remove('modal-open');
       document.body.style.position = '';
@@ -456,9 +457,14 @@ document.addEventListener('DOMContentLoaded', function() {
       document.documentElement.style.scrollBehavior = '';
       enableNavbarShrink();
       window.scrollTo(0, scrollY);
-      overlay.removeEventListener('transitionend', onTransitionEnd);
+      modalContent.removeEventListener('transitionend', onTransitionEnd);
     };
-    overlay.addEventListener('transitionend', onTransitionEnd, { once: true });
+    if (modalContent) {
+      modalContent.addEventListener('transitionend', onTransitionEnd, { once: true });
+    } else {
+      // Fallback: hide immediately if modal-content not found
+      overlay.classList.add('hidden');
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
