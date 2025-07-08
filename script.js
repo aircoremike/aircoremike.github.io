@@ -442,16 +442,34 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.getElementById('stainless-modal-overlay');
-    if (!overlay) return;
-    overlay.setAttribute('aria-hidden', 'true');
-    // Close modal on overlay click
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) {
-        hideModal();
+    // Capture the handleNavbarShrink function from the navbar logic
+    handleNavbarShrink = window.handleNavbarShrink || null;
+    if (!handleNavbarShrink) {
+      // Try to find it in the closure
+      const navInit = window.initNavbarScripts;
+      if (navInit) {
+        // Patch: re-initialize and grab the function
+        navInit();
+        handleNavbarShrink = window.handleNavbarShrink || null;
       }
-    });
-    // Close modal on Esc key
+    }
+    const btn = document.getElementById('stainlessLearnMoreBtn');
+    const overlay = document.getElementById('stainless-modal-overlay');
+    const closeBtn = document.getElementById('stainlessModalClose');
+    if (btn && overlay) {
+      btn.addEventListener('click', showModal);
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', hideModal);
+    }
+    if (overlay) {
+      overlay.setAttribute('aria-hidden', 'true');
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          hideModal();
+        }
+      });
+    }
     window.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' || e.keyCode === 27) {
         if (window.__modalOpen) {
