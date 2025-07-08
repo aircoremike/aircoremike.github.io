@@ -579,14 +579,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 1 !important;
   transform: translateY(100vh); /* Off-screen by default */
   margin-top: var(--navbar-shrink-height);
   transition: none;
 }
 .modal-overlay.modal-open .modal-content,
 .modal-overlay.modal-active .modal-content {
-  opacity: 1 !important;
   transition: none;
 }
 .modal-overlay.modal-active .modal-content {

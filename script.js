@@ -385,6 +385,9 @@ document.addEventListener('DOMContentLoaded', function() {
     disableNavbarShrink();
     // Preload all images in the modal before animating in, with fallback
     const modalContent = overlay.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.style.opacity = '1'; // Force opacity to 1 on open
+    }
     const images = modalContent ? Array.from(modalContent.querySelectorAll('img')) : [];
     let loaded = 0;
     let activated = false;
@@ -393,6 +396,15 @@ document.addEventListener('DOMContentLoaded', function() {
       activated = true;
       overlay.classList.remove('modal-open');
       overlay.classList.add('modal-active'); // Trigger slide-in
+      if (modalContent) {
+        // Remove inline opacity after slide-in transition
+        modalContent.addEventListener('transitionend', function handler(e) {
+          if (e.propertyName === 'transform') {
+            modalContent.style.opacity = '';
+            modalContent.removeEventListener('transitionend', handler);
+          }
+        });
+      }
       setTimeout(() => { overlay.focus(); }, 10);
     }
     // Fallback: always show modal after 1s
