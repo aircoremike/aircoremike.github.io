@@ -637,8 +637,6 @@ body {
   box-shadow: 0 4px 24px 0 rgba(0,230,208,0.13);
 }
 
-.no-scroll {
-  position: fixed;
-  overflow: hidden;
-  width: 100%;
+.modal-open {
+  overflow-y: hidden;
 }
