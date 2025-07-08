@@ -348,7 +348,6 @@ function openModal() {
 
   // Scroll lock
   document.body.classList.add('modal-open');
-  // Optionally: disable navbar shrink logic here if needed
 }
 
 function closeModal() {
@@ -368,10 +367,36 @@ function closeModal() {
   setTimeout(() => {
     document.body.classList.remove('modal-open');
     overlay.classList.add('hidden'); // Hide overlay after fade out
-    // Optionally: re-enable navbar shrink logic here if needed
   }, 800); // Match overlay/modal transition duration
 }
 
-// Example: Attach to your "Learn More" button and close button
-// document.querySelector('.learn-more-btn').addEventListener('click', openModal);
-// document.querySelector('.modal-close-btn').addEventListener('click', closeModal);
+// =====================
+// Modal Button Wiring
+// =====================
+// Ensure "Learn More" and close buttons are present and wired up
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Learn More button (open modal)
+  var learnMoreBtn = document.querySelector('.learn-more-btn');
+  if (learnMoreBtn) {
+    learnMoreBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+  }
+  // Modal close button (close modal)
+  var modalCloseBtn = document.querySelector('.modal-close-btn');
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeModal();
+    });
+  }
+  // Optional: close modal on overlay click (not on modal content)
+  var overlay = document.querySelector('.modal-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+  }
+});
