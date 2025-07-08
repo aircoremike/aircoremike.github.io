@@ -381,17 +381,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     overlay.setAttribute('aria-hidden', 'false');
     disableNavbarShrink();
-    // Preload all images in the modal before animating in
+    // Preload all images in the modal before animating in, with fallback
     const modalContent = overlay.querySelector('.modal-content');
     const images = modalContent ? Array.from(modalContent.querySelectorAll('img')) : [];
     let loaded = 0;
+    let activated = false;
     function activateModal() {
+      if (activated) return;
+      activated = true;
       requestAnimationFrame(() => {
         overlay.classList.add('modal-active');
         setTimeout(() => { overlay.focus(); }, 10);
       });
     }
+    // Fallback: always show modal after 1s
+    const fallbackTimeout = setTimeout(activateModal, 1000);
     if (images.length === 0) {
+      clearTimeout(fallbackTimeout);
       activateModal();
     } else {
       images.forEach(img => {
@@ -400,15 +406,24 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           img.addEventListener('load', () => {
             loaded++;
-            if (loaded === images.length) activateModal();
+            if (loaded === images.length) {
+              clearTimeout(fallbackTimeout);
+              activateModal();
+            }
           }, { once: true });
           img.addEventListener('error', () => {
             loaded++;
-            if (loaded === images.length) activateModal();
+            if (loaded === images.length) {
+              clearTimeout(fallbackTimeout);
+              activateModal();
+            }
           }, { once: true });
         }
       });
-      if (loaded === images.length) activateModal();
+      if (loaded === images.length) {
+        clearTimeout(fallbackTimeout);
+        activateModal();
+      }
     }
   }
   function hideModal() {
