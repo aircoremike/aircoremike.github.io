@@ -334,27 +334,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     function lockScroll() {
       if (scrollLock.locked) return;
-      scrollLock.top = window.scrollY || window.pageYOffset;
-      scrollLock.left = window.scrollX || window.pageXOffset;
-      // Prevent layout shift by setting body width and padding
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100vw';
-      document.body.style.top = `-${scrollLock.top}px`;
-      document.body.style.left = `0`;
-      document.body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : '';
       scrollLock.locked = true;
     }
     function unlockScroll() {
       if (!scrollLock.locked) return;
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.paddingRight = '';
-      window.scrollTo(scrollLock.left, scrollLock.top);
       scrollLock.locked = false;
     }
 
