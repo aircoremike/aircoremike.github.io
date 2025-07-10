@@ -334,12 +334,23 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     function lockScroll() {
       if (scrollLock.locked) return;
+      scrollLock.top = window.scrollY || window.pageYOffset;
+      scrollLock.left = window.scrollX || window.pageXOffset;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollLock.top}px`;
+      document.body.style.left = '0';
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
       scrollLock.locked = true;
     }
     function unlockScroll() {
       if (!scrollLock.locked) return;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
+      window.scrollTo(scrollLock.left, scrollLock.top);
       scrollLock.locked = false;
     }
 
