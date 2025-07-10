@@ -447,16 +447,17 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal.classList.remove('modal-visible');
     
-    // Re-enable background scrolling and restore scrollbar
-    document.documentElement.classList.remove('modal-open');
-    document.body.classList.remove('modal-open');
-    
+    // Wait for animation to complete before restoring scrollbar
     setTimeout(() => {
+      // Re-enable background scrolling and restore scrollbar
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      
       if (currentModal) {
         document.body.removeChild(currentModal);
         currentModal = null;
       }
-    }, 300);
+    }, 500); // Use close duration (0.50s = 500ms)
   }
 
   // Keyboard support

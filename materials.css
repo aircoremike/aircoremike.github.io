@@ -530,6 +530,11 @@ body {
 /* =====================
    Modal Styles
    ===================== */
+:root {
+  --modal-open-duration: 0.75s;
+  --modal-close-duration: 0.50s;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -541,7 +546,7 @@ body {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity var(--modal-close-duration) ease, visibility var(--modal-close-duration) ease;
   padding: 20px 20px 40px 20px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -550,6 +555,7 @@ body {
 .modal-overlay.modal-visible {
   opacity: 1;
   visibility: visible;
+  transition: opacity var(--modal-open-duration) ease, visibility var(--modal-open-duration) ease;
 }
 
 .modal-container {
@@ -559,13 +565,14 @@ body {
   max-width: 900px;
   margin: 0 auto;
   position: relative;
-  transform: scale(0.95);
-  transition: transform 0.3s ease;
+  transform: translateY(100vh);
+  transition: transform var(--modal-close-duration) ease;
   min-height: fit-content;
 }
 
 .modal-visible .modal-container {
-  transform: scale(1);
+  transform: translateY(0);
+  transition: transform var(--modal-open-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .modal-header {
