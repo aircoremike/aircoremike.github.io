@@ -326,12 +326,32 @@ document.addEventListener('DOMContentLoaded', function() {
   // Modular Modal System (BEM + state classes)
   // --- Begin Modal System ---
   const ModalSystem = (function() {
-    // Helper: lock/unlock background scroll
+    // Helper: lock/unlock background scroll and scroll position
+    let scrollLock = {
+      top: 0,
+      left: 0,
+      locked: false
+    };
     function lockScroll() {
+      if (scrollLock.locked) return;
+      scrollLock.top = window.scrollY || window.pageYOffset;
+      scrollLock.left = window.scrollX || window.pageXOffset;
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollLock.top}px`;
+      document.body.style.left = `0`;
+      scrollLock.locked = true;
     }
     function unlockScroll() {
+      if (!scrollLock.locked) return;
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      window.scrollTo(scrollLock.left, scrollLock.top);
+      scrollLock.locked = false;
     }
 
     // Close all open modals
@@ -341,12 +361,22 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.add('modal--closed');
         modal.setAttribute('aria-hidden', 'true');
       });
-      unlockScroll();
+      // Only unlock scroll if no modals are open
+      setTimeout(function() {
+        if (!document.querySelector('.modal.modal--open')) {
+          unlockScroll();
+        }
+      }, 10);
     }
 
     // Open a specific modal by selector
     function openModal(modalSelector) {
-      closeAllModals();
+      // If another modal is open, close it first, but don't unlock scroll
+      document.querySelectorAll('.modal.modal--open').forEach(function(modal) {
+        modal.classList.remove('modal--open');
+        modal.classList.add('modal--closed');
+        modal.setAttribute('aria-hidden', 'true');
+      });
       var modal = document.querySelector(modalSelector);
       if (modal) {
         modal.classList.remove('modal--closed');
