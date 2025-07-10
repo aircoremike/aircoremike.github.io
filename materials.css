@@ -81,16 +81,21 @@
   justify-content: center;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.25s cubic-bezier(.77,0,.18,1);
+  transform: translateY(48px);
+  transition:
+    opacity 0.32s cubic-bezier(.77,0,.18,1),
+    transform 0.38s cubic-bezier(.77,0,.18,1);
   overflow: auto;
 }
 .modal--open {
   opacity: 1;
   pointer-events: auto;
+  transform: translateY(0);
 }
 .modal--closed {
   opacity: 0;
   pointer-events: none;
+  transform: translateY(48px);
 }
 .modal__overlay {
   position: fixed;
