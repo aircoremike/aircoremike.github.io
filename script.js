@@ -208,227 +208,124 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })();
 
-// Carousel functionality
+// =====================
+// Modal System (modular, scroll lock, BEM, animation)
+// =====================
 (function() {
-  const track = document.querySelector('.carousel-track');
-  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-  const arrowLeft = document.getElementById('carouselArrowLeft');
-  const arrowRight = document.getElementById('carouselArrowRight');
-  let current = 0;
-  const slideCount = slides.length;
+  const modals = Array.from(document.querySelectorAll('.modal'));
+  const triggers = Array.from(document.querySelectorAll('[data-modal-target]'));
+  let openModals = 0;
+  let lastScrollY = 0;
+  let lastScrollX = 0;
 
-  function goToSlide(idx) {
-    current = idx;
-    // Responsive centering logic
-    if (
-      window.innerWidth <= 700 ||
-      (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
-    ) {
-      // Mobile & tablet portrait: slide is 84vw, margin 2vw each side, so total 88vw
-      const slideWidth = 84; // vw
-      const slideMargin = 2; // vw
-      const totalSlide = slideWidth + 2 * slideMargin; // 88vw
-      const offset = (100 - slideWidth) / 2; // 8vw
-      const translate = offset - current * totalSlide;
-      track.style.transform = `translateX(${translate}vw)`;
-    } else {
-      // Desktop: fallback to old logic
-      track.style.transform = `translateX(-${100 * current}%)`;
-    }
-    updateArrows();
-  }
-
-  function updateArrows() {
-    if (!arrowLeft || !arrowRight) return;
-    arrowLeft.disabled = current === 0;
-    arrowRight.disabled = current === slideCount - 1;
-  }
-
-  if (arrowLeft && arrowRight) {
-    arrowLeft.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (current > 0) goToSlide(current - 1);
-    });
-    arrowRight.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (current < slideCount - 1) goToSlide(current + 1);
-    });
-  }
-
-  // Touch/click navigation
-  let startX = null;
-  let endX = null;
-  let dragging = false;
-  let isTouch = false;
-
-  // Use the carousel container for touch events
-  const carouselContainer = track.parentElement.parentElement;
-
-  function onTouchStart(e) {
-    if (e.touches && e.touches.length > 1) return; // Only single-finger
-    dragging = true;
-    isTouch = !!e.touches;
-    startX = e.touches ? e.touches[0].clientX : e.clientX;
-    endX = startX;
-  }
-  function onTouchMove(e) {
-    if (!dragging) return;
-    if (e.touches && e.touches.length > 1) return;
-    endX = e.touches ? e.touches[0].clientX : e.clientX;
-    // Prevent vertical scroll if horizontal swipe is detected
-    if (isTouch && Math.abs(endX - startX) > 10) {
-      e.preventDefault();
-    }
-  }
-  function onTouchEnd(e) {
-    if (!dragging || startX === null || endX === null) return;
-    const dx = endX - startX;
-    if (Math.abs(dx) > 50) {
-      if (dx < 0 && current < slideCount - 1) goToSlide(current + 1);
-      else if (dx > 0 && current > 0) goToSlide(current - 1);
-    }
-    dragging = false;
-    startX = null;
-    endX = null;
-    isTouch = false;
-  }
-
-  // Click for desktop: advance to next slide
-  function onClick() {
-    if (isTouchDevice()) return;
-    goToSlide((current + 1) % slideCount);
-  }
-
-  // Remove old listeners from track
-  track.removeEventListener('mousedown', onTouchStart);
-  track.removeEventListener('mousemove', onTouchMove);
-  track.removeEventListener('mouseup', onTouchEnd);
-  track.removeEventListener('mouseleave', onTouchEnd);
-  track.removeEventListener('touchstart', onTouchStart);
-  track.removeEventListener('touchmove', onTouchMove);
-  track.removeEventListener('touchend', onTouchEnd);
-  track.removeEventListener('click', onClick);
-
-  // Add listeners to carousel container
-  carouselContainer.addEventListener('mousedown', onTouchStart);
-  carouselContainer.addEventListener('mousemove', onTouchMove);
-  carouselContainer.addEventListener('mouseup', onTouchEnd);
-  carouselContainer.addEventListener('mouseleave', onTouchEnd);
-  carouselContainer.addEventListener('touchstart', onTouchStart, { passive: false });
-  carouselContainer.addEventListener('touchmove', onTouchMove, { passive: false });
-  carouselContainer.addEventListener('touchend', onTouchEnd);
-  carouselContainer.addEventListener('click', onClick);
-
-  // Init
-  goToSlide(0);
-})();
-
-  // Modular Modal System (BEM + state classes)
-  // --- Begin Modal System ---
-  const ModalSystem = (function() {
-    // Helper: lock/unlock background scroll and scroll position
-    let scrollLock = {
-      top: 0,
-      left: 0,
-      locked: false
-    };
-    function lockScroll() {
-      if (scrollLock.locked) return;
-      scrollLock.top = window.scrollY || window.pageYOffset;
-      scrollLock.left = window.scrollX || window.pageXOffset;
-      // Prevent layout shift by setting body width and padding
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = 'hidden';
+  // Helper: Lock body scroll and preserve scroll position
+  function lockBodyScroll() {
+    if (openModals === 0) {
+      lastScrollY = window.scrollY;
+      lastScrollX = window.scrollX;
+      document.body.classList.add('modal-open');
+      document.body.style.top = `-${lastScrollY}px`;
+      document.body.style.left = `-${lastScrollX}px`;
+      document.body.style.right = '0';
       document.body.style.position = 'fixed';
       document.body.style.width = '100vw';
-      document.body.style.top = `-${scrollLock.top}px`;
-      document.body.style.left = `0`;
-      document.body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : '';
-      scrollLock.locked = true;
     }
-    function unlockScroll() {
-      if (!scrollLock.locked) return;
-      document.body.style.overflow = '';
+    openModals++;
+  }
+
+  // Helper: Unlock body scroll and restore scroll position
+  function unlockBodyScroll() {
+    openModals = Math.max(0, openModals - 1);
+    if (openModals === 0) {
+      document.body.classList.remove('modal-open');
       document.body.style.position = '';
       document.body.style.width = '';
       document.body.style.top = '';
       document.body.style.left = '';
-      document.body.style.paddingRight = '';
-      window.scrollTo(scrollLock.left, scrollLock.top);
-      scrollLock.locked = false;
+      document.body.style.right = '';
+      window.scrollTo(lastScrollX, lastScrollY);
     }
+  }
 
-    // Close all open modals
-    function closeAllModals() {
-      document.querySelectorAll('.modal').forEach(function(modal) {
-        modal.classList.remove('modal--open');
-        modal.classList.add('modal--closed');
-        modal.setAttribute('aria-hidden', 'true');
-      });
-      // Only unlock scroll if no modals are open
-      setTimeout(function() {
-        if (!document.querySelector('.modal.modal--open')) {
-          unlockScroll();
-        }
-      }, 10);
-    }
-
-    // Open a specific modal by selector
-    function openModal(modalSelector) {
-      // If another modal is open, close it first, but don't unlock scroll
-      document.querySelectorAll('.modal.modal--open').forEach(function(modal) {
-        modal.classList.remove('modal--open');
-        modal.classList.add('modal--closed');
-        modal.setAttribute('aria-hidden', 'true');
-      });
-      var modal = document.querySelector(modalSelector);
-      if (modal) {
-        modal.classList.remove('modal--closed');
-        modal.classList.add('modal--open');
-        modal.setAttribute('aria-hidden', 'false');
-        lockScroll();
-      }
-    }
-
-    // Event delegation for modal triggers
-    document.addEventListener('click', function(e) {
-      var trigger = e.target.closest('[data-modal-target]');
-      if (trigger) {
-        var target = trigger.getAttribute('data-modal-target');
-        if (target) {
-          openModal(target);
-          e.preventDefault();
-        }
-      }
+  // Open modal by id
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    if (modal.classList.contains('modal--open')) return;
+    lockBodyScroll();
+    modal.classList.remove('modal--closed');
+    modal.classList.add('modal--open');
+    // Animate in
+    requestAnimationFrame(() => {
+      modal.classList.add('modal--animating-in');
+      modal.classList.remove('modal--animating-out');
+      setTimeout(() => {
+        modal.classList.remove('modal--animating-in');
+      }, 350);
     });
+  }
 
-    // Overlay and close button logic
-    document.addEventListener('click', function(e) {
-      // Overlay click
-      var overlay = e.target.classList.contains('modal__overlay') ? e.target : null;
-      if (overlay) {
-        closeAllModals();
-      }
-      // Close button
-      var closeBtn = e.target.closest('.modal__close');
-      if (closeBtn) {
-        closeAllModals();
-      }
+  // Close modal by element
+  function closeModal(modal) {
+    if (!modal.classList.contains('modal--open')) return;
+    modal.classList.remove('modal--open');
+    modal.classList.add('modal--animating-out');
+    setTimeout(() => {
+      modal.classList.remove('modal--animating-out');
+      modal.classList.add('modal--closed');
+      unlockBodyScroll();
+    }, 350);
+  }
+
+  // Click triggers
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+      const target = trigger.getAttribute('data-modal-target');
+      if (target) openModal(target);
     });
+  });
 
-    // ESC key closes modal
+  // Overlay and close button logic
+  modals.forEach(modal => {
+    // Overlay click
+    const overlay = modal.querySelector('.modal__overlay');
+    if (overlay) {
+      overlay.addEventListener('click', function(e) {
+        closeModal(modal);
+      });
+    }
+    // Close button
+    const closeBtn = modal.querySelector('.modal__close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        closeModal(modal);
+      });
+    }
+    // Escape key
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeAllModals();
+      if (e.key === 'Escape' && modal.classList.contains('modal--open')) {
+        closeModal(modal);
       }
     });
+  });
 
-    // Only one modal open at a time (enforced by openModal)
-    // Expose for future use
-    return {
-      open: openModal,
-      closeAll: closeAllModals
-    };
-  })();
-  window.ModalSystem = ModalSystem;
-  // --- End Modal System ---
+  // Prevent background scroll on touch devices (iOS overscroll fix)
+  modals.forEach(modal => {
+    const container = modal.querySelector('.modal__container');
+    if (!container) return;
+    container.addEventListener('touchmove', function(e) {
+      // Allow scroll only inside modal__container
+      e.stopPropagation();
+    }, { passive: false });
+    modal.addEventListener('touchmove', function(e) {
+      // Prevent scroll on overlay
+      if (e.target === modal) e.preventDefault();
+    }, { passive: false });
+  });
+
+  // Expose for manual control if needed
+  window.ModalSystem = {
+    open: openModal,
+    close: closeModal
+  };
+})();
