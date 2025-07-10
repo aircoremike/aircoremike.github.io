@@ -334,14 +334,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     function lockScroll() {
       if (scrollLock.locked) return;
-      document.documentElement.style.overflow = 'hidden';
-      document.body.classList.add('modal-open');
+      document.body.style.overflow = 'hidden';
       scrollLock.locked = true;
     }
     function unlockScroll() {
       if (!scrollLock.locked) return;
-      document.documentElement.style.overflow = '';
-      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
       scrollLock.locked = false;
     }
 

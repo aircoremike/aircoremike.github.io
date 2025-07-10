@@ -529,8 +529,8 @@ body {
 
 /* Modal System (BEM + state classes) */
 .modal {
-  position: absolute;
-  top: 0; left: 0; width: 100vw; min-height: 100vh;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -549,8 +549,8 @@ body {
   pointer-events: none;
 }
 .modal__overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100vw; min-height: 100vh;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
   background: rgba(0,0,0,0.55);
   z-index: 0;
   cursor: pointer;
@@ -570,7 +570,8 @@ body {
   align-items: stretch;
   margin: 0 1vw;
   color: #f5f5f7;
-  /* Remove fixed height and overflow to allow modal to grow and use page scrollbar */
+  height: 100vh;
+  overflow-y: auto;
   overscroll-behavior: contain;
 }
 body.modal-open {
