@@ -570,7 +570,8 @@ body {
   align-items: stretch;
   margin: 0 1vw;
   color: #f5f5f7;
-  /* Remove fixed height and overflow to allow modal to grow and use page scrollbar */
+  height: 90vh;
+  overflow-y: auto;
   overscroll-behavior: contain;
 }
 .modal__header {
