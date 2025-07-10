@@ -294,8 +294,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Click for desktop: advance to next slide
-  function onClick() {
+  function onClick(e) {
     if (isTouchDevice()) return;
+    // Don't advance if clicking on a button or interactive element
+    if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
     goToSlide((current + 1) % slideCount);
   }
 
@@ -395,11 +397,9 @@ With their lightweight construction and remarkable durability, stainless steel h
     // Store the current scroll position
     const scrollY = window.scrollY;
     
-    // Apply styles to prevent background scrolling
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
+    // Apply styles to prevent background scrolling without changing visual position
     document.body.classList.add('modal-open');
+    document.body.style.top = `-${scrollY}px`;
     
     document.body.appendChild(modal);
     
@@ -441,13 +441,10 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal.classList.remove('modal-visible');
     
-    // Restore scroll position
+    // Restore scroll position without visual jump
     const scrollY = parseInt(currentModal.dataset.scrollY || '0');
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
     document.body.classList.remove('modal-open');
-    
+    document.body.style.top = '';
     window.scrollTo(0, scrollY);
     
     setTimeout(() => {
