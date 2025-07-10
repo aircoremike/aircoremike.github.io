@@ -394,7 +394,8 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal = modal;
     
-    // Simply prevent background scrolling without changing position
+    // Completely hide background scrolling and scrollbar
+    document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
     
     document.body.appendChild(modal);
@@ -446,7 +447,8 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal.classList.remove('modal-visible');
     
-    // Simply re-enable background scrolling
+    // Re-enable background scrolling and restore scrollbar
+    document.documentElement.classList.remove('modal-open');
     document.body.classList.remove('modal-open');
     
     setTimeout(() => {

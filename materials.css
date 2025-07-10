@@ -723,4 +723,10 @@ body {
 /* Prevent body scroll when modal is open */
 body.modal-open {
   overflow: hidden !important;
+  padding-right: 0 !important;
+}
+
+/* Hide scrollbar completely when modal is open */
+html.modal-open {
+  overflow: hidden !important;
 }
