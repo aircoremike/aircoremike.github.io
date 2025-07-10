@@ -322,3 +322,118 @@ document.addEventListener('DOMContentLoaded', function() {
   // Init
   goToSlide(0);
 })();
+
+// Apple-style Modal System
+(function() {
+  let currentModal = null;
+  
+  // Modal data for each material
+  const modalData = {
+    stainless: {
+      title: "Stainless Steel",
+      heroImage: "assets/ball-transfer-unit.png",
+      images: [
+        "assets/c5-galaxy_1280.jpg",
+        "assets/c17-globemaster-iii_1280.jpg", 
+        "assets/pallet-drop_1280.jpg"
+      ],
+      description: `Stainless steel hollow balls represent the pinnacle of engineering excellence in precision bearing applications. Our proprietary manufacturing process creates seamless, perfectly spherical components that deliver exceptional performance in the most demanding environments.
+
+The superior corrosion resistance of stainless steel makes these hollow balls ideal for aerospace, marine, and industrial applications where environmental factors would compromise lesser materials. Each ball undergoes rigorous quality control testing to ensure dimensional accuracy and surface finish that meets the exacting standards of modern precision machinery.
+
+With their lightweight construction and remarkable durability, stainless steel hollow balls provide an optimal balance of strength, weight reduction, and longevity that traditional solid bearings simply cannot match.`
+    }
+  };
+
+  function createModal(materialType) {
+    const data = modalData[materialType];
+    if (!data) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal-container">
+        <div class="modal-header">
+          <h1>${data.title}</h1>
+          <button class="modal-close" aria-label="Close modal">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-hero">
+            <img src="${data.heroImage}" alt="${data.title}" class="modal-hero-image">
+          </div>
+          <div class="modal-body">
+            <div class="modal-images">
+              ${data.images.map(img => `
+                <div class="modal-image-item">
+                  <img src="${img}" alt="${data.title} application">
+                </div>
+              `).join('')}
+            </div>
+            <div class="modal-description">
+              <p>${data.description}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    return modal;
+  }
+
+  function openModal(materialType) {
+    if (currentModal) closeModal();
+    
+    const modal = createModal(materialType);
+    if (!modal) return;
+    
+    currentModal = modal;
+    document.body.appendChild(modal);
+    document.body.classList.add('modal-open');
+    
+    // Animate in
+    requestAnimationFrame(() => {
+      modal.classList.add('modal-visible');
+    });
+    
+    // Close handlers
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn.addEventListener('click', closeModal);
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  function closeModal() {
+    if (!currentModal) return;
+    
+    currentModal.classList.remove('modal-visible');
+    document.body.classList.remove('modal-open');
+    
+    setTimeout(() => {
+      if (currentModal) {
+        document.body.removeChild(currentModal);
+        currentModal = null;
+      }
+    }, 300);
+  }
+
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && currentModal) {
+      closeModal();
+    }
+  });
+
+  // Global function to open modals
+  window.openMaterialModal = openModal;
+})();
+
+// Utility function for touch device detection
+function isTouchDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
