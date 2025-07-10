@@ -394,12 +394,8 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal = modal;
     
-    // Store the current scroll position
-    const scrollY = window.scrollY;
-    
-    // Apply styles to prevent background scrolling without changing visual position
+    // Simply prevent background scrolling without changing position
     document.body.classList.add('modal-open');
-    document.body.style.top = `-${scrollY}px`;
     
     document.body.appendChild(modal);
     
@@ -432,8 +428,17 @@ With their lightweight construction and remarkable durability, stainless steel h
       }
     }, { passive: false });
     
-    // Store scroll position for restoration
-    modal.dataset.scrollY = scrollY;
+    // Also prevent touchmove events on mobile
+    modal.addEventListener('touchmove', (e) => {
+      const { scrollTop, scrollHeight, clientHeight } = modal;
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight;
+      
+      if ((isAtTop && e.touches[0].clientY > e.touches[0].startY) || 
+          (isAtBottom && e.touches[0].clientY < e.touches[0].startY)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
   }
 
   function closeModal() {
@@ -441,11 +446,8 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal.classList.remove('modal-visible');
     
-    // Restore scroll position without visual jump
-    const scrollY = parseInt(currentModal.dataset.scrollY || '0');
+    // Simply re-enable background scrolling
     document.body.classList.remove('modal-open');
-    document.body.style.top = '';
-    window.scrollTo(0, scrollY);
     
     setTimeout(() => {
       if (currentModal) {
