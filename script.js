@@ -391,8 +391,17 @@ With their lightweight construction and remarkable durability, stainless steel h
     if (!modal) return;
     
     currentModal = modal;
-    document.body.appendChild(modal);
+    
+    // Store the current scroll position
+    const scrollY = window.scrollY;
+    
+    // Apply styles to prevent background scrolling
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
     document.body.classList.add('modal-open');
+    
+    document.body.appendChild(modal);
     
     // Animate in
     requestAnimationFrame(() => {
@@ -406,13 +415,40 @@ With their lightweight construction and remarkable durability, stainless steel h
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
+    
+    // Prevent scroll propagation to background
+    modal.addEventListener('scroll', (e) => {
+      e.stopPropagation();
+    });
+    
+    // Prevent wheel events from affecting background when modal scroll reaches limits
+    modal.addEventListener('wheel', (e) => {
+      const { scrollTop, scrollHeight, clientHeight } = modal;
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight;
+      
+      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+    
+    // Store scroll position for restoration
+    modal.dataset.scrollY = scrollY;
   }
 
   function closeModal() {
     if (!currentModal) return;
     
     currentModal.classList.remove('modal-visible');
+    
+    // Restore scroll position
+    const scrollY = parseInt(currentModal.dataset.scrollY || '0');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.classList.remove('modal-open');
+    
+    window.scrollTo(0, scrollY);
     
     setTimeout(() => {
       if (currentModal) {
