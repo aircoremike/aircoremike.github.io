@@ -337,13 +337,20 @@ document.addEventListener('DOMContentLoaded', function() {
       if (scrollLock.locked) return;
       scrollLock.top = window.pageYOffset || document.documentElement.scrollTop;
       scrollLock.left = window.pageXOffset || document.documentElement.scrollLeft;
-      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollLock.top}px`;
+      document.body.style.left = `-${scrollLock.left}px`;
+      document.body.style.width = '100%';
       scrollLock.locked = true;
     }
 
     function unlockScroll() {
       if (!scrollLock.locked) return;
-      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
+      window.scrollTo(scrollLock.left, scrollLock.top);
       scrollLock.locked = false;
     }
 
@@ -353,8 +360,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('modal--open');
         modal.classList.add('modal--closed');
         modal.setAttribute('aria-hidden', 'true');
-        modal.style.position = '';
-        modal.style.top = '';
       });
       // Only unlock scroll if no modals are open
       setTimeout(function() {
@@ -371,16 +376,12 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('modal--open');
         modal.classList.add('modal--closed');
         modal.setAttribute('aria-hidden', 'true');
-        modal.style.position = '';
-        modal.style.top = '';
       });
       var modal = document.querySelector(modalSelector);
       if (modal) {
         modal.classList.remove('modal--closed');
         modal.classList.add('modal--open');
         modal.setAttribute('aria-hidden', 'false');
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
         lockScroll();
       }
     }
