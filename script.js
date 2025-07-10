@@ -341,7 +341,6 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.top = `-${scrollLock.top}px`;
       document.body.style.left = `-${scrollLock.left}px`;
       document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
       scrollLock.locked = true;
     }
 
@@ -351,7 +350,6 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.top = '';
       document.body.style.left = '';
       document.body.style.width = '';
-      document.body.style.overflow = '';
       window.scrollTo(scrollLock.left, scrollLock.top);
       scrollLock.locked = false;
     }

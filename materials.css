@@ -573,6 +573,7 @@ body {
   margin: 2rem auto;
   color: #f5f5f7;
   overflow-y: auto; /* Allow modal content to scroll independently */
+  max-height: 90vh; /* Ensure modal fits within the viewport */
 }
 body.modal-open {
   width: 100vw;
