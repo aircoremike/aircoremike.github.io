@@ -44,6 +44,9 @@
                 <img src="assets/stainless.png" alt="Steel">
               </div>
             </div>
+            <div class="slide-cta">
+              <button class="modal__trigger-btn modal__trigger-btn--carousel" data-modal-target="#modal-stainless">Learn More</button>
+            </div>
           </div>
           <div class="carousel-slide" data-slide="1">
             <div class="slide-content">
@@ -134,10 +137,7 @@
   </div>
   <div id="footer-container"></div>
   <!-- Modal Trigger Buttons Example -->
-  <div class="modal-demo-btns">
-    <button class="modal__trigger-btn" data-modal-target="#modal-stainless">Open Stainless Modal</button>
-    <!-- Add more buttons for other modals as needed -->
-  </div>
+  <!-- (Removed demo button, now placed under carousel slide) -->
 
   <!-- Modal: Stainless -->
   <div class="modal modal--closed" id="modal-stainless" aria-hidden="true" role="dialog" aria-modal="true">
@@ -189,7 +189,5 @@
     });
     loadPartial('footer-container', 'footer.html');
   </script>
-  <link rel="stylesheet" href="modal.css">
-  <script src="modal.js"></script>
 </body>
 </html>
