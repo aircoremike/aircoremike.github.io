@@ -332,24 +332,24 @@ document.addEventListener('DOMContentLoaded', function() {
       left: 0,
       locked: false
     };
+
     function lockScroll() {
       if (scrollLock.locked) return;
-      scrollLock.top = window.scrollY || window.pageYOffset;
-      scrollLock.left = window.scrollX || window.pageXOffset;
+      scrollLock.top = window.pageYOffset || document.documentElement.scrollTop;
+      scrollLock.left = window.pageXOffset || document.documentElement.scrollLeft;
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollLock.top}px`;
-      document.body.style.left = '0';
+      document.body.style.left = `-${scrollLock.left}px`;
       document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
       scrollLock.locked = true;
     }
+
     function unlockScroll() {
       if (!scrollLock.locked) return;
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.left = '';
       document.body.style.width = '';
-      document.body.style.overflow = '';
       window.scrollTo(scrollLock.left, scrollLock.top);
       scrollLock.locked = false;
     }
