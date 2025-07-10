@@ -133,6 +133,46 @@
     </div>
   </div>
   <div id="footer-container"></div>
+  <!-- Modal Trigger Buttons Example -->
+  <div class="modal-demo-btns">
+    <button class="modal__trigger-btn" data-modal-target="#modal-stainless">Open Stainless Modal</button>
+    <!-- Add more buttons for other modals as needed -->
+  </div>
+
+  <!-- Modal: Stainless -->
+  <div class="modal modal--closed" id="modal-stainless" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__overlay"></div>
+    <div class="modal__container">
+      <div class="modal__header">
+        <h2 class="modal__headline">Stainless Steel</h2>
+        <button class="modal__close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal__hero-img">
+        <img src="assets/ball-transfer-unit.png" alt="Stainless Steel Hero" />
+      </div>
+      <div class="modal__body">
+        <p>High-strength, corrosion-resistant steels designed for bearings in demanding environments. Aircore's proprietary process ensures unmatched quality and performance for your most critical applications.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Stainless -->
+  <div class="modal modal--closed" id="modal-stainless" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__overlay"></div>
+    <div class="modal__container">
+      <div class="modal__header">
+        <h2 class="modal__headline">Stainless Steel</h2>
+        <button class="modal__close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal__hero-img">
+        <img src="assets/ball-transfer-unit.png" alt="Stainless Steel Hero" />
+      </div>
+      <div class="modal__body">
+        <p>High-strength, corrosion-resistant steels designed for bearings in demanding environments. Aircore's proprietary process ensures unmatched quality and performance for your most critical applications.</p>
+      </div>
+    </div>
+  </div>
+
   <div id="site-overlay" class="overlay"></div>
   <script src="script.js"></script>
   <script>
@@ -149,5 +189,7 @@
     });
     loadPartial('footer-container', 'footer.html');
   </script>
+  <link rel="stylesheet" href="modal.css">
+  <script src="modal.js"></script>
 </body>
 </html>
