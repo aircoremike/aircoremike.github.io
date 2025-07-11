@@ -224,9 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile: slides are 80vw wide with 1rem gaps
+      // Mobile: slides are 80vw wide with ~2vw gaps (1rem ≈ 2vw on mobile)
       const slideWidth = 80; // vw
-      const gapSize = 1 * 100 / window.innerWidth * 16; // Convert 1rem to vw
+      const gapSize = 2; // vw (approximation of 1rem)
       const viewportWidth = 100; // vw
       
       // Calculate the position to center the current slide
@@ -236,9 +236,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: slides are 33.33vw wide with 2rem gaps
-      const slideWidth = 33.33; // vw
-      const gapSize = 2 * 100 / window.innerWidth * 16; // Convert 2rem to vw
+      // Desktop: slides are 40vw wide with ~3vw gaps (2rem ≈ 3vw on desktop)
+      const slideWidth = 40; // vw
+      const gapSize = 3; // vw (approximation of 2rem)
       const viewportWidth = 100; // vw
       
       // Calculate the position to center the current slide
