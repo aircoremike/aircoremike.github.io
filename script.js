@@ -228,12 +228,20 @@ document.addEventListener('DOMContentLoaded', function() {
       const slideWidth = 84; // vw
       const slideMargin = 2; // vw
       const totalSlide = slideWidth + 2 * slideMargin; // 88vw
-      const offset = (100 - slideWidth) / 2; // 8vw
+      const offset = (100 - slideWidth) / 2; // 8vw to center the slide
       const translate = offset - current * totalSlide;
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: fallback to old logic
-      track.style.transform = `translateX(-${100 * current}%)`;
+      // Desktop: center slides properly
+      const slideWidth = 100; // Each slide is 100% width
+      const containerWidth = track.parentElement.offsetWidth;
+      const slideElement = slides[0];
+      const slideActualWidth = slideElement ? slideElement.offsetWidth : containerWidth;
+      
+      // Calculate offset to center the current slide
+      const centerOffset = (containerWidth - slideActualWidth) / 2;
+      const translate = centerOffset - (current * slideActualWidth);
+      track.style.transform = `translateX(${translate}px)`;
     }
     updateArrows();
   }
@@ -293,12 +301,25 @@ document.addEventListener('DOMContentLoaded', function() {
     isTouch = false;
   }
 
-  // Click for desktop: advance to next slide
+  // Click for desktop: left side goes back, right side goes forward
   function onClick(e) {
     if (isTouchDevice()) return;
     // Don't advance if clicking on a button or interactive element
     if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
-    goToSlide((current + 1) % slideCount);
+    
+    // Get click position relative to the carousel container
+    const rect = carouselContainer.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const containerWidth = rect.width;
+    const isLeftSide = clickX < containerWidth / 2;
+    
+    if (isLeftSide && current > 0) {
+      // Clicked on left side - go to previous slide
+      goToSlide(current - 1);
+    } else if (!isLeftSide && current < slideCount - 1) {
+      // Clicked on right side - go to next slide
+      goToSlide(current + 1);
+    }
   }
 
   // Remove old listeners from track
