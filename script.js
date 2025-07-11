@@ -224,28 +224,14 @@ document.addEventListener('DOMContentLoaded', function() {
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile: slides are 80vw wide with ~1vw gaps (1rem ≈ 1vw on mobile)
-      const slideWidth = 80; // vw
-      const gapSize = 1; // vw (simplified, 1rem ≈ 1vw)
-      const viewportWidth = 100; // vw
-      
-      // Calculate the position to center the current slide
-      const centerPosition = (viewportWidth - slideWidth) / 2; // 10vw from left edge
-      const slideOffset = current * (slideWidth + gapSize);
-      const translate = centerPosition - slideOffset;
-      
+      // Mobile: Simple calculation - each slide is 80vw + gap
+      // First slide should be centered at 10vw, then each slide moves by exactly 81vw (80vw + ~1vw gap)
+      const translate = 10 - (current * 81);
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: slides are 40vw wide with ~2vw gaps (2rem ≈ 2vw)
-      const slideWidth = 40; // vw
-      const gapSize = 2; // vw (simplified, 2rem ≈ 2vw)
-      const viewportWidth = 100; // vw
-      
-      // Calculate the position to center the current slide
-      const centerPosition = (viewportWidth - slideWidth) / 2; // 30vw from left edge
-      const slideOffset = current * (slideWidth + gapSize);
-      const translate = centerPosition - slideOffset;
-      
+      // Desktop: Simple calculation - each slide is 40vw + gap  
+      // First slide should be centered at 30vw, then each slide moves by exactly 42vw (40vw + ~2vw gap)
+      const translate = 30 - (current * 42);
       track.style.transform = `translateX(${translate}vw)`;
     }
     updateArrows();
