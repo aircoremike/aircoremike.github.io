@@ -343,7 +343,7 @@ body {
     transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
   }
   .hero-flex {
-    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
+    transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
   }
   .navbar.navbar-shrink {
     padding-top: calc(env(safe-area-inset-top, 0px) + calc(var(--logo-padding) / 2));
@@ -355,31 +355,13 @@ body {
   body.navbar-shrink {
     background-position-y: calc(var(--navbar-height-desktop) / 2);
   }
-  /* Adjust hero-flex padding when navbar shrinks */
+  /* Adjust hero-flex margin when navbar shrinks */
   body.navbar-shrink .hero-flex {
-    padding-top: calc(var(--navbar-height-desktop) / 2);
+    margin-top: 80px; /* Half the desktop navbar height */
   }
 }
 
-/* Main Content Wrapper for Shrinking Navbar Animation */
-@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
-  .main-content {
-    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
-    /* Start with no padding so hero image goes to very top */
-    padding-top: 0;
-  }
-  body.navbar-shrink .main-content {
-    /* When navbar shrinks, add padding to prevent content jump */
-    padding-top: calc(calc(var(--navbar-height-desktop) - calc(var(--navbar-height-desktop) / 2)) / 2);
-  }
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    /* Mobile: no padding so hero image goes to top */
-    padding-top: 0;
-  }
-}
+/* Main Content Wrapper - No special styling needed since hero handles navbar offset */
 
 /* =====================
    Hero Section
@@ -399,13 +381,19 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Add top padding to account for fixed navbar */
-  padding-top: var(--navbar-height-desktop);
+  /* Explicit top margin to push hero image below navbar */
+  margin-top: 160px; /* Desktop navbar height */
 }
 
 @media (max-width: 768px) {
   .hero-flex {
-    padding-top: var(--navbar-height-mobile);
+    margin-top: 80px; /* Mobile navbar height */
+  }
+}
+
+@media (min-width: 769px) and (orientation: portrait) {
+  .hero-flex {
+    margin-top: 120px; /* Tablet portrait navbar height */
   }
 }
 
