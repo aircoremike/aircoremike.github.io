@@ -471,6 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Apple-style Modal System
 (function() {
   let currentModal = null;
+  let imagesPreloaded = false;
   
   // Modal data for each material
   const modalData = {
@@ -489,6 +490,37 @@ The superior corrosion resistance of stainless steel makes these hollow balls id
 With their lightweight construction and remarkable durability, stainless steel hollow balls provide an optimal balance of strength, weight reduction, and longevity that traditional solid bearings simply cannot match.`
     }
   };
+
+  // Preload all modal images in the background
+  function preloadModalImages() {
+    if (imagesPreloaded) return;
+    
+    console.log('Preloading modal images...');
+    const allImageUrls = new Set();
+    
+    // Collect all unique image URLs from all modals
+    Object.values(modalData).forEach(data => {
+      allImageUrls.add(data.heroImage);
+      data.images.forEach(img => allImageUrls.add(img));
+    });
+    
+    let loadedCount = 0;
+    const totalImages = allImageUrls.size;
+    
+    // Preload each image
+    allImageUrls.forEach(url => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        console.log(`Preloaded ${loadedCount}/${totalImages}: ${url}`);
+        if (loadedCount === totalImages) {
+          imagesPreloaded = true;
+          console.log('All modal images preloaded successfully');
+        }
+      };
+      img.src = url;
+    });
+  }
 
   function createModal(materialType) {
     const data = modalData[materialType];
@@ -553,46 +585,55 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     document.body.appendChild(modal);
     
-    // Wait for all images to load before animating
-    const images = modal.querySelectorAll('img');
-    let loadedImages = 0;
-    const totalImages = images.length;
-    
-    function checkAllImagesLoaded() {
-      loadedImages++;
-      if (loadedImages === totalImages) {
-        // All images loaded, now animate in
-        requestAnimationFrame(() => {
-          modal.classList.add('modal-opening');
-          // After a brief moment, transition to visible state
-          setTimeout(() => {
-            modal.classList.remove('modal-opening');
-            modal.classList.add('modal-visible');
-          }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
-        });
-      }
-    }
-    
-    if (totalImages === 0) {
-      // No images to load, animate immediately
+    // If images are preloaded, show modal immediately
+    // Otherwise, wait for images to load (fallback for edge cases)
+    if (imagesPreloaded) {
+      console.log('Images already preloaded, showing modal immediately');
       requestAnimationFrame(() => {
         modal.classList.add('modal-opening');
-        // After a brief moment, transition to visible state
         setTimeout(() => {
           modal.classList.remove('modal-opening');
           modal.classList.add('modal-visible');
         }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
       });
     } else {
-      // Set up image loading listeners
-      images.forEach(img => {
-        if (img.complete) {
-          checkAllImagesLoaded();
-        } else {
-          img.addEventListener('load', checkAllImagesLoaded);
-          img.addEventListener('error', checkAllImagesLoaded); // Count errors as "loaded" to prevent hanging
+      console.log('Images not preloaded, waiting for load...');
+      // Fallback: wait for images to load (same as before)
+      const images = modal.querySelectorAll('img');
+      let loadedImages = 0;
+      const totalImages = images.length;
+      
+      function checkAllImagesLoaded() {
+        loadedImages++;
+        if (loadedImages === totalImages) {
+          requestAnimationFrame(() => {
+            modal.classList.add('modal-opening');
+            setTimeout(() => {
+              modal.classList.remove('modal-opening');
+              modal.classList.add('modal-visible');
+            }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
+          });
         }
-      });
+      }
+      
+      if (totalImages === 0) {
+        requestAnimationFrame(() => {
+          modal.classList.add('modal-opening');
+          setTimeout(() => {
+            modal.classList.remove('modal-opening');
+            modal.classList.add('modal-visible');
+          }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
+        });
+      } else {
+        images.forEach(img => {
+          if (img.complete) {
+            checkAllImagesLoaded();
+          } else {
+            img.addEventListener('load', checkAllImagesLoaded);
+            img.addEventListener('error', checkAllImagesLoaded);
+          }
+        });
+      }
     }
     
     // Close handlers
@@ -668,6 +709,16 @@ With their lightweight construction and remarkable durability, stainless steel h
 
   // Global function to open modals
   window.openMaterialModal = openModal;
+
+  // Start preloading images after page load
+  // Use a slight delay to not interfere with initial page rendering
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(preloadModalImages, 1000); // Wait 1 second after DOM ready
+    });
+  } else {
+    setTimeout(preloadModalImages, 1000); // Page already loaded, start in 1 second
+  }
 })();
 
 // Utility function for touch device detection
