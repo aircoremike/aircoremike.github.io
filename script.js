@@ -237,6 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const trackStyle = window.getComputedStyle(track);
     const gap = parseFloat(trackStyle.gap || trackStyle.columnGap || '0');
     
+    console.log('CSS gap from computed style:', trackStyle.gap, 'parsed:', gap);
+    
     // For mobile, use viewport width as container (slides should overflow)
     // For desktop, use the actual carousel container width
     let containerWidth;
@@ -425,6 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function init() {
     currentIndex = 0;
     console.log('Carousel init - Mobile:', isMobile(), 'Window width:', window.innerWidth);
+    console.log('Track initial transform:', track.style.transform);
     
     // Ensure layout is ready before positioning
     requestAnimationFrame(() => {
