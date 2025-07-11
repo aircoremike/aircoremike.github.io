@@ -224,25 +224,25 @@ document.addEventListener('DOMContentLoaded', function() {
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile: slides are 80vw wide with ~2vw gaps (1rem ≈ 2vw on mobile)
+      // Mobile: slides are 80vw wide with ~1vw gaps (1rem ≈ 1vw on mobile)
       const slideWidth = 80; // vw
-      const gapSize = 2; // vw (approximation of 1rem)
+      const gapSize = 1; // vw (simplified, 1rem ≈ 1vw)
       const viewportWidth = 100; // vw
       
       // Calculate the position to center the current slide
-      const centerPosition = (viewportWidth - slideWidth) / 2;
+      const centerPosition = (viewportWidth - slideWidth) / 2; // 10vw from left edge
       const slideOffset = current * (slideWidth + gapSize);
       const translate = centerPosition - slideOffset;
       
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: slides are 40vw wide with ~3vw gaps (2rem ≈ 3vw on desktop)
+      // Desktop: slides are 40vw wide with ~2vw gaps (2rem ≈ 2vw)
       const slideWidth = 40; // vw
-      const gapSize = 3; // vw (approximation of 2rem)
+      const gapSize = 2; // vw (simplified, 2rem ≈ 2vw)
       const viewportWidth = 100; // vw
       
       // Calculate the position to center the current slide
-      const centerPosition = (viewportWidth - slideWidth) / 2;
+      const centerPosition = (viewportWidth - slideWidth) / 2; // 30vw from left edge
       const slideOffset = current * (slideWidth + gapSize);
       const translate = centerPosition - slideOffset;
       
@@ -259,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize carousel
   function initCarousel() {
+    current = 0; // Ensure we start at slide 0
     goToSlide(0);
   }
 
