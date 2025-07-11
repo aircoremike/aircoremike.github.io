@@ -10,44 +10,41 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Simple hero positioning - just use a fixed margin that works
+    // Simple hero positioning - use actual measured navbar height
     function adjustHeroPosition() {
       const heroFlex = document.querySelector('.hero-flex');
       const heroImg = document.querySelector('.hero-img');
-      if (heroFlex) {
-        // Use simple, reliable fixed values based on device type
-        if (window.innerWidth <= 768) {
-          heroFlex.style.marginTop = '80px'; // Mobile
-        } else {
-          heroFlex.style.marginTop = '160px'; // Desktop/tablet
-        }
+      const navbar = document.querySelector('.navbar');
+      
+      if (heroFlex && navbar) {
+        // Use the actual measured navbar height instead of guessing
+        const navbarRect = navbar.getBoundingClientRect();
+        const actualNavbarHeight = navbarRect.height;
+        
+        console.log('DEBUG: Using actual navbar height:', actualNavbarHeight + 'px');
+        heroFlex.style.marginTop = actualNavbarHeight + 'px';
         
         // DEBUG: Add red borders to see what's happening
         if (heroFlex) heroFlex.style.border = '3px solid red';
         if (heroImg) heroImg.style.border = '3px solid blue';
         
-        // Log current navbar info for debugging
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-          const navbarRect = navbar.getBoundingClientRect();
-          console.log('DEBUG: Navbar info:', {
-            height: navbarRect.height,
-            top: navbarRect.top,
-            bottom: navbarRect.bottom,
-            heroMarginTop: heroFlex.style.marginTop,
-            windowWidth: window.innerWidth
-          });
-        }
+        // Log measurements for verification
+        console.log('DEBUG: Navbar info:', {
+          height: actualNavbarHeight,
+          top: navbarRect.top,
+          bottom: navbarRect.bottom,
+          heroMarginTop: heroFlex.style.marginTop,
+          windowWidth: window.innerWidth
+        });
         
         // Handle window resize
         if (!heroFlex.dataset.resizeListenerAdded) {
           heroFlex.dataset.resizeListenerAdded = 'true';
           window.addEventListener('resize', () => {
-            if (window.innerWidth <= 768) {
-              heroFlex.style.marginTop = '80px';
-            } else {
-              heroFlex.style.marginTop = '160px';
-            }
+            const newNavbarRect = navbar.getBoundingClientRect();
+            const newHeight = newNavbarRect.height;
+            heroFlex.style.marginTop = newHeight + 'px';
+            console.log('DEBUG: Resize - new margin:', newHeight + 'px');
           });
         }
       }
@@ -103,10 +100,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleNavbarShrink() {
+      const heroFlex = document.querySelector('.hero-flex');
+      
       if (!navbar || !isDesktopOrLandscapeTablet()) {
         // Remove shrink on mobile/tablet portrait
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
+        // Reset hero margin to actual navbar height
+        if (heroFlex && navbar) {
+          const navbarRect = navbar.getBoundingClientRect();
+          heroFlex.style.marginTop = navbarRect.height + 'px';
+        }
         hasShrunk = false;
         return;
       }
@@ -116,30 +120,30 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('navbar-shrink');
         hasShrunk = true;
         
-        // DEBUG: Log navbar info when shrinking
-        setTimeout(() => {
-          const navbarRect = navbar.getBoundingClientRect();
-          console.log('DEBUG: Navbar SHRUNK:', {
-            height: navbarRect.height,
-            bottom: navbarRect.bottom,
-            scrollY: window.scrollY
-          });
-        }, 350);
+        // Adjust hero margin for shrunk navbar using actual height
+        if (heroFlex) {
+          setTimeout(() => {
+            const navbarRect = navbar.getBoundingClientRect();
+            const shrunkHeight = navbarRect.height;
+            heroFlex.style.marginTop = shrunkHeight + 'px';
+            console.log('DEBUG: Navbar SHRUNK to:', shrunkHeight + 'px, hero margin:', shrunkHeight + 'px');
+          }, 350);
+        }
         
       } else if (window.scrollY <= 10 && hasShrunk) {
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
         hasShrunk = false;
         
-        // DEBUG: Log navbar info when expanding
-        setTimeout(() => {
-          const navbarRect = navbar.getBoundingClientRect();
-          console.log('DEBUG: Navbar EXPANDED:', {
-            height: navbarRect.height,
-            bottom: navbarRect.bottom,
-            scrollY: window.scrollY
-          });
-        }, 350);
+        // Adjust hero margin for normal navbar using actual height
+        if (heroFlex) {
+          setTimeout(() => {
+            const navbarRect = navbar.getBoundingClientRect();
+            const normalHeight = navbarRect.height;
+            heroFlex.style.marginTop = normalHeight + 'px';
+            console.log('DEBUG: Navbar EXPANDED to:', normalHeight + 'px, hero margin:', normalHeight + 'px');
+          }, 350);
+        }
       }
     }
 
