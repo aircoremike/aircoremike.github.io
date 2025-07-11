@@ -479,7 +479,7 @@ body {
   }
   .carousel-track {
     overflow: visible;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0;
     gap: 1rem;
   }
@@ -498,7 +498,7 @@ body {
   }
   .carousel-track {
     overflow: visible;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
   }
 }
