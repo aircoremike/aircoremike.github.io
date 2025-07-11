@@ -394,16 +394,53 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal = modal;
     
-    // Completely hide background scrolling and scrollbar
+    // Store current scroll position and prevent layout shifts
+    const scrollY = window.scrollY;
+    const scrollX = window.scrollX;
+    
+    // Apply styles to completely lock the page position
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = `-${scrollX}px`;
+    
+    // Store position for restoration
+    modal.dataset.scrollY = scrollY;
+    modal.dataset.scrollX = scrollX;
     
     document.body.appendChild(modal);
     
-    // Animate in
-    requestAnimationFrame(() => {
-      modal.classList.add('modal-visible');
-    });
+    // Wait for all images to load before animating
+    const images = modal.querySelectorAll('img');
+    let loadedImages = 0;
+    const totalImages = images.length;
+    
+    function checkAllImagesLoaded() {
+      loadedImages++;
+      if (loadedImages === totalImages) {
+        // All images loaded, now animate in
+        requestAnimationFrame(() => {
+          modal.classList.add('modal-visible');
+        });
+      }
+    }
+    
+    if (totalImages === 0) {
+      // No images to load, animate immediately
+      requestAnimationFrame(() => {
+        modal.classList.add('modal-visible');
+      });
+    } else {
+      // Set up image loading listeners
+      images.forEach(img => {
+        if (img.complete) {
+          checkAllImagesLoaded();
+        } else {
+          img.addEventListener('load', checkAllImagesLoaded);
+          img.addEventListener('error', checkAllImagesLoaded); // Count errors as "loaded" to prevent hanging
+        }
+      });
+    }
     
     // Close handlers
     const closeBtn = modal.querySelector('.modal-close');
@@ -449,9 +486,18 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     // Wait for animation to complete before restoring scrollbar
     setTimeout(() => {
-      // Re-enable background scrolling and restore scrollbar
+      // Restore scroll position without layout shift
+      const scrollY = parseInt(currentModal.dataset.scrollY || '0');
+      const scrollX = parseInt(currentModal.dataset.scrollX || '0');
+      
+      // Remove modal-open classes and inline styles
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
+      document.body.style.top = '';
+      document.body.style.left = '';
+      
+      // Restore scroll position
+      window.scrollTo(scrollX, scrollY);
       
       if (currentModal) {
         document.body.removeChild(currentModal);
