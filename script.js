@@ -233,23 +233,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const translate = centerOffset - current * totalSlideWidth;
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: slide is 100% + 1rem margins (0.5rem each side)
-      // Need to account for the margins when calculating positioning
-      const slideWidthPercent = 100; // Each slide is 100% of container
-      const marginRem = 1; // 0.5rem on each side = 1rem total
-      
-      // Get the container width in pixels to convert rem to percentage
-      const container = track.parentElement;
-      const containerWidthPx = container.offsetWidth;
-      const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      const marginPercent = (marginRem * remInPx / containerWidthPx) * 100;
-      
-      // Total width per slide including margins
-      const totalSlideWidth = slideWidthPercent + marginPercent;
-      
-      // Center the current slide
-      const centerOffset = marginPercent / 2; // Half the margin to center
-      const translate = centerOffset - current * totalSlideWidth;
+      // Desktop: simplified centering approach
+      // Each slide is 100% + margins, but we'll position based on slide centers
+      const slideWidthWithMargins = 100; // Treat each slide + margins as 100% unit
+      const translate = -current * slideWidthWithMargins;
       track.style.transform = `translateX(${translate}%)`;
     }
     updateArrows();
@@ -351,8 +338,13 @@ document.addEventListener('DOMContentLoaded', function() {
   carouselContainer.addEventListener('touchend', onTouchEnd);
   carouselContainer.addEventListener('click', onClick);
 
-  // Init
-  goToSlide(0);
+  // Init with delay to ensure CSS is fully loaded
+  if (track && slides.length > 0) {
+    // Small delay to ensure proper initialization after CSS loads
+    setTimeout(() => {
+      goToSlide(0);
+    }, 50);
+  }
 })();
 
 // Apple-style Modal System
