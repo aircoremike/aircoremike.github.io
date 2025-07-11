@@ -256,8 +256,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Position to center the slide at index
     const slideOffset = index * metrics.slideWithGap;
     const centerOffset = (metrics.containerWidth - metrics.slideWidth) / 2;
+    const finalPosition = centerOffset - slideOffset;
     
-    return centerOffset - slideOffset;
+    console.log(`Calculate position for slide ${index}:`, {
+      slideWidth: metrics.slideWidth,
+      gap: metrics.gap,
+      containerWidth: metrics.containerWidth,
+      slideWithGap: metrics.slideWithGap,
+      slideOffset: slideOffset,
+      centerOffset: centerOffset,
+      finalPosition: finalPosition
+    });
+    
+    return finalPosition;
   }
   
   // Move to specific slide
@@ -267,6 +278,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Calculate exact pixel position
     const position = calculatePosition(currentIndex);
+    console.log(`Going to slide ${currentIndex}, position: ${position}px`);
+    
     track.style.transform = `translateX(${position}px)`;
     
     updateArrows();
@@ -405,9 +418,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize
   function init() {
     currentIndex = 0;
+    console.log('Carousel init - Mobile:', isMobile(), 'Window width:', window.innerWidth);
+    
     // Ensure layout is ready before positioning
     requestAnimationFrame(() => {
-      goToSlide(0);
+      // Double-check that we have proper measurements
+      const metrics = getSlideMetrics();
+      console.log('Init metrics:', metrics);
+      
+      if (metrics && metrics.slideWidth > 0) {
+        goToSlide(0);
+      } else {
+        // If measurements aren't ready, try again shortly
+        setTimeout(() => {
+          console.log('Retrying init with metrics:', getSlideMetrics());
+          goToSlide(0);
+        }, 100);
+      }
     });
   }
   
@@ -415,7 +442,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
-    setTimeout(init, 50);
+    // Give extra time for CSS to load and apply
+    setTimeout(init, 100);
   }
 })();
 
