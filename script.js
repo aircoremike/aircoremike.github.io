@@ -220,22 +220,20 @@ document.addEventListener('DOMContentLoaded', function() {
   function goToSlide(idx) {
     current = idx;
     
-    console.log('goToSlide called with idx:', idx, 'window width:', window.innerWidth);
-    
     if (
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile: Simple calculation - each slide is 80vw + gap
-      // First slide should be centered at 10vw, then each slide moves by exactly 81vw (80vw + ~1vw gap)
+      // Mobile: slides are 80vw wide with 1rem gaps
+      // Center first slide: (100vw - 80vw) / 2 = 10vw from left
+      // Each slide moves by: 80vw + gap (approximately 81vw total)
       const translate = 10 - (current * 81);
-      console.log('Mobile mode - translate:', translate);
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: Simple calculation - each slide is 40vw + gap  
-      // First slide should be centered at 30vw, then each slide moves by exactly 42vw (40vw + ~2vw gap)
-      const translate = 30 - (current * 42);
-      console.log('Desktop mode - translate:', translate);
+      // Desktop: slides are 40vw wide with 2rem gaps
+      // Center first slide: (100vw - 40vw) / 2 = 30vw from left
+      // Each slide moves by: 40vw + 2rem gap (approximately 41vw total on most screens)
+      const translate = 30 - (current * 41);
       track.style.transform = `translateX(${translate}vw)`;
     }
     updateArrows();
@@ -249,9 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize carousel
   function initCarousel() {
-    console.log('initCarousel called, slides found:', slides.length);
     current = 0; // Ensure we start at slide 0
-    console.log('Setting current to 0, calling goToSlide(0)');
     goToSlide(0);
   }
 
@@ -347,10 +343,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Init with delay to ensure CSS is fully loaded
   if (track && slides.length > 0) {
-    console.log('Carousel elements found - track:', track, 'slides:', slides.length);
     // Small delay to ensure proper initialization after CSS loads
     setTimeout(() => {
-      console.log('Calling initCarousel after delay');
       initCarousel();
     }, 50);
     
@@ -359,12 +353,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        console.log('Window resized, re-applying slide position');
         goToSlide(current); // Re-apply current slide position with new dimensions
       }, 100);
     });
-  } else {
-    console.log('Carousel initialization failed - track:', track, 'slides length:', slides.length);
   }
 })();
 
