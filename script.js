@@ -15,34 +15,39 @@ document.addEventListener('DOMContentLoaded', function() {
       const navbar = document.querySelector('.navbar');
       const heroFlex = document.querySelector('.hero-flex');
       if (navbar && heroFlex) {
-        const navbarHeight = navbar.offsetHeight;
-        console.log('Navbar loaded, height:', navbarHeight);
-        
-        // Apply the correct margin-top based on actual navbar height
-        if (window.innerWidth <= 768) {
-          heroFlex.style.marginTop = navbarHeight + 'px';
-        } else if (window.innerWidth >= 769 && window.matchMedia('(orientation: portrait)').matches) {
-          heroFlex.style.marginTop = navbarHeight + 'px';
-        } else {
-          heroFlex.style.marginTop = navbarHeight + 'px';
-        }
-        
-        // Set up responsive adjustments
-        window.addEventListener('resize', () => {
-          const newHeight = navbar.offsetHeight;
-          if (window.innerWidth <= 768) {
-            heroFlex.style.marginTop = newHeight + 'px';
-          } else if (window.innerWidth >= 769 && window.matchMedia('(orientation: portrait)').matches) {
-            heroFlex.style.marginTop = newHeight + 'px';
+        // Wait for navbar to be fully rendered by checking its height
+        const checkNavbarReady = () => {
+          const navbarHeight = navbar.offsetHeight;
+          console.log('Checking navbar height:', navbarHeight);
+          
+          if (navbarHeight > 0) {
+            // Navbar is fully rendered, apply positioning
+            console.log('Navbar fully rendered, height:', navbarHeight);
+            heroFlex.style.marginTop = navbarHeight + 'px';
+            
+            // Set up responsive adjustments (only once)
+            if (!heroFlex.dataset.resizeListenerAdded) {
+              heroFlex.dataset.resizeListenerAdded = 'true';
+              window.addEventListener('resize', () => {
+                const newHeight = navbar.offsetHeight;
+                heroFlex.style.marginTop = newHeight + 'px';
+              });
+            }
           } else {
-            heroFlex.style.marginTop = newHeight + 'px';
+            // Navbar not ready yet, try again
+            console.log('Navbar not ready, retrying...');
+            setTimeout(checkNavbarReady, 50);
           }
-        });
+        };
+        
+        checkNavbarReady();
       }
     }
     
-    // Call after a short delay to ensure navbar is fully rendered
-    setTimeout(adjustHeroPosition, 100);
+    // Call after navbar injection with multiple fallbacks
+    setTimeout(adjustHeroPosition, 0);     // Immediate
+    setTimeout(adjustHeroPosition, 50);    // Short delay
+    setTimeout(adjustHeroPosition, 150);   // Longer delay as fallback
 
     // Active link underline for nav links
     function setActiveNavLink(link) {
@@ -97,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
         // Reset hero margin to normal navbar height
-        if (heroFlex && navbar) {
+        if (heroFlex && navbar && navbar.offsetHeight > 0) {
           heroFlex.style.marginTop = navbar.offsetHeight + 'px';
         }
         hasShrunk = false;
@@ -111,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
           // Wait for CSS transition to complete, then adjust
           setTimeout(() => {
             const shrunkHeight = navbar.offsetHeight;
-            heroFlex.style.marginTop = shrunkHeight + 'px';
+            if (shrunkHeight > 0) {
+              heroFlex.style.marginTop = shrunkHeight + 'px';
+            }
           }, 350); // Match CSS transition duration
         }
         hasShrunk = true;
@@ -122,7 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroFlex) {
           setTimeout(() => {
             const normalHeight = navbar.offsetHeight;
-            heroFlex.style.marginTop = normalHeight + 'px';
+            if (normalHeight > 0) {
+              heroFlex.style.marginTop = normalHeight + 'px';
+            }
           }, 350); // Match CSS transition duration
         }
         hasShrunk = false;
@@ -233,19 +242,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Image already loaded or doesn't exist
       animateHeroTitle();
       enableSectionFade();
-    }
-  });
-})();
-
-// Global: Always navigate to index.html when clicking the logo in the navbar
-(function() {
-  document.addEventListener('DOMContentLoaded', function() {
-    var logoLink = document.querySelector('.logo a');
-    if (logoLink) {
-      logoLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = 'index.html';
-      });
     }
   });
 })();
