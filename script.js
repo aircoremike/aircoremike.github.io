@@ -398,11 +398,15 @@ With their lightweight construction and remarkable durability, stainless steel h
     const scrollY = window.scrollY;
     const scrollX = window.scrollX;
     
+    // Calculate scrollbar width to prevent horizontal shifting
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    
     // Apply styles to completely lock the page position
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
     document.body.style.top = `-${scrollY}px`;
     document.body.style.left = `-${scrollX}px`;
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
     
     // Store position for restoration
     modal.dataset.scrollY = scrollY;
@@ -495,6 +499,7 @@ With their lightweight construction and remarkable durability, stainless steel h
       document.body.classList.remove('modal-open');
       document.body.style.top = '';
       document.body.style.left = '';
+      document.body.style.paddingRight = '';
       
       // Restore scroll position
       window.scrollTo(scrollX, scrollY);
