@@ -13,24 +13,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fix hero section positioning after navbar is loaded
     function adjustHeroPosition() {
       const navbar = document.querySelector('.navbar');
-      const heroFlex = document.querySelector('.hero-flex');
-      if (navbar && heroFlex) {
+      const heroImg = document.querySelector('.hero-img');
+      if (navbar && heroImg) {
         // Wait for navbar to be fully rendered by checking its height
         const checkNavbarReady = () => {
-          const navbarHeight = navbar.offsetHeight;
-          console.log('Checking navbar height:', navbarHeight);
+          const navbarRect = navbar.getBoundingClientRect();
+          const navbarBottom = navbarRect.bottom;
           
-          if (navbarHeight > 0) {
-            // Navbar is fully rendered, apply positioning
-            console.log('Navbar fully rendered, height:', navbarHeight);
-            heroFlex.style.marginTop = navbarHeight + 'px';
+          console.log('Debug navbar positioning:', {
+            navbarRect: navbarRect,
+            navbarBottom: navbarBottom,
+            navbarTop: navbarRect.top,
+            navbarHeight: navbarRect.height,
+            windowScrollY: window.scrollY
+          });
+          
+          if (navbarRect.height > 0) {
+            // Instead of margin-top on hero-flex, add padding-top to hero image
+            // This pushes the image down while keeping the container at the top
+            console.log('Applying hero image padding-top:', navbarBottom + 'px');
+            heroImg.style.paddingTop = navbarBottom + 'px';
+            heroImg.style.boxSizing = 'border-box';
             
             // Set up responsive adjustments (only once)
-            if (!heroFlex.dataset.resizeListenerAdded) {
-              heroFlex.dataset.resizeListenerAdded = 'true';
+            if (!heroImg.dataset.resizeListenerAdded) {
+              heroImg.dataset.resizeListenerAdded = 'true';
               window.addEventListener('resize', () => {
-                const newHeight = navbar.offsetHeight;
-                heroFlex.style.marginTop = newHeight + 'px';
+                const newNavbarRect = navbar.getBoundingClientRect();
+                const newNavbarBottom = newNavbarRect.bottom;
+                console.log('Resize: new hero image padding-top:', newNavbarBottom + 'px');
+                heroImg.style.paddingTop = newNavbarBottom + 'px';
               });
             }
           } else {
@@ -46,8 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Call after navbar injection with multiple fallbacks
     setTimeout(adjustHeroPosition, 0);     // Immediate
-    setTimeout(adjustHeroPosition, 50);    // Short delay
-    setTimeout(adjustHeroPosition, 150);   // Longer delay as fallback
+    setTimeout(adjustHeroPosition, 100);   // Short delay
+    setTimeout(adjustHeroPosition, 200);   // Medium delay
+    setTimeout(adjustHeroPosition, 500);   // Longer delay as fallback
 
     // Active link underline for nav links
     function setActiveNavLink(link) {
@@ -95,15 +108,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleNavbarShrink() {
-      const heroFlex = document.querySelector('.hero-flex');
+      const heroImg = document.querySelector('.hero-img');
       
       if (!navbar || !isDesktopOrLandscapeTablet()) {
         // Remove shrink if resizing to mobile/tablet portrait or if navbar doesn't exist
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Reset hero margin to normal navbar height
-        if (heroFlex && navbar && navbar.offsetHeight > 0) {
-          heroFlex.style.marginTop = navbar.offsetHeight + 'px';
+        // Reset hero image padding to normal navbar height
+        if (heroImg && navbar) {
+          const navbarRect = navbar.getBoundingClientRect();
+          if (navbarRect.height > 0) {
+            heroImg.style.paddingTop = navbarRect.bottom + 'px';
+          }
         }
         hasShrunk = false;
         return;
@@ -111,13 +127,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (window.scrollY > 10 && !hasShrunk) {
         navbar.classList.add('navbar-shrink');
         document.body.classList.add('navbar-shrink');
-        // Adjust hero margin for shrunk navbar
-        if (heroFlex) {
+        // Adjust hero image padding for shrunk navbar
+        if (heroImg) {
           // Wait for CSS transition to complete, then adjust
           setTimeout(() => {
-            const shrunkHeight = navbar.offsetHeight;
-            if (shrunkHeight > 0) {
-              heroFlex.style.marginTop = shrunkHeight + 'px';
+            const navbarRect = navbar.getBoundingClientRect();
+            if (navbarRect.height > 0) {
+              const newPadding = navbarRect.bottom;
+              console.log('Shrink: applying hero image padding-top:', newPadding + 'px');
+              heroImg.style.paddingTop = newPadding + 'px';
             }
           }, 350); // Match CSS transition duration
         }
@@ -125,12 +143,14 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (window.scrollY <= 10 && hasShrunk) {
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Adjust hero margin for normal navbar
-        if (heroFlex) {
+        // Adjust hero image padding for normal navbar
+        if (heroImg) {
           setTimeout(() => {
-            const normalHeight = navbar.offsetHeight;
-            if (normalHeight > 0) {
-              heroFlex.style.marginTop = normalHeight + 'px';
+            const navbarRect = navbar.getBoundingClientRect();
+            if (navbarRect.height > 0) {
+              const newPadding = navbarRect.bottom;
+              console.log('Expand: applying hero image padding-top:', newPadding + 'px');
+              heroImg.style.paddingTop = newPadding + 'px';
             }
           }, 350); // Match CSS transition duration
         }
