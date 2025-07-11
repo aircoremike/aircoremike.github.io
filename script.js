@@ -420,7 +420,12 @@ With their lightweight construction and remarkable durability, stainless steel h
       if (loadedImages === totalImages) {
         // All images loaded, now animate in
         requestAnimationFrame(() => {
-          modal.classList.add('modal-visible');
+          modal.classList.add('modal-opening');
+          // After a brief moment, transition to visible state
+          setTimeout(() => {
+            modal.classList.remove('modal-opening');
+            modal.classList.add('modal-visible');
+          }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
         });
       }
     }
@@ -428,7 +433,12 @@ With their lightweight construction and remarkable durability, stainless steel h
     if (totalImages === 0) {
       // No images to load, animate immediately
       requestAnimationFrame(() => {
-        modal.classList.add('modal-visible');
+        modal.classList.add('modal-opening');
+        // After a brief moment, transition to visible state
+        setTimeout(() => {
+          modal.classList.remove('modal-opening');
+          modal.classList.add('modal-visible');
+        }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
       });
     } else {
       // Set up image loading listeners
@@ -482,7 +492,9 @@ With their lightweight construction and remarkable durability, stainless steel h
   function closeModal() {
     if (!currentModal) return;
     
+    // Start closing animation
     currentModal.classList.remove('modal-visible');
+    currentModal.classList.add('modal-closing');
     
     // Wait for animation to complete before restoring scrollbar
     setTimeout(() => {

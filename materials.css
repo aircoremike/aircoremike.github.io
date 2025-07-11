@@ -546,16 +546,30 @@ body {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--modal-close-duration) ease, visibility var(--modal-close-duration) ease;
   padding: 20px 20px 40px 20px;
   overflow-y: auto;
   overflow-x: hidden;
+  /* No transition by default - will be set dynamically */
 }
 
+/* Opening animation - no opacity transition, always opaque */
+.modal-overlay.modal-opening {
+  opacity: 1;
+  visibility: visible;
+  /* No transition on overlay during open */
+}
+
+/* Visible state - maintain opacity */
 .modal-overlay.modal-visible {
   opacity: 1;
   visibility: visible;
-  transition: opacity var(--modal-open-duration) ease, visibility var(--modal-open-duration) ease;
+}
+
+/* Closing animation - fade out only */
+.modal-overlay.modal-closing {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--modal-close-duration) ease, visibility var(--modal-close-duration) ease;
 }
 
 .modal-container {
@@ -566,13 +580,25 @@ body {
   margin: 0 auto;
   position: relative;
   transform: translateY(100vh);
-  transition: transform var(--modal-close-duration) ease;
   min-height: fit-content;
+  /* No transition by default - will be set dynamically */
 }
 
-.modal-visible .modal-container {
+/* Opening animation - slide up from bottom */
+.modal-opening .modal-container {
   transform: translateY(0);
   transition: transform var(--modal-open-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Visible state - maintain position */
+.modal-visible .modal-container {
+  transform: translateY(0);
+}
+
+/* Closing animation - no movement, just stay in place */
+.modal-closing .modal-container {
+  transform: translateY(0);
+  /* No transition on container during close */
 }
 
 .modal-header {
