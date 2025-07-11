@@ -224,21 +224,29 @@ document.addEventListener('DOMContentLoaded', function() {
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile: Calculate exact centering based on slide width and viewport
-      const slideWidth = 86; // vw
+      // Mobile: slides are 80vw wide with 1rem gaps
+      const slideWidth = 80; // vw
+      const gapSize = 1 * 100 / window.innerWidth * 16; // Convert 1rem to vw
       const viewportWidth = 100; // vw
       
       // Calculate the position to center the current slide
-      // First slide should be centered, subsequent slides move left
       const centerPosition = (viewportWidth - slideWidth) / 2;
-      const slideOffset = current * slideWidth;
+      const slideOffset = current * (slideWidth + gapSize);
       const translate = centerPosition - slideOffset;
       
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: Simple percentage-based movement
-      const translate = -current * 100;
-      track.style.transform = `translateX(${translate}%)`;
+      // Desktop: slides are 33.33vw wide with 2rem gaps
+      const slideWidth = 33.33; // vw
+      const gapSize = 2 * 100 / window.innerWidth * 16; // Convert 2rem to vw
+      const viewportWidth = 100; // vw
+      
+      // Calculate the position to center the current slide
+      const centerPosition = (viewportWidth - slideWidth) / 2;
+      const slideOffset = current * (slideWidth + gapSize);
+      const translate = centerPosition - slideOffset;
+      
+      track.style.transform = `translateX(${translate}vw)`;
     }
     updateArrows();
   }
