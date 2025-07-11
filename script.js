@@ -208,154 +208,214 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })();
 
-// Carousel functionality
+// Carousel functionality - Pixel-perfect rewrite
 (function() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(document.querySelectorAll('.carousel-slide'));
   const arrowLeft = document.getElementById('carouselArrowLeft');
   const arrowRight = document.getElementById('carouselArrowRight');
-  let current = 0;
-  const slideCount = slides.length;
-
-  function goToSlide(idx) {
-    current = idx;
+  
+  if (!track || slides.length === 0) return;
+  
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+  
+  // Check if mobile/tablet portrait
+  function isMobile() {
+    return window.innerWidth <= 700 || 
+           (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches);
+  }
+  
+  // Get precise measurements from the DOM
+  function getSlideMetrics() {
+    const trackRect = track.getBoundingClientRect();
+    const containerRect = track.parentElement.getBoundingClientRect();
     
-    if (
-      window.innerWidth <= 700 ||
-      (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
-    ) {
-      // Mobile: slides are 80vw wide with 1rem gaps
-      // Center first slide: (100vw - 80vw) / 2 = 10vw from left
-      // Each slide moves by: 80vw + gap (approximately 81vw total)
-      const translate = 10 - (current * 81);
-      track.style.transform = `translateX(${translate}vw)`;
-    } else {
-      // Desktop: slides are 40vw wide with 2rem gaps
-      // Center first slide: (100vw - 40vw) / 2 = 30vw from left
-      // Each slide moves by: 40vw + 2rem gap (approximately 41vw total on most screens)
-      const translate = 30 - (current * 41);
-      track.style.transform = `translateX(${translate}vw)`;
-    }
+    if (slides.length === 0) return null;
+    
+    const slideRect = slides[0].getBoundingClientRect();
+    const slideWidth = slideRect.width;
+    
+    // Get actual gap from computed styles
+    const trackStyle = window.getComputedStyle(track);
+    const gap = parseFloat(trackStyle.gap || trackStyle.columnGap || '0');
+    
+    return {
+      slideWidth,
+      gap,
+      containerWidth: containerRect.width,
+      slideWithGap: slideWidth + gap
+    };
+  }
+  
+  // Calculate exact pixel position for a slide
+  function calculatePosition(index) {
+    const metrics = getSlideMetrics();
+    if (!metrics) return 0;
+    
+    // Position to center the slide at index
+    const slideOffset = index * metrics.slideWithGap;
+    const centerOffset = (metrics.containerWidth - metrics.slideWidth) / 2;
+    
+    return centerOffset - slideOffset;
+  }
+  
+  // Move to specific slide
+  function goToSlide(index) {
+    // Clamp index to valid range
+    currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+    
+    // Calculate exact pixel position
+    const position = calculatePosition(currentIndex);
+    track.style.transform = `translateX(${position}px)`;
+    
     updateArrows();
   }
-
+  
+  // Update arrow states
   function updateArrows() {
-    if (!arrowLeft || !arrowRight) return;
-    arrowLeft.disabled = current === 0;
-    arrowRight.disabled = current === slideCount - 1;
+    if (arrowLeft) arrowLeft.disabled = currentIndex === 0;
+    if (arrowRight) arrowRight.disabled = currentIndex === totalSlides - 1;
   }
-
-  // Initialize carousel
-  function initCarousel() {
-    current = 0; // Ensure we start at slide 0
-    goToSlide(0);
+  
+  // Navigation functions
+  function nextSlide() {
+    if (currentIndex < totalSlides - 1) {
+      goToSlide(currentIndex + 1);
+    }
   }
-
-  if (arrowLeft && arrowRight) {
-    arrowLeft.addEventListener('click', function(e) {
+  
+  function prevSlide() {
+    if (currentIndex > 0) {
+      goToSlide(currentIndex - 1);
+    }
+  }
+  
+  // Arrow click handlers
+  if (arrowLeft) {
+    arrowLeft.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (current > 0) goToSlide(current - 1);
-    });
-    arrowRight.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (current < slideCount - 1) goToSlide(current + 1);
+      prevSlide();
     });
   }
-
-  // Touch/click navigation
-  let startX = null;
-  let endX = null;
-  let dragging = false;
-  let isTouch = false;
-
-  // Use the carousel container for touch events
+  
+  if (arrowRight) {
+    arrowRight.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nextSlide();
+    });
+  }
+  
+  // Touch/swipe and mouse drag handling
   const carouselContainer = track.parentElement.parentElement;
-
-  function onTouchStart(e) {
-    if (e.touches && e.touches.length > 1) return; // Only single-finger
-    dragging = true;
-    isTouch = !!e.touches;
+  let isInteracting = false;
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  
+  function handleStart(e) {
+    if (e.touches && e.touches.length > 1) return; // Multi-touch
+    
+    isInteracting = true;
+    isDragging = false;
     startX = e.touches ? e.touches[0].clientX : e.clientX;
-    endX = startX;
+    currentX = startX;
   }
-  function onTouchMove(e) {
-    if (!dragging) return;
+  
+  function handleMove(e) {
+    if (!isInteracting) return;
     if (e.touches && e.touches.length > 1) return;
-    endX = e.touches ? e.touches[0].clientX : e.clientX;
-    // Prevent vertical scroll if horizontal swipe is detected
-    if (isTouch && Math.abs(endX - startX) > 10) {
+    
+    currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const deltaX = Math.abs(currentX - startX);
+    
+    // Mark as dragging if moved enough
+    if (deltaX > 5) {
+      isDragging = true;
+    }
+    
+    // Prevent scrolling on touch devices during horizontal swipe
+    if (e.touches && deltaX > 10) {
       e.preventDefault();
     }
   }
-  function onTouchEnd(e) {
-    if (!dragging || startX === null || endX === null) return;
-    const dx = endX - startX;
-    if (Math.abs(dx) > 50) {
-      if (dx < 0 && current < slideCount - 1) goToSlide(current + 1);
-      else if (dx > 0 && current > 0) goToSlide(current - 1);
+  
+  function handleEnd(e) {
+    if (!isInteracting) return;
+    
+    const deltaX = currentX - startX;
+    const threshold = 50; // Minimum swipe distance
+    
+    if (isDragging && Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        prevSlide(); // Swipe right = previous
+      } else {
+        nextSlide(); // Swipe left = next
+      }
     }
-    dragging = false;
-    startX = null;
-    endX = null;
-    isTouch = false;
+    
+    isInteracting = false;
+    isDragging = false;
+    startX = 0;
+    currentX = 0;
   }
-
-  // Click for desktop: left side goes back, right side goes forward
-  function onClick(e) {
-    if (isTouchDevice()) return;
-    // Don't advance if clicking on a button or interactive element
+  
+  // Desktop click navigation (left/right sides)
+  function handleClick(e) {
+    // Don't navigate if we were dragging or on a touch device
+    if (isDragging || isTouchDevice()) return;
+    
+    // Don't navigate if clicking on interactive elements
     if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
     
-    // Get click position relative to the carousel container
     const rect = carouselContainer.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
-    const containerWidth = rect.width;
-    const isLeftSide = clickX < containerWidth / 2;
+    const isLeftHalf = clickX < rect.width / 2;
     
-    if (isLeftSide && current > 0) {
-      // Clicked on left side - go to previous slide
-      goToSlide(current - 1);
-    } else if (!isLeftSide && current < slideCount - 1) {
-      // Clicked on right side - go to next slide
-      goToSlide(current + 1);
+    if (isLeftHalf) {
+      prevSlide();
+    } else {
+      nextSlide();
     }
   }
-
-  // Remove old listeners from track
-  track.removeEventListener('mousedown', onTouchStart);
-  track.removeEventListener('mousemove', onTouchMove);
-  track.removeEventListener('mouseup', onTouchEnd);
-  track.removeEventListener('mouseleave', onTouchEnd);
-  track.removeEventListener('touchstart', onTouchStart);
-  track.removeEventListener('touchmove', onTouchMove);
-  track.removeEventListener('touchend', onTouchEnd);
-  track.removeEventListener('click', onClick);
-
-  // Add listeners to carousel container
-  carouselContainer.addEventListener('mousedown', onTouchStart);
-  carouselContainer.addEventListener('mousemove', onTouchMove);
-  carouselContainer.addEventListener('mouseup', onTouchEnd);
-  carouselContainer.addEventListener('mouseleave', onTouchEnd);
-  carouselContainer.addEventListener('touchstart', onTouchStart, { passive: false });
-  carouselContainer.addEventListener('touchmove', onTouchMove, { passive: false });
-  carouselContainer.addEventListener('touchend', onTouchEnd);
-  carouselContainer.addEventListener('click', onClick);
-
-  // Init with delay to ensure CSS is fully loaded
-  if (track && slides.length > 0) {
-    // Small delay to ensure proper initialization after CSS loads
-    setTimeout(() => {
-      initCarousel();
-    }, 50);
-    
-    // Re-center on window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        goToSlide(current); // Re-apply current slide position with new dimensions
-      }, 100);
+  
+  // Event listeners
+  carouselContainer.addEventListener('mousedown', handleStart);
+  carouselContainer.addEventListener('mousemove', handleMove);
+  carouselContainer.addEventListener('mouseup', handleEnd);
+  carouselContainer.addEventListener('mouseleave', handleEnd);
+  carouselContainer.addEventListener('touchstart', handleStart, { passive: false });
+  carouselContainer.addEventListener('touchmove', handleMove, { passive: false });
+  carouselContainer.addEventListener('touchend', handleEnd);
+  carouselContainer.addEventListener('click', handleClick);
+  
+  // Resize handler
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Recalculate position for current slide with new dimensions
+      // Wait for layout to settle after resize
+      requestAnimationFrame(() => {
+        goToSlide(currentIndex);
+      });
+    }, 100);
+  });
+  
+  // Initialize
+  function init() {
+    currentIndex = 0;
+    // Ensure layout is ready before positioning
+    requestAnimationFrame(() => {
+      goToSlide(0);
     });
+  }
+  
+  // Start after DOM is ready and styles are applied
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 50);
   }
 })();
 
