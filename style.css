@@ -374,9 +374,22 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Margin-top will be set dynamically by JavaScript after navbar loads */
-  margin-top: 0;
+  /* Static margin values that work reliably */
+  margin-top: 160px; /* Desktop default */
   transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+@media (max-width: 768px) {
+  .hero-flex {
+    margin-top: 80px; /* Mobile */
+  }
+}
+
+/* Adjust hero position when navbar shrinks on desktop */
+@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
+  body.navbar-shrink .hero-flex {
+    margin-top: 80px; /* Half the desktop navbar height when shrunk */
+  }
 }
 
 .hero-img {

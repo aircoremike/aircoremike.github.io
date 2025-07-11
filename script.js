@@ -10,57 +10,34 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Fix hero section positioning after navbar is loaded
+    // Simple hero positioning - just use a fixed margin that works
     function adjustHeroPosition() {
-      const navbar = document.querySelector('.navbar');
-      const heroImg = document.querySelector('.hero-img');
-      if (navbar && heroImg) {
-        // Wait for navbar to be fully rendered by checking its height
-        const checkNavbarReady = () => {
-          const navbarRect = navbar.getBoundingClientRect();
-          const navbarBottom = navbarRect.bottom;
-          
-          console.log('Debug navbar positioning:', {
-            navbarRect: navbarRect,
-            navbarBottom: navbarBottom,
-            navbarTop: navbarRect.top,
-            navbarHeight: navbarRect.height,
-            windowScrollY: window.scrollY
-          });
-          
-          if (navbarRect.height > 0) {
-            // Instead of margin-top on hero-flex, add padding-top to hero image
-            // This pushes the image down while keeping the container at the top
-            console.log('Applying hero image padding-top:', navbarBottom + 'px');
-            heroImg.style.paddingTop = navbarBottom + 'px';
-            heroImg.style.boxSizing = 'border-box';
-            
-            // Set up responsive adjustments (only once)
-            if (!heroImg.dataset.resizeListenerAdded) {
-              heroImg.dataset.resizeListenerAdded = 'true';
-              window.addEventListener('resize', () => {
-                const newNavbarRect = navbar.getBoundingClientRect();
-                const newNavbarBottom = newNavbarRect.bottom;
-                console.log('Resize: new hero image padding-top:', newNavbarBottom + 'px');
-                heroImg.style.paddingTop = newNavbarBottom + 'px';
-              });
-            }
-          } else {
-            // Navbar not ready yet, try again
-            console.log('Navbar not ready, retrying...');
-            setTimeout(checkNavbarReady, 50);
-          }
-        };
+      const heroFlex = document.querySelector('.hero-flex');
+      if (heroFlex) {
+        // Use simple, reliable fixed values based on device type
+        if (window.innerWidth <= 768) {
+          heroFlex.style.marginTop = '80px'; // Mobile
+        } else {
+          heroFlex.style.marginTop = '160px'; // Desktop/tablet
+        }
         
-        checkNavbarReady();
+        // Handle window resize
+        if (!heroFlex.dataset.resizeListenerAdded) {
+          heroFlex.dataset.resizeListenerAdded = 'true';
+          window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+              heroFlex.style.marginTop = '80px';
+            } else {
+              heroFlex.style.marginTop = '160px';
+            }
+          });
+        }
       }
     }
     
-    // Call after navbar injection with multiple fallbacks
-    setTimeout(adjustHeroPosition, 0);     // Immediate
-    setTimeout(adjustHeroPosition, 100);   // Short delay
-    setTimeout(adjustHeroPosition, 200);   // Medium delay
-    setTimeout(adjustHeroPosition, 500);   // Longer delay as fallback
+    // Call immediately and with fallbacks
+    adjustHeroPosition();
+    setTimeout(adjustHeroPosition, 100);
 
     // Active link underline for nav links
     function setActiveNavLink(link) {
@@ -96,64 +73,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     setActiveLinkByUrl();
 
-    // Shrinking navbar on scroll (desktop/landscape tablet only)
+    // Simple shrinking navbar - desktop/landscape only
     const navbar = document.querySelector('.navbar');
-    const logoImg = document.querySelector('.logo img');
     let hasShrunk = false;
-    let lastScrollY = 0;
 
-    // Helper: Only enable on desktop/landscape tablet
     function isDesktopOrLandscapeTablet() {
       return window.matchMedia('(min-width: 769px), (min-width: 1025px) and (orientation: landscape)').matches;
     }
 
     function handleNavbarShrink() {
-      const heroImg = document.querySelector('.hero-img');
-      
       if (!navbar || !isDesktopOrLandscapeTablet()) {
-        // Remove shrink if resizing to mobile/tablet portrait or if navbar doesn't exist
+        // Remove shrink on mobile/tablet portrait
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Reset hero image padding to normal navbar height
-        if (heroImg && navbar) {
-          const navbarRect = navbar.getBoundingClientRect();
-          if (navbarRect.height > 0) {
-            heroImg.style.paddingTop = navbarRect.bottom + 'px';
-          }
-        }
         hasShrunk = false;
         return;
       }
+
       if (window.scrollY > 10 && !hasShrunk) {
         navbar.classList.add('navbar-shrink');
         document.body.classList.add('navbar-shrink');
-        // Adjust hero image padding for shrunk navbar
-        if (heroImg) {
-          // Wait for CSS transition to complete, then adjust
-          setTimeout(() => {
-            const navbarRect = navbar.getBoundingClientRect();
-            if (navbarRect.height > 0) {
-              const newPadding = navbarRect.bottom;
-              console.log('Shrink: applying hero image padding-top:', newPadding + 'px');
-              heroImg.style.paddingTop = newPadding + 'px';
-            }
-          }, 350); // Match CSS transition duration
-        }
         hasShrunk = true;
       } else if (window.scrollY <= 10 && hasShrunk) {
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Adjust hero image padding for normal navbar
-        if (heroImg) {
-          setTimeout(() => {
-            const navbarRect = navbar.getBoundingClientRect();
-            if (navbarRect.height > 0) {
-              const newPadding = navbarRect.bottom;
-              console.log('Expand: applying hero image padding-top:', newPadding + 'px');
-              heroImg.style.paddingTop = newPadding + 'px';
-            }
-          }, 350); // Match CSS transition duration
-        }
         hasShrunk = false;
       }
     }
