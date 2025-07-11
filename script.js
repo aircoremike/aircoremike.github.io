@@ -224,18 +224,20 @@ document.addEventListener('DOMContentLoaded', function() {
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile: slides are 84vw + 4vw margin = 88vw total per slide
-      // Center the first slide: (100vw - 84vw) / 2 = 8vw offset
-      const slideSpacing = 88; // vw
-      const centerOffset = 8; // vw to center first slide
-      const translate = centerOffset - (current * slideSpacing);
+      // Mobile: Calculate exact centering based on slide width and viewport
+      const slideWidth = 86; // vw
+      const viewportWidth = 100; // vw
+      
+      // Calculate the position to center the current slide
+      // First slide should be centered, subsequent slides move left
+      const centerPosition = (viewportWidth - slideWidth) / 2;
+      const slideOffset = current * slideWidth;
+      const translate = centerPosition - slideOffset;
+      
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: slides are 100% width with small margins
-      // Add small offset to center accounting for margins
-      const slideSpacing = 100; // percentage
-      const centerOffset = 1; // small percentage to account for margins
-      const translate = centerOffset - (current * slideSpacing);
+      // Desktop: Simple percentage-based movement
+      const translate = -current * 100;
       track.style.transform = `translateX(${translate}%)`;
     }
     updateArrows();
@@ -245,6 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!arrowLeft || !arrowRight) return;
     arrowLeft.disabled = current === 0;
     arrowRight.disabled = current === slideCount - 1;
+  }
+
+  // Initialize carousel
+  function initCarousel() {
+    goToSlide(0);
   }
 
   if (arrowLeft && arrowRight) {
@@ -341,8 +348,17 @@ document.addEventListener('DOMContentLoaded', function() {
   if (track && slides.length > 0) {
     // Small delay to ensure proper initialization after CSS loads
     setTimeout(() => {
-      goToSlide(0);
+      initCarousel();
     }, 50);
+    
+    // Re-center on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        goToSlide(current); // Re-apply current slide position with new dimensions
+      }, 100);
+    });
   }
 })();
 
