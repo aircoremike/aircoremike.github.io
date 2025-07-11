@@ -103,7 +103,6 @@ body {
 .materials-carousel {
   position: relative;
   width: 100%;
-  max-width: 900px;
   margin: 0 auto;
   background: none;
   border-radius: 1.5rem;
