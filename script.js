@@ -13,12 +13,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Simple hero positioning - just use a fixed margin that works
     function adjustHeroPosition() {
       const heroFlex = document.querySelector('.hero-flex');
+      const heroImg = document.querySelector('.hero-img');
       if (heroFlex) {
         // Use simple, reliable fixed values based on device type
         if (window.innerWidth <= 768) {
           heroFlex.style.marginTop = '80px'; // Mobile
         } else {
           heroFlex.style.marginTop = '160px'; // Desktop/tablet
+        }
+        
+        // DEBUG: Add red borders to see what's happening
+        if (heroFlex) heroFlex.style.border = '3px solid red';
+        if (heroImg) heroImg.style.border = '3px solid blue';
+        
+        // Log current navbar info for debugging
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+          const navbarRect = navbar.getBoundingClientRect();
+          console.log('DEBUG: Navbar info:', {
+            height: navbarRect.height,
+            top: navbarRect.top,
+            bottom: navbarRect.bottom,
+            heroMarginTop: heroFlex.style.marginTop,
+            windowWidth: window.innerWidth
+          });
         }
         
         // Handle window resize
@@ -77,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     let hasShrunk = false;
 
+    // DEBUG: Add border to navbar
+    if (navbar) navbar.style.border = '3px solid green';
+
     function isDesktopOrLandscapeTablet() {
       return window.matchMedia('(min-width: 769px), (min-width: 1025px) and (orientation: landscape)').matches;
     }
@@ -94,10 +115,31 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.classList.add('navbar-shrink');
         document.body.classList.add('navbar-shrink');
         hasShrunk = true;
+        
+        // DEBUG: Log navbar info when shrinking
+        setTimeout(() => {
+          const navbarRect = navbar.getBoundingClientRect();
+          console.log('DEBUG: Navbar SHRUNK:', {
+            height: navbarRect.height,
+            bottom: navbarRect.bottom,
+            scrollY: window.scrollY
+          });
+        }, 350);
+        
       } else if (window.scrollY <= 10 && hasShrunk) {
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
         hasShrunk = false;
+        
+        // DEBUG: Log navbar info when expanding
+        setTimeout(() => {
+          const navbarRect = navbar.getBoundingClientRect();
+          console.log('DEBUG: Navbar EXPANDED:', {
+            height: navbarRect.height,
+            bottom: navbarRect.bottom,
+            scrollY: window.scrollY
+          });
+        }, 350);
       }
     }
 
