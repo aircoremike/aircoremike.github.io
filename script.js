@@ -144,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var observer = new window.IntersectionObserver(onEntry, {
       threshold: 0.15
     });
-    document.querySelectorAll('.section-fade').forEach(function(el) {
+    // Exclude the first body section from scroll-based fade-in
+    document.querySelectorAll('.section-fade:not(.body-flex)').forEach(function(el) {
       observer.observe(el);
     });
   }
@@ -155,7 +156,18 @@ document.addEventListener('DOMContentLoaded', function() {
       // Delay the animation slightly for a nice effect
       setTimeout(() => {
         heroTitle.classList.add('hero-title-visible');
+        // After h1 animation completes, wait 1 second then animate first body section
+        setTimeout(() => {
+          animateFirstBodySection();
+        }, 1000);
       }, 300);
+    }
+  }
+  
+  function animateFirstBodySection() {
+    var firstBodySection = document.querySelector('.body-flex');
+    if (firstBodySection) {
+      firstBodySection.classList.add('section-fade-visible');
     }
   }
   

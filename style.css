@@ -342,7 +342,7 @@ body {
   body {
     transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
   }
-  #home h1 {
+  .hero-flex {
     transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
   }
   .navbar.navbar-shrink {
@@ -355,8 +355,9 @@ body {
   body.navbar-shrink {
     background-position-y: calc(var(--navbar-height-desktop) / 2);
   }
-  #home h1.navbar-shrink {
-    margin-top: 175px !important;
+  /* Adjust hero-flex margin when navbar shrinks */
+  body.navbar-shrink .hero-flex {
+    margin-top: calc(-1 * calc(var(--navbar-height-desktop) / 2));
   }
 }
 
@@ -395,6 +396,14 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  /* Add top margin to account for expanded navbar */
+  margin-top: calc(-1 * var(--navbar-height-desktop));
+}
+
+@media (max-width: 768px) {
+  .hero-flex {
+    margin-top: calc(-1 * var(--navbar-height-mobile));
+  }
 }
 
 .hero-img {
@@ -436,6 +445,8 @@ body {
   .hero-flex h1 {
     font-size: 1.4rem !important;
     top: 36% !important;
+    /* Fix animation transform for mobile */
+    transform: translate(-50%, -50%) translateY(40px) !important;
   }
   .hero-flex h1.hero-title-visible {
     transform: translate(-50%, -50%) translateY(0) !important;
@@ -445,6 +456,8 @@ body {
   .hero-flex h1 {
     font-size: 3rem !important;
     top: 38% !important;
+    /* Fix animation transform for tablet portrait */
+    transform: translate(-50%, -50%) translateY(40px) !important;
   }
   .hero-flex h1.hero-title-visible {
     transform: translate(-50%, -50%) translateY(0) !important;
