@@ -394,23 +394,13 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     currentModal = modal;
     
-    // Store current scroll position and prevent layout shifts
-    const scrollY = window.scrollY;
-    const scrollX = window.scrollX;
-    
     // Calculate scrollbar width to prevent horizontal shifting
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     
-    // Apply styles to completely lock the page position
+    // Apply styles to prevent scrolling and shifting
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = `-${scrollX}px`;
     document.body.style.paddingRight = `${scrollbarWidth}px`;
-    
-    // Store position for restoration
-    modal.dataset.scrollY = scrollY;
-    modal.dataset.scrollX = scrollX;
     
     document.body.appendChild(modal);
     
@@ -490,19 +480,10 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     // Wait for animation to complete before restoring scrollbar
     setTimeout(() => {
-      // Restore scroll position without layout shift
-      const scrollY = parseInt(currentModal.dataset.scrollY || '0');
-      const scrollX = parseInt(currentModal.dataset.scrollX || '0');
-      
       // Remove modal-open classes and inline styles
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
-      document.body.style.top = '';
-      document.body.style.left = '';
       document.body.style.paddingRight = '';
-      
-      // Restore scroll position
-      window.scrollTo(scrollX, scrollY);
       
       if (currentModal) {
         document.body.removeChild(currentModal);
