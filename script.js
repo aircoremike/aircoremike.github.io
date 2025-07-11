@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Move to specific slide
-  function goToSlide(index) {
+  function goToSlide(index, skipTransition = false) {
     // Clamp index to valid range
     currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
     
@@ -288,7 +288,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const position = calculatePosition(currentIndex);
     console.log(`Going to slide ${currentIndex}, position: ${position}px`);
     
+    // Temporarily disable transition if requested (for initial load)
+    if (skipTransition) {
+      track.style.transition = 'none';
+    }
+    
     track.style.transform = `translateX(${position}px)`;
+    
+    // Re-enable transition after the transform is applied
+    if (skipTransition) {
+      requestAnimationFrame(() => {
+        track.style.transition = '';
+      });
+    }
     
     updateArrows();
   }
@@ -436,12 +448,12 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Init metrics:', metrics);
       
       if (metrics && metrics.slideWidth > 0) {
-        goToSlide(0);
+        goToSlide(0, true); // Skip transition on initial load
       } else {
         // If measurements aren't ready, try again shortly
         setTimeout(() => {
           console.log('Retrying init with metrics:', getSlideMetrics());
-          goToSlide(0);
+          goToSlide(0, true); // Skip transition on initial load
         }, 100);
       }
     });
