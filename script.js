@@ -226,17 +226,31 @@ document.addEventListener('DOMContentLoaded', function() {
     ) {
       // Mobile & tablet portrait: slide is 84vw, margin 2vw each side, so total 88vw
       const slideWidth = 84; // vw
-      const slideMargin = 2; // vw
-      const totalSlide = slideWidth + 2 * slideMargin; // 88vw
-      const offset = (100 - slideWidth) / 2; // 8vw to center the slide
-      const translate = offset - current * totalSlide;
+      const slideMargin = 2; // vw per side
+      const totalSlideWidth = slideWidth + 2 * slideMargin; // 88vw total
+      const containerWidth = 100; // vw
+      const centerOffset = (containerWidth - slideWidth) / 2; // 8vw to center
+      const translate = centerOffset - current * totalSlideWidth;
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: center slides using percentage-based positioning
-      // Each slide is 100% of container width, so move by -100% per slide
-      // Then center the current slide by adding 50% container width minus 50% slide width
-      const translatePercent = -100 * current; // Move to the slide
-      track.style.transform = `translateX(${translatePercent}%)`;
+      // Desktop: slide is 100% + 1rem margins (0.5rem each side)
+      // Need to account for the margins when calculating positioning
+      const slideWidthPercent = 100; // Each slide is 100% of container
+      const marginRem = 1; // 0.5rem on each side = 1rem total
+      
+      // Get the container width in pixels to convert rem to percentage
+      const container = track.parentElement;
+      const containerWidthPx = container.offsetWidth;
+      const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const marginPercent = (marginRem * remInPx / containerWidthPx) * 100;
+      
+      // Total width per slide including margins
+      const totalSlideWidth = slideWidthPercent + marginPercent;
+      
+      // Center the current slide
+      const centerOffset = marginPercent / 2; // Half the margin to center
+      const translate = centerOffset - current * totalSlideWidth;
+      track.style.transform = `translateX(${translate}%)`;
     }
     updateArrows();
   }
