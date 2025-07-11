@@ -233,11 +233,28 @@ document.addEventListener('DOMContentLoaded', function() {
       const translate = centerOffset - current * totalSlideWidth;
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: simplified centering approach
-      // Each slide is 100% + margins, but we'll position based on slide centers
-      const slideWidthWithMargins = 100; // Treat each slide + margins as 100% unit
-      const translate = -current * slideWidthWithMargins;
-      track.style.transform = `translateX(${translate}%)`;
+      // Desktop: Each slide is 100% width + 1rem total margin (0.5rem each side)
+      // Calculate the exact spacing needed
+      const slidePercent = 100;
+      const marginRem = 1; // 0.5rem + 0.5rem
+      
+      // Convert 1rem to percentage of container width
+      const container = track.parentElement;
+      if (container) {
+        const containerWidthPx = container.offsetWidth;
+        const remSizePx = 16; // Standard rem size, could also get from getComputedStyle
+        const marginPercent = (marginRem * remSizePx / containerWidthPx) * 100;
+        
+        // Total space per slide (width + margins)
+        const totalSlideSpace = slidePercent + marginPercent;
+        
+        // Position to center current slide: start from half margin, then subtract slide spaces
+        const translate = (marginPercent / 2) - (current * totalSlideSpace);
+        track.style.transform = `translateX(${translate}%)`;
+      } else {
+        // Fallback if container not found
+        track.style.transform = `translateX(${-current * 100}%)`;
+      }
     }
     updateArrows();
   }
