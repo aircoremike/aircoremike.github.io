@@ -225,34 +225,30 @@ document.addEventListener('DOMContentLoaded', function() {
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
       // Mobile & tablet portrait: slide is 84vw, margin 2vw each side, so total 88vw
+      // Center the first slide, then move by slide widths
       const slideWidth = 84; // vw
-      const slideMargin = 2; // vw per side
-      const totalSlideWidth = slideWidth + 2 * slideMargin; // 88vw total
-      const containerWidth = 100; // vw
-      const centerOffset = (containerWidth - slideWidth) / 2; // 8vw to center
+      const slideMargin = 2; // vw per side (4vw total)
+      const totalSlideWidth = slideWidth + 2 * slideMargin; // 88vw
+      const centerOffset = (100 - slideWidth) / 2; // 8vw to center first slide
       const translate = centerOffset - current * totalSlideWidth;
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: Each slide is 100% width + 1rem total margin (0.5rem each side)
-      // Calculate the exact spacing needed
-      const slidePercent = 100;
-      const marginRem = 1; // 0.5rem + 0.5rem
-      
-      // Convert 1rem to percentage of container width
+      // Desktop: Account for 0.5rem margins and center the slides
+      // First slide should be centered, then move by 100% + margin per slide
       const container = track.parentElement;
       if (container) {
         const containerWidthPx = container.offsetWidth;
-        const remSizePx = 16; // Standard rem size, could also get from getComputedStyle
-        const marginPercent = (marginRem * remSizePx / containerWidthPx) * 100;
+        const remSizePx = 16;
+        const totalMarginPx = remSizePx; // 0.5rem each side = 1rem total
+        const marginPercent = (totalMarginPx / containerWidthPx) * 100;
         
-        // Total space per slide (width + margins)
-        const totalSlideSpace = slidePercent + marginPercent;
-        
-        // Position to center current slide: start from half margin, then subtract slide spaces
-        const translate = (marginPercent / 2) - (current * totalSlideSpace);
+        // Center first slide, then move by 100% + margin for each subsequent slide
+        const centerOffset = marginPercent / 2;
+        const slideSpacing = 100 + marginPercent;
+        const translate = centerOffset - current * slideSpacing;
         track.style.transform = `translateX(${translate}%)`;
       } else {
-        // Fallback if container not found
+        // Fallback
         track.style.transform = `translateX(${-current * 100}%)`;
       }
     }
