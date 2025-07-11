@@ -228,9 +228,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Get precise measurements from the DOM
   function getSlideMetrics() {
-    const trackRect = track.getBoundingClientRect();
-    const containerRect = track.parentElement.getBoundingClientRect();
-    
     if (slides.length === 0) return null;
     
     const slideRect = slides[0].getBoundingClientRect();
@@ -240,10 +237,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const trackStyle = window.getComputedStyle(track);
     const gap = parseFloat(trackStyle.gap || trackStyle.columnGap || '0');
     
+    // For mobile, use viewport width as container (slides should overflow)
+    // For desktop, use the actual carousel container width
+    let containerWidth;
+    if (isMobile()) {
+      containerWidth = window.innerWidth; // Mobile: slides overflow viewport
+    } else {
+      containerWidth = track.parentElement.getBoundingClientRect().width; // Desktop: contained
+    }
+    
     return {
       slideWidth,
       gap,
-      containerWidth: containerRect.width,
+      containerWidth,
       slideWithGap: slideWidth + gap
     };
   }
