@@ -232,16 +232,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const translate = offset - current * totalSlide;
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: center slides properly
-      const slideWidth = 100; // Each slide is 100% width
-      const containerWidth = track.parentElement.offsetWidth;
-      const slideElement = slides[0];
-      const slideActualWidth = slideElement ? slideElement.offsetWidth : containerWidth;
-      
-      // Calculate offset to center the current slide
-      const centerOffset = (containerWidth - slideActualWidth) / 2;
-      const translate = centerOffset - (current * slideActualWidth);
-      track.style.transform = `translateX(${translate}px)`;
+      // Desktop: center slides using percentage-based positioning
+      // Each slide is 100% of container width, so move by -100% per slide
+      // Then center the current slide by adding 50% container width minus 50% slide width
+      const translatePercent = -100 * current; // Move to the slide
+      track.style.transform = `translateX(${translatePercent}%)`;
     }
     updateArrows();
   }
