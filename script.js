@@ -148,11 +148,27 @@ document.addEventListener('DOMContentLoaded', function() {
       observer.observe(el);
     });
   }
+  
+  function animateHeroTitle() {
+    var heroTitle = document.querySelector('.hero-flex h1');
+    if (heroTitle) {
+      // Delay the animation slightly for a nice effect
+      setTimeout(() => {
+        heroTitle.classList.add('hero-title-visible');
+      }, 300);
+    }
+  }
+  
   document.addEventListener('DOMContentLoaded', function() {
     var heroImg = document.querySelector('.hero-img');
     if (heroImg && !heroImg.complete) {
-      heroImg.addEventListener('load', enableSectionFade);
+      heroImg.addEventListener('load', function() {
+        animateHeroTitle();
+        enableSectionFade();
+      });
     } else {
+      // Image already loaded or doesn't exist
+      animateHeroTitle();
       enableSectionFade();
     }
   });

@@ -402,6 +402,9 @@ body {
   max-width: 100vw;
   height: auto;
   display: block;
+  /* Reserve space based on aspect ratio to prevent layout shift */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .hero-flex h1 {
@@ -418,18 +421,33 @@ body {
   transform: translate(-50%, -50%);
   z-index: 2;
   text-shadow: 0 2px 12px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.18);
+  /* Start invisible for animation */
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(40px);
+  transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+.hero-flex h1.hero-title-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
 }
 
 @media (max-width: 768px) {
-  h1 {
+  .hero-flex h1 {
     font-size: 1.4rem !important;
     top: 36% !important;
   }
+  .hero-flex h1.hero-title-visible {
+    transform: translate(-50%, -50%) translateY(0) !important;
+  }
 }
 @media (min-width: 769px) and (orientation: portrait){
-  h1 {
+  .hero-flex h1 {
     font-size: 3rem !important;
     top: 38% !important;
+  }
+  .hero-flex h1.hero-title-visible {
+    transform: translate(-50%, -50%) translateY(0) !important;
   }
 }
 
