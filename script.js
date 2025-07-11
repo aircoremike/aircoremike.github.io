@@ -402,6 +402,12 @@ With their lightweight construction and remarkable durability, stainless steel h
     document.body.classList.add('modal-open');
     document.body.style.paddingRight = `${scrollbarWidth}px`;
     
+    // Also apply scrollbar compensation to navbar to prevent it from shifting
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      navbar.style.paddingRight = `${scrollbarWidth}px`;
+    }
+    
     document.body.appendChild(modal);
     
     // Wait for all images to load before animating
@@ -484,6 +490,12 @@ With their lightweight construction and remarkable durability, stainless steel h
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
       document.body.style.paddingRight = '';
+      
+      // Remove scrollbar compensation from navbar
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        navbar.style.paddingRight = '';
+      }
       
       if (currentModal) {
         document.body.removeChild(currentModal);
