@@ -219,38 +219,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function goToSlide(idx) {
     current = idx;
-    // Responsive centering logic
+    
     if (
       window.innerWidth <= 700 ||
       (window.innerWidth <= 1024 && window.matchMedia('(orientation: portrait)').matches)
     ) {
-      // Mobile & tablet portrait: slide is 84vw, margin 2vw each side, so total 88vw
-      // Center the first slide, then move by slide widths
-      const slideWidth = 84; // vw
-      const slideMargin = 2; // vw per side (4vw total)
-      const totalSlideWidth = slideWidth + 2 * slideMargin; // 88vw
-      const centerOffset = (100 - slideWidth) / 2; // 8vw to center first slide
-      const translate = centerOffset - current * totalSlideWidth;
+      // Mobile: slides are 84vw + 4vw margin = 88vw total per slide
+      // Center the first slide: (100vw - 84vw) / 2 = 8vw offset
+      const slideSpacing = 88; // vw
+      const centerOffset = 8; // vw to center first slide
+      const translate = centerOffset - (current * slideSpacing);
       track.style.transform = `translateX(${translate}vw)`;
     } else {
-      // Desktop: Account for 0.5rem margins and center the slides
-      // First slide should be centered, then move by 100% + margin per slide
-      const container = track.parentElement;
-      if (container) {
-        const containerWidthPx = container.offsetWidth;
-        const remSizePx = 16;
-        const totalMarginPx = remSizePx; // 0.5rem each side = 1rem total
-        const marginPercent = (totalMarginPx / containerWidthPx) * 100;
-        
-        // Center first slide, then move by 100% + margin for each subsequent slide
-        const centerOffset = marginPercent / 2;
-        const slideSpacing = 100 + marginPercent;
-        const translate = centerOffset - current * slideSpacing;
-        track.style.transform = `translateX(${translate}%)`;
-      } else {
-        // Fallback
-        track.style.transform = `translateX(${-current * 100}%)`;
-      }
+      // Desktop: slides are 100% width with small margins
+      // Add small offset to center accounting for margins
+      const slideSpacing = 100; // percentage
+      const centerOffset = 1; // small percentage to account for margins
+      const translate = centerOffset - (current * slideSpacing);
+      track.style.transform = `translateX(${translate}%)`;
     }
     updateArrows();
   }
