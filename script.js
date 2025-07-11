@@ -10,41 +10,70 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Simple hero positioning - use actual measured navbar height
+    // Calculate navbar heights based on CSS custom properties
+    function getNavbarHeights() {
+      const styles = getComputedStyle(document.documentElement);
+      const logoHeightDesktop = parseFloat(styles.getPropertyValue('--logo-height-desktop'));
+      const logoPadding = parseFloat(styles.getPropertyValue('--logo-padding'));
+      const logoHeightMobile = parseFloat(styles.getPropertyValue('--logo-height-mobile'));
+      const logoPaddingMobile = parseFloat(styles.getPropertyValue('--logo-padding-mobile'));
+      
+      const safeAreaTop = parseInt(styles.getPropertyValue('env(safe-area-inset-top)')) || 0;
+      
+      if (window.innerWidth <= 768) {
+        const normalHeight = logoHeightMobile + (2 * logoPaddingMobile) + safeAreaTop;
+        return { normal: normalHeight, shrunk: normalHeight }; // No shrinking on mobile
+      } else {
+        const normalHeight = logoHeightDesktop + (2 * logoPadding) + safeAreaTop;
+        // Shrunk: padding-top = safe-area + (padding/2), padding-bottom = padding/2, logo = logo/2
+        const shrunkHeight = safeAreaTop + (logoPadding / 2) + (logoPadding / 2) + (logoHeightDesktop / 2);
+        
+        console.log('DEBUG: Height calculations:', {
+          logoHeightDesktop, 
+          logoPadding, 
+          safeAreaTop, 
+          normalHeight, 
+          shrunkHeight,
+          normalFormula: `${logoHeightDesktop} + 2*${logoPadding} + ${safeAreaTop} = ${normalHeight}`,
+          shrunkFormula: `${safeAreaTop} + ${logoPadding/2} + ${logoPadding/2} + ${logoHeightDesktop/2} = ${shrunkHeight}`
+        });
+        
+        return { normal: normalHeight, shrunk: shrunkHeight };
+      }
+    }
+
+    // Simple hero positioning - use calculated navbar height
     function adjustHeroPosition() {
       const heroFlex = document.querySelector('.hero-flex');
       const heroImg = document.querySelector('.hero-img');
       const navbar = document.querySelector('.navbar');
       
       if (heroFlex && navbar) {
-        // Use the actual measured navbar height instead of guessing
-        const navbarRect = navbar.getBoundingClientRect();
-        const actualNavbarHeight = navbarRect.height;
+        const heights = getNavbarHeights();
         
-        console.log('DEBUG: Using actual navbar height:', actualNavbarHeight + 'px');
-        heroFlex.style.marginTop = actualNavbarHeight + 'px';
+        // Use the appropriate height based on current shrink state
+        const isCurrentlyShrunk = navbar.classList.contains('navbar-shrink');
+        const calculatedHeight = isCurrentlyShrunk ? heights.shrunk : heights.normal;
         
-        // DEBUG: Add red borders to see what's happening
-        if (heroFlex) heroFlex.style.border = '3px solid red';
-        if (heroImg) heroImg.style.border = '3px solid blue';
+        console.log('DEBUG: Using calculated navbar height:', calculatedHeight + 'px');
+        heroFlex.style.marginTop = calculatedHeight + 'px';
         
         // Log measurements for verification
+        const actualHeight = navbar.getBoundingClientRect().height;
         console.log('DEBUG: Navbar info:', {
-          height: actualNavbarHeight,
-          top: navbarRect.top,
-          bottom: navbarRect.bottom,
+          calculatedHeight: calculatedHeight,
+          actualHeight: actualHeight,
+          difference: Math.abs(calculatedHeight - actualHeight),
           heroMarginTop: heroFlex.style.marginTop,
-          windowWidth: window.innerWidth
+          windowWidth: window.innerWidth,
+          isShrunk: isCurrentlyShrunk
         });
         
         // Handle window resize
         if (!heroFlex.dataset.resizeListenerAdded) {
           heroFlex.dataset.resizeListenerAdded = 'true';
           window.addEventListener('resize', () => {
-            const newNavbarRect = navbar.getBoundingClientRect();
-            const newHeight = newNavbarRect.height;
-            heroFlex.style.marginTop = newHeight + 'px';
-            console.log('DEBUG: Resize - new margin:', newHeight + 'px');
+            setTimeout(() => adjustHeroPosition(), 50); // Small delay for CSS to update
           });
         }
       }
@@ -92,24 +121,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     let hasShrunk = false;
 
-    // DEBUG: Add border to navbar
-    if (navbar) navbar.style.border = '3px solid green';
-
     function isDesktopOrLandscapeTablet() {
       return window.matchMedia('(min-width: 769px), (min-width: 1025px) and (orientation: landscape)').matches;
     }
 
     function handleNavbarShrink() {
       const heroFlex = document.querySelector('.hero-flex');
+      const heights = getNavbarHeights();
       
       if (!navbar || !isDesktopOrLandscapeTablet()) {
         // Remove shrink on mobile/tablet portrait
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Reset hero margin to actual navbar height
-        if (heroFlex && navbar) {
-          const navbarRect = navbar.getBoundingClientRect();
-          heroFlex.style.marginTop = navbarRect.height + 'px';
+        // Set hero margin to calculated normal height
+        if (heroFlex) {
+          heroFlex.style.marginTop = heights.normal + 'px';
+          console.log('DEBUG: Mobile/Portrait - hero margin:', heights.normal + 'px');
         }
         hasShrunk = false;
         return;
@@ -120,14 +147,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('navbar-shrink');
         hasShrunk = true;
         
-        // Adjust hero margin for shrunk navbar using actual height
+        // Immediately set hero margin to calculated shrunk height
         if (heroFlex) {
-          setTimeout(() => {
-            const navbarRect = navbar.getBoundingClientRect();
-            const shrunkHeight = navbarRect.height;
-            heroFlex.style.marginTop = shrunkHeight + 'px';
-            console.log('DEBUG: Navbar SHRUNK to:', shrunkHeight + 'px, hero margin:', shrunkHeight + 'px');
-          }, 350);
+          heroFlex.style.marginTop = heights.shrunk + 'px';
+          console.log('DEBUG: Navbar SHRINKING - calculated shrunk height:', heights.shrunk + 'px', 'hero margin:', heights.shrunk + 'px');
         }
         
       } else if (window.scrollY <= 10 && hasShrunk) {
@@ -135,14 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('navbar-shrink');
         hasShrunk = false;
         
-        // Adjust hero margin for normal navbar using actual height
+        // Immediately set hero margin to calculated normal height
         if (heroFlex) {
-          setTimeout(() => {
-            const navbarRect = navbar.getBoundingClientRect();
-            const normalHeight = navbarRect.height;
-            heroFlex.style.marginTop = normalHeight + 'px';
-            console.log('DEBUG: Navbar EXPANDED to:', normalHeight + 'px, hero margin:', normalHeight + 'px');
-          }, 350);
+          heroFlex.style.marginTop = heights.normal + 'px';
+          console.log('DEBUG: Navbar EXPANDING - calculated normal height:', heights.normal + 'px', 'hero margin:', heights.normal + 'px');
         }
       }
     }
