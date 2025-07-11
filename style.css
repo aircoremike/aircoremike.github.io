@@ -10,6 +10,8 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
+  /* Dynamic navbar height set by JavaScript based on shrink state */
+  --current-navbar-height: var(--navbar-height-desktop);
 }
 
 html {
@@ -374,8 +376,9 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Margin-top will be set by JavaScript using actual navbar measurements */
-  margin-top: 0;
+  /* Use CSS custom property for navbar offset - updated by JavaScript */
+  margin-top: var(--current-navbar-height);
+  /* Smooth transition for margin changes */
   transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 

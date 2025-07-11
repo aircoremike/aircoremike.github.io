@@ -28,24 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Shrunk: padding-top = safe-area + (padding/2), padding-bottom = padding/2, logo = logo/2
         const shrunkHeight = safeAreaTop + (logoPadding / 2) + (logoPadding / 2) + (logoHeightDesktop / 2);
         
-        console.log('DEBUG: Height calculations:', {
-          logoHeightDesktop, 
-          logoPadding, 
-          safeAreaTop, 
-          normalHeight, 
-          shrunkHeight,
-          normalFormula: `${logoHeightDesktop} + 2*${logoPadding} + ${safeAreaTop} = ${normalHeight}`,
-          shrunkFormula: `${safeAreaTop} + ${logoPadding/2} + ${logoPadding/2} + ${logoHeightDesktop/2} = ${shrunkHeight}`
-        });
-        
         return { normal: normalHeight, shrunk: shrunkHeight };
       }
     }
 
-    // Simple hero positioning - use calculated navbar height
+    // Simple hero positioning - use CSS custom properties for native CSS handling
     function adjustHeroPosition() {
       const heroFlex = document.querySelector('.hero-flex');
-      const heroImg = document.querySelector('.hero-img');
       const navbar = document.querySelector('.navbar');
       
       if (heroFlex && navbar) {
@@ -55,19 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const isCurrentlyShrunk = navbar.classList.contains('navbar-shrink');
         const calculatedHeight = isCurrentlyShrunk ? heights.shrunk : heights.normal;
         
-        console.log('DEBUG: Using calculated navbar height:', calculatedHeight + 'px');
-        heroFlex.style.marginTop = calculatedHeight + 'px';
-        
-        // Log measurements for verification
-        const actualHeight = navbar.getBoundingClientRect().height;
-        console.log('DEBUG: Navbar info:', {
-          calculatedHeight: calculatedHeight,
-          actualHeight: actualHeight,
-          difference: Math.abs(calculatedHeight - actualHeight),
-          heroMarginTop: heroFlex.style.marginTop,
-          windowWidth: window.innerWidth,
-          isShrunk: isCurrentlyShrunk
-        });
+        // Set CSS custom property so CSS can handle positioning natively
+        document.documentElement.style.setProperty('--current-navbar-height', calculatedHeight + 'px');
         
         // Handle window resize
         if (!heroFlex.dataset.resizeListenerAdded) {
@@ -133,10 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove shrink on mobile/tablet portrait
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Set hero margin to calculated normal height
+        // Set CSS custom property for normal height
         if (heroFlex) {
-          heroFlex.style.marginTop = heights.normal + 'px';
-          console.log('DEBUG: Mobile/Portrait - hero margin:', heights.normal + 'px');
+          document.documentElement.style.setProperty('--current-navbar-height', heights.normal + 'px');
         }
         hasShrunk = false;
         return;
@@ -147,10 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('navbar-shrink');
         hasShrunk = true;
         
-        // Immediately set hero margin to calculated shrunk height
+        // Set CSS custom property for shrunk height
         if (heroFlex) {
-          heroFlex.style.marginTop = heights.shrunk + 'px';
-          console.log('DEBUG: Navbar SHRINKING - calculated shrunk height:', heights.shrunk + 'px', 'hero margin:', heights.shrunk + 'px');
+          document.documentElement.style.setProperty('--current-navbar-height', heights.shrunk + 'px');
         }
         
       } else if (window.scrollY <= 10 && hasShrunk) {
@@ -158,10 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('navbar-shrink');
         hasShrunk = false;
         
-        // Immediately set hero margin to calculated normal height
+        // Set CSS custom property for normal height
         if (heroFlex) {
-          heroFlex.style.marginTop = heights.normal + 'px';
-          console.log('DEBUG: Navbar EXPANDING - calculated normal height:', heights.normal + 'px', 'hero margin:', heights.normal + 'px');
+          document.documentElement.style.setProperty('--current-navbar-height', heights.normal + 'px');
         }
       }
     }
