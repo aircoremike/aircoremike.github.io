@@ -342,9 +342,6 @@ body {
   body {
     transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
   }
-  .hero-flex {
-    transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
   .navbar.navbar-shrink {
     padding-top: calc(env(safe-area-inset-top, 0px) + calc(var(--logo-padding) / 2));
     padding-bottom: calc(var(--logo-padding) / 2);
@@ -355,26 +352,25 @@ body {
   body.navbar-shrink {
     background-position-y: calc(var(--navbar-height-desktop) / 2);
   }
-  /* Adjust hero-flex margin when navbar shrinks */
-  body.navbar-shrink .hero-flex {
-    margin-top: calc(-1 * calc(var(--navbar-height-desktop) / 2));
-  }
 }
 
 /* Main Content Wrapper for Shrinking Navbar Animation */
 @media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
   .main-content {
     transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
-    padding-top: var(--navbar-height-desktop);
+    /* Start with no padding so hero image goes to very top */
+    padding-top: 0;
   }
   body.navbar-shrink .main-content {
-    padding-top: calc(var(--navbar-height-desktop) / 2);
+    /* When navbar shrinks, add padding to prevent content jump */
+    padding-top: calc(calc(var(--navbar-height-desktop) - calc(var(--navbar-height-desktop) / 2)) / 2);
   }
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding-top: var(--navbar-height-mobile);
+    /* Mobile: no padding so hero image goes to top */
+    padding-top: 0;
   }
 }
 
@@ -396,14 +392,7 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Add top margin to account for expanded navbar */
-  margin-top: calc(-1 * var(--navbar-height-desktop));
-}
-
-@media (max-width: 768px) {
-  .hero-flex {
-    margin-top: calc(-1 * var(--navbar-height-mobile));
-  }
+  /* Remove the negative margin - let the main-content padding handle spacing */
 }
 
 .hero-img {
