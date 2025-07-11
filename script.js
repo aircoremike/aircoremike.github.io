@@ -10,6 +10,40 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
+    // Fix hero section positioning after navbar is loaded
+    function adjustHeroPosition() {
+      const navbar = document.querySelector('.navbar');
+      const heroFlex = document.querySelector('.hero-flex');
+      if (navbar && heroFlex) {
+        const navbarHeight = navbar.offsetHeight;
+        console.log('Navbar loaded, height:', navbarHeight);
+        
+        // Apply the correct margin-top based on actual navbar height
+        if (window.innerWidth <= 768) {
+          heroFlex.style.marginTop = navbarHeight + 'px';
+        } else if (window.innerWidth >= 769 && window.matchMedia('(orientation: portrait)').matches) {
+          heroFlex.style.marginTop = navbarHeight + 'px';
+        } else {
+          heroFlex.style.marginTop = navbarHeight + 'px';
+        }
+        
+        // Set up responsive adjustments
+        window.addEventListener('resize', () => {
+          const newHeight = navbar.offsetHeight;
+          if (window.innerWidth <= 768) {
+            heroFlex.style.marginTop = newHeight + 'px';
+          } else if (window.innerWidth >= 769 && window.matchMedia('(orientation: portrait)').matches) {
+            heroFlex.style.marginTop = newHeight + 'px';
+          } else {
+            heroFlex.style.marginTop = newHeight + 'px';
+          }
+        });
+      }
+    }
+    
+    // Call after a short delay to ensure navbar is fully rendered
+    setTimeout(adjustHeroPosition, 100);
+
     // Active link underline for nav links
     function setActiveNavLink(link) {
       document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(a => {
@@ -47,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Shrinking navbar on scroll (desktop/landscape tablet only)
     const navbar = document.querySelector('.navbar');
     const logoImg = document.querySelector('.logo img');
-    const mainContent = document.querySelector('.main-content');
     let hasShrunk = false;
     let lastScrollY = 0;
 
@@ -57,23 +90,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleNavbarShrink() {
+      const heroFlex = document.querySelector('.hero-flex');
+      
       if (!navbar || !isDesktopOrLandscapeTablet()) {
         // Remove shrink if resizing to mobile/tablet portrait or if navbar doesn't exist
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        if (mainContent) mainContent.classList.remove('navbar-shrink');
+        // Reset hero margin to normal navbar height
+        if (heroFlex && navbar) {
+          heroFlex.style.marginTop = navbar.offsetHeight + 'px';
+        }
         hasShrunk = false;
         return;
       }
       if (window.scrollY > 10 && !hasShrunk) {
         navbar.classList.add('navbar-shrink');
         document.body.classList.add('navbar-shrink');
-        if (mainContent) mainContent.classList.add('navbar-shrink');
+        // Adjust hero margin for shrunk navbar
+        if (heroFlex) {
+          // Wait for CSS transition to complete, then adjust
+          setTimeout(() => {
+            const shrunkHeight = navbar.offsetHeight;
+            heroFlex.style.marginTop = shrunkHeight + 'px';
+          }, 350); // Match CSS transition duration
+        }
         hasShrunk = true;
       } else if (window.scrollY <= 10 && hasShrunk) {
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        if (mainContent) mainContent.classList.remove('navbar-shrink');
+        // Adjust hero margin for normal navbar
+        if (heroFlex) {
+          setTimeout(() => {
+            const normalHeight = navbar.offsetHeight;
+            heroFlex.style.marginTop = normalHeight + 'px';
+          }, 350); // Match CSS transition duration
+        }
         hasShrunk = false;
       }
     }
@@ -183,43 +234,6 @@ document.addEventListener('DOMContentLoaded', function() {
       animateHeroTitle();
       enableSectionFade();
     }
-  });
-})();
-
-// Smooth scroll to anchor with navbar offset
-(function() {
-  function getNavbarHeight() {
-    var navbar = document.querySelector('.navbar');
-    if (!navbar) return 0;
-    var styles = window.getComputedStyle(navbar);
-    return navbar.offsetHeight + parseInt(styles.marginTop || 0) + parseInt(styles.marginBottom || 0);
-  }
-  function scrollToHash(hash) {
-    var el = document.getElementById(hash.replace('#', ''));
-    if (!el) return;
-    var navbarHeight = getNavbarHeight();
-    var rect = el.getBoundingClientRect();
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var top = rect.top + scrollTop - navbarHeight - 8; // 8px extra spacing
-    window.scrollTo({ top: top, behavior: 'smooth' });
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-      var hash = link.getAttribute('href');
-      if (hash && hash.length > 1 && document.getElementById(hash.replace('#', ''))) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          scrollToHash(hash);
-          // Update URL hash without jumping
-          if (history.pushState) {
-            history.pushState(null, null, hash);
-          } else {
-            window.location.hash = hash;
-          }
-        });
-      }
-    });
-    
   });
 })();
 

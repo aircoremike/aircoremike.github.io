@@ -342,9 +342,6 @@ body {
   body {
     transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
   }
-  .hero-flex {
-    transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
   .navbar.navbar-shrink {
     padding-top: calc(env(safe-area-inset-top, 0px) + calc(var(--logo-padding) / 2));
     padding-bottom: calc(var(--logo-padding) / 2);
@@ -354,10 +351,6 @@ body {
   }
   body.navbar-shrink {
     background-position-y: calc(var(--navbar-height-desktop) / 2);
-  }
-  /* Adjust hero-flex margin when navbar shrinks */
-  body.navbar-shrink .hero-flex {
-    margin-top: 80px; /* Half the desktop navbar height */
   }
 }
 
@@ -381,20 +374,9 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Explicit top margin to push hero image below navbar */
-  margin-top: 160px; /* Desktop navbar height */
-}
-
-@media (max-width: 768px) {
-  .hero-flex {
-    margin-top: 80px; /* Mobile navbar height */
-  }
-}
-
-@media (min-width: 769px) and (orientation: portrait) {
-  .hero-flex {
-    margin-top: 120px; /* Tablet portrait navbar height */
-  }
+  /* Margin-top will be set dynamically by JavaScript after navbar loads */
+  margin-top: 0;
+  transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
 .hero-img {
