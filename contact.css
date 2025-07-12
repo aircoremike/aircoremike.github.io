@@ -20,7 +20,7 @@
   letter-spacing: 0.02em;
 }
 
-.contact-section-flex {
+.contact-text-flex {
   flex-direction: column;
   gap: 2.5rem;
   font-size: var(--p-font-size-desktop);
@@ -35,7 +35,7 @@
     font-size: var(--h1-font-size-mobile);
     margin: var(--content-top-spacing-mobile) 0 2rem 0;
   }
-  .contact-section-flex {
+  .contact-text-flex p {
     gap: 1.5rem;
     font-size: var(--p-font-size-mobile);
   }
