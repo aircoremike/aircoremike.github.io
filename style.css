@@ -423,13 +423,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  h1 {
+  .hero-flex h1 {
     font-size: 1.4rem !important;
     top: 36% !important;
   }
 }
 @media (min-width: 769px) and (orientation: portrait){
-  h1 {
+  .hero-flex h1 {
     font-size: 3rem !important;
     top: 38% !important;
   }
