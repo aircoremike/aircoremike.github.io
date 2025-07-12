@@ -78,12 +78,6 @@ body {
     margin: var(--content-top-spacing-mobile) 0 2rem 0;
   }
 }
-@media (max-width: 600px) {
-  .materials-hero h1 {
-    font-size: var(--h1-font-size-mobile) !important;
-    margin: 0 0 1.5rem 0;
-  }
-}
 
 /* =====================
    Carousel Section

@@ -22,12 +22,6 @@
   }
 }
 
-@media (max-width: 600px) {
-  #contact h1 {
-    font-size: 1.3rem;
-    margin: var(--content-top-spacing-mobile) 0 1.5rem 0;
-  }
-}
 
 #contact h1 {
   color: #f5f5f7;
