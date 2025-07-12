@@ -35,9 +35,11 @@
     font-size: var(--h1-font-size-mobile);
     margin: var(--content-top-spacing-mobile) 0 2rem 0;
   }
-  .contact-text-flex p {
+  .contact-text-flex {
     gap: 1.5rem;
-    font-size: var(--p-font-size-mobile) !important;
+  }
+  .contact-text-flex p {
+    font-size: var(--p-font-size-mobile);
   }
 }
 
