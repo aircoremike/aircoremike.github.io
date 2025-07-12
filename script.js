@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Simple hero positioning - use CSS custom properties for native CSS handling
     function adjustHeroPosition() {
       const heroFlex = document.querySelector('.hero-flex');
+      const heroImg = document.querySelector('.hero-img');
       const navbar = document.querySelector('.navbar');
       
       if (heroFlex && navbar) {
@@ -46,6 +47,87 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set CSS custom property so CSS can handle positioning natively
         document.documentElement.style.setProperty('--current-navbar-height', calculatedHeight + 'px');
+        
+        // DETAILED DEBUG: Image and layout measurements
+        if (heroImg) {
+          const imgRect = heroImg.getBoundingClientRect();
+          const navbarRect = navbar.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const viewportWidth = window.innerWidth;
+          
+          // Calculate how much of the image is visible
+          const imageTop = imgRect.top;
+          const imageBottom = imgRect.bottom;
+          const navbarBottom = navbarRect.bottom;
+          
+          // Check if image is being cut off by navbar
+          const isCutOffByNavbar = imageTop < navbarBottom;
+          const cutOffAmount = isCutOffByNavbar ? navbarBottom - imageTop : 0;
+          
+          // Calculate visible image area
+          const visibleTop = Math.max(imageTop, navbarBottom);
+          const visibleBottom = Math.min(imageBottom, viewportHeight);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const visiblePercentage = (visibleHeight / imgRect.height) * 100;
+          
+          console.log('🖼️ HERO IMAGE DEBUG:', {
+            // Image original dimensions
+            originalWidth: 3072,
+            originalHeight: 2048,
+            aspectRatio: '3:2',
+            
+            // Image rendered dimensions
+            renderedWidth: imgRect.width,
+            renderedHeight: imgRect.height,
+            renderedAspectRatio: (imgRect.width / imgRect.height).toFixed(2),
+            
+            // Image position
+            imageTop: imageTop,
+            imageBottom: imageBottom,
+            imageLeft: imgRect.left,
+            imageRight: imgRect.right,
+            
+            // Navbar info
+            navbarHeight: navbarRect.height,
+            navbarBottom: navbarBottom,
+            calculatedNavbarHeight: calculatedHeight,
+            isNavbarShrunk: isCurrentlyShrunk,
+            
+            // Viewport info
+            viewportWidth: viewportWidth,
+            viewportHeight: viewportHeight,
+            
+            // Visibility analysis
+            isCutOffByNavbar: isCutOffByNavbar,
+            cutOffAmount: cutOffAmount,
+            visibleImageHeight: visibleHeight,
+            visiblePercentage: visiblePercentage.toFixed(1) + '%',
+            
+            // Hero flex positioning
+            heroFlexTop: heroFlex.getBoundingClientRect().top,
+            heroFlexMarginTop: getComputedStyle(heroFlex).marginTop,
+            currentNavbarHeightVar: getComputedStyle(document.documentElement).getPropertyValue('--current-navbar-height'),
+            
+            // Image loading status
+            imageComplete: heroImg.complete,
+            imageNaturalWidth: heroImg.naturalWidth,
+            imageNaturalHeight: heroImg.naturalHeight
+          });
+          
+          // Visual warning if image is cut off
+          if (isCutOffByNavbar) {
+            console.warn(`⚠️ HERO IMAGE CUT OFF: ${cutOffAmount.toFixed(1)}px hidden behind navbar!`);
+          }
+          
+          // Check if aspect ratio is preserved
+          const expectedHeight = imgRect.width * (2048 / 3072); // Expected height based on original aspect ratio
+          const actualHeight = imgRect.height;
+          const aspectRatioPreserved = Math.abs(expectedHeight - actualHeight) < 1;
+          
+          if (!aspectRatioPreserved) {
+            console.warn(`⚠️ ASPECT RATIO ISSUE: Expected height ${expectedHeight.toFixed(1)}px, actual ${actualHeight.toFixed(1)}px`);
+          }
+        }
         
         // Handle window resize
         if (!heroFlex.dataset.resizeListenerAdded) {
@@ -60,6 +142,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call immediately and with fallbacks
     adjustHeroPosition();
     setTimeout(adjustHeroPosition, 100);
+
+    // DEBUG: Periodic monitoring of hero image position
+    let debugInterval = setInterval(() => {
+      const heroImg = document.querySelector('.hero-img');
+      const navbar = document.querySelector('.navbar');
+      
+      if (heroImg && navbar) {
+        const imgRect = heroImg.getBoundingClientRect();
+        const navbarRect = navbar.getBoundingClientRect();
+        const isCutOff = imgRect.top < navbarRect.bottom;
+        
+        if (isCutOff) {
+          const cutOffAmount = navbarRect.bottom - imgRect.top;
+          console.log(`⚠️ PERIODIC CHECK: Image still cut off by ${cutOffAmount.toFixed(1)}px`);
+        }
+      }
+    }, 2000); // Check every 2 seconds
+
+    // Stop periodic checking after 30 seconds
+    setTimeout(() => {
+      clearInterval(debugInterval);
+      console.log('🛑 Stopped periodic debug monitoring');
+    }, 30000);
+
+    // Expose adjust function for manual debugging
+    window.initNavbarScripts.__adjustHeroPosition = adjustHeroPosition;
 
     // Active link underline for nav links
     function setActiveNavLink(link) {
@@ -127,6 +235,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set CSS custom property for shrunk height
         if (heroFlex) {
           document.documentElement.style.setProperty('--current-navbar-height', heights.shrunk + 'px');
+          console.log('📉 NAVBAR SHRINKING:', {
+            fromHeight: heights.normal,
+            toHeight: heights.shrunk,
+            difference: heights.normal - heights.shrunk,
+            newMarginVar: heights.shrunk + 'px'
+          });
         }
         
       } else if (window.scrollY <= 10 && hasShrunk) {
@@ -137,6 +251,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set CSS custom property for normal height
         if (heroFlex) {
           document.documentElement.style.setProperty('--current-navbar-height', heights.normal + 'px');
+          console.log('📈 NAVBAR EXPANDING:', {
+            fromHeight: heights.shrunk,
+            toHeight: heights.normal,
+            difference: heights.normal - heights.shrunk,
+            newMarginVar: heights.normal + 'px'
+          });
         }
       }
     }
@@ -191,6 +311,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initial call to navbar scripts
   window.initNavbarScripts();
+
+  // DEBUG: Global function to manually trigger hero position debug
+  window.debugHeroPosition = function() {
+    const heroFlex = document.querySelector('.hero-flex');
+    const heroImg = document.querySelector('.hero-img');
+    const navbar = document.querySelector('.navbar');
+    
+    if (!heroImg || !navbar) {
+      console.log('❌ Hero image or navbar not found');
+      return;
+    }
+    
+    console.log('🔍 MANUAL DEBUG TRIGGERED');
+    
+    // Re-run the position adjustment with full debug output
+    const adjustFunc = window.initNavbarScripts.__adjustHeroPosition;
+    if (adjustFunc) {
+      adjustFunc();
+    } else {
+      console.log('⚠️ Adjust function not available, running basic debug...');
+      
+      const imgRect = heroImg.getBoundingClientRect();
+      const navbarRect = navbar.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      console.log('📏 BASIC MEASUREMENTS:', {
+        imageTop: imgRect.top,
+        imageHeight: imgRect.height,
+        navbarHeight: navbarRect.height,
+        navbarBottom: navbarRect.bottom,
+        viewportHeight: viewportHeight,
+        cutOffAmount: Math.max(0, navbarRect.bottom - imgRect.top),
+        heroFlexMarginTop: getComputedStyle(heroFlex).marginTop
+      });
+    }
+  };
 });
 
 // Fade-in on scroll for .section-fade, but only after hero image loads
