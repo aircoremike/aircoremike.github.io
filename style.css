@@ -48,6 +48,8 @@ body {
   padding-bottom: var(--logo-padding);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
+  /* DEBUG: Red border around navbar */
+  border: 3px solid red;
 }
 
 .navbar-inner {
