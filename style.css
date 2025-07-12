@@ -10,8 +10,6 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
-  --content-top-spacing-desktop: 2.5rem; /* Standard spacing between navbar and h1 on desktop */
-  --content-top-spacing-mobile: 1.5rem; /* Standard spacing between navbar and h1 on mobile */
 }
 
 html {
@@ -423,13 +421,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  .hero-flex h1 {
+  h1 {
     font-size: 1.4rem !important;
     top: 36% !important;
   }
 }
 @media (min-width: 769px) and (orientation: portrait){
-  .hero-flex h1 {
+  h1 {
     font-size: 3rem !important;
     top: 38% !important;
   }
