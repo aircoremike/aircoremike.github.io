@@ -2,7 +2,13 @@
 @import url('style.css');
 
 #contact.section-fade {
-  padding-top: 2.5rem;
+  padding-top: var(--content-top-spacing-desktop);
+}
+
+@media (max-width: 768px) {
+  #contact.section-fade {
+    padding-top: var(--content-top-spacing-mobile);
+  }
 }
 
 #contact h1 {

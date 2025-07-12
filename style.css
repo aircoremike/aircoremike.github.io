@@ -10,6 +10,8 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
+  --content-top-spacing-desktop: 2.5rem; /* Standard spacing between navbar and h1 on desktop */
+  --content-top-spacing-mobile: 1.5rem; /* Standard spacing between navbar and h1 on mobile */
 }
 
 html {
@@ -48,8 +50,6 @@ body {
   padding-bottom: var(--logo-padding);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
-  /* DEBUG: Red border around navbar */
-  border: 3px solid red;
 }
 
 .navbar-inner {

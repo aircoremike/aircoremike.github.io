@@ -1,7 +1,7 @@
 /* resources.css - Additional styles for the Resources page */
 
 .resources {
-  padding: 3rem 1.5rem 4rem 1.5rem;
+  padding: var(--content-top-spacing-desktop) 1.5rem 4rem 1.5rem;
   max-width: 900px;
   margin: 0 auto;
   min-height: 60vh;
@@ -201,6 +201,12 @@
   .resource-card {
     width: 95vw;
     max-width: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .resources {
+    padding: var(--content-top-spacing-mobile) 0.5rem 3rem 0.5rem;
   }
 }
 
