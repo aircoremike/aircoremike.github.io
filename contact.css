@@ -37,7 +37,7 @@
   }
   .contact-text-flex p {
     gap: 1.5rem;
-    font-size: var(--p-font-size-mobile);
+    font-size: var(--p-font-size-mobile) !important;
   }
 }
 
