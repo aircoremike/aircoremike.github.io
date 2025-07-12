@@ -205,16 +205,18 @@
     padding: var(--content-top-spacing-mobile) 0.5rem 3rem 0.5rem;
   }
   .resources h1 {
-    font-size: 1.8rem;
-    margin-top: 0;
-    margin-bottom: 2rem;
+    font-size: 1.8rem !important;
+    line-height: 1.2;
+    margin: 0 0 2rem 0;
+    padding: 0;
   }
 }
 
 @media (max-width: 600px) {
   .resources h1 {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem !important;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
   }
   .resources-grid {
     flex-direction: column;
