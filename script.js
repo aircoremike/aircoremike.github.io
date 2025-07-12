@@ -10,57 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Calculate navbar heights based on CSS custom properties
-    function getNavbarHeights() {
-      const styles = getComputedStyle(document.documentElement);
-      const logoHeightDesktop = parseFloat(styles.getPropertyValue('--logo-height-desktop'));
-      const logoPadding = parseFloat(styles.getPropertyValue('--logo-padding'));
-      const logoHeightMobile = parseFloat(styles.getPropertyValue('--logo-height-mobile'));
-      const logoPaddingMobile = parseFloat(styles.getPropertyValue('--logo-padding-mobile'));
-      
-      const safeAreaTop = parseInt(styles.getPropertyValue('env(safe-area-inset-top)')) || 0;
-      
-      if (window.innerWidth <= 768) {
-        const normalHeight = logoHeightMobile + (2 * logoPaddingMobile) + safeAreaTop;
-        return { normal: normalHeight, shrunk: normalHeight }; // No shrinking on mobile
-      } else {
-        const normalHeight = logoHeightDesktop + (2 * logoPadding) + safeAreaTop;
-        // Shrunk: padding-top = safe-area + (padding/2), padding-bottom = padding/2, logo = logo/2
-        const shrunkHeight = safeAreaTop + (logoPadding / 2) + (logoPadding / 2) + (logoHeightDesktop / 2);
-        
-        return { normal: normalHeight, shrunk: shrunkHeight };
-      }
-    }
-
-    // Simple hero positioning - use CSS custom properties for native CSS handling
-    function adjustHeroPosition() {
-      const heroFlex = document.querySelector('.hero-flex');
-      const navbar = document.querySelector('.navbar');
-      
-      if (heroFlex && navbar) {
-        const heights = getNavbarHeights();
-        
-        // Use the appropriate height based on current shrink state
-        const isCurrentlyShrunk = navbar.classList.contains('navbar-shrink');
-        const calculatedHeight = isCurrentlyShrunk ? heights.shrunk : heights.normal;
-        
-        // Set CSS custom property so CSS can handle positioning natively
-        document.documentElement.style.setProperty('--current-navbar-height', calculatedHeight + 'px');
-        
-        // Handle window resize
-        if (!heroFlex.dataset.resizeListenerAdded) {
-          heroFlex.dataset.resizeListenerAdded = 'true';
-          window.addEventListener('resize', () => {
-            setTimeout(() => adjustHeroPosition(), 50); // Small delay for CSS to update
-          });
-        }
-      }
-    }
-    
-    // Call immediately and with fallbacks
-    adjustHeroPosition();
-    setTimeout(adjustHeroPosition, 100);
-
     // Active link underline for nav links
     function setActiveNavLink(link) {
       document.querySelectorAll('.nav-links li a, .mobile-nav li a').forEach(a => {
@@ -95,49 +44,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     setActiveLinkByUrl();
 
-    // Simple shrinking navbar - desktop/landscape only
+    // Shrinking navbar on scroll (desktop/landscape tablet only)
     const navbar = document.querySelector('.navbar');
+    const logoImg = document.querySelector('.logo img');
+    const mainContent = document.querySelector('.main-content');
     let hasShrunk = false;
+    let lastScrollY = 0;
 
+    // Helper: Only enable on desktop/landscape tablet
     function isDesktopOrLandscapeTablet() {
       return window.matchMedia('(min-width: 769px), (min-width: 1025px) and (orientation: landscape)').matches;
     }
 
     function handleNavbarShrink() {
-      const heroFlex = document.querySelector('.hero-flex');
-      const heights = getNavbarHeights();
-      
       if (!navbar || !isDesktopOrLandscapeTablet()) {
-        // Remove shrink on mobile/tablet portrait
+        // Remove shrink if resizing to mobile/tablet portrait or if navbar doesn't exist
         if (navbar) navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
-        // Set CSS custom property for normal height
-        if (heroFlex) {
-          document.documentElement.style.setProperty('--current-navbar-height', heights.normal + 'px');
-        }
+        if (mainContent) mainContent.classList.remove('navbar-shrink');
         hasShrunk = false;
         return;
       }
-
       if (window.scrollY > 10 && !hasShrunk) {
         navbar.classList.add('navbar-shrink');
         document.body.classList.add('navbar-shrink');
+        if (mainContent) mainContent.classList.add('navbar-shrink');
         hasShrunk = true;
-        
-        // Set CSS custom property for shrunk height
-        if (heroFlex) {
-          document.documentElement.style.setProperty('--current-navbar-height', heights.shrunk + 'px');
-        }
-        
       } else if (window.scrollY <= 10 && hasShrunk) {
         navbar.classList.remove('navbar-shrink');
         document.body.classList.remove('navbar-shrink');
+        if (mainContent) mainContent.classList.remove('navbar-shrink');
         hasShrunk = false;
-        
-        // Set CSS custom property for normal height
-        if (heroFlex) {
-          document.documentElement.style.setProperty('--current-navbar-height', heights.normal + 'px');
-        }
       }
     }
 
@@ -207,44 +144,66 @@ document.addEventListener('DOMContentLoaded', function() {
     var observer = new window.IntersectionObserver(onEntry, {
       threshold: 0.15
     });
-    // Exclude the first body section from scroll-based fade-in
-    document.querySelectorAll('.section-fade:not(.body-flex)').forEach(function(el) {
+    document.querySelectorAll('.section-fade').forEach(function(el) {
       observer.observe(el);
     });
   }
-  
-  function animateHeroTitle() {
-    var heroTitle = document.querySelector('.hero-flex h1');
-    if (heroTitle) {
-      // Delay the animation slightly for a nice effect
-      setTimeout(() => {
-        heroTitle.classList.add('hero-title-visible');
-        // After h1 animation completes, wait 1 second then animate first body section
-        setTimeout(() => {
-          animateFirstBodySection();
-        }, 1000);
-      }, 300);
-    }
-  }
-  
-  function animateFirstBodySection() {
-    var firstBodySection = document.querySelector('.body-flex');
-    if (firstBodySection) {
-      firstBodySection.classList.add('section-fade-visible');
-    }
-  }
-  
   document.addEventListener('DOMContentLoaded', function() {
     var heroImg = document.querySelector('.hero-img');
     if (heroImg && !heroImg.complete) {
-      heroImg.addEventListener('load', function() {
-        animateHeroTitle();
-        enableSectionFade();
-      });
+      heroImg.addEventListener('load', enableSectionFade);
     } else {
-      // Image already loaded or doesn't exist
-      animateHeroTitle();
       enableSectionFade();
+    }
+  });
+})();
+
+// Smooth scroll to anchor with navbar offset
+(function() {
+  function getNavbarHeight() {
+    var navbar = document.querySelector('.navbar');
+    if (!navbar) return 0;
+    var styles = window.getComputedStyle(navbar);
+    return navbar.offsetHeight + parseInt(styles.marginTop || 0) + parseInt(styles.marginBottom || 0);
+  }
+  function scrollToHash(hash) {
+    var el = document.getElementById(hash.replace('#', ''));
+    if (!el) return;
+    var navbarHeight = getNavbarHeight();
+    var rect = el.getBoundingClientRect();
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var top = rect.top + scrollTop - navbarHeight - 8; // 8px extra spacing
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      var hash = link.getAttribute('href');
+      if (hash && hash.length > 1 && document.getElementById(hash.replace('#', ''))) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToHash(hash);
+          // Update URL hash without jumping
+          if (history.pushState) {
+            history.pushState(null, null, hash);
+          } else {
+            window.location.hash = hash;
+          }
+        });
+      }
+    });
+    
+  });
+})();
+
+// Global: Always navigate to index.html when clicking the logo in the navbar
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var logoLink = document.querySelector('.logo a');
+    if (logoLink) {
+      logoLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'index.html';
+      });
     }
   });
 })();
@@ -278,6 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const trackStyle = window.getComputedStyle(track);
     const gap = parseFloat(trackStyle.gap || trackStyle.columnGap || '0');
     
+    console.log('CSS gap from computed style:', trackStyle.gap, 'parsed:', gap);
+    
     // For mobile, use viewport width as container (slides should overflow)
     // For desktop, use the actual carousel container width
     let containerWidth;
@@ -305,30 +266,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const centerOffset = (metrics.containerWidth - metrics.slideWidth) / 2;
     const finalPosition = centerOffset - slideOffset;
     
+    console.log(`Calculate position for slide ${index}:`, {
+      slideWidth: metrics.slideWidth,
+      gap: metrics.gap,
+      containerWidth: metrics.containerWidth,
+      slideWithGap: metrics.slideWithGap,
+      slideOffset: slideOffset,
+      centerOffset: centerOffset,
+      finalPosition: finalPosition
+    });
+    
     return finalPosition;
   }
   
   // Move to specific slide
-  function goToSlide(index, skipTransition = false) {
+  function goToSlide(index) {
     // Clamp index to valid range
     currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
     
     // Calculate exact pixel position
     const position = calculatePosition(currentIndex);
-    
-    // Temporarily disable transition if requested (for initial load)
-    if (skipTransition) {
-      track.style.transition = 'none';
-    }
+    console.log(`Going to slide ${currentIndex}, position: ${position}px`);
     
     track.style.transform = `translateX(${position}px)`;
-    
-    // Re-enable transition after the transform is applied
-    if (skipTransition) {
-      requestAnimationFrame(() => {
-        track.style.transition = '';
-      });
-    }
     
     updateArrows();
   }
@@ -466,18 +426,22 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize
   function init() {
     currentIndex = 0;
+    console.log('Carousel init - Mobile:', isMobile(), 'Window width:', window.innerWidth);
+    console.log('Track initial transform:', track.style.transform);
     
     // Ensure layout is ready before positioning
     requestAnimationFrame(() => {
       // Double-check that we have proper measurements
       const metrics = getSlideMetrics();
+      console.log('Init metrics:', metrics);
       
       if (metrics && metrics.slideWidth > 0) {
-        goToSlide(0, true); // Skip transition on initial load
+        goToSlide(0);
       } else {
         // If measurements aren't ready, try again shortly
         setTimeout(() => {
-          goToSlide(0, true); // Skip transition on initial load
+          console.log('Retrying init with metrics:', getSlideMetrics());
+          goToSlide(0);
         }, 100);
       }
     });
@@ -495,7 +459,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // Apple-style Modal System
 (function() {
   let currentModal = null;
-  let imagesPreloaded = false;
   
   // Modal data for each material
   const modalData = {
@@ -514,34 +477,6 @@ The superior corrosion resistance of stainless steel makes these hollow balls id
 With their lightweight construction and remarkable durability, stainless steel hollow balls provide an optimal balance of strength, weight reduction, and longevity that traditional solid bearings simply cannot match.`
     }
   };
-
-  // Preload all modal images in the background
-  function preloadModalImages() {
-    if (imagesPreloaded) return;
-    
-    const allImageUrls = new Set();
-    
-    // Collect all unique image URLs from all modals
-    Object.values(modalData).forEach(data => {
-      allImageUrls.add(data.heroImage);
-      data.images.forEach(img => allImageUrls.add(img));
-    });
-    
-    let loadedCount = 0;
-    const totalImages = allImageUrls.size;
-    
-    // Preload each image
-    allImageUrls.forEach(url => {
-      const img = new Image();
-      img.onload = img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-          imagesPreloaded = true;
-        }
-      };
-      img.src = url;
-    });
-  }
 
   function createModal(materialType) {
     const data = modalData[materialType];
@@ -606,53 +541,46 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     document.body.appendChild(modal);
     
-    // If images are preloaded, show modal immediately
-    // Otherwise, wait for images to load (fallback for edge cases)
-    if (imagesPreloaded) {
+    // Wait for all images to load before animating
+    const images = modal.querySelectorAll('img');
+    let loadedImages = 0;
+    const totalImages = images.length;
+    
+    function checkAllImagesLoaded() {
+      loadedImages++;
+      if (loadedImages === totalImages) {
+        // All images loaded, now animate in
+        requestAnimationFrame(() => {
+          modal.classList.add('modal-opening');
+          // After a brief moment, transition to visible state
+          setTimeout(() => {
+            modal.classList.remove('modal-opening');
+            modal.classList.add('modal-visible');
+          }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
+        });
+      }
+    }
+    
+    if (totalImages === 0) {
+      // No images to load, animate immediately
       requestAnimationFrame(() => {
         modal.classList.add('modal-opening');
+        // After a brief moment, transition to visible state
         setTimeout(() => {
           modal.classList.remove('modal-opening');
           modal.classList.add('modal-visible');
         }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
       });
     } else {
-      // Fallback: wait for images to load (same as before)
-      const images = modal.querySelectorAll('img');
-      let loadedImages = 0;
-      const totalImages = images.length;
-      
-      function checkAllImagesLoaded() {
-        loadedImages++;
-        if (loadedImages === totalImages) {
-          requestAnimationFrame(() => {
-            modal.classList.add('modal-opening');
-            setTimeout(() => {
-              modal.classList.remove('modal-opening');
-              modal.classList.add('modal-visible');
-            }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
-          });
+      // Set up image loading listeners
+      images.forEach(img => {
+        if (img.complete) {
+          checkAllImagesLoaded();
+        } else {
+          img.addEventListener('load', checkAllImagesLoaded);
+          img.addEventListener('error', checkAllImagesLoaded); // Count errors as "loaded" to prevent hanging
         }
-      }
-      
-      if (totalImages === 0) {
-        requestAnimationFrame(() => {
-          modal.classList.add('modal-opening');
-          setTimeout(() => {
-            modal.classList.remove('modal-opening');
-            modal.classList.add('modal-visible');
-          }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--modal-open-duration')) || 750);
-        });
-      } else {
-        images.forEach(img => {
-          if (img.complete) {
-            checkAllImagesLoaded();
-          } else {
-            img.addEventListener('load', checkAllImagesLoaded);
-            img.addEventListener('error', checkAllImagesLoaded);
-          }
-        });
-      }
+      });
     }
     
     // Close handlers
@@ -728,16 +656,6 @@ With their lightweight construction and remarkable durability, stainless steel h
 
   // Global function to open modals
   window.openMaterialModal = openModal;
-
-  // Start preloading images after page load
-  // Use a slight delay to not interfere with initial page rendering
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(preloadModalImages, 1000); // Wait 1 second after DOM ready
-    });
-  } else {
-    setTimeout(preloadModalImages, 1000); // Page already loaded, start in 1 second
-  }
 })();
 
 // Utility function for touch device detection

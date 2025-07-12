@@ -10,8 +10,6 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
-  /* Dynamic navbar height set by JavaScript based on shrink state */
-  --current-navbar-height: var(--navbar-height-desktop);
 }
 
 html {
@@ -30,14 +28,6 @@ body {
 
 *, *::before, *::after {
   box-sizing: inherit;
-}
-
-/* =====================
-   Main Content Layout
-   ===================== */
-.main-content {
-  margin-top: var(--current-navbar-height);
-  padding-top: 1rem;
 }
 
 /* =====================
@@ -352,6 +342,9 @@ body {
   body {
     transition: background-position-y 0.35s cubic-bezier(0.4,0,0.2,1);
   }
+  #home h1 {
+    transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
   .navbar.navbar-shrink {
     padding-top: calc(env(safe-area-inset-top, 0px) + calc(var(--logo-padding) / 2));
     padding-bottom: calc(var(--logo-padding) / 2);
@@ -362,9 +355,27 @@ body {
   body.navbar-shrink {
     background-position-y: calc(var(--navbar-height-desktop) / 2);
   }
+  #home h1.navbar-shrink {
+    margin-top: 175px !important;
+  }
 }
 
-/* Main Content Wrapper - No special styling needed since hero handles navbar offset */
+/* Main Content Wrapper for Shrinking Navbar Animation */
+@media (min-width: 769px), (min-width: 1025px) and (orientation: landscape) {
+  .main-content {
+    transition: padding-top 0.35s cubic-bezier(0.4,0,0.2,1);
+    padding-top: var(--navbar-height-desktop);
+  }
+  body.navbar-shrink .main-content {
+    padding-top: calc(var(--navbar-height-desktop) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: var(--navbar-height-mobile);
+  }
+}
 
 /* =====================
    Hero Section
@@ -384,10 +395,6 @@ body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* Use CSS custom property for navbar offset - updated by JavaScript */
-  margin-top: var(--current-navbar-height);
-  /* Smooth transition for margin changes */
-  transition: margin-top 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
 .hero-img {
@@ -395,7 +402,6 @@ body {
   max-width: 100vw;
   height: auto;
   display: block;
-  /* Let the image size naturally based on its intrinsic aspect ratio */
 }
 
 .hero-flex h1 {
@@ -412,37 +418,18 @@ body {
   transform: translate(-50%, -50%);
   z-index: 2;
   text-shadow: 0 2px 12px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.18);
-  /* Start invisible for animation */
-  opacity: 0;
-  transform: translate(-50%, -50%) translateY(40px);
-  transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1);
-}
-
-.hero-flex h1.hero-title-visible {
-  opacity: 1;
-  transform: translate(-50%, -50%) translateY(0);
 }
 
 @media (max-width: 768px) {
-  .hero-flex h1 {
+  h1 {
     font-size: 1.4rem !important;
     top: 36% !important;
-    /* Fix animation transform for mobile */
-    transform: translate(-50%, -50%) translateY(40px) !important;
-  }
-  .hero-flex h1.hero-title-visible {
-    transform: translate(-50%, -50%) translateY(0) !important;
   }
 }
 @media (min-width: 769px) and (orientation: portrait){
-  .hero-flex h1 {
+  h1 {
     font-size: 3rem !important;
     top: 38% !important;
-    /* Fix animation transform for tablet portrait */
-    transform: translate(-50%, -50%) translateY(40px) !important;
-  }
-  .hero-flex h1.hero-title-visible {
-    transform: translate(-50%, -50%) translateY(0) !important;
   }
 }
 

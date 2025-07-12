@@ -1,16 +1,5 @@
 /* about.css: Additional styles for the About page */
 
-:root {
-  --logo-height-desktop: 128px;
-  --logo-height-mobile: 64px;
-  --logo-padding: 16px;
-  --logo-padding-mobile: 8px;
-  --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
-  --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
-  /* Dynamic navbar height set by JavaScript based on shrink state */
-  --current-navbar-height: var(--navbar-height-desktop);
-}
-
 .about {
   display: flex;
   flex-direction: column;
