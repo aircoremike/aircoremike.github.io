@@ -189,12 +189,6 @@
 }
 
 @media (max-width: 900px) {
-  .resources {
-    padding: 2rem 0.5rem 3rem 0.5rem;
-  }
-  .resources h1 {
-    font-size: 2rem;
-  }
   .resources-grid {
     gap: 1.2rem;
   }
@@ -208,12 +202,13 @@
   .resources {
     padding: var(--content-top-spacing-mobile) 0.5rem 3rem 0.5rem;
   }
+  .resources h1 {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 600px) {
-  .resources {
-    padding: 1.2rem 0.2rem 2rem 0.2rem;
-  }
+  .resources h1 {
   .resources h1 {
     font-size: 1.3rem;
   }
