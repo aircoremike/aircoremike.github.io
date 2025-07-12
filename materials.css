@@ -1,17 +1,4 @@
-/* =====================
-   Root Variables & General Styles
-   ===================== */
-:root {
-  --logo-height-desktop: 128px;
-  --logo-height-mobile: 64px;
-  --max-width: 1200px;
-  --background-color: #000;
-  --logo-padding: 16px;
-  --logo-padding-mobile: 8px;
-  --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
-  --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
-  --navbar-shrink-height: 64px; /* Added variable for shrunken navbar height */
-}
+/* materials.css: Additional styles for the Materials page */
 
 html {
   overflow-x: hidden;
