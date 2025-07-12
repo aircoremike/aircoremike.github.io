@@ -33,6 +33,14 @@ body {
 }
 
 /* =====================
+   Main Content Layout
+   ===================== */
+.main-content {
+  margin-top: var(--current-navbar-height);
+  padding-top: 1rem;
+}
+
+/* =====================
    Header & Navigation
    ===================== */
 .navbar {

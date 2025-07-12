@@ -10,7 +10,8 @@
   --logo-padding-mobile: 8px;
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
-  --navbar-shrink-height: 64px; /* Added variable for shrunken navbar height */
+  /* Dynamic navbar height set by JavaScript based on shrink state */
+  --current-navbar-height: var(--navbar-height-desktop);
 }
 
 html {
@@ -43,7 +44,8 @@ body {
   background: var(--background-color);
   color: #f5f5f7;
   padding: 3rem 1.5rem 2.5rem 1.5rem;
-  margin: 2rem auto 2.5rem auto;
+  margin: var(--current-navbar-height) auto 2.5rem auto;
+  margin-top: calc(var(--current-navbar-height) + 2rem);
   border-radius: 1.25rem;
   max-width: 1000px;
 }
