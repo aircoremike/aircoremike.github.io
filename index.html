@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<  <div id="navbar-container" class="stage-loading"></div>
-  <div class="main-content">
-    <section id="home" class="home-flex">
-        <div class="hero-flex">
-          <img src="assets/index_hero_landscape.jpg" alt="Aircore Bearings Hero" class="hero-img stage-loading" />
-          <h1 class="hero-h1-staging">Take Off Without the Trade-Off.</h1>
+<html lang        <div class="hero-flex">
+          <img src="assets/index_hero_landscape.jpg" alt="Aircore Bearings Hero" class="hero-img" />
+          <h1 class="hero-h1-hidden" id="hero-h1">Take Off Without the Trade-Off.</h1>
         </div>
         <div class="body-flex">
           <div class="body-rows-flex">
-            <p class="first-p-staging">Solid, but heavy. Most large bearing balls offer strength
-              you'll never use — at a cost you shouldn't have to pay. Ready to rethink the standard?</p>en">
-<head>
+            <p class="first-p-hidden" id="first-p">Solid, but heavy. Most large bearing balls offer strength
+              you'll never use — at a cost you shouldn't have to pay. Ready to rethink the standard?</p><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aircore Bearings</title>
@@ -24,6 +20,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Aircore" />
     <link rel="manifest" href="/favicons/site.webmanifest" />
+    <style>
+      .hero-h1-hidden { opacity: 0; transition: opacity 0.5s ease-in; }
+      .hero-h1-visible { opacity: 1; }
+      .first-p-hidden { opacity: 0; transition: opacity 0.5s ease-in; }
+      .first-p-visible { opacity: 1; }
+    </style>
 </head>
 <body>
   <div id="navbar-container"></div>
@@ -138,78 +140,32 @@
   <div id="footer-container"></div>
   <script src="script.js"></script>
   <script>
-    // Staged loading system for homepage
-    function implementStagedLoading() {
-      const navbar = document.getElementById('navbar-container');
-      const heroImg = document.querySelector('.hero-img');
-      const heroH1 = document.querySelector('.hero-flex h1');
-      const firstP = document.querySelector('.first-p-staging');
+    // Staged loading implementation
+    function initStagedLoading() {
+      // Step 1: Navbar loads first (already handled by existing loadPartial)
       
-      // Stage 1: Load navbar immediately
-      function loadNavbar() {
-        return new Promise((resolve) => {
-          fetch('navbar.html')
-            .then(res => res.text())
-            .then(html => {
-              navbar.innerHTML = html;
-              navbar.classList.remove('stage-loading');
-              navbar.classList.add('stage-loaded');
-              if (window.initNavbarScripts) window.initNavbarScripts();
-              resolve();
-            });
-        });
-      }
+      // Step 2: Hero image loads immediately (already visible)
       
-      // Stage 2: Load hero image
-      function loadHeroImage() {
-        return new Promise((resolve) => {
-          if (heroImg.complete) {
-            heroImg.classList.remove('stage-loading');
-            heroImg.classList.add('stage-loaded');
-            resolve();
-          } else {
-            heroImg.onload = () => {
-              heroImg.classList.remove('stage-loading');
-              heroImg.classList.add('stage-loaded');
-              resolve();
-            };
-          }
-        });
-      }
+      // Step 3: Wait 300ms, then show h1
+      setTimeout(() => {
+        const h1 = document.getElementById('hero-h1');
+        if (h1) {
+          h1.classList.remove('hero-h1-hidden');
+          h1.classList.add('hero-h1-visible');
+        }
+      }, 300);
       
-      // Stage 3: Load h1 after 300ms delay
-      function loadHeroH1() {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            heroH1.classList.remove('hero-h1-staging');
-            heroH1.classList.add('hero-h1-loaded');
-            resolve();
-          }, 300);
-        });
-      }
-      
-      // Stage 4: Load first paragraph after 1000ms delay
-      function loadFirstP() {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            firstP.classList.remove('first-p-staging');
-            firstP.classList.add('first-p-loaded');
-            resolve();
-          }, 1000);
-        });
-      }
-      
-      // Execute staged loading sequence
-      loadNavbar()
-        .then(() => loadHeroImage())
-        .then(() => loadHeroH1())
-        .then(() => loadFirstP())
-        .then(() => {
-          console.log('Staged loading complete');
-        });
+      // Step 4: Wait 1000ms total, then show first paragraph
+      setTimeout(() => {
+        const firstP = document.getElementById('first-p');
+        if (firstP) {
+          firstP.classList.remove('first-p-hidden');
+          firstP.classList.add('first-p-visible');
+        }
+      }, 1000);
     }
 
-    // Inject footer and start staged loading
+    // Inject navbar and footer partials, then re-initialize navbar JS
     function loadPartial(id, url, callback) {
       fetch(url)
         .then(res => res.text())
@@ -218,9 +174,11 @@
           if (callback) callback();
         });
     }
-    
-    // Start staged loading and load footer
-    implementStagedLoading();
+    // Load navbar, then re-run navbar-dependent JS and start staged loading
+    loadPartial('navbar-container', 'navbar.html', function() {
+      if (window.initNavbarScripts) window.initNavbarScripts();
+      initStagedLoading(); // Start staged loading after navbar is loaded
+    });
     loadPartial('footer-container', 'footer.html');
   </script>
 </body>
