@@ -80,7 +80,7 @@ body {
 }
 @media (max-width: 600px) {
   .materials-hero h1 {
-    font-size: 1.3rem !important;
+    font-size: var(--h1-font-size-mobile) !important;
     margin: 0 0 1.5rem 0;
   }
 }
