@@ -387,9 +387,7 @@ body {
   max-width: 100vw;
   height: auto;
   display: block;
-  /* Reserve space based on aspect ratio to prevent layout shift */
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  /* Let the image size naturally based on its intrinsic aspect ratio */
 }
 
 .hero-flex h1 {
