@@ -14,6 +14,8 @@
   --content-top-spacing-mobile: 3rem; /* Standard spacing between navbar and h1 on mobile */
   --h1-font-size-desktop: 2.5rem; /* Standard h1 font size for desktop */
   --h1-font-size-mobile: 2rem; /* Standard h1 font size for mobile */
+  --p-font-size-desktop: 1.5rem; /* Standard paragraph font size for desktop */
+  --p-font-size-mobile: 1.2rem; /* Standard paragraph font size for mobile */
 }
 
 html {

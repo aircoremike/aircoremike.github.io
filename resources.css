@@ -237,7 +237,7 @@
     font-size: 1rem;
   }
   .white-paper h1 {
-    font-size: var(--h1-font-size-mobile);
+    font-size: 1.2rem;
   }
   .download-btn {
     font-size: 0.98rem;
