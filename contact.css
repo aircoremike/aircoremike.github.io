@@ -23,7 +23,21 @@
 .contact-text-flex {
   flex-direction: column;
   gap: 2.5rem;
+}
+
+.contact-text-flex p {
   font-size: var(--p-font-size-desktop);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.contact-form-flex label {
+  font-size: var(--p-font-size-desktop);
+}
+
+.contact-form-flex input,
+.contact-form-flex textarea {
+  font-size: calc(var(--p-font-size-desktop) * 0.9);
 }
 
 @media (max-width: 768px) {
@@ -38,8 +52,15 @@
   .contact-text-flex {
     gap: 1.5rem;
   }
-  .contact p {
+  .contact-text-flex p {
     font-size: var(--p-font-size-mobile);
+  }
+  .contact-form-flex label {
+    font-size: var(--p-font-size-mobile);
+  }
+  .contact-form-flex input,
+  .contact-form-flex textarea {
+    font-size: calc(var(--p-font-size-mobile) * 0.9);
   }
 }
 

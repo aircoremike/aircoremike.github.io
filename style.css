@@ -821,11 +821,7 @@ body {
   .body-rows-flex p,
   .body-about-short,
   .application-text,
-  .advantages-list li,
-  .contact-text-flex p,
-  .contact-form-flex label,
-  .contact-form-flex input,
-  .contact-form-flex textarea {
+  .advantages-list li {
     font-size: 1rem !important;
   }
   .heading-flex h2,
