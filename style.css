@@ -1,4 +1,38 @@
 /* =====================
+   Staged Loading Animation Classes
+   ===================== */
+.stage-loading {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.stage-loaded {
+  opacity: 1;
+}
+
+.hero-h1-staging {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.hero-h1-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.first-p-staging {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.first-p-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
    Root Variables & General Styles
    ===================== */
 :root {
