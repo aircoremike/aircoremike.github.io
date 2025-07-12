@@ -64,7 +64,7 @@
     max-width: 98vw;
   }
   .services h1 {
-    font-size: var(--h1-font-size-mobile);
+    font-size: var(--h1-font-size-mobile) !important;
     margin: var(--content-top-spacing-mobile) 0 2rem 0;
   }
   .services p {

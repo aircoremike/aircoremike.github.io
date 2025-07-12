@@ -17,7 +17,7 @@
     max-width: 98vw;
   }
   #contact h1 {
-    font-size: var(--h1-font-size-mobile);
+    font-size: var(--h1-font-size-mobile) !important;
     margin: var(--content-top-spacing-mobile) 0 2rem 0;
   }
 }
