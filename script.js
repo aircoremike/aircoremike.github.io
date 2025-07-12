@@ -663,3 +663,42 @@ function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 }
 
+// Loading sequence for homepage
+function initializeLoadingSequence() {
+  const heroImg = document.querySelector('.hero-img');
+  const heroTitle = document.querySelector('.hero-flex h1');
+  const bodyContent = document.querySelector('.body-rows-flex');
+
+  // Reset opacity for hero image
+  heroImg.style.opacity = '0';
+  
+  // Function to start the sequence
+  function startSequence() {
+    // Fade in hero image
+    heroImg.style.transition = 'opacity 1s ease-out';
+    heroImg.style.opacity = '1';
+
+    // After hero image loads and 1 second passes, show the title
+    setTimeout(() => {
+      heroTitle.classList.remove('hidden');
+      heroTitle.classList.add('fade-in');
+      
+      // After title fades in and 1 second passes, show the body content
+      setTimeout(() => {
+        bodyContent.classList.remove('hidden');
+        bodyContent.classList.add('fade-in');
+      }, 1000);
+    }, 1000);
+  }
+
+  // Wait for hero image to load before starting sequence
+  if (heroImg.complete) {
+    startSequence();
+  } else {
+    heroImg.onload = startSequence;
+  }
+}
+
+// Initialize loading sequence when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeLoadingSequence);
+
