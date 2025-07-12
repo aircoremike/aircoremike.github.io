@@ -813,3 +813,41 @@ body {
     height: auto;
   }
 }
+
+/* =====================
+   Staged Loading Sequence
+   ===================== */
+.staged-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.staged-fade-in.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay classes for staged loading */
+.delayed-300 { transition-delay: 0s; }
+.delayed-1000 { transition-delay: 0s; }
+
+/* Responsive adjustments for staged loading */
+@media (max-width: 768px) {
+  .staged-fade-in {
+    transform: translateY(20px);
+    transition-duration: 0.6s;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .staged-fade-in {
+    transition: opacity 0.3s ease-in-out;
+    transform: none;
+  }
+  .staged-fade-in.loaded {
+    transform: none;
+  }
+}
+/*# sourceMappingURL=style.css.map */

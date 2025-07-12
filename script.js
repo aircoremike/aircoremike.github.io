@@ -663,3 +663,58 @@ function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 }
 
+// Staged Loading Sequence for Homepage
+(function() {
+  // Only run on homepage
+  function isHomepage() {
+    const path = window.location.pathname;
+    return path === '/' || path.endsWith('/index.html') || path === '/index.html';
+  }
+
+  if (!isHomepage()) return;
+
+  function initStagedLoading() {
+    // Get all elements that should fade in with stages
+    const h1Element = document.querySelector('.hero-flex h1.staged-fade-in.delayed-300');
+    const firstParagraph = document.querySelector('.body-rows-flex p.staged-fade-in.delayed-1000');
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Staged loading sequence
+    function startStagedSequence() {
+      // If user prefers reduced motion, show everything immediately
+      if (prefersReducedMotion) {
+        if (h1Element) h1Element.classList.add('loaded');
+        if (firstParagraph) firstParagraph.classList.add('loaded');
+        return;
+      }
+
+      // H1 heading: fade in after 300ms
+      if (h1Element) {
+        setTimeout(() => {
+          h1Element.classList.add('loaded');
+        }, 300);
+      }
+
+      // First paragraph: fade in after 1000ms
+      if (firstParagraph) {
+        setTimeout(() => {
+          firstParagraph.classList.add('loaded');
+        }, 1000);
+      }
+    }
+
+    // Start the sequence when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startStagedSequence);
+    } else {
+      // DOM is already ready, start immediately
+      startStagedSequence();
+    }
+  }
+
+  // Initialize staged loading
+  initStagedLoading();
+})();
+
