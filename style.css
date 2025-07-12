@@ -11,7 +11,9 @@
   --navbar-height-desktop: calc(var(--logo-height-desktop) + 2 * var(--logo-padding));
   --navbar-height-mobile: calc(var(--logo-height-mobile) + 2 * var(--logo-padding-mobile));
   --content-top-spacing-desktop: 2.5rem; /* Standard spacing between navbar and h1 on desktop */
-  --content-top-spacing-mobile: 1.5rem; /* Standard spacing between navbar and h1 on mobile */
+  --content-top-spacing-mobile: 3rem; /* Standard spacing between navbar and h1 on mobile */
+  --h1-font-size-desktop: 2.5rem; /* Standard h1 font size for desktop */
+  --h1-font-size-mobile: 2rem; /* Standard h1 font size for mobile */
 }
 
 html {

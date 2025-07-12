@@ -12,7 +12,7 @@
 }
 
 .resources h1 {
-  font-size: 2.5rem !important;
+  font-size: var(--h1-font-size-desktop) !important;
   line-height: 1.2;
   margin: var(--content-top-spacing-desktop) 0 2.5rem 0;
   padding: 0;
@@ -112,7 +112,7 @@
   align-items: center;
 }
 .white-paper h1 {
-  font-size: 2.1rem;
+  font-size: var(--h1-font-size-desktop);
   color: var(--primary-text, #f5f5f7);
   margin-bottom: 2.2rem;
   text-align: center;
@@ -205,7 +205,7 @@
     padding: 0 0.5rem 3rem 0.5rem;
   }
   .resources h1 {
-    font-size: 1.8rem !important;
+    font-size: var(--h1-font-size-mobile) !important;
     line-height: 1.2;
     margin: var(--content-top-spacing-mobile) 0 2rem 0;
     padding: 0;
@@ -241,7 +241,7 @@
     font-size: 1rem;
   }
   .white-paper h1 {
-    font-size: 1.2rem;
+    font-size: var(--h1-font-size-mobile);
   }
   .download-btn {
     font-size: 0.98rem;
