@@ -575,7 +575,10 @@ With their lightweight construction and remarkable durability, stainless steel h
         // All images loaded, now animate in
         requestAnimationFrame(() => {
           modal.classList.add('modal-opening');
-          closeContainer.classList.add('visible');
+          // Delay close button entrance by 500ms
+          setTimeout(() => {
+            closeContainer.classList.add('visible');
+          }, 500);
           // After a brief moment, transition to visible state
           setTimeout(() => {
             modal.classList.remove('modal-opening');
@@ -589,7 +592,10 @@ With their lightweight construction and remarkable durability, stainless steel h
       // No images to load, animate immediately
       requestAnimationFrame(() => {
         modal.classList.add('modal-opening');
-        closeContainer.classList.add('visible');
+        // Delay close button entrance by 500ms
+        setTimeout(() => {
+          closeContainer.classList.add('visible');
+        }, 500);
         // After a brief moment, transition to visible state
         setTimeout(() => {
           modal.classList.remove('modal-opening');
