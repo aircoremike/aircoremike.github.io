@@ -637,8 +637,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 62px;
-  height: 62px;
+  width: 72px;
+  height: 72px;
   opacity: 0;
   pointer-events: none;
   transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
