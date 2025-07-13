@@ -516,7 +516,7 @@ With their lightweight construction and remarkable durability, stainless steel h
     closeContainer.innerHTML = `
       <button class="modal-close" aria-label="Close modal">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M18.2 1.8L1.8 18.2M1.8 1.8L18.2 18.2" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+          <path d="M18 2L2 18M2 2L18 18" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
         </svg>
       </button>
     `;
