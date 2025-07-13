@@ -611,11 +611,21 @@ body {
   letter-spacing: -0.02em;
 }
 
-.modal-close {
+.modal-close-container {
   position: fixed;
-  bottom: 32px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1010; /* Higher than modal overlay */
+  height: 0;
+}
+
+.modal-close {
+  position: absolute;
   left: 50%;
-  transform: translateX(-50%) translateY(calc(100% + 32px));
+  bottom: 32px;
+  transform: translateX(-50%) translateY(100px);
   background: rgba(45, 45, 47, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -629,21 +639,21 @@ body {
   justify-content: center;
   width: 48px;
   height: 48px;
-  z-index: 1002;
   opacity: 0;
   pointer-events: none;
   transition: transform var(--modal-open-duration) cubic-bezier(0.2, 0.8, 0.2, 1),
               opacity var(--modal-open-duration) cubic-bezier(0.2, 0.8, 0.2, 1),
               background-color 0.2s ease;
+  will-change: transform, opacity;
 }
 
-.modal-overlay.modal-opening .modal-close {
+.modal-overlay.modal-opening ~ .modal-close-container .modal-close {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
 
-.modal-overlay.modal-visible .modal-close {
+.modal-overlay.modal-visible ~ .modal-close-container .modal-close {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   pointer-events: auto;
@@ -651,15 +661,15 @@ body {
 
 .modal-close:hover {
   background: rgba(60, 60, 62, 0.9);
-  transform: translateX(-50%) translateY(0) scale(1.05);
+  transform: translateX(-50%) scale(1.05);
 }
 
 .modal-close:active {
-  transform: translateX(-50%) translateY(0) scale(0.95);
+  transform: translateX(-50%) scale(0.95);
 }
 
-.modal-overlay.modal-closing .modal-close {
-  transform: translateX(-50%) translateY(calc(100% + 32px));
+.modal-overlay.modal-closing ~ .modal-close-container .modal-close {
+  transform: translateX(-50%) translateY(100px);
   opacity: 0;
   pointer-events: none;
   transition: transform var(--modal-close-duration) cubic-bezier(0.2, 0.8, 0.2, 1),

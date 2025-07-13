@@ -482,17 +482,13 @@ With their lightweight construction and remarkable durability, stainless steel h
     const data = modalData[materialType];
     if (!data) return;
 
+    // Create the modal overlay
     const modal = document.createElement('div');
     modal.className = 'modal-overlay';
     modal.innerHTML = `
       <div class="modal-container">
         <div class="modal-header">
           <h1>${data.title}</h1>
-          <button class="modal-close" aria-label="Close modal">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </button>
         </div>
         <div class="modal-content">
           <div class="modal-hero">
@@ -514,6 +510,17 @@ With their lightweight construction and remarkable durability, stainless steel h
       </div>
     `;
 
+    // Create the close button container
+    const closeContainer = document.createElement('div');
+    closeContainer.className = 'modal-close-container';
+    closeContainer.innerHTML = `
+      <button class="modal-close" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    `;
+
     return modal;
   }
 
@@ -522,6 +529,22 @@ With their lightweight construction and remarkable durability, stainless steel h
     
     const modal = createModal(materialType);
     if (!modal) return;
+
+    // Remove any existing close button container
+    const existingCloseContainer = document.querySelector('.modal-close-container');
+    if (existingCloseContainer) {
+      existingCloseContainer.remove();
+    }
+
+    // Add both the modal and close button container to the body
+    document.body.appendChild(modal);
+    document.body.appendChild(closeContainer);
+    
+    // Add click handler to close button
+    const closeButton = closeContainer.querySelector('.modal-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeModal);
+    }
     
     currentModal = modal;
     
@@ -640,11 +663,16 @@ With their lightweight construction and remarkable durability, stainless steel h
         navbar.style.paddingRight = '';
       }
       
-      if (currentModal) {
-        document.body.removeChild(currentModal);
-        currentModal = null;
+      // Remove both the modal and close button container
+      if (currentModal && currentModal.parentElement) {
+        currentModal.parentElement.removeChild(currentModal);
       }
-    }, 500); // Use close duration (0.50s = 500ms)
+      const closeContainer = document.querySelector('.modal-close-container');
+      if (closeContainer && closeContainer.parentElement) {
+        closeContainer.parentElement.removeChild(closeContainer);
+      }
+      currentModal = null;
+    }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--modal-close-duration')) * 1000);
   }
 
   // Keyboard support
