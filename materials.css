@@ -612,20 +612,29 @@ body {
 }
 
 .modal-close {
-  background: none;
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(45, 45, 47, 0.8);
+  backdrop-filter: blur(8px);
   border: none;
   color: #f5f5f7;
   cursor: pointer;
-  padding: 8px;
+  padding: 12px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  width: 48px;
+  height: 48px;
+  z-index: 1001; /* Higher than modal-overlay */
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(60, 60, 62, 0.9);
+  transform: translateX(-50%) scale(1.05);
 }
 
 .modal-content {
