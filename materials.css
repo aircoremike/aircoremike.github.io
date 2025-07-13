@@ -648,10 +648,6 @@ body {
   will-change: transform, opacity, border-color;
 }
 
-.modal-close svg {
-  stroke-width: 6;
-}
-
 .modal-close-container.visible .modal-close {
   transform: translateX(-50%) scale(1);
   opacity: 1;
