@@ -521,14 +521,16 @@ With their lightweight construction and remarkable durability, stainless steel h
       </button>
     `;
 
-    return modal;
+    return { modal, closeContainer };
   }
 
   function openModal(materialType) {
     if (currentModal) closeModal();
     
-    const modal = createModal(materialType);
-    if (!modal) return;
+    const result = createModal(materialType);
+    if (!result) return;
+
+    const { modal, closeContainer } = result;
 
     // Remove any existing close button container
     const existingCloseContainer = document.querySelector('.modal-close-container');
