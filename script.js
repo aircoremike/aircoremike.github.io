@@ -564,8 +564,6 @@ With their lightweight construction and remarkable durability, stainless steel h
       navbar.style.paddingRight = `${scrollbarWidth}px`;
     }
     
-    document.body.appendChild(modal);
-    
     // Wait for all images to load before animating
     const images = modal.querySelectorAll('img');
     let loadedImages = 0;
@@ -577,6 +575,7 @@ With their lightweight construction and remarkable durability, stainless steel h
         // All images loaded, now animate in
         requestAnimationFrame(() => {
           modal.classList.add('modal-opening');
+          closeContainer.classList.add('visible');
           // After a brief moment, transition to visible state
           setTimeout(() => {
             modal.classList.remove('modal-opening');
@@ -590,6 +589,7 @@ With their lightweight construction and remarkable durability, stainless steel h
       // No images to load, animate immediately
       requestAnimationFrame(() => {
         modal.classList.add('modal-opening');
+        closeContainer.classList.add('visible');
         // After a brief moment, transition to visible state
         setTimeout(() => {
           modal.classList.remove('modal-opening');
@@ -609,9 +609,6 @@ With their lightweight construction and remarkable durability, stainless steel h
     }
     
     // Close handlers
-    const closeBtn = modal.querySelector('.modal-close');
-    closeBtn.addEventListener('click', closeModal);
-    
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
@@ -651,6 +648,13 @@ With their lightweight construction and remarkable durability, stainless steel h
     // Start closing animation
     currentModal.classList.remove('modal-visible');
     currentModal.classList.add('modal-closing');
+    
+    // Also animate close button out
+    const closeContainer = document.querySelector('.modal-close-container');
+    if (closeContainer) {
+      closeContainer.classList.remove('visible');
+      closeContainer.classList.add('closing');
+    }
     
     // Wait for animation to complete before restoring scrollbar
     setTimeout(() => {

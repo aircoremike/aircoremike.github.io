@@ -647,13 +647,7 @@ body {
   will-change: transform, opacity;
 }
 
-.modal-overlay.modal-opening ~ .modal-close-container .modal-close {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-overlay.modal-visible ~ .modal-close-container .modal-close {
+.modal-close-container.visible .modal-close {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   pointer-events: auto;
@@ -668,7 +662,7 @@ body {
   transform: translateX(-50%) scale(0.95);
 }
 
-.modal-overlay.modal-closing ~ .modal-close-container .modal-close {
+.modal-close-container.closing .modal-close {
   transform: translateX(-50%) translateY(100px);
   opacity: 0;
   pointer-events: none;
