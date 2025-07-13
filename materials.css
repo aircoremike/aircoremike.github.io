@@ -654,6 +654,11 @@ body {
   height: auto;
 }
 
+.modal-close svg path {
+  /* Force stroke properties to override any inheritance */
+  stroke-width: 12 !important;
+}
+
 .modal-close-container.visible .modal-close {
   transform: translateX(-50%) scale(1);
   opacity: 1;
