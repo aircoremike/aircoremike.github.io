@@ -54,7 +54,7 @@
 .contact-btn:hover, .contact-btn:focus {
   background: linear-gradient(90deg, #00c6fb 0%, #1e90ff 100%);
   color: #fff;
-  transform: translateY(-2px) scale(1.04);
+  /* transform: translateY(-2px) scale(1.04); */
   box-shadow: 0 4px 18px rgba(30,144,255,0.25);
 }
 
