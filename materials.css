@@ -660,6 +660,7 @@ body {
   opacity: 0;
   pointer-events: none;
   animation: none;
+  z-index: -1; /* Ensure it stays behind the close button */
 }
 
 .modal-close-container.visible .modal-close {
