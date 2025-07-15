@@ -353,11 +353,16 @@ body {
   .slide-title {
     margin-right: 0;
     margin-bottom: 0.3em;
-    margin-top: 15%;
+    margin-top: 8%;
+  }
+  .slide-desc {
+    margin: 0;
+    padding-left: 2.2em;
+    margin-bottom: 3rem;
   }
   .slide-button {
     position: absolute;
-    top: 52%;
+    top: 50%;
     left: 2rem;
     right: 1.5rem;
     transform: translateY(-50%);
@@ -518,26 +523,41 @@ body {
     justify-content: flex-start;
     gap: 1rem;
   }
+  .slide-text {
+    padding-top: 1rem;
+  }
+  .slide-title {
+    margin-top: 0 !important;
+  }
+  .slide-desc {
+    margin-bottom: 1.5rem !important;
+  }
+  .slide-button {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    margin-top: 0 !important;
+    justify-content: flex-start !important;
+    padding-left: 2.2em;
+  }
 }
 
 @media (min-width: 701px) and (max-width: 1024px) and (orientation: landscape) {
-  .materials-carousel-bg {
-    height: 60vh;
-    min-height: 60vh;
-  }
-  .materials-carousel {
-    overflow: hidden;
-  }
-  .carousel-track {
-    overflow: hidden;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0;
-  }
+  /* Inherit desktop styles but ensure proper width override */
   .carousel-slide {
     min-width: 40vw !important;
     max-width: 40vw !important;
     height: 100% !important;
+  }
+  .carousel-track {
+    gap: 2rem;
+    justify-content: center;
+  }
+  .materials-carousel-bg {
+    height: 60vh;
+    min-height: 60vh;
   }
 }
 
