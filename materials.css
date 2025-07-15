@@ -643,47 +643,56 @@ body {
   pointer-events: none;
   transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
               opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) 0.75s,
               background-color 0.2s ease;
-  will-change: transform, opacity, border-color;
+  will-change: transform, opacity;
 }
 
-.modal-close svg {
-  /* Reset any potential overrides */
-  width: auto;
-  height: auto;
-}
-
-.modal-close svg path {
-  /* Force stroke properties to override any inheritance */
-  stroke-width: 12 !important;
+.modal-close::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  background: #1e90ff; /* Solid circle */
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  z-index: -1; /* Ensure it stays behind the close button */
 }
 
 .modal-close-container.visible .modal-close {
   transform: translateX(-50%) scale(1);
   opacity: 1;
   pointer-events: auto;
-  border-color: #ff4444;
 }
 
-.modal-close:hover {
-  background: rgba(60, 60, 62, 0.9);
-  transform: translateX(-50%) scale(1.05);
-  border-color: #ff6666;
+.modal-close-container.visible .modal-close::before {
+  animation: border-expand 0.7s ease-out, border-shrink 0.25s ease-in 0.7s;
 }
 
-.modal-close:active {
-  transform: translateX(-50%) scale(0.95);
+@keyframes border-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.7);
+    opacity: 1;
+  }
 }
 
-.modal-close-container.closing .modal-close {
-  transform: translateX(-50%) scale(0);
-  opacity: 0;
-  pointer-events: none;
-  border-color: transparent;
-  transition: transform var(--modal-close-duration) cubic-bezier(0.2, 0.8, 0.2, 1),
-              opacity var(--modal-close-duration) cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color var(--modal-close-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
+@keyframes border-shrink {
+  0% {
+    transform: translate(-50%, -50%) scale(1.7);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
 }
 
 .modal-content {
