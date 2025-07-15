@@ -8,9 +8,9 @@ window.MATERIALS_CONFIG = [
     modalFile: 'stainless-modal.html'
   },
   {
-    id: 'chrome', 
+    id: 'hccr', 
     name: 'High Carbon Chrome',
-    modalFile: 'chrome-modal.html'
+    modalFile: 'hccr-modal.html'
   },
   {
     id: 'titanium',

@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Map material types to modal IDs
     const modalMap = {
       'stainless': 'stainless-modal',
-      'chrome': 'chrome-modal', 
+      'hccr': 'hccr-modal', 
       'titanium': 'titanium-modal',
       'copper': 'copper-modal',
       'nickel': 'nickel-modal',
