@@ -362,7 +362,7 @@ body {
   }
   .slide-button {
     position: absolute;
-    top: 50%;
+    top: 70%
     left: 2rem;
     right: 1.5rem;
     transform: translateY(-50%);
@@ -545,11 +545,10 @@ body {
 }
 
 @media (min-width: 701px) and (max-width: 1024px) and (orientation: landscape) {
-  /* Inherit desktop styles but ensure proper width override */
   .carousel-slide {
-    min-width: 40vw !important;
-    max-width: 40vw !important;
-    height: 100% !important;
+    min-width: 80vw;
+    max-width: 80vw;
+    height: 100%;
   }
   .carousel-track {
     gap: 2rem;
