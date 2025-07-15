@@ -370,37 +370,7 @@ body {
   }
 }
 
-@media (min-width: 701px) and (max-width: 1024px) and (orientation: portrait) {
-  .carousel-slide {
-    min-width: 80vw;
-    max-width: 80vw;
-    height: 85vh;
-  }
-  .carousel-track {
-    overflow: visible;
-    justify-content: flex-start;
-    gap: 1rem;
-  }
-  .slide-text {
-    padding-top: 1rem;
-  }
-  .slide-title {
-    margin-top: 0 !important;
-  }
-  .slide-desc {
-    margin-bottom: 1.5rem !important;
-  }
-  .slide-button {
-    position: static !important;
-    transform: none !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    margin-top: 0 !important;
-    justify-content: flex-start !important;
-    padding-left: 2.2em;
-  }
-}
+
 
 @media (min-width: 701px) and (max-width: 1024px) and (orientation: landscape) {
   .carousel-slide {
