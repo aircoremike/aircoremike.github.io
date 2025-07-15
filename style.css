@@ -728,23 +728,6 @@ body {
   border-color: #4fa3ff;
 }
 
-.contact-form-flex button[type="submit"] {
-  background: #132D3E;
-  color: #f5f5f7;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  padding: 0.9rem 0;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  transition: background 0.2s;
-}
-
-.contact-form-flex button[type="submit"]:hover {
-  background: #357fd6;
-}
-
 /* =====================
    Footer
    ===================== */
@@ -845,10 +828,30 @@ body {
    Button Styles
    ===================== */
 
+.contact-form-flex button[type="submit"] {
+  background: linear-gradient(90deg, #1e90ff 0%, #00c6fb 100%);
+  color: #f5f5f7;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 2em;
+  padding: 0.9rem 0;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 12px rgba(30,144,255,0.15);
+  transition: box-shadow 0.2s;
+}
+
+.contact-form-flex button[type="submit"]:hover {
+  background: linear-gradient(90deg, #00c6fb 0%, #1e90ff 100%);
+  color: #f5f5f7;
+  box-shadow: 0 4px 18px rgba(30,144,255,0.25);
+}
+
 .contact-btn {
   display: inline-block;
   background: linear-gradient(90deg, #1e90ff 0%, #00c6fb 100%);
-  color: #fff;
+  color: #f5f5f7;
   font-size: 1.2rem;
   font-weight: 600;
   padding: 0.75em 2em;
@@ -861,7 +864,6 @@ body {
 
 .contact-btn:hover, .contact-btn:focus {
   background: linear-gradient(90deg, #00c6fb 0%, #1e90ff 100%);
-  color: #fff;
-  /* transform: translateY(-2px) scale(1.04); */
+  color: #f5f5f7;
   box-shadow: 0 4px 18px rgba(30,144,255,0.25);
 }
