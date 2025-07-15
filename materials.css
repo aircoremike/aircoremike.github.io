@@ -654,7 +654,7 @@ body {
   left: 50%;
   width: 72px;
   height: 72px;
-  border: 4px solid #1e90ff;
+  background: #1e90ff; /* Solid circle */
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(1);
   opacity: 0;
@@ -669,7 +669,7 @@ body {
 }
 
 .modal-close-container.visible .modal-close::before {
-  animation: border-expand 1s ease-out, border-shrink 0.5s ease-in 1s;
+  animation: border-expand 1s ease-out, border-shrink 0.25s ease-in 1s;
 }
 
 @keyframes border-expand {
