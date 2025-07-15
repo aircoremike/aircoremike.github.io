@@ -541,14 +541,6 @@ body {
   }
 }
 
-/* Additional rule for any tablet devices that might not match the exact landscape query */
-@media (min-width: 701px) and (max-width: 1024px) {
-  .carousel-slide {
-    min-width: 40vw !important;
-    max-width: 40vw !important;
-  }
-}
-
 /* =====================
    Footer
    ===================== */
