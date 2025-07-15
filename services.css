@@ -47,7 +47,7 @@
   border-radius: 2em;
   text-decoration: none;
   box-shadow: 0 2px 12px rgba(30,144,255,0.15);
-  transition: background 1s, box-shadow 0.2s;
+  transition: background-color 1s, box-shadow 0.2s;
   margin-top: 1.5rem;
 }
 
