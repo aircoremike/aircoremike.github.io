@@ -375,15 +375,6 @@ body {
     height: 60vh;
     min-height: 60vh;
   }
-  .materials-carousel {
-    overflow: hidden;
-  }
-  .carousel-track {
-    overflow: hidden;
-    justify-content: center;
-    padding: 0;
-    gap: 2rem;
-  }
   .carousel-slide {
     min-width: 85vw;
     max-width: 85vw;
@@ -395,15 +386,6 @@ body {
   .materials-carousel-bg {
     height: 60vh;
     min-height: 60vh;
-  }
-  .materials-carousel {
-    overflow: hidden;
-  }
-  .carousel-track {
-    overflow: hidden;
-    justify-content: center;
-    padding: 0;
-    gap: 2rem;
   }
   .carousel-slide {
     min-width: 80vw;
