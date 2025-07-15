@@ -362,7 +362,7 @@ body {
   }
   .slide-button {
     position: absolute;
-    top: 70%
+    top: 70%;
     left: 2rem;
     right: 1.5rem;
     transform: translateY(-50%);
