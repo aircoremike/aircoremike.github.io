@@ -679,14 +679,14 @@ body {
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.8); /* Reduced maximum size */
+    transform: translate(-50%, -50%) scale(1.7);
     opacity: 1;
   }
 }
 
 @keyframes border-shrink {
   0% {
-    transform: translate(-50%, -50%) scale(2);
+    transform: translate(-50%, -50%) scale(1.7);
     opacity: 1;
   }
   100% {
