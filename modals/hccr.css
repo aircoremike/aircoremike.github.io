@@ -1,0 +1,68 @@
+/* =====================
+   High Carbon Chrome Modal Styles
+   Specific styling for the high carbon chrome modal
+   ===================== */
+
+/* Import base modal styles */
+@import url('base-modal.css');
+
+/* High Carbon Chrome specific colors and styling */
+#hccr-modal {
+  --hccr-primary: #4a4a4a;
+  --hccr-secondary: #6a6a6a;
+  --hccr-accent: #8a8a8a;
+  --hccr-highlight: #b8860b;
+}
+
+/* Custom header styling for high carbon chrome */
+#hccr-modal .modal-header {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);
+  border-bottom: 1px solid var(--hccr-primary);
+}
+
+#hccr-modal .modal-header h1 {
+  color: var(--hccr-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Custom hero section for high carbon chrome */
+#hccr-modal .modal-hero {
+  background: linear-gradient(45deg, #2c2c2c 0%, #404040 50%, #353535 100%);
+  border-bottom: 2px solid var(--hccr-highlight);
+}
+
+/* Custom container styling */
+#hccr-modal .modal-container {
+  border: 2px solid var(--hccr-primary);
+  box-shadow: 0 8px 32px rgba(74, 74, 74, 0.2);
+}
+
+/* Custom image styling */
+#hccr-modal .modal-image-item {
+  border: 1px solid var(--hccr-secondary);
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.15);
+}
+
+#hccr-modal .modal-image-item:hover {
+  border-color: var(--hccr-highlight);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Custom close button for high carbon chrome */
+#hccr-modal .modal-close::before {
+  background: var(--hccr-highlight);
+}
+
+/* Custom learn more button styling */
+#hccr-modal .learn-more-btn {
+  background: linear-gradient(90deg, var(--hccr-primary) 0%, var(--hccr-highlight) 100%);
+  color: #f5f5f7;
+  font-weight: 700;
+}
+
+#hccr-modal .learn-more-btn:hover {
+  background: linear-gradient(90deg, var(--hccr-highlight) 0%, var(--hccr-accent) 100%);
+  color: #1d1d1f;
+  box-shadow: 0 4px 18px rgba(184, 134, 11, 0.3);
+}

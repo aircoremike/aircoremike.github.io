@@ -1,0 +1,68 @@
+/* =====================
+   Chrome Modal Styles
+   Specific styling for the chrome modal
+   ===================== */
+
+/* Import base modal styles */
+@import url('base-modal.css');
+
+/* Chrome specific colors and styling */
+#chrome-modal {
+  --chrome-primary: #b0b0b0;
+  --chrome-secondary: #d0d0d0;
+  --chrome-accent: #f0f0f0;
+  --chrome-highlight: #0066cc;
+}
+
+/* Custom header styling for chrome */
+#chrome-modal .modal-header {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+  border-bottom: 1px solid var(--chrome-primary);
+}
+
+#chrome-modal .modal-header h1 {
+  color: var(--chrome-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom hero section for chrome */
+#chrome-modal .modal-hero {
+  background: linear-gradient(45deg, #f8f8f8 0%, #ffffff 50%, #f0f0f0 100%);
+  border-bottom: 2px solid var(--chrome-highlight);
+}
+
+/* Custom container styling */
+#chrome-modal .modal-container {
+  border: 2px solid var(--chrome-primary);
+  box-shadow: 0 8px 32px rgba(176, 176, 176, 0.15);
+}
+
+/* Custom image styling */
+#chrome-modal .modal-image-item {
+  border: 1px solid var(--chrome-secondary);
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
+#chrome-modal .modal-image-item:hover {
+  border-color: var(--chrome-highlight);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Custom close button for chrome */
+#chrome-modal .modal-close::before {
+  background: var(--chrome-highlight);
+}
+
+/* Custom learn more button styling */
+#chrome-modal .learn-more-btn {
+  background: linear-gradient(90deg, var(--chrome-primary) 0%, var(--chrome-highlight) 100%);
+  color: #f5f5f7;
+  font-weight: 700;
+}
+
+#chrome-modal .learn-more-btn:hover {
+  background: linear-gradient(90deg, var(--chrome-highlight) 0%, var(--chrome-accent) 100%);
+  color: #1d1d1f;
+  box-shadow: 0 4px 18px rgba(0, 102, 204, 0.3);
+}

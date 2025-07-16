@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 
-// Apple-style Modal System - HTML-based modals
+// Modal System - HTML-based modals
 (function() {
   let currentModal = null;
   
