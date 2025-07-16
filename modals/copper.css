@@ -1,0 +1,58 @@
+/* =====================
+   Copper Modal Styles
+   Specific styling for the copper modal
+   ===================== */
+
+/* Import base modal styles */
+@import url('base-modal.css');
+
+/* Copper specific colors and styling */
+#copper-modal {
+  --copper-primary: #b87333;
+  --copper-secondary: #cd7f32;
+  --copper-accent: #ffa500;
+  --copper-highlight: #ff6347;
+}
+
+/* Custom header styling for copper */
+#copper-modal .modal-header {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2a1f1a 100%);
+}
+
+#copper-modal .modal-header h1 {
+  color: var(--copper-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Custom hero section for copper */
+#copper-modal .modal-hero {
+  background: linear-gradient(45deg, #fdf5e6 0%, #fff8dc 50%, #f5deb3 100%);
+}
+
+/* Custom container styling */
+#copper-modal .modal-container {
+  box-shadow: 0 8px 32px rgba(184, 115, 51, 0.2);
+}
+
+/* Custom image styling */
+#copper-modal .modal-image-item {
+  box-shadow: 0 2px 8px rgba(255, 99, 71, 0.15);
+}
+
+/* Custom close button for copper */
+#copper-modal .modal-close::before {
+  background: var(--copper-highlight);
+}
+
+/* Custom learn more button styling */
+#copper-modal .learn-more-btn {
+  background: linear-gradient(90deg, var(--copper-primary) 0%, var(--copper-accent) 100%);
+  color: #1d1d1f;
+  font-weight: 700;
+}
+
+#copper-modal .learn-more-btn:hover {
+  background: linear-gradient(90deg, var(--copper-accent) 0%, var(--copper-highlight) 100%);
+  color: #1d1d1f;
+  box-shadow: 0 4px 18px rgba(255, 99, 71, 0.3);
+}

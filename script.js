@@ -456,60 +456,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 
-// Apple-style Modal System
+// Modal System - HTML-based modals
 (function() {
   let currentModal = null;
   
-  // Modal data for each material
-  const modalData = {
-    stainless: {
-      title: "Stainless Steel",
-      heroImage: "assets/ball-transfer-unit.png",
-      images: [
-        "assets/c5-galaxy_1280.jpg",
-        "assets/c17-globemaster-iii_1280.jpg", 
-        "assets/pallet-drop_1280.jpg"
-      ],
-      description: `Stainless steel hollow balls represent the pinnacle of engineering excellence in precision bearing applications. Our proprietary manufacturing process creates seamless, perfectly spherical components that deliver exceptional performance in the most demanding environments.
+  function findModalElement(materialType) {
+    // Map material types to modal IDs
+    const modalMap = {
+      'stainless': 'stainless-modal',
+      'hccr': 'hccr-modal', 
+      'titanium': 'titanium-modal',
+      'copper': 'copper-modal',
+      'nickel': 'nickel-modal',
+      'tungsten': 'tungsten-modal'
+    };
+    
+    const modalId = modalMap[materialType];
+    return modalId ? document.getElementById(modalId) : null;
+  }
 
-The superior corrosion resistance of stainless steel makes these hollow balls ideal for aerospace, marine, and industrial applications where environmental factors would compromise lesser materials. Each ball undergoes rigorous quality control testing to ensure dimensional accuracy and surface finish that meets the exacting standards of modern precision machinery.
-
-With their lightweight construction and remarkable durability, stainless steel hollow balls provide an optimal balance of strength, weight reduction, and longevity that traditional solid bearings simply cannot match.`
-    }
-  };
-
-  function createModal(materialType) {
-    const data = modalData[materialType];
-    if (!data) return;
-
-    // Create the modal overlay
-    const modal = document.createElement('div');
-    modal.className = 'modal-overlay';
-    modal.innerHTML = `
-      <div class="modal-container">
-        <div class="modal-header">
-          <h1>${data.title}</h1>
-        </div>
-        <div class="modal-content">
-          <div class="modal-hero">
-            <img src="${data.heroImage}" alt="${data.title}" class="modal-hero-image">
-          </div>
-          <div class="modal-body">
-            <div class="modal-images">
-              ${data.images.map(img => `
-                <div class="modal-image-item">
-                  <img src="${img}" alt="${data.title} application">
-                </div>
-              `).join('')}
-            </div>
-            <div class="modal-description">
-              <p>${data.description}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
+  function createCloseButton() {
     // Create the close button container
     const closeContainer = document.createElement('div');
     closeContainer.className = 'modal-close-container';
@@ -520,17 +486,18 @@ With their lightweight construction and remarkable durability, stainless steel h
         </svg>
       </button>
     `;
-
-    return { modal, closeContainer };
+    
+    return closeContainer;
   }
 
   function openModal(materialType) {
     if (currentModal) closeModal();
     
-    const result = createModal(materialType);
-    if (!result) return;
-
-    const { modal, closeContainer } = result;
+    const modal = findModalElement(materialType);
+    if (!modal) {
+      console.warn(`Modal not found for material: ${materialType}`);
+      return;
+    }
 
     // Remove any existing close button container
     const existingCloseContainer = document.querySelector('.modal-close-container');
@@ -538,8 +505,8 @@ With their lightweight construction and remarkable durability, stainless steel h
       existingCloseContainer.remove();
     }
 
-    // Add both the modal and close button container to the body
-    document.body.appendChild(modal);
+    // Create and add close button container
+    const closeContainer = createCloseButton();
     document.body.appendChild(closeContainer);
     
     // Add click handler to close button
@@ -675,14 +642,17 @@ With their lightweight construction and remarkable durability, stainless steel h
         navbar.style.paddingRight = '';
       }
       
-      // Remove both the modal and close button container
-      if (currentModal && currentModal.parentElement) {
-        currentModal.parentElement.removeChild(currentModal);
+      // Reset modal state instead of removing it
+      if (currentModal) {
+        currentModal.classList.remove('modal-opening', 'modal-visible', 'modal-closing');
       }
+      
+      // Remove close button container
       const closeContainer = document.querySelector('.modal-close-container');
       if (closeContainer && closeContainer.parentElement) {
         closeContainer.parentElement.removeChild(closeContainer);
       }
+      
       currentModal = null;
     }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--modal-close-duration')) * 1000);
   }
@@ -694,7 +664,19 @@ With their lightweight construction and remarkable durability, stainless steel h
     }
   });
 
-  // Global function to open modals
+  // Initialize modal functionality - called after modals are loaded
+  window.initMaterialModals = function() {
+    // Add click handlers to all learn more buttons
+    document.querySelectorAll('.learn-more-btn[data-material]').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const material = button.getAttribute('data-material');
+        openModal(material);
+      });
+    });
+  };
+
+  // Global function to open modals (maintain backward compatibility)
   window.openMaterialModal = openModal;
 })();
 

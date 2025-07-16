@@ -1,0 +1,58 @@
+/* =====================
+   Titanium Modal Styles
+   Specific styling for the titanium modal
+   ===================== */
+
+/* Import base modal styles */
+@import url('base-modal.css');
+
+/* Titanium specific colors and styling */
+#titanium-modal {
+  --titanium-primary: #c5c5c5;
+  --titanium-secondary: #9fa0a4;
+  --titanium-accent: #e1e1e6;
+  --titanium-highlight: #4169e1;
+}
+
+/* Custom header styling for titanium */
+#titanium-modal .modal-header {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2f2f31 100%);
+}
+
+#titanium-modal .modal-header h1 {
+  color: var(--titanium-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom hero section for titanium */
+#titanium-modal .modal-hero {
+  background: linear-gradient(45deg, #f8f8ff 0%, #ffffff 50%, #f0f0f5 100%);
+}
+
+/* Custom container styling */
+#titanium-modal .modal-container {
+  box-shadow: 0 8px 32px rgba(197, 197, 197, 0.15);
+}
+
+/* Custom image styling */
+#titanium-modal .modal-image-item {
+  box-shadow: 0 2px 8px rgba(65, 105, 225, 0.1);
+}
+
+/* Custom close button for titanium */
+#titanium-modal .modal-close::before {
+  background: var(--titanium-highlight);
+}
+
+/* Custom learn more button styling */
+#titanium-modal .learn-more-btn {
+  background: linear-gradient(90deg, var(--titanium-secondary) 0%, var(--titanium-highlight) 100%);
+  color: #f5f5f7;
+  font-weight: 700;
+}
+
+#titanium-modal .learn-more-btn:hover {
+  background: linear-gradient(90deg, var(--titanium-highlight) 0%, var(--titanium-accent) 100%);
+  color: #1d1d1f;
+  box-shadow: 0 4px 18px rgba(65, 105, 225, 0.3);
+}

@@ -1,0 +1,58 @@
+/* =====================
+   Tungsten Modal Styles
+   Specific styling for the tungsten modal
+   ===================== */
+
+/* Import base modal styles */
+@import url('base-modal.css');
+
+/* Tungsten specific colors and styling */
+#tungsten-modal {
+  --tungsten-primary: #2f2f2f;
+  --tungsten-secondary: #4a4a4a;
+  --tungsten-accent: #6a6a6a;
+  --tungsten-highlight: #ffd700;
+}
+
+/* Custom header styling for tungsten */
+#tungsten-modal .modal-header {
+  background: linear-gradient(135deg, #1a1a1a 0%, #1f1f1f 100%);
+}
+
+#tungsten-modal .modal-header h1 {
+  color: var(--tungsten-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Custom hero section for tungsten */
+#tungsten-modal .modal-hero {
+  background: linear-gradient(45deg, #1a1a1a 0%, #2a2a2a 50%, #1f1f1f 100%);
+}
+
+/* Custom container styling */
+#tungsten-modal .modal-container {
+  box-shadow: 0 8px 32px rgba(47, 47, 47, 0.3);
+}
+
+/* Custom image styling */
+#tungsten-modal .modal-image-item {
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.15);
+}
+
+/* Custom close button for tungsten */
+#tungsten-modal .modal-close::before {
+  background: var(--tungsten-highlight);
+}
+
+/* Custom learn more button styling */
+#tungsten-modal .learn-more-btn {
+  background: linear-gradient(90deg, var(--tungsten-primary) 0%, var(--tungsten-highlight) 100%);
+  color: #1d1d1f;
+  font-weight: 700;
+}
+
+#tungsten-modal .learn-more-btn:hover {
+  background: linear-gradient(90deg, var(--tungsten-highlight) 0%, var(--tungsten-accent) 100%);
+  color: #1d1d1f;
+  box-shadow: 0 4px 18px rgba(255, 215, 0, 0.3);
+}
