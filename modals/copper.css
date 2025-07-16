@@ -17,7 +17,6 @@
 /* Custom header styling for copper */
 #copper-modal .modal-header {
   background: linear-gradient(135deg, #1d1d1f 0%, #2a1f1a 100%);
-  border-bottom: 1px solid var(--copper-primary);
 }
 
 #copper-modal .modal-header h1 {
@@ -28,25 +27,16 @@
 /* Custom hero section for copper */
 #copper-modal .modal-hero {
   background: linear-gradient(45deg, #fdf5e6 0%, #fff8dc 50%, #f5deb3 100%);
-  border-bottom: 2px solid var(--copper-primary);
 }
 
 /* Custom container styling */
 #copper-modal .modal-container {
-  border: 2px solid var(--copper-primary);
   box-shadow: 0 8px 32px rgba(184, 115, 51, 0.2);
 }
 
 /* Custom image styling */
 #copper-modal .modal-image-item {
-  border: 1px solid var(--copper-secondary);
   box-shadow: 0 2px 8px rgba(255, 99, 71, 0.15);
-}
-
-#copper-modal .modal-image-item:hover {
-  border-color: var(--copper-highlight);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
 }
 
 /* Custom close button for copper */

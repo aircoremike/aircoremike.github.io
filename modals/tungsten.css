@@ -17,7 +17,6 @@
 /* Custom header styling for tungsten */
 #tungsten-modal .modal-header {
   background: linear-gradient(135deg, #1a1a1a 0%, #1f1f1f 100%);
-  border-bottom: 1px solid var(--tungsten-secondary);
 }
 
 #tungsten-modal .modal-header h1 {
@@ -28,25 +27,16 @@
 /* Custom hero section for tungsten */
 #tungsten-modal .modal-hero {
   background: linear-gradient(45deg, #1a1a1a 0%, #2a2a2a 50%, #1f1f1f 100%);
-  border-bottom: 2px solid var(--tungsten-highlight);
 }
 
 /* Custom container styling */
 #tungsten-modal .modal-container {
-  border: 2px solid var(--tungsten-secondary);
   box-shadow: 0 8px 32px rgba(47, 47, 47, 0.3);
 }
 
 /* Custom image styling */
 #tungsten-modal .modal-image-item {
-  border: 1px solid var(--tungsten-secondary);
   box-shadow: 0 2px 8px rgba(255, 215, 0, 0.15);
-}
-
-#tungsten-modal .modal-image-item:hover {
-  border-color: var(--tungsten-highlight);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
 }
 
 /* Custom close button for tungsten */

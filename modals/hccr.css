@@ -17,7 +17,6 @@
 /* Custom header styling for high carbon chrome */
 #hccr-modal .modal-header {
   background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);
-  border-bottom: 1px solid var(--hccr-primary);
 }
 
 #hccr-modal .modal-header h1 {
@@ -28,25 +27,16 @@
 /* Custom hero section for high carbon chrome */
 #hccr-modal .modal-hero {
   background: linear-gradient(45deg, #2c2c2c 0%, #404040 50%, #353535 100%);
-  border-bottom: 2px solid var(--hccr-highlight);
 }
 
 /* Custom container styling */
 #hccr-modal .modal-container {
-  border: 2px solid var(--hccr-primary);
   box-shadow: 0 8px 32px rgba(74, 74, 74, 0.2);
 }
 
 /* Custom image styling */
 #hccr-modal .modal-image-item {
-  border: 1px solid var(--hccr-secondary);
   box-shadow: 0 2px 8px rgba(184, 134, 11, 0.15);
-}
-
-#hccr-modal .modal-image-item:hover {
-  border-color: var(--hccr-highlight);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
 }
 
 /* Custom close button for high carbon chrome */

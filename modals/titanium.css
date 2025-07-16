@@ -17,7 +17,6 @@
 /* Custom header styling for titanium */
 #titanium-modal .modal-header {
   background: linear-gradient(135deg, #1d1d1f 0%, #2f2f31 100%);
-  border-bottom: 1px solid var(--titanium-secondary);
 }
 
 #titanium-modal .modal-header h1 {
@@ -28,25 +27,16 @@
 /* Custom hero section for titanium */
 #titanium-modal .modal-hero {
   background: linear-gradient(45deg, #f8f8ff 0%, #ffffff 50%, #f0f0f5 100%);
-  border-bottom: 2px solid var(--titanium-highlight);
 }
 
 /* Custom container styling */
 #titanium-modal .modal-container {
-  border: 2px solid var(--titanium-secondary);
   box-shadow: 0 8px 32px rgba(197, 197, 197, 0.15);
 }
 
 /* Custom image styling */
 #titanium-modal .modal-image-item {
-  border: 1px solid var(--titanium-secondary);
   box-shadow: 0 2px 8px rgba(65, 105, 225, 0.1);
-}
-
-#titanium-modal .modal-image-item:hover {
-  border-color: var(--titanium-highlight);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
 }
 
 /* Custom close button for titanium */

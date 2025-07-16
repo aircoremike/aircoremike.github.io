@@ -400,6 +400,35 @@ body {
   }
 }
 
+/* Learn More Button */
+.learn-more-btn {
+  background: linear-gradient(90deg, #1e90ff 0%, #00c6fb 100%);
+  color: #f5f5f7;
+  box-shadow: 0 2px 12px rgba(30,144,255,0.15);
+  transition: box-shadow 0.2s;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.learn-more-btn:hover {
+  background: linear-gradient(90deg, #00c6fb 0%, #1e90ff 100%);
+  color: #f5f5f7;
+  box-shadow: 0 4px 18px rgba(30,144,255,0.25);
+}
+
+.learn-more-btn:active {
+  transform: translateY(0);
+}
 
 /* =====================
    Footer
@@ -427,6 +456,12 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* =====================
-   Modal Styles
-   ===================== */
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+/* Hide scrollbar completely when modal is open */
+html.modal-open {
+  overflow: hidden !important;
+}

@@ -17,7 +17,6 @@
 /* Custom header styling for stainless steel */
 #stainless-modal .modal-header {
   background: linear-gradient(135deg, #1d1d1f 0%, #2a2a2c 100%);
-  border-bottom: 1px solid var(--stainless-secondary);
 }
 
 #stainless-modal .modal-header h1 {
@@ -28,25 +27,16 @@
 /* Custom hero section for stainless steel */
 #stainless-modal .modal-hero {
   background: linear-gradient(45deg, #f0f0f0 0%, #ffffff 50%, #f5f5f5 100%);
-  border-bottom: 2px solid var(--stainless-primary);
 }
 
 /* Custom container styling */
 #stainless-modal .modal-container {
-  border: 2px solid var(--stainless-dark);
   box-shadow: 0 8px 32px rgba(192, 192, 192, 0.1);
 }
 
 /* Custom image styling */
 #stainless-modal .modal-image-item {
-  border: 1px solid var(--stainless-dark);
   box-shadow: 0 2px 8px rgba(192, 192, 192, 0.1);
-}
-
-#stainless-modal .modal-image-item:hover {
-  border-color: var(--stainless-primary);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
 }
 
 /* Custom close button for stainless steel */
