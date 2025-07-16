@@ -18,6 +18,7 @@
 #stainless-modal .modal-hero {
   background-color: #000000;
   min-height: 20vh;
+  max-height: 20vh;
 }
 
 
