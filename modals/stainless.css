@@ -1,4 +1,4 @@
-    /* =====================
+/* =====================
    Stainless Steel Modal Styles
    Specific styling for the stainless steel modal
    ===================== */
@@ -19,7 +19,14 @@
   background-color: #000000;
   min-height: 60vh;
   max-height: 60vh;
-  padding: 10% 0;
+  padding: 40px 0; /* Fixed padding for consistent spacing */
+}
+
+/* Ensure proper alignment for smaller screens */
+@media (max-width: 768px) {
+  #stainless-modal .modal-hero {
+    padding: 20px 0; /* Reduced padding for smaller screens */
+  }
 }
 
 
