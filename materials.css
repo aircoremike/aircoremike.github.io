@@ -101,7 +101,6 @@ body {
   height: 100%;
   min-height: 300px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -214,7 +213,6 @@ body {
     min-width: 80vw;
     max-width: 80vw;
     height: 85vh;
-    flex-direction: row;
   }
   .slide-title h2 {
     font-size: 1.3rem;
