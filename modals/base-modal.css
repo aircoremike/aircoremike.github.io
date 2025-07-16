@@ -80,16 +80,15 @@
   align-items: center;
   justify-content: center;
   padding: 4rem 32px 24px 32px;
-  background: #1d1d1f;
+  background: #000;
   border-radius: 18px 18px 0 0;
 }
 
 .modal-header h1 {
   color: #f5f5f7;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
   margin: 0;
-  letter-spacing: -0.02em;
   text-align: center;
 }
 
@@ -187,13 +186,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5f7;
+  background: #000;
 }
 
 .modal-hero-image {
   width: 100%;
-  height: auto;
-  max-height: 300px;
   object-fit: contain;
   display: block;
 }
