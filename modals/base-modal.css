@@ -192,7 +192,6 @@
 }
 
 .modal-hero-image {
-  width: 100%;
   object-fit: contain;
   display: block;
 }
