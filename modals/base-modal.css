@@ -184,7 +184,6 @@
 
 .modal-hero {
   padding: 0;
-  object-fit: contain;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,6 +193,7 @@
 .modal-hero-image {
   display: block;
   object-fit: contain;
+  width: 100%;
 }
 
 .modal-body {
