@@ -16,17 +16,8 @@
 
 /* Custom hero section for stainless steel */
 #stainless-modal .modal-hero {
-  background-color: #000000 !important;
-  min-height: 40vh !important;
+  background-color: #000000;
+  min-height: 30vh;
 }
 
-/* Custom container styling */
-#stainless-modal .modal-container {
-  box-shadow: 0 8px 32px rgba(192, 192, 192, 0.1);
-}
-
-/* Custom image styling */
-#stainless-modal .modal-image-item {
-  box-shadow: 0 2px 8px rgba(192, 192, 192, 0.1);
-}
 
