@@ -61,7 +61,7 @@
 /* Opening animation - slide up from bottom */
 #material-modals-container .modal-opening .modal-container {
   transform: translateY(0);
-  transition: transform var(--modal-open-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform var(--modal-open-duration) cubic-bezier(0.5, 0, 0.5, 1);
 }
 
 /* Visible state - maintain position */
