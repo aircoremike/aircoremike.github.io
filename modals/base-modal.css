@@ -30,8 +30,7 @@
 #material-modals-container .modal-overlay.modal-opening {
   opacity: 1;
   visibility: visible;
-  transition: opacity var(--modal-open-duration) ease, 
-              backdrop-filter var(--modal-open-duration) ease;
+  transition: backdrop-filter var(--modal-open-duration) ease;
 }
 
 /* Visible state - maintain opacity */

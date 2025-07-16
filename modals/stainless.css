@@ -1,4 +1,4 @@
-/* =====================
+    /* =====================
    Stainless Steel Modal Styles
    Specific styling for the stainless steel modal
    ===================== */
@@ -39,20 +39,3 @@
   box-shadow: 0 2px 8px rgba(192, 192, 192, 0.1);
 }
 
-/* Custom close button for stainless steel */
-#stainless-modal .modal-close::before {
-  background: var(--stainless-primary);
-}
-
-/* Custom learn more button styling */
-#stainless-modal .learn-more-btn {
-  background: linear-gradient(90deg, var(--stainless-dark) 0%, var(--stainless-primary) 100%);
-  color: #1d1d1f;
-  font-weight: 700;
-}
-
-#stainless-modal .learn-more-btn:hover {
-  background: linear-gradient(90deg, var(--stainless-primary) 0%, var(--stainless-accent) 100%);
-  color: #1d1d1f;
-  box-shadow: 0 4px 18px rgba(192, 192, 192, 0.3);
-}
