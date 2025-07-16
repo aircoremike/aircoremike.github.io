@@ -202,8 +202,8 @@ body {
 
 @media (min-width: 1024px) {
   .carousel-slide {
-    min-width: 40vw; /* Ensure desktop width is consistent */
-    max-width: 40vw; /* Ensure desktop width is consistent */
+    min-width: 40vw !important; /* Ensure desktop width is consistent */
+    max-width: 40vw !important; /* Ensure desktop width is consistent */
   }
 }
 
