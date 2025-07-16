@@ -15,7 +15,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(128, 128, 128, 0.9);
+  background: rgba(59, 59, 59, 0.9);
   backdrop-filter: blur(10px);
   z-index: 1000;
   opacity: 0;
@@ -26,11 +26,12 @@
   /* No transition by default - will be set dynamically */
 }
 
-/* Opening animation - no opacity transition, always opaque */
+/* Opening animation - fade in background and blur */
 #material-modals-container .modal-overlay.modal-opening {
   opacity: 1;
   visibility: visible;
-  /* No transition on overlay during open */
+  transition: opacity var(--modal-open-duration) ease, 
+              backdrop-filter var(--modal-open-duration) ease;
 }
 
 /* Visible state - maintain opacity */
