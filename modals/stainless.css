@@ -17,8 +17,8 @@
 /* Custom hero section for stainless steel */
 #stainless-modal .modal-hero {
   background-color: #000000;
-  min-height: 40vh;
-  max-height: 40vh;
+  min-height: 60vh;
+  max-height: 60vh;
 }
 #stainless-modal .modal-hero-image {
   width: 100%;
