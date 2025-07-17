@@ -88,8 +88,8 @@
 .modal-close {
   position: absolute;
   left: 50%;
-  /* Center vertically in the 100px padding: (100px - 61px)/2 + 20 = 39.5px from bottom */
-  bottom: 39.5px;
+  /* Center vertically in the 100px padding: (100px - 64px)/2 + 20 = 36px from bottom */
+  bottom: 86px;
   transform: translateX(-50%) scale(0);
   background: rgba(45, 45, 47, 0.8);
   backdrop-filter: blur(8px);
@@ -102,8 +102,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 61.2px;
-  height: 61.2px;
+  width: 64px;
+  height: 64px;
   opacity: 0;
   pointer-events: none;
   transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
