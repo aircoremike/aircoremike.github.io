@@ -182,7 +182,7 @@
   margin: 0;
   text-align: center;
   border-style: solid;
-  border-color: red;
+  border-color: aqua;
   border-width: thick;
 }
 
@@ -197,7 +197,7 @@
   justify-content: center;
   background: #000;
   border-style: solid;
-  border-color: red;
+  border-color: yellow;
   border-width: thick;
 }
 
