@@ -30,8 +30,7 @@
 #material-modals-container .modal-overlay.modal-opening {
   opacity: 1;
   visibility: visible;
-  transition: opacity var(--modal-open-duration) ease, 
-              backdrop-filter var(--modal-open-duration) ease;
+  transition: backdrop-filter var(--modal-open-duration) ease;
 }
 
 /* Visible state - maintain opacity */
@@ -62,7 +61,7 @@
 /* Opening animation - slide up from bottom */
 #material-modals-container .modal-opening .modal-container {
   transform: translateY(0);
-  transition: transform var(--modal-open-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform var(--modal-open-duration) cubic-bezier(0.5, 0, 0.5, 1);
 }
 
 /* Visible state - maintain position */
@@ -74,24 +73,6 @@
 #material-modals-container .modal-closing .modal-container {
   transform: translateY(0);
   /* No transition on container during close */
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 32px 24px 32px;
-  background: #1d1d1f;
-  border-radius: 18px 18px 0 0;
-}
-
-.modal-header h1 {
-  color: #f5f5f7;
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 0;
-  letter-spacing: -0.02em;
-  text-align: center;
 }
 
 .modal-close-container {
@@ -178,25 +159,41 @@
   }
 }
 
+/* Modal Container and Content Styles */
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 32px 0px;
+  background: #000;
+  border-radius: 18px 18px 0 0;
+}
+
+.modal-header h1 {
+  color: #f5f5f7;
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
 .modal-content {
   padding: 0;
 }
 
 .modal-hero {
-  width: 100%;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5f7;
+  background: #000;
 }
 
 .modal-hero-image {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
-  object-fit: contain;
   display: block;
+  object-fit: contain;
+  width: 100%;
 }
 
 .modal-body {
@@ -251,7 +248,7 @@
   }
   
   .modal-header h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   
   .modal-body {
