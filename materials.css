@@ -124,7 +124,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
   background: #000;
   border-radius: 1.2rem;
   overflow: hidden;
