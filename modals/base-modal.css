@@ -161,6 +161,10 @@
 
 /* Modal Container and Content Styles */
 
+.modal-container {
+  padding-bottom: 60px; /* Space for close button */
+}
+
 .modal-header {
   display: flex;
   align-items: center;
