@@ -119,7 +119,7 @@ body {
 
 .carousel-slide {
   min-width: 40vw;
-  max-width: 40vw !important;
+  max-width: 900px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
