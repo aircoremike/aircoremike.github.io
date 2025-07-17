@@ -89,7 +89,7 @@
   position: absolute;
   left: 50%;
   /* Center vertically in the 100px padding: (100px - 64px)/2 + 20 = 36px from bottom */
-  bottom: 86px;
+  bottom: 72px;
   transform: translateX(-50%) scale(0);
   background: rgba(45, 45, 47, 0.8);
   backdrop-filter: blur(8px);
