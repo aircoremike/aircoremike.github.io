@@ -246,7 +246,7 @@
 /* Mobile Modal Styles */
 @media (max-width: 768px) {
   .modal-overlay {
-    padding: 10px 10px 20px 10px;
+    padding: 10px 10px 5px 10px;
   }
   
   .modal-header {
@@ -277,6 +277,6 @@
   
   .modal-close {
     /* Center vertically in the 80px padding: (80px - 61.2px)/2 + 10 = 19.4px from bottom */
-    bottom: 19.4px;
+    bottom: 20px;
   }
 }
