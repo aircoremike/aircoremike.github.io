@@ -203,7 +203,8 @@
 
 .modal-hero-image {
   object-fit: contain;
-  min-height: 50vh;
+  min-height: 20vh;
+  max-height: 50vh;
   border-style: solid;
   border-color: red;
   border-width: thick;
