@@ -48,7 +48,7 @@
 
 .modal-container {
   background: #1d1d1f;
-  border-radius: 18px;
+  border-radius: 32px;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -199,6 +199,7 @@
   display: block;
   object-fit: contain;
   width: 100%;
+  margin: 20px auto;
 }
 
 .modal-body {
