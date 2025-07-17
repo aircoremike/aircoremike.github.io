@@ -20,7 +20,7 @@
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  padding: 20px 20px 40px 20px;
+  padding: 40px 20px 40px 20px;
   overflow-y: auto;
   overflow-x: hidden;
   /* No transition by default - will be set dynamically */
@@ -48,7 +48,7 @@
 
 .modal-container {
   background: #1d1d1f;
-  border-radius: 32px;
+  border-radius: 18px;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -88,8 +88,8 @@
 .modal-close {
   position: absolute;
   left: 50%;
-  /* Center vertically in the 100px padding: (100px - 72px)/2 = 14px from bottom */
-  bottom: 14px;
+  /* Center vertically in the 100px padding: (100px - 72px)/2 + 40 = 54px from bottom */
+  bottom: 54px;
   transform: translateX(-50%) scale(0);
   background: rgba(45, 45, 47, 0.8);
   backdrop-filter: blur(8px);
