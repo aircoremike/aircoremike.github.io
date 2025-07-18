@@ -58,6 +58,12 @@
   display: flex;
   align-items: center;
   order: 1;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+#stainless-modal .modal-image-item:first-child p strong {
+  display: inline;
 }
 
 /* Second item: Loading air cargo (image left, text right) */
@@ -85,8 +91,14 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  display: flex;
-  align-items: center;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  align-self: center;
+}
+
+#stainless-modal .modal-image-item:nth-child(2) p strong {
+  display: inline;
 }
 
 /* Third item: C17 (text left, image right) */
@@ -114,8 +126,10 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  display: flex;
-  align-items: center;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  align-self: center;
 }
 
 /* Fourth item: Pallet drop (image left, text right) */
@@ -143,28 +157,35 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  display: flex;
-  align-items: center;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  align-self: center;
 }
 
-/* Fifth item: Available grades (image left, grades right) */
+/* Fifth item: Available grades (black background, full width) */
 #stainless-modal .modal-image-item:nth-child(5) {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
-  background: black;
+  background: #000;
   border-radius: 0;
   overflow: visible;
-  margin-bottom: 0;
-  padding-bottom: 100vh; /* Extend to bottom of viewport */
+  margin: 0 -32px;
+  padding: 20px 32px;
+  max-height: 20vh;
+  min-height: 20vh;
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
   order: 1;
-  flex: 1;
-  border-radius: 12px;
-  height: 200px;
-  object-fit: cover;
+  max-height: 15vh;
+  height: 15vh;
+  width: auto;
+  object-fit: contain;
+  border-radius: 0;
+  flex-shrink: 0;
 }
 
 #stainless-modal .modal-image-item:nth-child(5) .grades-section {
@@ -173,6 +194,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 #stainless-modal .grade-columns {
@@ -233,7 +255,20 @@
 #stainless-modal .modal-image-item .grades-section {
     order: 2 !important;
     flex: none;
-    align-items: flex-start !important;
+    align-self: flex-start !important;
+}
+
+/* Mobile grades section styling */
+#stainless-modal .modal-image-item:nth-child(5) {
+    margin: 0 -20px !important;
+    padding: 16px 20px !important;
+    max-height: none !important;
+    min-height: auto !important;
+}
+
+#stainless-modal .modal-image-item:nth-child(5) img {
+    height: 10vh !important;
+    max-height: 10vh !important;
 }
 
 /* Mobile grades layout - 2 columns of 3 rows */
