@@ -31,12 +31,13 @@
 }
 
 @media (max-width: 768px) {
-.modal-hero {
-    flex-direction: column;
+#stainless-modal .modal-hero {
+    flex-direction: column !important;
     text-align: center;
     align-items: stretch;
 }
-.modal-hero-text, .modal-hero-image {
+#stainless-modal .modal-hero-text, 
+#stainless-modal .modal-hero-image {
     width: 100%;
     margin: 0;
 }
