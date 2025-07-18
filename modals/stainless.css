@@ -41,12 +41,12 @@
 }
 
 #stainless-modal .modal-image-item:first-child img {
-  height: 40vh;
+  height: 90vh;
   width: auto;
   object-fit: contain;
   border-radius: 12px;
   flex-shrink: 0;
-  order: 1;
+  order: 2;
 }
 
 #stainless-modal .modal-image-item:first-child p {
@@ -57,7 +57,7 @@
   margin: 0;
   display: flex;
   align-items: center;
-  order: 2;
+  order: 1;
 }
 
 /* Second item: Loading air cargo (image left, text right) */
