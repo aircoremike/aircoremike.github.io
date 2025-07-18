@@ -258,6 +258,21 @@
   white-space: pre-line;
 }
 
+.grade-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space between items */
+  max-width: 120px; /* controls width of column */
+  color: #f5f5f7;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 1rem;
+}
+.grade-column span {
+  white-space: nowrap; /* prevents awkward line breaks */
+}
+
+
 /* Mobile Modal Styles */
 @media (max-width: 768px) {
   .modal-overlay {
