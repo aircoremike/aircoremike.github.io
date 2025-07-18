@@ -162,6 +162,10 @@
 
 /* Modal Container and Content Styles */
 
+.highlight {
+  color: #86868B;
+  font-weight: bold;
+}
 .modal-container {
   padding-bottom: 100px; /* Space for close button */
 }

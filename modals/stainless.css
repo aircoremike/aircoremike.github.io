@@ -9,7 +9,7 @@
 /* Stainless Steel specific colors and styling */
 #stainless-modal {
   --stainless-primary: #f5f5f7;
-  --stainless-secondary: #a8a8a8;
+  --stainless-secondary: #86868B;
   --stainless-accent: #e8e8e8;
   --stainless-dark: #808080;
 }
@@ -17,6 +17,12 @@
   color: var(--stainless-primary);
   font-size: 2rem;
   margin-bottom: 1rem;
+}
+.modal-hero-text p {
+  color: var(--stainless-primary);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 
