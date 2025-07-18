@@ -30,10 +30,12 @@
   margin-bottom: 1.5rem;
 }
 
+/* Phone Modal Styles */
+
 @media (max-width: 768px) {
 #stainless-modal .modal-hero {
     flex-direction: column !important;
-    text-align: center;
+    text-align: left;
     align-items: stretch;
     max-height: none;
 }
@@ -48,5 +50,21 @@
 }
 }
 
+/* Tablet Modal Styles */
 
-
+@media (min-width: 600px) and (max-width: 1024px) {
+  /* Tablet-specific styles go here */
+  #stainless-modal .modal-hero {
+    flex-direction: row;
+    text-align: left;
+  }
+  #stainless-modal .modal-hero-text,
+  #stainless-modal .modal-hero-image {
+    width: 50%;
+    margin: 0;
+  }
+  #stainless-modal .modal-hero-image {
+    max-height: 40vh;
+    min-height: 20vh;
+  }
+}
