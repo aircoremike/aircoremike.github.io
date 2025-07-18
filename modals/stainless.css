@@ -33,7 +33,7 @@
 /* First modal image item with text layout - Air cargo deck */
 #stainless-modal .modal-image-item:first-child {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 20px;
   background: none;
   border-radius: 0;
@@ -41,12 +41,13 @@
 }
 
 #stainless-modal .modal-image-item:first-child img {
-  height: 90vh;
+  height: 40vh;
   width: auto;
   object-fit: contain;
   border-radius: 12px;
   flex-shrink: 0;
-  order: 2;
+  order: 1;
+  align-self: center;
 }
 
 #stainless-modal .modal-image-item:first-child p {
@@ -55,11 +56,10 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  display: flex;
-  align-items: center;
-  order: 1;
+  order: 2;
   white-space: normal;
   word-wrap: break-word;
+  text-align: center;
 }
 
 #stainless-modal .modal-image-item:first-child p strong {
@@ -172,9 +172,9 @@
   background: #000;
   border-radius: 0;
   overflow: visible;
-  margin: 0 -32px;
-  padding: 20px 32px;
-  max-height: 20vh;
+  margin: 0 -32px -100px -32px;
+  padding: 20px 32px 120px 32px;
+  max-height: none;
   min-height: 20vh;
 }
 
@@ -260,10 +260,11 @@
 
 /* Mobile grades section styling */
 #stainless-modal .modal-image-item:nth-child(5) {
-    margin: 0 -20px !important;
-    padding: 16px 20px !important;
+    margin: 0 -20px -80px -20px !important;
+    padding: 16px 20px 100px 20px !important;
     max-height: none !important;
     min-height: auto !important;
+    background: #000 !important;
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
@@ -280,12 +281,6 @@
 
 #stainless-modal .grades-section p {
     text-align: left;
-}
-
-/* Maintain black background for grades section on mobile */
-#stainless-modal .modal-image-item:nth-child(5) {
-    background: black !important;
-    padding-bottom: 100vh !important;
 }
 }
 
