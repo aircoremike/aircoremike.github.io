@@ -33,7 +33,7 @@
 /* First modal image item with text layout - Air cargo deck */
 #stainless-modal .modal-image-item:first-child {
   display: flex;
-  align-items: center;
+  flex-direction: row-reverse;
   gap: 20px;
   background: none;
   border-radius: 0;
@@ -46,7 +46,7 @@
   object-fit: contain;
   border-radius: 12px;
   flex-shrink: 0;
-  order: 2;
+  align-self: center;
 }
 
 #stainless-modal .modal-image-item:first-child p {
@@ -55,11 +55,9 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  order: 1;
-  display: block;
   white-space: normal;
   word-wrap: break-word;
-  align-self: center;
+  text-align: center;
 }
 
 #stainless-modal .modal-image-item:first-child p strong {
@@ -170,17 +168,12 @@
   justify-content: center;
   gap: 20px;
   background: #000;
-  border-radius: 0 0 18px 18px;
+  border-radius: 0;
   overflow: visible;
   margin: 0 -32px -100px -32px;
-  padding: 20px 32px 118px 32px;
+  padding: 20px 32px 120px 32px;
   max-height: none;
   min-height: 20vh;
-}
-
-/* Override the modal container border radius for the bottom */
-#stainless-modal .modal-container {
-  border-radius: 18px 18px 0 0;
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
@@ -198,9 +191,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  margin-left: 20px;
 }
 
 #stainless-modal .grade-columns {
@@ -222,7 +214,7 @@
   color: var(--stainless-primary);
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  text-align: left;
+  text-align: center;
 }
 
 /* Phone Modal Styles */
@@ -267,23 +259,15 @@
 /* Mobile grades section styling */
 #stainless-modal .modal-image-item:nth-child(5) {
     margin: 0 -20px -80px -20px !important;
-    padding: 16px 20px 98px 20px !important;
+    padding: 16px 20px 100px 20px !important;
     max-height: none !important;
     min-height: auto !important;
     background: #000 !important;
-    border-radius: 0 0 18px 18px !important;
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
     height: 10vh !important;
     max-height: 10vh !important;
-    order: 1 !important;
-}
-
-#stainless-modal .modal-image-item:nth-child(5) .grades-section {
-    order: 2 !important;
-    margin-left: 0 !important;
-    align-items: center !important;
 }
 
 /* Mobile grades layout - 2 columns of 3 rows */
