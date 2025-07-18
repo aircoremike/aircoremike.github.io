@@ -35,11 +35,16 @@
     flex-direction: column !important;
     text-align: center;
     align-items: stretch;
+    max-height: none;
 }
 #stainless-modal .modal-hero-text, 
 #stainless-modal .modal-hero-image {
     width: 100%;
     margin: 0;
+}
+#stainless-modal .modal-hero-image {
+    max-height: 50vh;
+    min-height: 20vh;
 }
 }
 
