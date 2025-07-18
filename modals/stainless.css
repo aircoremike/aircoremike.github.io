@@ -152,9 +152,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  background: none;
+  background: black;
   border-radius: 0;
   overflow: visible;
+  margin-bottom: 0;
+  padding-bottom: 100vh; /* Extend to bottom of viewport */
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
@@ -243,6 +245,12 @@
 
 #stainless-modal .grades-section p {
     text-align: left;
+}
+
+/* Maintain black background for grades section on mobile */
+#stainless-modal .modal-image-item:nth-child(5) {
+    background: black !important;
+    padding-bottom: 100vh !important;
 }
 }
 
