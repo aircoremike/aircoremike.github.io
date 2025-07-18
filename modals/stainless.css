@@ -30,6 +30,31 @@
   margin-bottom: 1.5rem;
 }
 
+/* First modal image item with text layout */
+#stainless-modal .modal-image-item:first-child {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#stainless-modal .modal-image-item:first-child p {
+  flex: 1;
+  order: 1;
+  color: var(--stainless-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+#stainless-modal .modal-image-item:first-child img {
+  flex: 1;
+  order: 2;
+  border-radius: 12px;
+}
+
 /* Phone Modal Styles */
 
 @media (max-width: 768px) {
@@ -47,6 +72,20 @@
 #stainless-modal .modal-hero-image {
     max-height: 50vh;
     min-height: 20vh;
+}
+
+/* Mobile layout for first modal image item */
+#stainless-modal .modal-image-item:first-child {
+    flex-direction: column;
+    gap: 16px;
+}
+
+#stainless-modal .modal-image-item:first-child p {
+    order: 2;
+}
+
+#stainless-modal .modal-image-item:first-child img {
+    order: 1;
 }
 }
 
