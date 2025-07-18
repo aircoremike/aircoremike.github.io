@@ -34,7 +34,11 @@
 .modal-hero {
     flex-direction: column;
     text-align: center;
-    align-items: stretch; /* Ensure items take full width */
+    align-items: stretch;
+}
+.modal-hero-text, .modal-hero-image {
+    width: 100%;
+    margin: 0;
 }
 }
 
