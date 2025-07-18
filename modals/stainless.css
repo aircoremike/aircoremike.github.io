@@ -33,7 +33,7 @@
 /* First modal image item with text layout - Air cargo deck */
 #stainless-modal .modal-image-item:first-child {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   gap: 20px;
   background: none;
   border-radius: 0;
@@ -46,7 +46,6 @@
   object-fit: contain;
   border-radius: 12px;
   flex-shrink: 0;
-  order: 1;
   align-self: center;
 }
 
@@ -56,7 +55,6 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  order: 2;
   white-space: normal;
   word-wrap: break-word;
   text-align: center;
