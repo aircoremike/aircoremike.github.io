@@ -47,6 +47,7 @@
   border-radius: 12px;
   flex-shrink: 0;
   align-self: center;
+  max-width: 60%;
 }
 
 #stainless-modal .modal-image-item:first-child p {
@@ -57,10 +58,12 @@
   margin: 0;
   white-space: normal;
   word-wrap: break-word;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: visible;
+  width: 100%;
 }
 
 #stainless-modal .modal-image-item:first-child p strong {
@@ -71,6 +74,9 @@
   font-size: 1.6rem;
   color: var(--stainless-primary);
   margin-bottom: 1rem;
+  text-align: left;
+  display: block;
+  width: 100%;
 }
 
 /* Second item: Loading air cargo (image left, text right) */
@@ -259,12 +265,23 @@
     width: 100%;
     height: 150px;
     object-fit: cover;
+    max-width: 100%; /* Ensure images fit inside modal container */
 }
 
 /* Override for first-child image to be 90vh on mobile */
+#stainless-modal .modal-image-item:first-child {
+    flex-direction: column-reverse !important; /* Text first, then image */
+    gap: 24px; /* More space between text and image */
+    padding: 15px; /* Add padding around content */
+    overflow: visible; /* Ensure nothing gets cut off */
+}
+
 #stainless-modal .modal-image-item:first-child img {
     height: 90vh;
     object-fit: contain;
+    max-height: 60vh; /* Limit height to ensure text isn't pushed off screen */
+    order: 2 !important; /* Image below text */
+    width: 100%;
 }
 
 #stainless-modal .modal-image-item p,
@@ -294,6 +311,8 @@
 #stainless-modal .modal-image-item:nth-child(5) .grades-section {
     order: 2 !important;
     align-items: flex-start !important;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Mobile grades layout - 2 columns of 3 rows */
@@ -301,10 +320,13 @@
     flex-direction: row;
     gap: 3rem;
     justify-content: center;
+    order: 2; /* Ensure this comes after the paragraph */
 }
 
 #stainless-modal .grades-section p {
     text-align: left;
+    order: 1; /* Ensure "Available grades:" comes first */
+    margin-bottom: 1rem;
 }
 }
 
