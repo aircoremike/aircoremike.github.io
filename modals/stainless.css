@@ -41,7 +41,7 @@
 }
 
 #stainless-modal .modal-image-item:first-child img {
-  height: 40vh;
+  height: 90vh;
   width: auto;
   object-fit: contain;
   border-radius: 12px;
@@ -58,10 +58,19 @@
   white-space: normal;
   word-wrap: break-word;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #stainless-modal .modal-image-item:first-child p strong {
   display: inline;
+}
+
+#stainless-modal .modal-image-item:first-child h3 {
+  font-size: 1.6rem;
+  color: var(--stainless-primary);
+  margin-bottom: 1rem;
 }
 
 /* Second item: Loading air cargo (image left, text right) */
@@ -166,7 +175,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;  /* Reduced gap from 20px to 10px */
   background: #000;
   border-radius: 0;
   overflow: visible;
@@ -231,6 +240,9 @@
     width: 100%;
     margin: 0;
 }
+#stainless-modal .modal-hero-text {
+    padding: 0 15px;  /* Added padding on sides */
+}
 #stainless-modal .modal-hero-image {
     max-height: 50vh;
     min-height: 20vh;
@@ -249,6 +261,12 @@
     object-fit: cover;
 }
 
+/* Override for first-child image to be 90vh on mobile */
+#stainless-modal .modal-image-item:first-child img {
+    height: 90vh;
+    object-fit: contain;
+}
+
 #stainless-modal .modal-image-item p,
 #stainless-modal .modal-image-item .grades-section {
     order: 2 !important;
@@ -263,11 +281,19 @@
     max-height: none !important;
     min-height: auto !important;
     background: #000 !important;
+    flex-direction: row !important; /* Keep as row even on mobile */
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
     height: 10vh !important;
     max-height: 10vh !important;
+    order: 1 !important;
+    flex-shrink: 0;
+}
+
+#stainless-modal .modal-image-item:nth-child(5) .grades-section {
+    order: 2 !important;
+    align-items: flex-start !important;
 }
 
 /* Mobile grades layout - 2 columns of 3 rows */
