@@ -30,7 +30,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* First modal image item with text layout */
+/* First modal image item with text layout - Air cargo deck */
 #stainless-modal .modal-image-item:first-child {
   display: flex;
   align-items: center;
@@ -40,19 +40,157 @@
   overflow: visible;
 }
 
+#stainless-modal .modal-image-item:first-child img {
+  height: 40vh;
+  width: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
 #stainless-modal .modal-image-item:first-child p {
   flex: 1;
-  order: 1;
   color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 
-#stainless-modal .modal-image-item:first-child img {
+/* Second item: Loading air cargo (image left, text right) */
+#stainless-modal .modal-image-item:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#stainless-modal .modal-image-item:nth-child(2) img {
+  order: 1;
   flex: 1;
-  order: 2;
   border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#stainless-modal .modal-image-item:nth-child(2) p {
+  order: 2;
+  flex: 1;
+  color: var(--stainless-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Third item: C17 (text left, image right) */
+#stainless-modal .modal-image-item:nth-child(3) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#stainless-modal .modal-image-item:nth-child(3) img {
+  order: 2;
+  flex: 1;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#stainless-modal .modal-image-item:nth-child(3) p {
+  order: 1;
+  flex: 1;
+  color: var(--stainless-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Fourth item: Pallet drop (image left, text right) */
+#stainless-modal .modal-image-item:nth-child(4) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#stainless-modal .modal-image-item:nth-child(4) img {
+  order: 1;
+  flex: 1;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#stainless-modal .modal-image-item:nth-child(4) p {
+  order: 2;
+  flex: 1;
+  color: var(--stainless-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Fifth item: Available grades (image left, grades right) */
+#stainless-modal .modal-image-item:nth-child(5) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#stainless-modal .modal-image-item:nth-child(5) img {
+  order: 1;
+  flex: 1;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#stainless-modal .modal-image-item:nth-child(5) .grades-section {
+  order: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#stainless-modal .grade-columns {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+#stainless-modal .grade-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--stainless-primary);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+#stainless-modal .grades-section p {
+  color: var(--stainless-primary);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Phone Modal Styles */
@@ -74,18 +212,35 @@
     min-height: 20vh;
 }
 
-/* Mobile layout for first modal image item */
-#stainless-modal .modal-image-item:first-child {
-    flex-direction: column;
+/* Mobile layout for all modal image items - image above, text below */
+#stainless-modal .modal-image-item {
+    flex-direction: column !important;
     gap: 16px;
 }
 
-#stainless-modal .modal-image-item:first-child p {
-    order: 2;
+#stainless-modal .modal-image-item img {
+    order: 1 !important;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
 }
 
-#stainless-modal .modal-image-item:first-child img {
-    order: 1;
+#stainless-modal .modal-image-item p,
+#stainless-modal .modal-image-item .grades-section {
+    order: 2 !important;
+    flex: none;
+    align-items: flex-start !important;
+}
+
+/* Mobile grades layout - 2 columns of 3 rows */
+#stainless-modal .grade-columns {
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: center;
+}
+
+#stainless-modal .grades-section p {
+    text-align: left;
 }
 }
 

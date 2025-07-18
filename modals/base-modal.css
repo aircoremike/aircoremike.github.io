@@ -185,9 +185,6 @@
   font-weight: 600;
   margin: 0;
   text-align: center;
-  border-style: solid;
-  border-color: aqua;
-  border-width: thick;
 }
 
 .modal-content {
@@ -202,19 +199,12 @@
   align-items: center;
   justify-content: center;
   background: #000;
-  border-style: solid;
-  border-color: yellow;
-  border-width: thick;
 }
 
 .modal-hero-image {
   object-fit: contain;
   min-height: 20vh;
   max-height: 50vh;
-  border-style: solid;
-  border-color: red;
-  border-width: thick;
-
 }
 
 .modal-body {
