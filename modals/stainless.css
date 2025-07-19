@@ -34,10 +34,11 @@
 #stainless-modal .modal-image-item:first-child {
   display: flex;
   flex-direction: row-reverse;
-  gap: 20px;
+  gap: 30px;
   background: none;
   border-radius: 0;
   overflow: visible;
+  align-items: center;
 }
 
 #stainless-modal .modal-image-item:first-child img {
@@ -47,11 +48,18 @@
   border-radius: 12px;
   flex-shrink: 0;
   align-self: center;
-  max-width: 50%; /* Reduced from 60% to give more space to text */
+  max-width: 45%; /* Reduced to give more space to text */
+}
+
+#stainless-modal .modal-image-item:first-child .text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
 }
 
 #stainless-modal .modal-image-item:first-child p {
-  flex: 1;
   color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
@@ -59,9 +67,6 @@
   white-space: normal;
   word-wrap: break-word;
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: visible;
   width: 100%;
 }
@@ -73,7 +78,7 @@
 #stainless-modal .modal-image-item:first-child h3 {
   font-size: 1.6rem;
   color: var(--stainless-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: left;
   display: block;
   width: 100%;
@@ -180,7 +185,7 @@
 #stainless-modal .modal-image-item:nth-child(5) {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Changed from center to flex-start */
+  justify-content: center; /* Changed back to center */
   gap: 5px;  /* Reduced from 10px to 5px to bring items closer */
   background: #000;
   border-radius: 0;
@@ -276,26 +281,34 @@
 #stainless-modal .modal-image-item:first-child {
     display: flex !important;
     flex-direction: column !important;
-    gap: 24px; /* More space between elements */
+    gap: 20px; /* Space between elements */
     padding: 15px; /* Add padding around content */
     overflow: visible; /* Ensure nothing gets cut off */
 }
 
-#stainless-modal .modal-image-item:first-child h3 {
-    order: 1 !important; /* H3 first */
+#stainless-modal .modal-image-item:first-child .text-content {
     width: 100%;
+    padding: 0;
+    order: 1 !important; /* Text content first */
+}
+
+#stainless-modal .modal-image-item:first-child h3 {
+    order: 1; /* H3 first within text-content */
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 #stainless-modal .modal-image-item:first-child img {
     order: 2 !important; /* Image second */
-    height: 80vh; /* Set to 80vh as requested */
-    min-height: 80vh; /* Minimum height of 80vh */
+    height: 90vh; /* Increased to fill more of the viewport */
+    min-height: 85vh; /* Ensure it's large enough */
     object-fit: contain;
     width: 100%;
+    max-height: 90vh; /* Maximum height */
 }
 
 #stainless-modal .modal-image-item:first-child p {
-    order: 3 !important; /* Paragraph third */
+    order: 2; /* Paragraph second within text-content */
     width: 100%;
 }
 
@@ -317,8 +330,10 @@
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
-    height: 10vh !important;
-    max-height: 10vh !important;
+    height: auto !important;
+    max-height: 6vh !important; /* Much smaller */
+    width: auto !important;
+    max-width: 30% !important; /* Limit width to be proportional to the list */
     order: 1 !important;
     flex-shrink: 0;
 }
