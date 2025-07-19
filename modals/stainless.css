@@ -39,6 +39,7 @@
   border-radius: 0;
   overflow: visible;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 #stainless-modal .modal-image-item:first-child img {
@@ -49,17 +50,11 @@
   flex-shrink: 0;
   align-self: center;
   max-width: 45%; /* Reduced to give more space to text */
-}
-
-#stainless-modal .modal-image-item:first-child .text-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 20px;
+  order: 1; /* Image on the right in desktop */
 }
 
 #stainless-modal .modal-image-item:first-child p {
+  flex: 1;
   color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
@@ -68,11 +63,11 @@
   word-wrap: break-word;
   text-align: left;
   overflow: visible;
-  width: 100%;
-}
-
-#stainless-modal .modal-image-item:first-child p strong {
-  display: inline;
+  width: auto;
+  min-width: 45%; /* Ensure text has enough space */
+  align-self: center;
+  order: 2; /* Text on the left in desktop */
+  padding: 0 20px;
 }
 
 #stainless-modal .modal-image-item:first-child h3 {
@@ -81,8 +76,18 @@
   margin-bottom: 1.5rem;
   text-align: left;
   display: block;
-  width: 100%;
+  width: auto;
+  min-width: 45%; /* Match paragraph width */
+  align-self: center;
+  order: 2; /* Grouped with paragraph on desktop */
+  padding: 0 20px 0 0;
 }
+
+#stainless-modal .modal-image-item:first-child p strong {
+  display: inline;
+}
+
+
 
 /* Second item: Loading air cargo (image left, text right) */
 #stainless-modal .modal-image-item:nth-child(2) {
@@ -212,15 +217,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Left-aligned */
+  align-items: center; /* Changed to center align */
   justify-content: center;
-  padding-left: 0.5rem; /* Add slight padding for better visual alignment */
+  padding-left: 0; /* Removed padding */
 }
 
 #stainless-modal .grade-columns {
   display: flex;
   gap: 2rem;
-  justify-content: flex-start; /* Left-aligned */
+  justify-content: center; /* Center-aligned */
   margin-top: 0.25rem; /* Tighter spacing with heading */
 }
 
@@ -238,7 +243,7 @@
   font-size: 1.3rem; /* Increased from 1.1rem */
   font-weight: 600; /* Made slightly bolder */
   margin-bottom: 1rem;
-  text-align: left; /* Left aligned */
+  text-align: center; /* Center aligned for desktop */
 }
 
 /* Phone Modal Styles */
@@ -281,35 +286,37 @@
 #stainless-modal .modal-image-item:first-child {
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px; /* Space between elements */
+    gap: 10px; /* Reduced space between elements */
     padding: 15px; /* Add padding around content */
     overflow: visible; /* Ensure nothing gets cut off */
+    align-items: flex-start;
 }
 
-#stainless-modal .modal-image-item:first-child .text-content {
-    width: 100%;
-    padding: 0;
-    order: 1 !important; /* Text content first */
-}
+
 
 #stainless-modal .modal-image-item:first-child h3 {
-    order: 1; /* H3 first within text-content */
+    order: 1 !important; /* H3 first overall */
     width: 100%;
     margin-bottom: 1rem;
+    padding: 0 !important;
+    font-size: 1.6rem;
+    color: var(--stainless-primary);
 }
 
 #stainless-modal .modal-image-item:first-child img {
-    order: 2 !important; /* Image second */
-    height: 90vh; /* Increased to fill more of the viewport */
-    min-height: 85vh; /* Ensure it's large enough */
+    order: 2 !important; /* Image second, after h3 but before paragraph */
+    height: 95vh !important; /* Almost fill viewport */
+    min-height: 95vh !important; /* Ensure it's large enough */
     object-fit: contain;
     width: 100%;
-    max-height: 90vh; /* Maximum height */
+    max-width: 100%;
+    margin: 10px 0; /* Add some spacing */
 }
 
 #stainless-modal .modal-image-item:first-child p {
-    order: 2; /* Paragraph second within text-content */
+    order: 3 !important; /* Paragraph third after image */
     width: 100%;
+    padding: 0 !important;
 }
 
 #stainless-modal .modal-image-item:not(:first-child) p,
@@ -330,10 +337,11 @@
 }
 
 #stainless-modal .modal-image-item:nth-child(5) img {
-    height: auto !important;
-    max-height: 6vh !important; /* Much smaller */
+    height: 100% !important; /* Same height as the grades list */
     width: auto !important;
     max-width: 30% !important; /* Limit width to be proportional to the list */
+    object-fit: contain !important;
+    align-self: center !important;
     order: 1 !important;
     flex-shrink: 0;
 }
