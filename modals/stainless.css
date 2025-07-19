@@ -39,7 +39,6 @@
   border-radius: 0;
   overflow: visible;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 #stainless-modal .modal-image-item:first-child img {
@@ -50,11 +49,19 @@
   flex-shrink: 0;
   align-self: center;
   max-width: 45%; /* Reduced to give more space to text */
-  order: 1; /* Image on the right in desktop */
+  order: 2; /* Image on the right in desktop */
+}
+
+#stainless-modal .modal-image-item:first-child .text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 1; /* Text content on the left */
+  padding: 0 20px;
 }
 
 #stainless-modal .modal-image-item:first-child p {
-  flex: 1;
   color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
@@ -63,11 +70,7 @@
   word-wrap: break-word;
   text-align: left;
   overflow: visible;
-  width: auto;
-  min-width: 45%; /* Ensure text has enough space */
-  align-self: center;
-  order: 2; /* Text on the left in desktop */
-  padding: 0 20px;
+  width: 100%;
 }
 
 #stainless-modal .modal-image-item:first-child h3 {
@@ -76,11 +79,7 @@
   margin-bottom: 1.5rem;
   text-align: left;
   display: block;
-  width: auto;
-  min-width: 45%; /* Match paragraph width */
-  align-self: center;
-  order: 2; /* Grouped with paragraph on desktop */
-  padding: 0 20px 0 0;
+  width: 100%;
 }
 
 #stainless-modal .modal-image-item:first-child p strong {
@@ -190,8 +189,8 @@
 #stainless-modal .modal-image-item:nth-child(5) {
   display: flex;
   align-items: center;
-  justify-content: center; /* Changed back to center */
-  gap: 5px;  /* Reduced from 10px to 5px to bring items closer */
+  justify-content: space-evenly; /* Space items evenly to center them in their halves */
+  gap: 0; /* Remove gap to allow proper centering */
   background: #000;
   border-radius: 0;
   overflow: visible;
@@ -209,17 +208,18 @@
   object-fit: contain;
   border-radius: 0;
   flex-shrink: 0;
-  margin-right: 10px; /* Added specific margin for the image */
+  flex: 1; /* Take up half the space */
+  display: flex;
+  justify-content: center; /* Center in its half */
 }
 
 #stainless-modal .modal-image-item:nth-child(5) .grades-section {
   order: 2;
-  flex: 1;
+  flex: 1; /* Take up half the space */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Changed to center align */
+  align-items: center; /* Center in its half */
   justify-content: center;
-  padding-left: 0; /* Removed padding */
 }
 
 #stainless-modal .grade-columns {
@@ -286,37 +286,42 @@
 #stainless-modal .modal-image-item:first-child {
     display: flex !important;
     flex-direction: column !important;
-    gap: 10px; /* Reduced space between elements */
+    gap: 5px; /* Much tighter spacing between elements */
     padding: 15px; /* Add padding around content */
     overflow: visible; /* Ensure nothing gets cut off */
     align-items: flex-start;
 }
 
-
+#stainless-modal .modal-image-item:first-child .text-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 #stainless-modal .modal-image-item:first-child h3 {
-    order: 1 !important; /* H3 first overall */
+    order: 1 !important; /* H3 first */
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 5px !important; /* Minimal spacing */
     padding: 0 !important;
     font-size: 1.6rem;
     color: var(--stainless-primary);
 }
 
 #stainless-modal .modal-image-item:first-child img {
-    order: 2 !important; /* Image second, after h3 but before paragraph */
-    height: 95vh !important; /* Almost fill viewport */
-    min-height: 95vh !important; /* Ensure it's large enough */
+    order: 2 !important; /* Image second */
+    height: 90vh !important; /* Large but not too large */
+    min-height: 85vh !important;
     object-fit: contain;
     width: 100%;
     max-width: 100%;
-    margin: 10px 0; /* Add some spacing */
+    margin: 5px 0; /* Minimal spacing above and below */
 }
 
 #stainless-modal .modal-image-item:first-child p {
-    order: 3 !important; /* Paragraph third after image */
+    order: 3 !important; /* Paragraph third */
     width: 100%;
     padding: 0 !important;
+    margin: 5px 0 0 0 !important; /* Minimal spacing above */
 }
 
 #stainless-modal .modal-image-item:not(:first-child) p,
@@ -360,13 +365,13 @@
     gap: 3rem;
     justify-content: flex-start;
     order: 2; /* Ensure this comes after the heading */
-    margin-top: 0.25rem; /* Tighten spacing with heading */
+    margin-top: 0.1rem; /* Much tighter spacing with heading */
 }
 
 #stainless-modal .grades-section h3 {
     text-align: left;
     order: 1; /* Ensure heading comes first */
-    margin-bottom: 0.5rem; /* Reduced from 1rem to tighten grouping */
+    margin-bottom: 0.2rem !important; /* Much tighter spacing */
     width: 100%;
     display: block;
     font-size: 1.3rem; /* Consistent with desktop */
