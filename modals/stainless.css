@@ -398,12 +398,12 @@
 #stainless-modal .grade-column:nth-child(1)::after {
     content: "17-4 PH";
     display: block;
-    margin-top: 0.5rem;
+    /* Remove margin-top to match the gap spacing */
 }
 #stainless-modal .grade-column:nth-child(2)::after {
     content: "304";
     display: block;
-    margin-top: 0.5rem;
+    /* Remove margin-top to match the gap spacing */
 }
 
 #stainless-modal .grades-section h3 {
