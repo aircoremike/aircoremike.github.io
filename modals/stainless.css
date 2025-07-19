@@ -43,6 +43,7 @@
 
 #stainless-modal .modal-image-item:first-child img {
   height: 200px; /* Match other image items' height */
+  min-height: 80vh; /* Minimum height of 80vh */
   width: auto;
   object-fit: cover; /* Match other image items' object-fit */
   border-radius: 12px;
@@ -319,11 +320,13 @@
 
 #stainless-modal .modal-image-item:first-child img {
     order: 2 !important; /* Image second */
-    height: 150px !important; /* Match other mobile images */
+    height: auto !important; /* Let aspect ratio determine height */
+    min-height: 90vh !important; /* Minimum 90vh height */
     object-fit: cover !important;
     width: 100%;
     max-width: 100%;
     margin: 0; /* No extra margin */
+    aspect-ratio: 9/16 !important; /* Tall aspect ratio */
 }
 
 #stainless-modal .modal-image-item:first-child p {
@@ -382,7 +385,16 @@
     display: none !important;
 }
 
-/* Mobile: add missing grades to first two columns */
+/* Mobile: ensure consistent spacing in grade columns */
+#stainless-modal .grade-column {
+    gap: 0.5rem !important; /* Consistent gap for all items */
+}
+
+#stainless-modal .grade-column span {
+    margin: 0 !important; /* Remove any extra margins */
+}
+
+/* Mobile: add missing grades to first two columns with consistent spacing */
 #stainless-modal .grade-column:nth-child(1)::after {
     content: "17-4 PH";
     display: block;
@@ -395,7 +407,7 @@
 }
 
 #stainless-modal .grades-section h3 {
-    text-align: left;
+    text-align: center !important; /* Center the heading on mobile */
     order: 1; /* Ensure heading comes first */
     margin-bottom: 0.1rem !important; /* Much tighter spacing */
     width: 100%;
