@@ -167,7 +167,7 @@
   font-weight: bold;
 }
 .modal-container {
-  padding-bottom: 100px; /* Space for close button */
+  padding-bottom: 0; /* Remove base padding since material-info will handle spacing */
 }
 
 .modal-header {
@@ -263,6 +263,58 @@
   white-space: nowrap; /* prevents awkward line breaks */
 }
 
+/* Material info section: Available grades (black background, full width) */
+.material-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* Space items evenly to center them in their halves */
+  gap: 0; /* Remove gap to allow proper centering */
+  background: #000;
+  border-radius: 0 0 18px 18px; /* Only bottom corners rounded to match modal */
+  overflow: visible;
+  margin: 0; /* No margins needed - this is now a direct child of modal-content */
+  padding: 20px 32px 120px 32px; /* Match modal-body padding, plus space for close button */
+  max-height: none;
+  min-height: 20vh;
+}
+
+.material-info img {
+  order: 1;
+  max-height: 15vh;
+  height: 15vh;
+  width: auto;
+  object-fit: contain;
+  border-radius: 0;
+  flex-shrink: 0;
+  flex: 1; /* Take up half the space */
+  display: flex;
+  justify-content: center; /* Center in its half */
+}
+
+.material-info .grades-section {
+  order: 2;
+  flex: 1; /* Take up half the space */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center in its half */
+  justify-content: center;
+}
+
+.grade-columns {
+  display: flex;
+  gap: 2rem;
+  justify-content: center; /* Center-aligned */
+  margin-top: 0.25rem; /* Tighter spacing with heading */
+}
+
+.grades-section h3 {
+  color: #f5f5f7;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center; /* Center aligned for desktop */
+}
+
 
 /* Mobile Modal Styles */
 @media (max-width: 768px) {
@@ -299,5 +351,62 @@
   .modal-close {
     /* Center vertically in the 80px padding: (80px - 61.2px)/2 + 10 = 19.4px from bottom */
     bottom: 20px;
+  }
+
+  /* Mobile material info section styling */
+  .material-info {
+    margin: 0 !important; /* No margins needed - this is now a direct child of modal-content */
+    padding: 16px 20px 100px 20px !important; /* Match mobile modal-body padding, plus close button space */
+    max-height: none !important;
+    min-height: auto !important;
+    background: #000 !important;
+    border-radius: 0 0 18px 18px !important; /* Bottom corners rounded on mobile too */
+    flex-direction: row !important; /* Keep as row even on mobile */
+  }
+
+  .material-info img {
+    height: 100% !important; /* Same height as the grades list */
+    width: auto !important;
+    max-width: 30% !important; /* Limit width to be proportional to the list */
+    object-fit: contain !important;
+    align-self: center !important;
+    order: 1 !important;
+    flex-shrink: 0;
+  }
+
+  .material-info .grades-section {
+    order: 2 !important;
+    align-items: flex-start !important;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0 !important; /* Remove padding to align with icon */
+  }
+
+  /* Mobile grades layout */
+  .grade-columns {
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: flex-start;
+    order: 2; /* Ensure this comes after the heading */
+    margin-top: 0 !important; /* Remove top margin for tighter spacing */
+  }
+
+  /* Mobile: ensure consistent spacing in grade columns */
+  .grade-column {
+    gap: 0.5rem !important; /* Consistent gap for all items */
+  }
+
+  .grade-column span {
+    margin: 0 !important; /* Remove any extra margins */
+  }
+
+  .grades-section h3 {
+    text-align: center !important; /* Center the heading on mobile */
+    order: 1; /* Ensure heading comes first */
+    margin-bottom: 0.1rem !important; /* Much tighter spacing */
+    width: 100%;
+    display: block;
+    font-size: 1.3rem; /* Consistent with desktop */
+    font-weight: 600;
   }
 }
