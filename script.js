@@ -460,6 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
 (function() {
   let currentModal = null;
   let handleCloseButtonPosition = null; // Store reference for cleanup
+  let stickyCloseButton = null; // Store reference for cleanup
   
   function findModalElement(materialType) {
     // Map material types to modal IDs
@@ -533,8 +534,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to handle sticky close button behavior on mobile
-    let stickyCloseButton = null;
-    
     handleCloseButtonPosition = function() {
       if (!closeContainer || window.innerWidth > 768) {
         // Desktop - keep original fixed positioning
@@ -613,9 +612,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set up sticky close button (mobile only)
     handleCloseButtonPosition();
-
-    // Add resize listener to handle orientation changes
-    window.addEventListener('resize', handleCloseButtonPosition);
 
     // Add resize listener to handle orientation changes
     window.addEventListener('resize', handleCloseButtonPosition);
@@ -727,9 +723,9 @@ document.addEventListener('DOMContentLoaded', function() {
       window.removeEventListener('resize', handleCloseButtonPosition);
       
       // Clean up sticky button if it exists
-      const stickyButton = currentModal.querySelector('.modal-close-sticky');
-      if (stickyButton) {
-        stickyButton.remove();
+      if (stickyCloseButton) {
+        stickyCloseButton.remove();
+        stickyCloseButton = null;
       }
       
       handleCloseButtonPosition = null;
