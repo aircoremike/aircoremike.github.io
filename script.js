@@ -533,6 +533,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to handle sticky close button behavior on mobile
+    let lastCalculatedPosition = null; // Store last position to smooth transitions
+    
     handleCloseButtonPosition = function() {
       if (!closeContainer || window.innerWidth > 768) return; // Only on mobile
       
@@ -542,6 +544,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const modalRect = modalContainer.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const modalBottom = modalRect.bottom;
+      const modalTop = modalRect.top;
       
       // Get the material-info section (bottom padded section)
       const materialInfo = modalContainer.querySelector('.material-info');
@@ -554,25 +557,36 @@ document.addEventListener('DOMContentLoaded', function() {
       const materialInfoStyles = window.getComputedStyle(materialInfo);
       const paddingBottom = parseFloat(materialInfoStyles.paddingBottom || '0');
       
+      // Add some buffer to prevent jittery behavior near scroll boundaries
+      const scrollBuffer = 5;
+      
       // Calculate if modal bottom is above viewport bottom (scrolled to bottom)
-      if (modalBottom <= viewportHeight) {
-        // Modal bottom is visible - position close button at center of the padding area
+      // Also check that we're not in a bouncy scroll state
+      if (modalBottom <= (viewportHeight + scrollBuffer) && modalTop <= 0) {
+        // Modal bottom is visible and we're properly scrolled - position close button at center of the padding area
         const contentBottom = materialInfoBottom - paddingBottom; // Bottom of actual content
-        const paddingCenter = contentBottom + (paddingBottom / 2); // Center of padding area
-        const distanceFromBottom = viewportHeight - paddingCenter;
+        const paddingCenter = contentBottom + (paddingBottom * 0.6); // Slightly lower in padding area (60% down)
+        const distanceFromBottom = Math.max(20, viewportHeight - paddingCenter); // Minimum 20px from bottom
         
-        closeContainer.querySelector('.modal-close').style.bottom = `${distanceFromBottom}px`;
+        // Only update if the change is significant to prevent micro-jitters
+        if (lastCalculatedPosition === null || Math.abs(lastCalculatedPosition - distanceFromBottom) > 2) {
+          closeContainer.querySelector('.modal-close').style.bottom = `${distanceFromBottom}px`;
+          lastCalculatedPosition = distanceFromBottom;
+        }
       } else {
-        // Modal extends below viewport - use normal positioning
-        closeContainer.querySelector('.modal-close').style.bottom = '20px'; // Mobile default
+        // Modal extends below viewport or we're in bounce state - use normal positioning
+        if (lastCalculatedPosition === null || lastCalculatedPosition !== 20) {
+          closeContainer.querySelector('.modal-close').style.bottom = '20px'; // Mobile default
+          lastCalculatedPosition = 20;
+        }
       }
     };
 
-    // Add scroll listener for sticky behavior
+    // Add scroll listener for sticky behavior with better debouncing
     let scrollTimeout;
     modal.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleCloseButtonPosition, 10);
+      scrollTimeout = setTimeout(handleCloseButtonPosition, 16); // ~60fps for smoother updates
     });
 
     // Add resize listener to handle orientation changes
