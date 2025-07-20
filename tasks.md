@@ -6,6 +6,7 @@ Tasks
 
     - Materials page
         - mobile stainless modal padding adjustments
+        - modals accessibility enable keyboard scrolling
         - Per material spec pages
 
     - Research page
