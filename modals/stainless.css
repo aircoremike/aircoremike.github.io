@@ -13,6 +13,11 @@
   --stainless-accent: #e8e8e8;
   --stainless-dark: #808080;
 }
+
+/* Override base modal container padding for stainless modal */
+#stainless-modal .modal-container {
+  padding-bottom: 0; /* Remove base padding since material-info will handle spacing */
+}
 .modal-hero {
   display: flex;
   flex-direction: row;
@@ -195,8 +200,8 @@
   background: #000;
   border-radius: 0 0 18px 18px; /* Only bottom corners rounded to match modal */
   overflow: visible;
-  margin: 0 -32px -32px -32px; /* Extend to modal edges and remove bottom padding */
-  padding: 20px 32px 120px 32px; /* Keep top/side padding, increase bottom for close button */
+  margin: 0 0 0 0; /* No negative margins - this will be the last element */
+  padding: 20px 32px 120px 32px; /* Maintain padding for close button space */
   max-height: none;
   min-height: 20vh;
 }
@@ -345,7 +350,7 @@
 
 /* Mobile material info section styling */
 #stainless-modal .material-info {
-    margin: 0 -20px -20px -20px !important; /* Extend to modal edges, remove extra bottom margin */
+    margin: 0 0 0 0 !important; /* No negative margins - this is the last element */
     padding: 16px 20px 100px 20px !important; /* Keep padding for close button space */
     max-height: none !important;
     min-height: auto !important;
