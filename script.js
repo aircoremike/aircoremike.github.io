@@ -548,14 +548,18 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!materialInfo) return;
       
       const materialInfoRect = materialInfo.getBoundingClientRect();
-      const materialInfoTop = materialInfoRect.top;
-      const materialInfoHeight = materialInfoRect.height;
+      const materialInfoBottom = materialInfoRect.bottom;
+      
+      // Get the computed padding-bottom of the material-info section
+      const materialInfoStyles = window.getComputedStyle(materialInfo);
+      const paddingBottom = parseFloat(materialInfoStyles.paddingBottom || '0');
       
       // Calculate if modal bottom is above viewport bottom (scrolled to bottom)
       if (modalBottom <= viewportHeight) {
-        // Modal bottom is visible - position close button at center of material-info section
-        const materialInfoCenter = materialInfoTop + (materialInfoHeight / 2);
-        const distanceFromBottom = viewportHeight - materialInfoCenter;
+        // Modal bottom is visible - position close button at center of the padding area
+        const contentBottom = materialInfoBottom - paddingBottom; // Bottom of actual content
+        const paddingCenter = contentBottom + (paddingBottom / 2); // Center of padding area
+        const distanceFromBottom = viewportHeight - paddingCenter;
         
         closeContainer.querySelector('.modal-close').style.bottom = `${distanceFromBottom}px`;
       } else {
