@@ -56,3 +56,12 @@
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(50, 205, 50, 0.3);
 }
+
+/* Material info section: Available grades - color overrides for nickel */
+#nickel-modal .grade-column {
+  color: var(--nickel-accent);
+}
+
+#nickel-modal .grades-section h3 {
+  color: var(--nickel-accent);
+}

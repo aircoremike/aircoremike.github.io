@@ -56,3 +56,12 @@
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(184, 134, 11, 0.3);
 }
+
+/* Material info section: Available grades - color overrides for HCCR */
+#hccr-modal .grade-column {
+  color: var(--hccr-accent);
+}
+
+#hccr-modal .grades-section h3 {
+  color: var(--hccr-accent);
+}
