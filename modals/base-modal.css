@@ -344,10 +344,6 @@
     height: 150px;
   }
   
-  .modal-container {
-    padding-bottom: 80px; /* Reduced padding for mobile */
-  }
-  
   .modal-close {
     /* Center vertically in the 80px padding: (80px - 61.2px)/2 + 10 = 19.4px from bottom */
     bottom: 20px;
