@@ -578,13 +578,13 @@ document.addEventListener('DOMContentLoaded', function() {
           width: 0;
         `;
         
-        // Style the button inside to match original
+        // Style the button inside to match original but allow CSS animations
         const stickyButton = stickyCloseButton.querySelector('.modal-close');
         stickyButton.style.cssText = `
           position: absolute;
           left: 50%;
           bottom: 0;
-          transform: translateX(-50%) scale(1);
+          transform: translateX(-50%) scale(0);
           background: rgba(45, 45, 47, 0.8);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
@@ -598,9 +598,11 @@ document.addEventListener('DOMContentLoaded', function() {
           justify-content: center;
           width: 64px;
           height: 64px;
-          opacity: 1;
-          pointer-events: auto;
-          transition: background-color 0.2s ease, transform 0.2s ease;
+          opacity: 0;
+          pointer-events: none;
+          transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
+                      opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
+                      background-color 0.2s ease;
           will-change: transform, opacity;
         `;
         
@@ -609,6 +611,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add to modal-content after material-info so it appears in the padded area below
         modalContent.appendChild(stickyCloseButton);
+        
+        // Add visible class to trigger animation if the main close button is also visible
+        const originalCloseContainer = document.querySelector('.modal-close-container');
+        if (originalCloseContainer && originalCloseContainer.classList.contains('visible')) {
+          stickyCloseButton.classList.add('visible');
+        }
+      } else {
+        // Update visibility state to match main close button
+        const originalCloseContainer = document.querySelector('.modal-close-container');
+        if (originalCloseContainer && originalCloseContainer.classList.contains('visible')) {
+          stickyCloseButton.classList.add('visible');
+        } else {
+          stickyCloseButton.classList.remove('visible');
+        }
       }
     };
 
