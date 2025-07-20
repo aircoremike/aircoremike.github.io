@@ -534,6 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to handle sticky close button behavior on mobile
     let lastCalculatedPosition = null; // Store last position to smooth transitions
+    let isInStickyMode = false; // Track if we're in sticky mode
     
     handleCloseButtonPosition = function() {
       if (!closeContainer || window.innerWidth > 768) return; // Only on mobile
@@ -557,36 +558,55 @@ document.addEventListener('DOMContentLoaded', function() {
       const materialInfoStyles = window.getComputedStyle(materialInfo);
       const paddingBottom = parseFloat(materialInfoStyles.paddingBottom || '0');
       
-      // Add some buffer to prevent jittery behavior near scroll boundaries
-      const scrollBuffer = 5;
+      // Add larger buffer to prevent jittery behavior near scroll boundaries
+      const scrollBuffer = 15;
       
       // Calculate if modal bottom is above viewport bottom (scrolled to bottom)
-      // Also check that we're not in a bouncy scroll state
-      if (modalBottom <= (viewportHeight + scrollBuffer) && modalTop <= 0) {
-        // Modal bottom is visible and we're properly scrolled - position close button at center of the padding area
-        const contentBottom = materialInfoBottom - paddingBottom; // Bottom of actual content
-        const paddingCenter = contentBottom + (paddingBottom * 0.6); // Slightly lower in padding area (60% down)
-        const distanceFromBottom = Math.max(20, viewportHeight - paddingCenter); // Minimum 20px from bottom
+      const shouldBeSticky = modalBottom <= (viewportHeight + scrollBuffer) && modalTop <= -scrollBuffer;
+      
+      if (shouldBeSticky && !isInStickyMode) {
+        // Entering sticky mode - calculate position once
+        const contentBottom = materialInfoBottom - paddingBottom;
+        const paddingCenter = contentBottom + (paddingBottom * 0.6);
+        const distanceFromBottom = Math.max(20, viewportHeight - paddingCenter);
         
-        // Only update if the change is significant to prevent micro-jitters
-        if (lastCalculatedPosition === null || Math.abs(lastCalculatedPosition - distanceFromBottom) > 2) {
-          closeContainer.querySelector('.modal-close').style.bottom = `${distanceFromBottom}px`;
-          lastCalculatedPosition = distanceFromBottom;
-        }
-      } else {
-        // Modal extends below viewport or we're in bounce state - use normal positioning
-        if (lastCalculatedPosition === null || lastCalculatedPosition !== 20) {
-          closeContainer.querySelector('.modal-close').style.bottom = '20px'; // Mobile default
-          lastCalculatedPosition = 20;
-        }
+        const closeButton = closeContainer.querySelector('.modal-close');
+        closeButton.style.transition = 'bottom 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        closeButton.style.bottom = `${distanceFromBottom}px`;
+        
+        isInStickyMode = true;
+        lastCalculatedPosition = distanceFromBottom;
+        
+      } else if (!shouldBeSticky && isInStickyMode) {
+        // Exiting sticky mode - return to normal position
+        const closeButton = closeContainer.querySelector('.modal-close');
+        closeButton.style.transition = 'bottom 0.2s ease-out';
+        closeButton.style.bottom = '20px';
+        
+        isInStickyMode = false;
+        lastCalculatedPosition = 20;
       }
+      // If we're already in the correct mode, don't make changes
     };
 
-    // Add scroll listener for sticky behavior with better debouncing
+    // Add scroll listener for sticky behavior with heavy debouncing
     let scrollTimeout;
+    let isScrolling = false;
+    
     modal.addEventListener('scroll', () => {
+      // Don't update position while actively scrolling
+      if (!isScrolling) {
+        isScrolling = true;
+        // Check position immediately, but then wait for scroll to settle
+        handleCloseButtonPosition();
+      }
+      
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleCloseButtonPosition, 16); // ~60fps for smoother updates
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+        // Final position check when scrolling stops
+        handleCloseButtonPosition();
+      }, 150); // Wait 150ms after scroll stops
     });
 
     // Add resize listener to handle orientation changes
