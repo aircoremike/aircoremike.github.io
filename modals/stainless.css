@@ -402,7 +402,7 @@
 
 /* Mobile: add missing grades to first two columns with consistent spacing */
 #stainless-modal .grade-column:nth-child(1)::after {
-    content: "17-4 PH";
+    content: "302";
     display: block;
     /* Remove margin-top to match the gap spacing */
 }
