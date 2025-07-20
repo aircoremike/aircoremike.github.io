@@ -493,12 +493,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function openModal(materialType) {
-    console.log('openModal called with:', materialType);
-    
     if (currentModal) closeModal();
     
     const modal = findModalElement(materialType);
-    console.log('Found modal element:', modal);
     
     if (!modal) {
       console.warn(`Modal not found for material: ${materialType}`);
@@ -550,8 +547,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       const modalContainer = modal.querySelector('.modal-container');
+      const modalContent = modal.querySelector('.modal-content');
       const materialInfo = modalContainer.querySelector('.material-info');
-      if (!modalContainer || !materialInfo) return;
+      if (!modalContainer || !modalContent || !materialInfo) return;
       
       // Hide the original fixed close button
       closeContainer.style.display = 'none';
@@ -609,8 +607,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click handler
         stickyButton.addEventListener('click', closeModal);
         
-        // Insert before material-info so it appears above the padding
-        modalContainer.insertBefore(stickyCloseButton, materialInfo);
+        // Insert before material-info within modal-content so it appears above the padding
+        modalContent.insertBefore(stickyCloseButton, materialInfo);
       }
     };
 
@@ -772,16 +770,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize modal functionality - called after modals are loaded
   window.initMaterialModals = function() {
-    console.log('initMaterialModals called');
-    console.log('Found buttons:', document.querySelectorAll('.learn-more-btn[data-material]').length);
-    
     // Add click handlers to all learn more buttons
     document.querySelectorAll('.learn-more-btn[data-material]').forEach(button => {
-      console.log('Adding click handler to button:', button);
       button.addEventListener('click', (e) => {
         e.preventDefault();
         const material = button.getAttribute('data-material');
-        console.log('Button clicked, material:', material);
         openModal(material);
       });
     });
