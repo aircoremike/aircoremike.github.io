@@ -459,6 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Modal System - HTML-based modals
 (function() {
   let currentModal = null;
+  let handleCloseButtonPosition = null; // Store reference for cleanup
   
   function findModalElement(materialType) {
     // Map material types to modal IDs
@@ -530,6 +531,48 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navbar) {
       navbar.style.paddingRight = `${scrollbarWidth}px`;
     }
+
+    // Function to handle sticky close button behavior on mobile
+    handleCloseButtonPosition = function() {
+      if (!closeContainer || window.innerWidth > 768) return; // Only on mobile
+      
+      const modalContainer = modal.querySelector('.modal-container');
+      if (!modalContainer) return;
+      
+      const modalRect = modalContainer.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const modalBottom = modalRect.bottom;
+      
+      // Get the material-info section (bottom padded section)
+      const materialInfo = modalContainer.querySelector('.material-info');
+      if (!materialInfo) return;
+      
+      const materialInfoRect = materialInfo.getBoundingClientRect();
+      const materialInfoTop = materialInfoRect.top;
+      const materialInfoHeight = materialInfoRect.height;
+      
+      // Calculate if modal bottom is above viewport bottom (scrolled to bottom)
+      if (modalBottom <= viewportHeight) {
+        // Modal bottom is visible - position close button at center of material-info section
+        const materialInfoCenter = materialInfoTop + (materialInfoHeight / 2);
+        const distanceFromBottom = viewportHeight - materialInfoCenter;
+        
+        closeContainer.querySelector('.modal-close').style.bottom = `${distanceFromBottom}px`;
+      } else {
+        // Modal extends below viewport - use normal positioning
+        closeContainer.querySelector('.modal-close').style.bottom = '20px'; // Mobile default
+      }
+    };
+
+    // Add scroll listener for sticky behavior
+    let scrollTimeout;
+    modal.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleCloseButtonPosition, 10);
+    });
+
+    // Add resize listener to handle orientation changes
+    window.addEventListener('resize', handleCloseButtonPosition);
     
     // Wait for all images to load before animating
     const images = modal.querySelectorAll('img');
@@ -545,6 +588,8 @@ document.addEventListener('DOMContentLoaded', function() {
           // Delay close button entrance by 500ms
           setTimeout(() => {
             closeContainer.classList.add('visible');
+            // Set initial close button position after it becomes visible
+            setTimeout(handleCloseButtonPosition, 50);
           }, 500);
           // After a brief moment, transition to visible state
           setTimeout(() => {
@@ -562,6 +607,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Delay close button entrance by 500ms
         setTimeout(() => {
           closeContainer.classList.add('visible');
+          // Set initial close button position after it becomes visible
+          setTimeout(handleCloseButtonPosition, 50);
         }, 500);
         // After a brief moment, transition to visible state
         setTimeout(() => {
@@ -627,6 +674,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeContainer) {
       closeContainer.classList.remove('visible');
       closeContainer.classList.add('closing');
+    }
+    
+    // Clean up event listeners
+    if (handleCloseButtonPosition) {
+      window.removeEventListener('resize', handleCloseButtonPosition);
+      handleCloseButtonPosition = null;
     }
     
     // Wait for animation to complete before restoring scrollbar
