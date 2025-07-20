@@ -200,8 +200,8 @@
   background: #000;
   border-radius: 0 0 18px 18px; /* Only bottom corners rounded to match modal */
   overflow: visible;
-  margin: 16px -32px 0 -32px; /* Extend to modal container edges like header does */
-  padding: 20px 32px 120px 32px; /* Maintain padding for close button space */
+  margin: 0; /* No margins needed - this is now a direct child of modal-content */
+  padding: 20px 32px 120px 32px; /* Match modal-body padding, plus space for close button */
   max-height: none;
   min-height: 20vh;
 }
@@ -350,8 +350,8 @@
 
 /* Mobile material info section styling */
 #stainless-modal .material-info {
-    margin: 16px -20px 0 -20px !important; /* Extend to modal container edges like header does */
-    padding: 16px 20px 100px 20px !important; /* Keep padding for close button space */
+    margin: 0 !important; /* No margins needed - this is now a direct child of modal-content */
+    padding: 16px 20px 100px 20px !important; /* Match mobile modal-body padding, plus close button space */
     max-height: none !important;
     min-height: auto !important;
     background: #000 !important;
