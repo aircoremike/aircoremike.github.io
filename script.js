@@ -533,81 +533,89 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to handle sticky close button behavior on mobile
-    let lastCalculatedPosition = null; // Store last position to smooth transitions
-    let isInStickyMode = false; // Track if we're in sticky mode
+    let stickyCloseButton = null;
     
     handleCloseButtonPosition = function() {
-      if (!closeContainer || window.innerWidth > 768) return; // Only on mobile
+      if (!closeContainer || window.innerWidth > 768) {
+        // Desktop - keep original fixed positioning
+        if (stickyCloseButton) {
+          stickyCloseButton.remove();
+          stickyCloseButton = null;
+          closeContainer.style.display = '';
+        }
+        return;
+      }
       
       const modalContainer = modal.querySelector('.modal-container');
-      if (!modalContainer) return;
-      
-      const modalRect = modalContainer.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const modalBottom = modalRect.bottom;
-      const modalTop = modalRect.top;
-      
-      // Get the material-info section (bottom padded section)
       const materialInfo = modalContainer.querySelector('.material-info');
-      if (!materialInfo) return;
+      if (!modalContainer || !materialInfo) return;
       
-      const materialInfoRect = materialInfo.getBoundingClientRect();
-      const materialInfoBottom = materialInfoRect.bottom;
+      // Hide the original fixed close button
+      closeContainer.style.display = 'none';
       
-      // Get the computed padding-bottom of the material-info section
-      const materialInfoStyles = window.getComputedStyle(materialInfo);
-      const paddingBottom = parseFloat(materialInfoStyles.paddingBottom || '0');
-      
-      // Add larger buffer to prevent jittery behavior near scroll boundaries
-      const scrollBuffer = 15;
-      
-      // Calculate if modal bottom is above viewport bottom (scrolled to bottom)
-      const shouldBeSticky = modalBottom <= (viewportHeight + scrollBuffer) && modalTop <= -scrollBuffer;
-      
-      if (shouldBeSticky && !isInStickyMode) {
-        // Entering sticky mode - calculate position once
-        const contentBottom = materialInfoBottom - paddingBottom;
-        const paddingCenter = contentBottom + (paddingBottom * 0.6);
-        const distanceFromBottom = Math.max(20, viewportHeight - paddingCenter);
+      // Create or update sticky close button within modal container
+      if (!stickyCloseButton) {
+        stickyCloseButton = document.createElement('div');
+        stickyCloseButton.className = 'modal-close-sticky';
+        stickyCloseButton.innerHTML = `
+          <button class="modal-close" aria-label="Close modal">
+            <svg width="50" height="50" viewBox="-10 -10 52 52" fill="none">
+              <path d="M35 -3L-3 35M-3 -3L35 35" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+            </svg>
+          </button>
+        `;
         
-        const closeButton = closeContainer.querySelector('.modal-close');
-        closeButton.style.transition = 'bottom 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)';
-        closeButton.style.bottom = `${distanceFromBottom}px`;
+        // Style the sticky container
+        stickyCloseButton.style.cssText = `
+          position: sticky;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1010;
+          pointer-events: none;
+          height: 0;
+          width: 0;
+        `;
         
-        isInStickyMode = true;
-        lastCalculatedPosition = distanceFromBottom;
+        // Style the button inside to match original
+        const stickyButton = stickyCloseButton.querySelector('.modal-close');
+        stickyButton.style.cssText = `
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%) scale(1);
+          background: rgba(45, 45, 47, 0.8);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 8px solid transparent;
+          color: #f5f5f7;
+          cursor: pointer;
+          padding: 13.6px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 64px;
+          height: 64px;
+          opacity: 1;
+          pointer-events: auto;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+          will-change: transform, opacity;
+        `;
         
-      } else if (!shouldBeSticky && isInStickyMode) {
-        // Exiting sticky mode - return to normal position
-        const closeButton = closeContainer.querySelector('.modal-close');
-        closeButton.style.transition = 'bottom 0.2s ease-out';
-        closeButton.style.bottom = '20px';
+        // Add click handler
+        stickyButton.addEventListener('click', closeModal);
         
-        isInStickyMode = false;
-        lastCalculatedPosition = 20;
+        // Insert before material-info so it appears above the padding
+        modalContainer.insertBefore(stickyCloseButton, materialInfo);
       }
-      // If we're already in the correct mode, don't make changes
     };
 
-    // Add scroll listener for sticky behavior with heavy debouncing
-    let scrollTimeout;
-    let isScrolling = false;
-    
-    modal.addEventListener('scroll', () => {
-      // Don't update position while actively scrolling
-      if (!isScrolling) {
-        isScrolling = true;
-        // Check position immediately, but then wait for scroll to settle
-        handleCloseButtonPosition();
-      }
-      
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-        // Final position check when scrolling stops
-        handleCloseButtonPosition();
-      }, 150); // Wait 150ms after scroll stops
-    });
+    // Set up sticky close button (mobile only)
+    handleCloseButtonPosition();
+
+    // Add resize listener to handle orientation changes
+    window.addEventListener('resize', handleCloseButtonPosition);
 
     // Add resize listener to handle orientation changes
     window.addEventListener('resize', handleCloseButtonPosition);
@@ -714,9 +722,16 @@ document.addEventListener('DOMContentLoaded', function() {
       closeContainer.classList.add('closing');
     }
     
-    // Clean up event listeners
+    // Clean up event listeners and sticky button
     if (handleCloseButtonPosition) {
       window.removeEventListener('resize', handleCloseButtonPosition);
+      
+      // Clean up sticky button if it exists
+      const stickyButton = currentModal.querySelector('.modal-close-sticky');
+      if (stickyButton) {
+        stickyButton.remove();
+      }
+      
       handleCloseButtonPosition = null;
     }
     
