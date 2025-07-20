@@ -607,8 +607,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click handler
         stickyButton.addEventListener('click', closeModal);
         
-        // Insert before material-info within modal-content so it appears above the padding
-        modalContent.insertBefore(stickyCloseButton, materialInfo);
+        // Add to modal-content after material-info so it appears in the padded area below
+        modalContent.appendChild(stickyCloseButton);
       }
     };
 
