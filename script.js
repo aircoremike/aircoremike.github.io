@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Style the sticky container
         stickyCloseButton.style.cssText = `
           position: sticky;
-          bottom: 10px;
+          bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
           z-index: 1010;
