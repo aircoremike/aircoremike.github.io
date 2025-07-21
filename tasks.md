@@ -5,7 +5,6 @@ Tasks
         mobile contacts section text appears too large
 
     - Materials page
-        - mobile stainless modal padding adjustments
         - modals accessibility enable keyboard scrolling
         - Per material spec pages
 

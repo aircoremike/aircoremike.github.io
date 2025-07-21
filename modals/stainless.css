@@ -211,10 +211,13 @@
 /* Phone Modal Styles */
 
 @media (max-width: 768px) {
-/* Make h1 as large as possible with extra padding */
+/* Make h1 as large as possible while staying on one line */
 #stainless-modal .modal-header h1 {
-    font-size: clamp(2.5rem, 8vw, 4rem) !important;
-    padding: 0 25px !important; /* Extra left/right padding for h1 */
+    font-size: clamp(1.8rem, 7vw, 3.2rem) !important;
+    padding: 0 20px !important; /* Same padding as hero text */
+    white-space: nowrap !important; /* Keep on one line */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 /* Make h2 same size as h3 */
@@ -222,9 +225,9 @@
     font-size: 1.4rem !important;
 }
 
-/* Make h3 slightly smaller */
+/* Make h3 just a bit larger */
 #stainless-modal .modal-image-item:first-child h3 {
-    font-size: 1.2rem !important;
+    font-size: 1.3rem !important;
 }
 
 #stainless-modal .modal-hero {
