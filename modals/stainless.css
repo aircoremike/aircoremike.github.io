@@ -211,6 +211,11 @@
 /* Phone Modal Styles */
 
 @media (max-width: 768px) {
+/* Override modal overlay padding to have only 10px on each side */
+#stainless-modal.modal-overlay {
+    padding: 10px 10px 5px 10px !important;
+}
+
 /* Make h1 as large as possible while staying on one line */
 #stainless-modal .modal-header h1 {
     font-size: clamp(1.8rem, 7vw, 3.2rem) !important;
@@ -235,6 +240,7 @@
     text-align: left;
     align-items: stretch;
     max-height: none;
+    padding: 0 !important; /* Ensure no base padding on container */
 }
 #stainless-modal .modal-hero-text, 
 #stainless-modal .modal-hero-image {
@@ -243,10 +249,12 @@
 }
 #stainless-modal .modal-hero-text {
     padding: 0 10px !important;  /* Consistent 10px padding */
+    box-sizing: border-box !important; /* Ensure padding is calculated correctly */
 }
 #stainless-modal .modal-hero-image {
     max-height: 50vh;
     min-height: 20vh;
+    padding: 0 !important; /* No padding on image container */
 }
 
 /* Mobile layout for all modal image items - image above, text below */
