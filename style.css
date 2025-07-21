@@ -806,7 +806,7 @@ body {
   .application-text,
   .advantages-list li,
   .contact-text-flex p {
-    font-size: 1rem !important;
+    font-size: var(--p-font-size-mobile);
   }
   .heading-flex h2,
   .applications-heading h2,
