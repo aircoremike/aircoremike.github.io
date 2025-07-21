@@ -2,7 +2,6 @@ Tasks
     - Global Edits:
 
     - Home page
-        mobile contacts section text appears too large
 
     - Materials page
         - modals accessibility enable keyboard scrolling
