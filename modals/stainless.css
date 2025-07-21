@@ -214,20 +214,20 @@
 /* Make h1 as large as possible while staying on one line */
 #stainless-modal .modal-header h1 {
     font-size: clamp(1.8rem, 7vw, 3.2rem) !important;
-    padding: 0 20px !important; /* Same padding as hero text */
+    padding: 0 10px !important; /* Consistent 10px padding */
     white-space: nowrap !important; /* Keep on one line */
     overflow: hidden !important;
     text-overflow: ellipsis !important;
 }
 
-/* Make h2 same size as h3 */
+/* Make h2 larger */
 #stainless-modal .modal-hero-text h2 {
-    font-size: 1.4rem !important;
+    font-size: 1.5rem !important;
 }
 
-/* Make h3 just a bit larger */
+/* Make h3 larger */
 #stainless-modal .modal-image-item:first-child h3 {
-    font-size: 1.3rem !important;
+    font-size: 1.4rem !important;
 }
 
 #stainless-modal .modal-hero {
@@ -242,7 +242,7 @@
     margin: 0;
 }
 #stainless-modal .modal-hero-text {
-    padding: 0 20px;  /* Consistent padding with other text elements */
+    padding: 0 10px !important;  /* Consistent 10px padding */
 }
 #stainless-modal .modal-hero-image {
     max-height: 50vh;
@@ -253,7 +253,7 @@
 #stainless-modal .modal-image-item {
     flex-direction: column !important;
     gap: 16px;
-    padding: 0 20px; /* Consistent padding for all items */
+    padding: 0 10px; /* Consistent 10px padding */
 }
 
 #stainless-modal .modal-image-item:not(:first-child) img {
@@ -273,7 +273,7 @@
     display: flex !important;
     flex-direction: column !important;
     gap: 16px; /* Standard spacing like other modal items */
-    padding: 0 20px; /* Consistent padding with other items */
+    padding: 0 10px; /* Consistent 10px padding */
     overflow: visible; /* Ensure nothing gets cut off */
     align-items: flex-start;
 }
