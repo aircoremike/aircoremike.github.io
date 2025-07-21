@@ -211,6 +211,22 @@
 /* Phone Modal Styles */
 
 @media (max-width: 768px) {
+/* Make h1 as large as possible with extra padding */
+#stainless-modal .modal-header h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+    padding: 0 25px !important; /* Extra left/right padding for h1 */
+}
+
+/* Make h2 same size as h3 */
+#stainless-modal .modal-hero-text h2 {
+    font-size: 1.4rem !important;
+}
+
+/* Make h3 slightly smaller */
+#stainless-modal .modal-image-item:first-child h3 {
+    font-size: 1.2rem !important;
+}
+
 #stainless-modal .modal-hero {
     flex-direction: column !important;
     text-align: left;
@@ -223,7 +239,7 @@
     margin: 0;
 }
 #stainless-modal .modal-hero-text {
-    padding: 0 15px;  /* Added padding on sides */
+    padding: 0 20px;  /* Consistent padding with other text elements */
 }
 #stainless-modal .modal-hero-image {
     max-height: 50vh;
@@ -234,6 +250,7 @@
 #stainless-modal .modal-image-item {
     flex-direction: column !important;
     gap: 16px;
+    padding: 0 20px; /* Consistent padding for all items */
 }
 
 #stainless-modal .modal-image-item:not(:first-child) img {
@@ -244,12 +261,16 @@
     max-width: 100%; /* Ensure images fit inside modal container */
 }
 
+#stainless-modal .modal-image-item:not(:first-child) p {
+    padding: 0 !important; /* Remove extra padding since parent has consistent padding */
+}
+
 /* Override for first-child image to be 90vh on mobile */
 #stainless-modal .modal-image-item:first-child {
     display: flex !important;
     flex-direction: column !important;
     gap: 16px; /* Standard spacing like other modal items */
-    padding: 15px; /* Add padding around content */
+    padding: 0 20px; /* Consistent padding with other items */
     overflow: visible; /* Ensure nothing gets cut off */
     align-items: flex-start;
 }
@@ -264,7 +285,6 @@
     width: 100%;
     margin-bottom: 1rem; /* Standard spacing */
     padding: 0 !important;
-    font-size: 1.6rem;
     color: var(--stainless-primary);
 }
 

@@ -346,7 +346,7 @@
   
   .modal-close {
     /* Center vertically in the 80px padding: (80px - 61.2px)/2 + 10 = 19.4px from bottom */
-    bottom: 10px;
+    bottom: 20px;
   }
 
   /* Mobile sticky close button animations - same as desktop */
