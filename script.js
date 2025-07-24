@@ -787,17 +787,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Enable keyboard scrolling when modal is open
-    const scrollAmount = 80; // Pixels to scroll per key press (2x faster)
+    const scrollAmount = 60; // Pixels to scroll per key press (1.5x faster)
     const pageScrollAmount = currentModal.clientHeight * 0.8; // 80% of modal height for page scrolling
     
     switch (e.key) {
       case 'ArrowUp':
         e.preventDefault();
-        currentModal.scrollBy({ top: -scrollAmount, behavior: 'auto' });
+        currentModal.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
         break;
       case 'ArrowDown':
         e.preventDefault();
-        currentModal.scrollBy({ top: scrollAmount, behavior: 'auto' });
+        currentModal.scrollBy({ top: scrollAmount, behavior: 'smooth' });
         break;
       case 'PageUp':
         e.preventDefault();
