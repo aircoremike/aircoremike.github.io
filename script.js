@@ -793,11 +793,11 @@ document.addEventListener('DOMContentLoaded', function() {
     switch (e.key) {
       case 'ArrowUp':
         e.preventDefault();
-        currentModal.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+        currentModal.scrollTo({ top: currentModal.scrollTop - scrollAmount, behavior: 'smooth' });
         break;
       case 'ArrowDown':
         e.preventDefault();
-        currentModal.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+        currentModal.scrollTo({ top: currentModal.scrollTop + scrollAmount, behavior: 'smooth' });
         break;
       case 'PageUp':
         e.preventDefault();
