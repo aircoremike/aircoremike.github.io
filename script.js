@@ -777,9 +777,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--modal-close-duration')) * 1000);
   }
 
-  // Keyboard support with debouncing to prevent jumpiness
+  // Keyboard support with silky smooth custom scrolling
   let isScrolling = false;
-  let scrollTimeout = null;
+  let scrollAnimation = null;
+  
+  // Custom smooth scroll function for silky smooth experience
+  function smoothScrollTo(element, targetPosition, duration = 200) {
+    const startPosition = element.scrollTop;
+    const distance = targetPosition - startPosition;
+    const startTime = performance.now();
+    
+    // Cancel any existing animation
+    if (scrollAnimation) {
+      cancelAnimationFrame(scrollAnimation);
+    }
+    
+    function animate(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth deceleration
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      
+      element.scrollTop = startPosition + (distance * easeOutQuart);
+      
+      if (progress < 1) {
+        scrollAnimation = requestAnimationFrame(animate);
+      } else {
+        scrollAnimation = null;
+        isScrolling = false;
+      }
+    }
+    
+    scrollAnimation = requestAnimationFrame(animate);
+  }
   
   document.addEventListener('keydown', (e) => {
     if (!currentModal) return;
@@ -803,50 +834,47 @@ document.addEventListener('DOMContentLoaded', function() {
       case 'ArrowUp':
         e.preventDefault();
         isScrolling = true;
-        currentModal.scrollTo({ 
-          top: Math.max(0, currentModal.scrollTop - scrollAmount), 
-          behavior: 'smooth' 
-        });
-        // Reset scrolling flag after animation completes
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => { isScrolling = false; }, 300);
+        const upTarget = Math.max(0, currentModal.scrollTop - scrollAmount);
+        smoothScrollTo(currentModal, upTarget, 150);
         break;
       case 'ArrowDown':
         e.preventDefault();
         isScrolling = true;
         const maxScroll = currentModal.scrollHeight - currentModal.clientHeight;
-        currentModal.scrollTo({ 
-          top: Math.min(maxScroll, currentModal.scrollTop + scrollAmount), 
-          behavior: 'smooth' 
-        });
-        // Reset scrolling flag after animation completes
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => { isScrolling = false; }, 300);
+        const downTarget = Math.min(maxScroll, currentModal.scrollTop + scrollAmount);
+        smoothScrollTo(currentModal, downTarget, 150);
         break;
       case 'PageUp':
         e.preventDefault();
-        currentModal.scrollBy({ top: -pageScrollAmount, behavior: 'smooth' });
+        const pageUpTarget = Math.max(0, currentModal.scrollTop - pageScrollAmount);
+        smoothScrollTo(currentModal, pageUpTarget, 300);
         break;
       case 'PageDown':
         e.preventDefault();
-        currentModal.scrollBy({ top: pageScrollAmount, behavior: 'smooth' });
+        const maxScrollDown = currentModal.scrollHeight - currentModal.clientHeight;
+        const pageDownTarget = Math.min(maxScrollDown, currentModal.scrollTop + pageScrollAmount);
+        smoothScrollTo(currentModal, pageDownTarget, 300);
         break;
       case 'Home':
         e.preventDefault();
-        currentModal.scrollTo({ top: 0, behavior: 'smooth' });
+        smoothScrollTo(currentModal, 0, 400);
         break;
       case 'End':
         e.preventDefault();
-        currentModal.scrollTo({ top: currentModal.scrollHeight, behavior: 'smooth' });
+        const endTarget = currentModal.scrollHeight - currentModal.clientHeight;
+        smoothScrollTo(currentModal, endTarget, 400);
         break;
       case ' ': // Spacebar
         e.preventDefault();
         if (e.shiftKey) {
           // Shift + Space = scroll up one page
-          currentModal.scrollBy({ top: -pageScrollAmount, behavior: 'smooth' });
+          const spaceUpTarget = Math.max(0, currentModal.scrollTop - pageScrollAmount);
+          smoothScrollTo(currentModal, spaceUpTarget, 300);
         } else {
           // Space = scroll down one page
-          currentModal.scrollBy({ top: pageScrollAmount, behavior: 'smooth' });
+          const maxScrollSpace = currentModal.scrollHeight - currentModal.clientHeight;
+          const spaceDownTarget = Math.min(maxScrollSpace, currentModal.scrollTop + pageScrollAmount);
+          smoothScrollTo(currentModal, spaceDownTarget, 300);
         }
         break;
     }

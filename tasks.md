@@ -4,7 +4,6 @@ Tasks
     - Home page
 
     - Materials page
-        - modals accessibility enable keyboard scrolling
         - Per material spec pages
 
     - Research page
