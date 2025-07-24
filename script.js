@@ -779,8 +779,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Keyboard support
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && currentModal) {
+    if (!currentModal) return;
+    
+    if (e.key === 'Escape') {
       closeModal();
+      return;
+    }
+    
+    // Enable keyboard scrolling when modal is open
+    const scrollAmount = 40; // Pixels to scroll per key press
+    const pageScrollAmount = currentModal.clientHeight * 0.8; // 80% of modal height for page scrolling
+    
+    switch (e.key) {
+      case 'ArrowUp':
+        e.preventDefault();
+        currentModal.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        currentModal.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+        break;
+      case 'PageUp':
+        e.preventDefault();
+        currentModal.scrollBy({ top: -pageScrollAmount, behavior: 'smooth' });
+        break;
+      case 'PageDown':
+        e.preventDefault();
+        currentModal.scrollBy({ top: pageScrollAmount, behavior: 'smooth' });
+        break;
+      case 'Home':
+        e.preventDefault();
+        currentModal.scrollTo({ top: 0, behavior: 'smooth' });
+        break;
+      case 'End':
+        e.preventDefault();
+        currentModal.scrollTo({ top: currentModal.scrollHeight, behavior: 'smooth' });
+        break;
+      case ' ': // Spacebar
+        e.preventDefault();
+        if (e.shiftKey) {
+          // Shift + Space = scroll up one page
+          currentModal.scrollBy({ top: -pageScrollAmount, behavior: 'smooth' });
+        } else {
+          // Space = scroll down one page
+          currentModal.scrollBy({ top: pageScrollAmount, behavior: 'smooth' });
+        }
+        break;
     }
   });
 
@@ -798,27 +842,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Global function to open modals (maintain backward compatibility)
   window.openMaterialModal = openModal;
-})();
-
-// Ensure keyboard scrolling is enabled while a modal is open
-(function() {
-  document.addEventListener('DOMContentLoaded', function() {
-    const body = document.body;
-    const html = document.documentElement;
-
-    // Listen for modal open and close events
-    document.addEventListener('modalOpen', function() {
-      // Remove any restrictions on scrolling
-      body.classList.remove('modal-open');
-      html.classList.remove('modal-open');
-    });
-
-    document.addEventListener('modalClose', function() {
-      // Ensure scrolling remains enabled
-      body.classList.remove('modal-open');
-      html.classList.remove('modal-open');
-    });
-  });
 })();
 
 // Utility function for touch device detection
