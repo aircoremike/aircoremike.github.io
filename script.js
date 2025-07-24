@@ -800,6 +800,27 @@ document.addEventListener('DOMContentLoaded', function() {
   window.openMaterialModal = openModal;
 })();
 
+// Ensure keyboard scrolling is enabled while a modal is open
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    const html = document.documentElement;
+
+    // Listen for modal open and close events
+    document.addEventListener('modalOpen', function() {
+      // Remove any restrictions on scrolling
+      body.classList.remove('modal-open');
+      html.classList.remove('modal-open');
+    });
+
+    document.addEventListener('modalClose', function() {
+      // Ensure scrolling remains enabled
+      body.classList.remove('modal-open');
+      html.classList.remove('modal-open');
+    });
+  });
+})();
+
 // Utility function for touch device detection
 function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
