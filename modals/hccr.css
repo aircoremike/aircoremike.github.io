@@ -14,54 +14,333 @@
   --hccr-highlight: #b8860b;
 }
 
-/* Custom header styling for high carbon chrome */
-#hccr-modal .modal-header {
-  background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);
+/* Override base modal container padding for hccr modal - REMOVED as now handled in base */
+.modal-hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-
-#hccr-modal .modal-header h1 {
+.modal-hero-text h2{
   color: var(--hccr-accent);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.modal-hero-text p {
+  color: var(--hccr-accent);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
-/* Custom hero section for high carbon chrome */
-#hccr-modal .modal-hero {
-  background: linear-gradient(45deg, #2c2c2c 0%, #404040 50%, #353535 100%);
+/* First modal image item with text layout - Air cargo deck */
+#hccr-modal .modal-image-item:first-child {
+  display: flex;
+  flex-direction: row; /* Changed from row-reverse to row */
+  gap: 30px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+  align-items: center;
 }
 
-/* Custom container styling */
-#hccr-modal .modal-container {
-  box-shadow: 0 8px 32px rgba(74, 74, 74, 0.2);
+#hccr-modal .modal-image-item:first-child img {
+  height: 200px; /* Match other image items' height */
+  min-height: 80vh; /* Minimum height of 80vh */
+  width: auto;
+  object-fit: cover; /* Match other image items' object-fit */
+  border-radius: 12px;
+  flex-shrink: 0;
+  align-self: center;
+  max-width: 45%; /* Reduced to give more space to text */
+  order: 2; /* Image on the right in desktop */
 }
 
-/* Custom image styling */
-#hccr-modal .modal-image-item {
-  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.15);
+#hccr-modal .modal-image-item:first-child .text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 1; /* Text content on the left */
+  padding: 0 20px;
 }
 
-/* Custom close button for high carbon chrome */
-#hccr-modal .modal-close::before {
-  background: var(--hccr-highlight);
+#hccr-modal .modal-image-item:first-child p {
+  color: var(--hccr-accent);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+  overflow: visible;
+  width: 100%;
 }
 
-/* Custom learn more button styling */
-#hccr-modal .learn-more-btn {
-  background: linear-gradient(90deg, var(--hccr-primary) 0%, var(--hccr-highlight) 100%);
-  color: #f5f5f7;
-  font-weight: 700;
+#hccr-modal .modal-image-item:first-child h3 {
+  font-size: 1.6rem;
+  color: var(--hccr-accent);
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: block;
+  width: 100%;
 }
 
-#hccr-modal .learn-more-btn:hover {
-  background: linear-gradient(90deg, var(--hccr-highlight) 0%, var(--hccr-accent) 100%);
-  color: #1d1d1f;
-  box-shadow: 0 4px 18px rgba(184, 134, 11, 0.3);
+#hccr-modal .modal-image-item:first-child p strong {
+  display: inline;
 }
 
-/* Material info section: Available grades - color overrides for HCCR */
+
+
+/* Second item: Loading air cargo (image left, text right) */
+#hccr-modal .modal-image-item:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#hccr-modal .modal-image-item:nth-child(2) img {
+  order: 1;
+  flex: 1;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#hccr-modal .modal-image-item:nth-child(2) p {
+  order: 2;
+  flex: 1;
+  color: var(--hccr-accent);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  align-self: center;
+}
+
+#hccr-modal .modal-image-item:nth-child(2) p strong {
+  display: inline;
+}
+
+/* Third item: C17 (text left, image right) */
+#hccr-modal .modal-image-item:nth-child(3) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#hccr-modal .modal-image-item:nth-child(3) img {
+  order: 2;
+  flex: 1;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#hccr-modal .modal-image-item:nth-child(3) p {
+  order: 1;
+  flex: 1;
+  color: var(--hccr-accent);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  align-self: center;
+}
+
+/* Fourth item: Pallet drop (image left, text right) */
+#hccr-modal .modal-image-item:nth-child(4) {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#hccr-modal .modal-image-item:nth-child(4) img {
+  order: 1;
+  flex: 1;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+#hccr-modal .modal-image-item:nth-child(4) p {
+  order: 2;
+  flex: 1;
+  color: var(--hccr-accent);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  align-self: center;
+}
+
+/* Material info section: Available grades - color overrides for hccr */
 #hccr-modal .grade-column {
   color: var(--hccr-accent);
 }
 
 #hccr-modal .grades-section h3 {
   color: var(--hccr-accent);
+}
+
+/* Desktop grades - 2 columns with 2 rows each */
+#hccr-modal .grade-column:nth-child(1) {
+  order: 1;
+}
+#hccr-modal .grade-column:nth-child(2) {
+  order: 2;
+}
+
+/* Phone Modal Styles */
+
+@media (max-width: 768px) {
+/* Override modal overlay padding to have only 10px on each side */
+#hccr-modal.modal-overlay {
+    padding: 10px 10px 5px 10px !important;
+}
+
+/* Make h1 as large as possible while staying on one line */
+#hccr-modal .modal-header h1 {
+    font-size: clamp(1.8rem, 7vw, 3.2rem) !important;
+    padding: 0 10px !important; /* Consistent 10px padding */
+    white-space: nowrap !important; /* Keep on one line */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Make h2 larger */
+#hccr-modal .modal-hero-text h2 {
+    font-size: 1.5rem !important;
+}
+
+/* Make h3 larger */
+#hccr-modal .modal-image-item:first-child h3 {
+    font-size: 1.4rem !important;
+}
+
+#hccr-modal .modal-hero {
+    flex-direction: column !important;
+    text-align: left;
+    align-items: stretch;
+    max-height: none;
+    padding: 0 !important; /* Ensure no base padding on container */
+}
+#hccr-modal .modal-hero-text, 
+#hccr-modal .modal-hero-image {
+    width: 100%;
+    margin: 0;
+}
+#hccr-modal .modal-hero-text {
+    padding: 0 10px !important;  /* Consistent 10px padding */
+    box-sizing: border-box !important; /* Ensure padding is calculated correctly */
+}
+#hccr-modal .modal-hero-image {
+    max-height: 50vh;
+    min-height: 20vh;
+    padding: 0 !important; /* No padding on image container */
+}
+
+/* Mobile layout for all modal image items - image above, text below */
+#hccr-modal .modal-image-item {
+    flex-direction: column !important;
+    gap: 16px;
+    padding: 0 10px; /* Consistent 10px padding */
+}
+
+#hccr-modal .modal-image-item:not(:first-child) img {
+    order: 1 !important;
+    width: 100%;
+    height: 80vh;
+    object-fit: cover;
+    max-width: 100%; /* Ensure images fit inside modal container */
+}
+
+#hccr-modal .modal-image-item:not(:first-child) p {
+    padding: 0 !important; /* Remove extra padding since parent has consistent padding */
+}
+
+/* Override for first-child image to be 90vh on mobile */
+#hccr-modal .modal-image-item:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px; /* Standard spacing like other modal items */
+    padding: 0 10px; /* Consistent 10px padding */
+    overflow: visible; /* Ensure nothing gets cut off */
+    align-items: flex-start;
+}
+
+#hccr-modal .modal-image-item:first-child .text-content {
+    width: 100%;
+    display: contents; /* Allow children to participate in parent's flex layout */
+}
+
+#hccr-modal .modal-image-item:first-child h3 {
+    order: 1 !important; /* H3 first */
+    width: 100%;
+    margin-bottom: 1rem; /* Standard spacing */
+    padding: 0 !important;
+    color: var(--hccr-accent);
+}
+
+#hccr-modal .modal-image-item:first-child img {
+    order: 2 !important; /* Image second */
+    height: auto !important; /* Let aspect ratio determine height */
+    min-height: 90vh !important; /* Minimum 90vh height */
+    object-fit: cover !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0; /* No extra margin */
+    aspect-ratio: 9/16 !important; /* Tall aspect ratio */
+}
+
+#hccr-modal .modal-image-item:first-child p {
+    order: 3 !important; /* Paragraph third */
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important; /* No extra margin */
+}
+
+#hccr-modal .modal-image-item:not(:first-child) p,
+#hccr-modal .modal-image-item:not(:first-child) .grades-section {
+    order: 2 !important;
+    flex: none;
+    align-self: flex-start !important;
+}
+
+/* Mobile hccr-specific overrides */
+
+/* Mobile: HCCR only has 2 columns with 2 grades each, so no additional styling needed */
+}
+
+/* Tablet Modal Styles */
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  /* Tablet-specific styles go here */
+  #hccr-modal .modal-hero {
+    flex-direction: row;
+    text-align: left;
+  }
+  #hccr-modal .modal-hero-text,
+  #hccr-modal .modal-hero-image {
+    width: 50%;
+    margin: 0;
+  }
+  #hccr-modal .modal-hero-image {
+    max-height: 40vh;
+    min-height: 20vh;
+  }
 }
