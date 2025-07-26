@@ -777,7 +777,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--modal-close-duration')) * 1000);
   }
 
-  // Keyboard support - simple and smooth
+  // Keyboard support with natural key repeat behavior
+  let keyHoldState = {
+    ArrowUp: { isHolding: false, timeout: null },
+    ArrowDown: { isHolding: false, timeout: null }
+  };
+  
   document.addEventListener('keydown', (e) => {
     if (!currentModal) return;
     
@@ -787,18 +792,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Enable keyboard scrolling when modal is open
-    const scrollAmount = 60; // Pixels to scroll per key press (1.5x faster)
+    const initialScrollAmount = 40; // Initial smaller scroll
+    const repeatScrollAmount = 20; // Smaller, smoother continuous scroll
     const pageScrollAmount = currentModal.clientHeight * 0.8; // 80% of modal height for page scrolling
     
     switch (e.key) {
       case 'ArrowUp':
         e.preventDefault();
-        currentModal.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+        if (!keyHoldState.ArrowUp.isHolding) {
+          // First keypress - initial scroll
+          currentModal.scrollBy({ top: -initialScrollAmount, behavior: 'smooth' });
+          keyHoldState.ArrowUp.isHolding = true;
+          
+          // Start continuous scrolling after brief delay (simulating key repeat delay)
+          keyHoldState.ArrowUp.timeout = setTimeout(() => {
+            const continuousScroll = () => {
+              if (keyHoldState.ArrowUp.isHolding) {
+                currentModal.scrollBy({ top: -repeatScrollAmount, behavior: 'auto' });
+                requestAnimationFrame(continuousScroll);
+              }
+            };
+            continuousScroll();
+          }, 400); // 400ms delay before repeat starts
+        }
         break;
+        
       case 'ArrowDown':
         e.preventDefault();
-        currentModal.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+        if (!keyHoldState.ArrowDown.isHolding) {
+          // First keypress - initial scroll
+          currentModal.scrollBy({ top: initialScrollAmount, behavior: 'smooth' });
+          keyHoldState.ArrowDown.isHolding = true;
+          
+          // Start continuous scrolling after brief delay
+          keyHoldState.ArrowDown.timeout = setTimeout(() => {
+            const continuousScroll = () => {
+              if (keyHoldState.ArrowDown.isHolding) {
+                currentModal.scrollBy({ top: repeatScrollAmount, behavior: 'auto' });
+                requestAnimationFrame(continuousScroll);
+              }
+            };
+            continuousScroll();
+          }, 400); // 400ms delay before repeat starts
+        }
         break;
+        
       case 'PageUp':
         e.preventDefault();
         currentModal.scrollBy({ top: -pageScrollAmount, behavior: 'smooth' });
@@ -825,6 +863,22 @@ document.addEventListener('DOMContentLoaded', function() {
           currentModal.scrollBy({ top: pageScrollAmount, behavior: 'smooth' });
         }
         break;
+    }
+  });
+  
+  // Handle key release to stop continuous scrolling
+  document.addEventListener('keyup', (e) => {
+    if (!currentModal) return;
+    
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      const state = keyHoldState[e.key];
+      if (state) {
+        state.isHolding = false;
+        if (state.timeout) {
+          clearTimeout(state.timeout);
+          state.timeout = null;
+        }
+      }
     }
   });
 
