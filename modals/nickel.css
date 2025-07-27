@@ -8,10 +8,8 @@
 
 /* Nickel Alloy specific colors and styling */
 #nickel-modal {
-  --nickel-primary: #7c7c7c;
-  --nickel-secondary: #a0a0a0;
-  --nickel-accent: #c0c0c0;
-  --nickel-highlight: #32cd32;
+  --modal-highlight: #32cd32;
+  --modal-accent: #c0c0c0;
 }
 
 /* Custom header styling for nickel alloy */
@@ -20,7 +18,6 @@
 }
 
 #nickel-modal .modal-header h1 {
-  color: var(--nickel-accent);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -41,27 +38,18 @@
 
 /* Custom close button for nickel alloy */
 #nickel-modal .modal-close::before {
-  background: var(--nickel-highlight);
+  background: var(--modal-highlight);
 }
 
 /* Custom learn more button styling */
 #nickel-modal .learn-more-btn {
-  background: linear-gradient(90deg, var(--nickel-primary) 0%, var(--nickel-highlight) 100%);
+  background: linear-gradient(90deg, var(--modal-accent) 0%, var(--modal-highlight) 100%);
   color: #f5f5f7;
   font-weight: 700;
 }
 
 #nickel-modal .learn-more-btn:hover {
-  background: linear-gradient(90deg, var(--nickel-highlight) 0%, var(--nickel-accent) 100%);
+  background: linear-gradient(90deg, var(--modal-highlight) 0%, var(--modal-accent) 100%);
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(50, 205, 50, 0.3);
-}
-
-/* Material info section: Available grades - color overrides for nickel */
-#nickel-modal .grade-column {
-  color: var(--nickel-accent);
-}
-
-#nickel-modal .grades-section h3 {
-  color: var(--nickel-accent);
 }

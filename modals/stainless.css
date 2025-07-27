@@ -8,10 +8,8 @@
 
 /* Stainless Steel specific colors and styling */
 #stainless-modal {
-  --stainless-primary: #f5f5f7;
-  --stainless-secondary: #86868B;
-  --stainless-accent: #e8e8e8;
-  --stainless-dark: #808080;
+  --modal-highlight: #86868B;
+  --modal-accent: #e8e8e8;
 }
 
 /* Override base modal container padding for stainless modal - REMOVED as now handled in base */
@@ -21,12 +19,10 @@
   align-items: center;
 }
 #stainless-modal .modal-hero-text h2{
-  color: var(--stainless-primary);
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 #stainless-modal .modal-hero-text p {
-  color: var(--stainless-primary);
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -65,7 +61,6 @@
 }
 
 #stainless-modal .modal-image-item:first-child p {
-  color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -78,7 +73,6 @@
 
 #stainless-modal .modal-image-item:first-child h3 {
   font-size: 1.6rem;
-  color: var(--stainless-primary);
   margin-bottom: 1.5rem;
   text-align: left;
   display: block;
@@ -112,7 +106,6 @@
 #stainless-modal .modal-image-item:nth-child(2) p {
   order: 2;
   flex: 1;
-  color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -147,7 +140,6 @@
 #stainless-modal .modal-image-item:nth-child(3) p {
   order: 1;
   flex: 1;
-  color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -178,7 +170,6 @@
 #stainless-modal .modal-image-item:nth-child(4) p {
   order: 2;
   flex: 1;
-  color: var(--stainless-primary);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -186,15 +177,6 @@
   white-space: normal;
   word-wrap: break-word;
   align-self: center;
-}
-
-/* Material info section: Available grades - color overrides for stainless */
-#stainless-modal .grade-column {
-  color: var(--stainless-primary);
-}
-
-#stainless-modal .grades-section h3 {
-  color: var(--stainless-primary);
 }
 
 /* Desktop grades - 3 columns with 2 rows */
@@ -296,7 +278,6 @@
     width: 100%;
     margin-bottom: 1rem; /* Standard spacing */
     padding: 0 !important;
-    color: var(--stainless-primary);
 }
 
 #stainless-modal .modal-image-item:first-child img {

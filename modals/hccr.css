@@ -8,10 +8,8 @@
 
 /* High Carbon Chrome specific colors and styling */
 #hccr-modal {
-  --hccr-primary: #4a4a4a;
-  --hccr-secondary: #6a6a6a;
-  --hccr-accent: #8a8a8a;
-  --hccr-highlight: #b8860b;
+  --modal-highlight: #b8860b;
+  --modal-accent: #8a8a8a;
 }
 
 /* Override base modal container padding for hccr modal - REMOVED as now handled in base */
@@ -21,12 +19,10 @@
   align-items: center;
 }
 #hccr-modal .modal-hero-text h2{
-  color: var(--hccr-accent);
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 #hccr-modal .modal-hero-text p {
-  color: var(--hccr-accent);
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -65,7 +61,6 @@
 }
 
 #hccr-modal .modal-image-item:first-child p {
-  color: var(--hccr-accent);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -78,7 +73,6 @@
 
 #hccr-modal .modal-image-item:first-child h3 {
   font-size: 1.6rem;
-  color: var(--hccr-accent);
   margin-bottom: 1.5rem;
   text-align: left;
   display: block;
@@ -112,7 +106,6 @@
 #hccr-modal .modal-image-item:nth-child(2) p {
   order: 2;
   flex: 1;
-  color: var(--hccr-accent);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -147,7 +140,6 @@
 #hccr-modal .modal-image-item:nth-child(3) p {
   order: 1;
   flex: 1;
-  color: var(--hccr-accent);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -178,7 +170,6 @@
 #hccr-modal .modal-image-item:nth-child(4) p {
   order: 2;
   flex: 1;
-  color: var(--hccr-accent);
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
@@ -186,15 +177,6 @@
   white-space: normal;
   word-wrap: break-word;
   align-self: center;
-}
-
-/* Material info section: Available grades - color overrides for hccr */
-#hccr-modal .grade-column {
-  color: var(--hccr-accent);
-}
-
-#hccr-modal .grades-section h3 {
-  color: var(--hccr-accent);
 }
 
 /* Desktop grades - 2 columns with 2 rows each */
@@ -293,7 +275,6 @@
     width: 100%;
     margin-bottom: 1rem; /* Standard spacing */
     padding: 0 !important;
-    color: var(--hccr-accent);
 }
 
 #hccr-modal .modal-image-item:first-child img {

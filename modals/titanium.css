@@ -8,10 +8,8 @@
 
 /* Titanium specific colors and styling */
 #titanium-modal {
-  --titanium-primary: #c5c5c5;
-  --titanium-secondary: #9fa0a4;
-  --titanium-accent: #e1e1e6;
-  --titanium-highlight: #4169e1;
+  --modal-highlight: #4169e1;
+  --modal-accent: #e1e1e6;
 }
 
 /* Custom header styling for titanium */
@@ -20,7 +18,6 @@
 }
 
 #titanium-modal .modal-header h1 {
-  color: var(--titanium-accent);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -41,27 +38,18 @@
 
 /* Custom close button for titanium */
 #titanium-modal .modal-close::before {
-  background: var(--titanium-highlight);
+  background: var(--modal-highlight);
 }
 
 /* Custom learn more button styling */
 #titanium-modal .learn-more-btn {
-  background: linear-gradient(90deg, var(--titanium-secondary) 0%, var(--titanium-highlight) 100%);
+  background: linear-gradient(90deg, var(--modal-accent) 0%, var(--modal-highlight) 100%);
   color: #f5f5f7;
   font-weight: 700;
 }
 
 #titanium-modal .learn-more-btn:hover {
-  background: linear-gradient(90deg, var(--titanium-highlight) 0%, var(--titanium-accent) 100%);
+  background: linear-gradient(90deg, var(--modal-highlight) 0%, var(--modal-accent) 100%);
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(65, 105, 225, 0.3);
-}
-
-/* Material info section: Available grades - color overrides for titanium */
-#titanium-modal .grade-column {
-  color: var(--titanium-accent);
-}
-
-#titanium-modal .grades-section h3 {
-  color: var(--titanium-accent);
 }

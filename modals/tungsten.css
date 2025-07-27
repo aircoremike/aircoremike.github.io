@@ -8,10 +8,8 @@
 
 /* Tungsten specific colors and styling */
 #tungsten-modal {
-  --tungsten-primary: #2f2f2f;
-  --tungsten-secondary: #4a4a4a;
-  --tungsten-accent: #6a6a6a;
-  --tungsten-highlight: #ffd700;
+  --modal-highlight: #ffd700;
+  --modal-accent: #6a6a6a;
 }
 
 /* Custom header styling for tungsten */
@@ -20,7 +18,6 @@
 }
 
 #tungsten-modal .modal-header h1 {
-  color: var(--tungsten-accent);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -41,27 +38,18 @@
 
 /* Custom close button for tungsten */
 #tungsten-modal .modal-close::before {
-  background: var(--tungsten-highlight);
+  background: var(--modal-highlight);
 }
 
 /* Custom learn more button styling */
 #tungsten-modal .learn-more-btn {
-  background: linear-gradient(90deg, var(--tungsten-primary) 0%, var(--tungsten-highlight) 100%);
+  background: linear-gradient(90deg, var(--modal-accent) 0%, var(--modal-highlight) 100%);
   color: #1d1d1f;
   font-weight: 700;
 }
 
 #tungsten-modal .learn-more-btn:hover {
-  background: linear-gradient(90deg, var(--tungsten-highlight) 0%, var(--tungsten-accent) 100%);
+  background: linear-gradient(90deg, var(--modal-highlight) 0%, var(--modal-accent) 100%);
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(255, 215, 0, 0.3);
-}
-
-/* Material info section: Available grades - color overrides for tungsten */
-#tungsten-modal .grade-column {
-  color: var(--tungsten-accent);
-}
-
-#tungsten-modal .grades-section h3 {
-  color: var(--tungsten-accent);
 }

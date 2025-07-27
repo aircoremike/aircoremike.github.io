@@ -8,10 +8,8 @@
 
 /* Copper specific colors and styling */
 #copper-modal {
-  --copper-primary: #b87333;
-  --copper-secondary: #cd7f32;
-  --copper-accent: #ffa500;
-  --copper-highlight: #ff6347;
+  --modal-highlight: #ff6347;
+  --modal-accent: #ffa500;
 }
 
 /* Custom header styling for copper */
@@ -20,7 +18,6 @@
 }
 
 #copper-modal .modal-header h1 {
-  color: var(--copper-accent);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
@@ -41,27 +38,18 @@
 
 /* Custom close button for copper */
 #copper-modal .modal-close::before {
-  background: var(--copper-highlight);
+  background: var(--modal-highlight);
 }
 
 /* Custom learn more button styling */
 #copper-modal .learn-more-btn {
-  background: linear-gradient(90deg, var(--copper-primary) 0%, var(--copper-accent) 100%);
+  background: linear-gradient(90deg, var(--modal-accent) 0%, var(--modal-highlight) 100%);
   color: #1d1d1f;
   font-weight: 700;
 }
 
 #copper-modal .learn-more-btn:hover {
-  background: linear-gradient(90deg, var(--copper-accent) 0%, var(--copper-highlight) 100%);
+  background: linear-gradient(90deg, var(--modal-highlight) 0%, var(--modal-accent) 100%);
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(255, 99, 71, 0.3);
-}
-
-/* Material info section: Available grades - color overrides for copper */
-#copper-modal .grade-column {
-  color: var(--copper-accent);
-}
-
-#copper-modal .grades-section h3 {
-  color: var(--copper-accent);
 }
