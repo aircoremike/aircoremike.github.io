@@ -765,6 +765,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Reset modal state instead of removing it
       if (currentModal) {
         currentModal.classList.remove('modal-opening', 'modal-visible', 'modal-closing');
+        // Reset scroll position to top for next opening
+        currentModal.scrollTop = 0;
       }
       
       // Remove close button container
