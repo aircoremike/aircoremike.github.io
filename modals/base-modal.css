@@ -332,7 +332,7 @@
 .grade-columns {
   display: flex;
   gap: 2rem;
-  justify-content: center; /* Center-aligned */
+  justify-content: flex-start; /* Left-aligned to match heading */
   margin-top: 0.25rem; /* Tighter spacing with heading */
 }
 
@@ -340,7 +340,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  text-align: center; /* Center aligned for desktop */
+  text-align: left; /* Left aligned to match columns */
 }
 
 
@@ -452,7 +452,7 @@
   }
 
   .grades-section h3 {
-    text-align: center !important; /* Center the heading on mobile */
+    text-align: left !important; /* Left align the heading on mobile to match columns */
     order: 1; /* Ensure heading comes first */
     margin-bottom: 0.1rem !important; /* Much tighter spacing */
     width: 100%;
