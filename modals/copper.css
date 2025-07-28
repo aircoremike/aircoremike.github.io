@@ -36,11 +36,6 @@
   box-shadow: 0 2px 8px rgba(255, 99, 71, 0.15);
 }
 
-/* Custom close button for copper */
-#copper-modal .modal-close::before {
-  background: var(--modal-highlight);
-}
-
 /* Custom learn more button styling */
 #copper-modal .learn-more-btn {
   background: linear-gradient(90deg, var(--modal-accent) 0%, var(--modal-highlight) 100%);
