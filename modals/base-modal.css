@@ -7,7 +7,7 @@
   --modal-open-duration: 0.75s;
   --modal-close-duration: 0.50s;
   /* Base modal text colors - applied to all modals */
-  --modal-text-primary: blue;
+  --modal-text-primary: #f5f5f7;
 }
 
 /* Base text color styles for all modals */
