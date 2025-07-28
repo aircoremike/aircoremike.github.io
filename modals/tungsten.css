@@ -48,3 +48,16 @@
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(255, 215, 0, 0.3);
 }
+
+/* Ensure proper alignment for tungsten modal grades section */
+#tungsten-modal .material-info .grades-section {
+  align-items: flex-start;
+}
+
+#tungsten-modal .grade-columns {
+  justify-content: flex-start;
+}
+
+#tungsten-modal .grades-section h3 {
+  text-align: left;
+}

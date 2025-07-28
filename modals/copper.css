@@ -48,3 +48,16 @@
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(255, 99, 71, 0.3);
 }
+
+/* Ensure proper alignment for copper modal grades section */
+#copper-modal .material-info .grades-section {
+  align-items: flex-start;
+}
+
+#copper-modal .grade-columns {
+  justify-content: flex-start;
+}
+
+#copper-modal .grades-section h3 {
+  text-align: left;
+}

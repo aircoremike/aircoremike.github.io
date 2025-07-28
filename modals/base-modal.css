@@ -325,7 +325,7 @@
   flex: 1; /* Take up half the space */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center in its half */
+  align-items: flex-start; /* Left-aligned to match columns */
   justify-content: center;
 }
 

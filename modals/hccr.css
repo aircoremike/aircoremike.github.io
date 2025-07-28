@@ -187,6 +187,19 @@
   order: 2;
 }
 
+/* Ensure proper alignment for HCCR modal grades section */
+#hccr-modal .material-info .grades-section {
+  align-items: flex-start;
+}
+
+#hccr-modal .grade-columns {
+  justify-content: flex-start;
+}
+
+#hccr-modal .grades-section h3 {
+  text-align: left;
+}
+
 /* Phone Modal Styles */
 
 @media (max-width: 768px) {

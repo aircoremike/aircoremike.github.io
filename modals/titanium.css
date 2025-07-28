@@ -48,3 +48,16 @@
   color: #1d1d1f;
   box-shadow: 0 4px 18px rgba(65, 105, 225, 0.3);
 }
+
+/* Ensure proper alignment for titanium modal grades section */
+#titanium-modal .material-info .grades-section {
+  align-items: flex-start;
+}
+
+#titanium-modal .grade-columns {
+  justify-content: flex-start;
+}
+
+#titanium-modal .grades-section h3 {
+  text-align: left;
+}

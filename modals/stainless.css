@@ -190,6 +190,19 @@
   order: 3;
 }
 
+/* Ensure proper alignment for stainless modal grades section */
+#stainless-modal .material-info .grades-section {
+  align-items: flex-start;
+}
+
+#stainless-modal .grade-columns {
+  justify-content: flex-start;
+}
+
+#stainless-modal .grades-section h3 {
+  text-align: left;
+}
+
 /* Phone Modal Styles */
 
 @media (max-width: 768px) {
