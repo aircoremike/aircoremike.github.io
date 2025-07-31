@@ -23,7 +23,7 @@
 
 /* Custom hero section for copper */
 #copper-modal .modal-hero {
-  background: linear-gradient(45deg, #fdf5e6 0%, #fff8dc 50%, #f5deb3 100%);
+  background: #000;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,6 +32,7 @@
 #copper-modal .modal-hero-image {
   transform: scale(0.8);
   transition: transform 0.3s ease;
+  align-self: flex-end;
 }
 
 #copper-modal .modal-hero-text h2 {
@@ -218,11 +219,6 @@
 /* Custom container styling */
 #copper-modal .modal-container {
   box-shadow: 0 8px 32px rgba(184, 115, 51, 0.2);
-}
-
-/* Custom image styling */
-#copper-modal .modal-image-item {
-  box-shadow: 0 2px 8px rgba(255, 99, 71, 0.15);
 }
 
 /* Custom learn more button styling */
