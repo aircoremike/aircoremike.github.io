@@ -41,6 +41,10 @@
   bottom: 0;
 }
 
+#copper-modal .modal-hero-text {
+  align-self: center;
+}
+
 #copper-modal .modal-hero-text h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
