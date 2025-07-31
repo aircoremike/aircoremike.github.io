@@ -26,7 +26,7 @@
   background: #000;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
 }
 
 #copper-modal .modal-hero-image {
@@ -35,6 +35,8 @@
   align-self: flex-end;
   object-fit: cover;
   object-position: bottom;
+  margin-bottom: 0;
+  display: block;
 }
 
 #copper-modal .modal-hero-text h2 {
