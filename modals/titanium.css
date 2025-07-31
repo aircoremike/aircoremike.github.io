@@ -18,6 +18,11 @@
   flex-direction: row;
   align-items: center;
 }
+
+#titanium-modal .modal-hero-image {
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
 #titanium-modal .modal-hero-text h2{
   font-size: 2rem;
   margin-bottom: 1rem;
