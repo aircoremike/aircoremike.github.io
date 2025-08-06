@@ -911,6 +911,11 @@ function initializeLoadingSequence() {
   const heroTitle = document.querySelector('.hero-flex h1');
   const bodyContent = document.querySelector('.body-rows-flex');
 
+  // Only run on homepage where these elements exist
+  if (!heroImg || !heroTitle || !bodyContent) {
+    return;
+  }
+
   // Reset opacity for hero image
   heroImg.style.opacity = '0';
   
