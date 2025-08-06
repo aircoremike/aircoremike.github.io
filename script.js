@@ -946,6 +946,33 @@ function initializeLoadingSequence() {
   }
 }
 
+// Image loading optimization
+function optimizeImageLoading() {
+  // Add error handling to all images
+  document.querySelectorAll('img').forEach(img => {
+    // Add loading="lazy" for better performance
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+    
+    // Add error handling
+    img.addEventListener('error', function() {
+      console.warn(`Failed to load image: ${this.src}`);
+      // Optional: Replace with placeholder or hide the image
+      this.style.opacity = '0.5';
+      this.alt = `Image failed to load: ${this.alt || 'Unknown image'}`;
+    });
+    
+    // Add load success handling
+    img.addEventListener('load', function() {
+      this.style.opacity = '1';
+    });
+  });
+}
+
 // Initialize loading sequence when DOM is ready
-document.addEventListener('DOMContentLoaded', initializeLoadingSequence);
+document.addEventListener('DOMContentLoaded', function() {
+  initializeLoadingSequence();
+  optimizeImageLoading();
+});
 
