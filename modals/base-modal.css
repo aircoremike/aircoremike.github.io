@@ -355,7 +355,12 @@
   }
   
   .modal-header h1 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+    padding: 0 10px !important;
+    white-space: nowrap !important; /* Keep on one line */
+    overflow: visible !important; /* Allow text to be visible */
+    text-overflow: clip !important; /* No ellipses */
+    line-height: 1.2 !important; /* Tighter line height for better fit */
   }
 
   .modal-body {

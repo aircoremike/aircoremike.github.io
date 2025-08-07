@@ -213,15 +213,6 @@
     padding: 10px 10px 5px 10px !important;
 }
 
-/* Make h1 as large as possible while staying on one line */
-#titanium-modal .modal-header h1 {
-    font-size: clamp(1.8rem, 7vw, 3.2rem) !important;
-    padding: 0 10px !important; /* Consistent 10px padding */
-    white-space: nowrap !important; /* Keep on one line */
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-}
-
 /* Make h2 larger */
 #titanium-modal .modal-hero-text h2 {
     font-size: 1.5rem !important;
