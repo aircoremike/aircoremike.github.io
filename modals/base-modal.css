@@ -469,6 +469,29 @@
     animation: border-expand 0.7s ease-out, border-shrink 0.25s ease-in 0.7s;
   }
 
+  /* Mobile: Smaller blue highlight circle - 15% smaller than desktop */
+  @keyframes border-expand {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.445); /* 15% smaller than 1.7 */
+      opacity: 1;
+    }
+  }
+
+  @keyframes border-shrink {
+    0% {
+      transform: translate(-50%, -50%) scale(1.445); /* 15% smaller than 1.7 */
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
+
   /* Mobile material info section styling */
   .material-info {
     margin: 0 !important; /* No margins needed - this is now a direct child of modal-content */

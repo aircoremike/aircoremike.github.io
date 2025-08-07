@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
     closeContainer.className = 'modal-close-container';
     closeContainer.innerHTML = `
       <button class="modal-close" aria-label="Close modal">
-        <svg width="50" height="50" viewBox="-10 -10 52 52" fill="none">
+        <svg width="50" height="50" viewBox="-12 -12 56 56" fill="none">
           <path d="M35 -3L-3 35M-3 -3L35 35" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
         </svg>
       </button>
@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function() {
         stickyCloseButton.className = 'modal-close-sticky';
         stickyCloseButton.innerHTML = `
           <button class="modal-close" aria-label="Close modal">
-            <svg width="50" height="50" viewBox="-10 -10 52 52" fill="none">
+            <svg width="50" height="50" viewBox="-12 -12 56 56" fill="none">
               <path d="M35 -3L-3 35M-3 -3L35 35" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
             </svg>
           </button>
