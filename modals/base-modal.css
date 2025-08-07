@@ -408,6 +408,16 @@
     height: 150px;
   }
 
+  /* Mobile: Ensure image items have grey background */
+  #nickel-modal .modal-image-item,
+  #copper-modal .modal-image-item,
+  #stainless-modal .modal-image-item,
+  #titanium-modal .modal-image-item,
+  #tungsten-modal .modal-image-item,
+  #hccr-modal .modal-image-item {
+    background: #2c2c2e !important; /* Force grey background on mobile */
+  }
+
   /* Mobile: First image item - move h3 to appear after image - High specificity override */
   #nickel-modal .modal-image-item:first-child img,
   #copper-modal .modal-image-item:first-child img,
