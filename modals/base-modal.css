@@ -390,7 +390,7 @@
   .modal-hero-text {
     padding: 20px !important; /* Increased padding for better spacing */
     box-sizing: border-box !important;
-    background: #2c2c2e !important; /* Grey background for hero text */
+    background: #2c2c2e !important; /* Match image items' grey background */
     border-radius: 0; /* No rounded corners */
   }
   
@@ -406,6 +406,29 @@
   
   .modal-image-item img {
     height: 150px;
+  }
+
+  /* Mobile: First image item - move h3 to appear after image */
+  .modal-image-item:first-child {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-image-item:first-child .text-content {
+    display: contents; /* Allow children to participate in parent's flex layout */
+  }
+  
+  .modal-image-item:first-child img {
+    order: 1; /* Image first */
+  }
+  
+  .modal-image-item:first-child h3 {
+    order: 2; /* h3 after image */
+    margin-top: 16px; /* Add some spacing after image */
+  }
+  
+  .modal-image-item:first-child p {
+    order: 3; /* paragraph last */
   }
   
   .modal-close {
