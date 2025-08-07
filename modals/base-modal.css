@@ -408,27 +408,33 @@
     height: 150px;
   }
 
-  /* Mobile: First image item - move h3 to appear after image */
-  .modal-image-item:first-child {
-    display: flex;
-    flex-direction: column;
+  /* Mobile: First image item - move h3 to appear after image - High specificity override */
+  #nickel-modal .modal-image-item:first-child img,
+  #copper-modal .modal-image-item:first-child img,
+  #stainless-modal .modal-image-item:first-child img,
+  #titanium-modal .modal-image-item:first-child img,
+  #tungsten-modal .modal-image-item:first-child img,
+  #hccr-modal .modal-image-item:first-child img {
+    order: 1 !important; /* Image first */
   }
   
-  .modal-image-item:first-child .text-content {
-    display: contents; /* Allow children to participate in parent's flex layout */
+  #nickel-modal .modal-image-item:first-child h3,
+  #copper-modal .modal-image-item:first-child h3,
+  #stainless-modal .modal-image-item:first-child h3,
+  #titanium-modal .modal-image-item:first-child h3,
+  #tungsten-modal .modal-image-item:first-child h3,
+  #hccr-modal .modal-image-item:first-child h3 {
+    order: 2 !important; /* h3 after image */
+    margin-top: 16px !important; /* Add some spacing after image */
   }
   
-  .modal-image-item:first-child img {
-    order: 1; /* Image first */
-  }
-  
-  .modal-image-item:first-child h3 {
-    order: 2; /* h3 after image */
-    margin-top: 16px; /* Add some spacing after image */
-  }
-  
-  .modal-image-item:first-child p {
-    order: 3; /* paragraph last */
+  #nickel-modal .modal-image-item:first-child p,
+  #copper-modal .modal-image-item:first-child p,
+  #stainless-modal .modal-image-item:first-child p,
+  #titanium-modal .modal-image-item:first-child p,
+  #tungsten-modal .modal-image-item:first-child p,
+  #hccr-modal .modal-image-item:first-child p {
+    order: 3 !important; /* paragraph last */
   }
   
   .modal-close {
