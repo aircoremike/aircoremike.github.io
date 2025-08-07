@@ -230,22 +230,6 @@
     font-size: 1.4rem !important;
 }
 
-#stainless-modal .modal-hero {
-    flex-direction: column !important;
-    text-align: left;
-    align-items: stretch;
-    max-height: none;
-    padding: 0 !important; /* Ensure no base padding on container */
-}
-#stainless-modal .modal-hero-text, 
-#stainless-modal .modal-hero-image {
-    width: 100%;
-    margin: 0;
-}
-#stainless-modal .modal-hero-text {
-    padding: 0 10px !important;  /* Consistent 10px padding */
-    box-sizing: border-box !important; /* Ensure padding is calculated correctly */
-}
 #stainless-modal .modal-hero-image {
     max-height: 50vh;
     min-height: 20vh;
