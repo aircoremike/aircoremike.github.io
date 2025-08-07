@@ -297,6 +297,11 @@
 
 /* Mobile tungsten-specific overrides */
 
+/* Reduce gap between grade columns to prevent cutoff on mobile */
+#tungsten-modal .grade-columns {
+  gap: 1.5rem !important; /* Reduced from 3rem to fit better on mobile */
+}
+
 /* Mobile: Tungsten has 2 columns with 2 grades each, so no additional styling needed */
 }
 
