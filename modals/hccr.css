@@ -312,8 +312,8 @@
   margin-bottom: 0.5rem !important; /* Small gap between individual grades */
 }
 
-#hccr-modal .grade-column span:last-child {
-  margin-bottom: 0 !important; /* Remove margin from last span in each column */
+#hccr-modal .grade-column:last-child span:last-child {
+  margin-bottom: 0 !important; /* Remove margin only from the very last span */
 }
 }
 
