@@ -400,6 +400,16 @@
     background: #1d1d1f !important; /* Match modal-body background for seamless appearance */
     border-radius: 0; /* No rounded corners */
   }
+
+  /* Higher specificity mobile hero text padding for all modals */
+  #nickel-modal .modal-hero-text,
+  #copper-modal .modal-hero-text,
+  #stainless-modal .modal-hero-text,
+  #titanium-modal .modal-hero-text,
+  #tungsten-modal .modal-hero-text,
+  #hccr-modal .modal-hero-text {
+    padding: 0 20px !important; /* Match modal-body horizontal padding on mobile */
+  }
   
   .modal-hero-image {
     max-height: 50vh;
