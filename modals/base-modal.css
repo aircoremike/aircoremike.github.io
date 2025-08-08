@@ -244,6 +244,11 @@
   align-items: flex-start;
 }
 
+/* Desktop: Hero text padding should match modal-body padding */
+.modal-hero-text {
+  padding: 0 32px; /* Match modal-body horizontal padding */
+}
+
 .modal-images {
   display: flex;
   flex-direction: column;
