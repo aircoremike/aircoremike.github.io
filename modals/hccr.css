@@ -194,6 +194,7 @@
 
 #hccr-modal .grade-columns {
   justify-content: flex-start;
+  gap: 4rem; /* Larger gap for longer grade names */
 }
 
 #hccr-modal .grades-section h3 {
@@ -295,8 +296,12 @@
 /* Mobile: HCCR grades in single column for better fit */
 #hccr-modal .grade-columns {
   flex-direction: column !important; /* Single column layout */
-  gap: 0.5rem !important; /* Reduced spacing between items */
+  gap: 0 !important; /* No gap between grade-column containers */
   align-items: flex-start !important;
+}
+
+#hccr-modal .grade-column {
+  gap: 0.5rem !important; /* Small gap between individual grade items within each column */
 }
 }
 
