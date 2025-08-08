@@ -297,10 +297,11 @@
 
 /* Mobile nickel-specific overrides */
 
-/* Mobile: Nickel has 2 columns with 2 grades each, so no additional styling needed */
-/* Reduce spacing between grade columns by 50% on mobile */
+/* Mobile: Nickel grades in single column for better fit */
 #nickel-modal .grade-columns {
-  gap: .5rem !important; /* 50% of base 3rem spacing */
+  flex-direction: column !important; /* Single column layout */
+  gap: 0.5rem !important; /* Reduced spacing between items */
+  align-items: flex-start !important;
 }
 }
 

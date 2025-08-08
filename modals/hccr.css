@@ -292,7 +292,12 @@
 
 /* Mobile hccr-specific overrides */
 
-/* Mobile: HCCR only has 2 columns with 2 grades each, so no additional styling needed */
+/* Mobile: HCCR grades in single column for better fit */
+#hccr-modal .grade-columns {
+  flex-direction: column !important; /* Single column layout */
+  gap: 0.5rem !important; /* Reduced spacing between items */
+  align-items: flex-start !important;
+}
 }
 
 /* Tablet Modal Styles */
