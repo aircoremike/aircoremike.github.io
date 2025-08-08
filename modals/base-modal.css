@@ -410,6 +410,16 @@
   #hccr-modal .modal-hero-text {
     padding: 0 20px !important; /* Match modal-body horizontal padding on mobile */
   }
+
+  /* Reset any paragraph margins that might affect spacing */
+  #nickel-modal .modal-hero-text p,
+  #copper-modal .modal-hero-text p,
+  #stainless-modal .modal-hero-text p,
+  #titanium-modal .modal-hero-text p,
+  #tungsten-modal .modal-hero-text p,
+  #hccr-modal .modal-hero-text p {
+    margin: 0 !important; /* Remove any margins that could affect spacing */
+  }
   
   .modal-hero-image {
     max-height: 50vh;
