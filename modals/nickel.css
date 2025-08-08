@@ -305,7 +305,19 @@
 }
 
 #nickel-modal .grade-column {
-  gap: 0.5rem !important; /* Small gap between individual grade items within each column */
+  display: block !important; /* Remove flex properties */
+  gap: 0 !important; /* Remove any gap */
+  margin: 0 !important; /* Remove margins */
+  padding: 0 !important; /* Remove padding */
+}
+
+#nickel-modal .grade-column span {
+  display: block !important; /* Stack spans vertically */
+  margin-bottom: 0.5rem !important; /* Small gap between individual grades */
+}
+
+#nickel-modal .grade-column span:last-child {
+  margin-bottom: 0 !important; /* Remove margin from last span in each column */
 }
 }
 
