@@ -298,6 +298,7 @@
   flex-direction: column !important; /* Single column layout */
   gap: 0 !important; /* No gap between grade-column containers */
   align-items: flex-start !important;
+  margin-top: 0.75rem !important; /* Specific gap between h3 and columns */
 }
 
 #hccr-modal .grade-column {
