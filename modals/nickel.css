@@ -300,7 +300,7 @@
 /* Mobile: Nickel has 2 columns with 2 grades each, so no additional styling needed */
 /* Reduce spacing between grade columns by 50% on mobile */
 #nickel-modal .grade-columns {
-  gap: 1.5rem !important; /* 50% of base 3rem spacing */
+  gap: .75rem !important; /* 50% of base 3rem spacing */
 }
 }
 
