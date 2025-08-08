@@ -245,8 +245,10 @@
 }
 
 /* Desktop: Hero text padding should match modal-body padding */
-.modal-hero-text {
-  padding: 0 32px; /* Match modal-body horizontal padding */
+@media (min-width: 769px) {
+  .modal-hero-text {
+    padding: 0 32px !important; /* Match modal-body horizontal padding on desktop */
+  }
 }
 
 .modal-images {
