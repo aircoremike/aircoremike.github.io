@@ -395,7 +395,7 @@
   }
   
   .modal-hero-text {
-    padding: 20px !important; /* Increased padding for better spacing */
+    padding: 20px !important; /* Match modal-body horizontal padding on mobile */
     box-sizing: border-box !important;
     background: #1d1d1f !important; /* Match modal-body background for seamless appearance */
     border-radius: 0; /* No rounded corners */
