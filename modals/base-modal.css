@@ -150,13 +150,82 @@
   left: 50%;
   width: 72px;
   height: 72px;
-  background: #1e90ff; /* Solid circle */
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
   opacity: 0;
   pointer-events: none;
   animation: none;
   z-index: -1; /* Ensure it stays behind the close button */
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0.015);
+}
+
+/* Ball animation elements - rolling ball with X inside */
+.modal-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  background: #1e90ff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.015);
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* X track container - positioned within the ball */
+.modal-close .x-track {
+  position: absolute;
+  top: calc(50% - 251.5px); /* Start position for 3 rotations - adjusted for 72px ball */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: calc(400% + 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 72px; /* One X every 72px (ball diameter) for perfect rolling */
+  z-index: 10;
+  opacity: 0;
+  animation: none;
+}
+
+/* Individual X shapes */
+.modal-close .x-shape {
+  width: 60%;
+  height: 60%;
+  flex-shrink: 0;
+}
+
+.modal-close .x-shape svg {
+  width: 100%;
+  height: 100%;
+  stroke: white;
+  stroke-width: 12;
+  stroke-linecap: round;
+  fill: none;
+}
+
+/* Grey wipe layer */
+.modal-close .fade-grey {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(45, 45, 47, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0;
 }
 
 .modal-close-container.visible .modal-close {
@@ -165,29 +234,45 @@
   pointer-events: auto;
 }
 
-.modal-close-container.visible .modal-close::before {
-  animation: border-expand 0.7s ease-out, border-shrink 0.25s ease-in 0.7s;
+.modal-close-container.visible .modal-close::after {
+  animation: ball-grow 2s ease-out forwards;
 }
 
-@keyframes border-expand {
-  0% {
+.modal-close-container.visible .modal-close .x-track {
+  animation: x-roll 2s ease-out forwards;
+  opacity: 1;
+}
+
+@keyframes ball-grow {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.015);
+    opacity: 1;
+  }
+  100% { 
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
-  100% {
-    transform: translate(-50%, -50%) scale(1.7);
+}
+
+@keyframes x-roll {
+  0% { 
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(-50%) translateY(262px); /* Adjusted for 72px ball */
     opacity: 1;
   }
 }
 
-@keyframes border-shrink {
+@keyframes grey-wipe {
   0% {
-    transform: translate(-50%, -50%) scale(1.7);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 1;
   }
   100% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -459,21 +544,86 @@
     bottom: 20px;
   }
 
-  /* Mobile sticky close button animations - same as desktop */
+  /* Mobile sticky close button animations - same structure as desktop but smaller */
   .modal-close-sticky .modal-close::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 72px;
-    height: 72px;
-    background: #1e90ff;
+    width: 61px; /* Smaller for mobile */
+    height: 61px;
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(1);
     opacity: 0;
     pointer-events: none;
     animation: none;
     z-index: -1;
+    overflow: hidden;
+    transform: translate(-50%, -50%) scale(0.015);
+  }
+
+  .modal-close-sticky .modal-close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 61px;
+    height: 61px;
+    background: #1e90ff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.015);
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .modal-close-sticky .x-track {
+    position: absolute;
+    top: calc(50% - 213px); /* Start position for 3 rotations - adjusted for 61px ball */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 61px;
+    height: calc(400% + 61px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 61px; /* One X every 61px (ball diameter) for perfect rolling */
+    z-index: 10;
+    opacity: 0;
+    animation: none;
+  }
+
+  .modal-close-sticky .x-shape {
+    width: 60%;
+    height: 60%;
+    flex-shrink: 0;
+  }
+
+  .modal-close-sticky .x-shape svg {
+    width: 100%;
+    height: 100%;
+    stroke: white;
+    stroke-width: 10; /* Slightly thinner for mobile */
+    stroke-linecap: round;
+    fill: none;
+  }
+
+  .modal-close-sticky .fade-grey {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 61px;
+    height: 61px;
+    border-radius: 50%;
+    background: rgba(45, 45, 47, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    z-index: 9;
+    opacity: 0;
   }
 
   .modal-close-sticky.visible .modal-close {
@@ -482,30 +632,45 @@
     pointer-events: auto !important;
   }
 
-  .modal-close-sticky.visible .modal-close::before {
-    animation: border-expand 0.7s ease-out, border-shrink 0.25s ease-in 0.7s;
+  .modal-close-sticky.visible .modal-close::after {
+    animation: mobile-ball-grow 2s ease-out forwards;
   }
 
-  /* Mobile: Smaller blue highlight circle - 15% smaller than desktop */
-  @keyframes border-expand {
-    0% {
+  .modal-close-sticky.visible .x-track {
+    animation: mobile-x-roll 2s ease-out forwards;
+    opacity: 1;
+  }
+
+  @keyframes mobile-ball-grow {
+    0% { 
+      transform: translate(-50%, -50%) scale(0.015);
+      opacity: 1;
+    }
+    100% { 
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
-    100% {
-      transform: translate(-50%, -50%) scale(1.445); /* 15% smaller than 1.7 */
+  }
+
+  @keyframes mobile-x-roll {
+    0% { 
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    100% { 
+      transform: translateX(-50%) translateY(222px); /* Adjusted for 61px ball */
       opacity: 1;
     }
   }
 
-  @keyframes border-shrink {
+  @keyframes mobile-grey-wipe {
     0% {
-      transform: translate(-50%, -50%) scale(1.445); /* 15% smaller than 1.7 */
+      transform: translate(-50%, -50%) scale(0);
       opacity: 1;
     }
     100% {
       transform: translate(-50%, -50%) scale(1);
-      opacity: 0;
+      opacity: 1;
     }
   }
 

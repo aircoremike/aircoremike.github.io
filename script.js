@@ -483,9 +483,13 @@ document.addEventListener('DOMContentLoaded', function() {
     closeContainer.className = 'modal-close-container';
     closeContainer.innerHTML = `
       <button class="modal-close" aria-label="Close modal">
-        <svg width="50" height="50" viewBox="-12 -12 56 56" fill="none">
-          <path d="M35 -3L-3 35M-3 -3L35 35" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
-        </svg>
+        <div class="x-track">
+          <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+          <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+          <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+          <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+          <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+        </div>
       </button>
     `;
     
@@ -516,6 +520,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeButton = closeContainer.querySelector('.modal-close');
     if (closeButton) {
       closeButton.addEventListener('click', closeModal);
+      
+      // Add animation event listener for the ball animation
+      closeButton.addEventListener('animationend', (e) => {
+        if (e.animationName === 'ball-grow') {
+          // Create grey wipe element
+          const fadeLayer = document.createElement('div');
+          fadeLayer.className = 'fade-grey';
+          closeButton.appendChild(fadeLayer);
+          
+          // Trigger the grey wipe animation
+          setTimeout(() => {
+            fadeLayer.style.animation = 'grey-wipe 0.8s forwards';
+          }, 300); // Brief pause after ball animation ends
+        }
+      });
     }
     
     currentModal = modal;
@@ -560,9 +579,13 @@ document.addEventListener('DOMContentLoaded', function() {
         stickyCloseButton.className = 'modal-close-sticky';
         stickyCloseButton.innerHTML = `
           <button class="modal-close" aria-label="Close modal">
-            <svg width="50" height="50" viewBox="-12 -12 56 56" fill="none">
-              <path d="M35 -3L-3 35M-3 -3L35 35" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
-            </svg>
+            <div class="x-track">
+              <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+              <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+              <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+              <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+              <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+            </div>
           </button>
         `;
         
@@ -608,6 +631,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add click handler
         stickyButton.addEventListener('click', closeModal);
+        
+        // Add animation event listener for the mobile ball animation
+        stickyButton.addEventListener('animationend', (e) => {
+          if (e.animationName === 'mobile-ball-grow') {
+            // Create grey wipe element for mobile
+            const fadeLayer = document.createElement('div');
+            fadeLayer.className = 'fade-grey';
+            stickyButton.appendChild(fadeLayer);
+            
+            // Trigger the grey wipe animation
+            setTimeout(() => {
+              fadeLayer.style.animation = 'mobile-grey-wipe 0.8s forwards';
+            }, 300); // Brief pause after ball animation ends
+          }
+        });
         
         // Add to modal-content after material-info so it appears in the padded area below
         modalContent.appendChild(stickyCloseButton);
