@@ -116,164 +116,109 @@
   height: 0;
 }
 
-.modal-close {
+/* Rolling ball button - desktop version */
+.rolling-ball-container {
   position: absolute;
   left: 50%;
-  /* Center vertically in the 100px padding: (100px - 64px)/2 + 20 = 36px from bottom */
   bottom: 72px;
-  transform: translateX(-50%) scale(0);
-  background: rgba(45, 45, 47, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 8px solid transparent;
-  color: #f5f5f7;
-  cursor: pointer;
-  padding: 13.6px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
-              opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
-              background-color 0.2s ease;
-  will-change: transform, opacity;
-}
-
-.modal-close::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  animation: none;
-  z-index: -1; /* Ensure it stays behind the close button */
-  overflow: hidden;
-  transform: translate(-50%, -50%) scale(0.015);
-}
-
-/* Ball animation elements - rolling ball with X inside */
-.modal-close::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 72px;
-  height: 72px;
-  background: #1e90ff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0.015);
-  opacity: 0;
-  pointer-events: none;
-  animation: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-/* X track container - positioned within the ball */
-.modal-close .x-track {
-  position: absolute;
-  top: calc(50% - 251.5px); /* Start position for 3 rotations - adjusted for 72px ball */
-  left: 50%;
   transform: translateX(-50%);
-  width: 72px;
-  height: calc(400% + 72px);
+  width: 65px;
+  height: 65px;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+.ball {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.015);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #1e90ff;
+  animation: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Container that moves the Xs - needs to travel 3 complete cycles + position final X at center */
+.x-track {
+  position: absolute;
+  top: -227.5px; /* Start position for 3 rotations */
+  left: 0;
+  width: 100%;
+  height: 400%;
+  animation: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 72px; /* One X every 72px (ball diameter) for perfect rolling */
-  z-index: 10;
-  opacity: 0;
-  animation: none;
+  gap: 65px; /* One X every 65px (ball diameter) for perfect rolling */
+  z-index: 3; /* Higher than the grey wipe */
 }
 
-/* Individual X shapes */
-.modal-close .x-shape {
+.x-shape {
   width: 60%;
   height: 60%;
   flex-shrink: 0;
 }
 
-.modal-close .x-shape svg {
+.x-shape svg {
   width: 100%;
   height: 100%;
   stroke: white;
-  stroke-width: 12;
+  stroke-width: 15;
   stroke-linecap: round;
   fill: none;
 }
 
-/* Grey wipe layer */
-.modal-close .fade-grey {
+/* Grey wipe inward */
+.fade-grey {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 72px;
-  height: 72px;
+  top: 0;
+  left: 0;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background: rgba(45, 45, 47, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transform: translate(-50%, -50%) scale(0);
+  transform: scale(0);
+  animation: none;
   pointer-events: none;
-  z-index: 9;
-  opacity: 0;
+  z-index: 2;
 }
 
-.modal-close-container.visible .modal-close {
-  transform: translateX(-50%) scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-close-container.visible .modal-close::after {
-  animation: ball-grow 2s ease-out forwards;
-}
-
-.modal-close-container.visible .modal-close .x-track {
-  animation: x-roll 2s ease-out forwards;
-  opacity: 1;
-}
-
+/* Animation keyframes */
 @keyframes ball-grow {
-  0% { 
-    transform: translate(-50%, -50%) scale(0.015);
-    opacity: 1;
-  }
-  100% { 
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
+  0% { transform: translate(-50%, -50%) scale(0.015); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes x-roll {
-  0% { 
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-  100% { 
-    transform: translateX(-50%) translateY(262px); /* Adjusted for 72px ball */
-    opacity: 1;
-  }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(238px); } /* Split the difference: (227.5 + 250) / 2 = 238.75 ≈ 238 */
 }
 
 @keyframes grey-wipe {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+/* Visible state triggers animations */
+.modal-close-container.visible .rolling-ball-container {
+  opacity: 1;
+}
+
+.modal-close-container.visible .ball {
+  animation: ball-grow 2s forwards ease-out;
+}
+
+.modal-close-container.visible .x-track {
+  animation: x-roll 2s forwards ease-out;
 }
 
 /* Modal Container and Content Styles */
@@ -544,55 +489,47 @@
     bottom: 20px;
   }
 
-  /* Mobile sticky close button animations - same structure as desktop but smaller */
-  .modal-close-sticky .modal-close::before {
-    content: '';
+  /* Mobile sticky rolling ball button */
+  .modal-close-sticky .rolling-ball-container {
     position: absolute;
-    top: 50%;
     left: 50%;
-    width: 61px; /* Smaller for mobile */
-    height: 61px;
-    border-radius: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 55px; /* Smaller for mobile */
+    height: 55px;
+    cursor: pointer;
+    pointer-events: auto;
     opacity: 0;
-    pointer-events: none;
-    animation: none;
-    z-index: -1;
-    overflow: hidden;
-    transform: translate(-50%, -50%) scale(0.015);
+    transition: opacity 0.75s ease;
   }
 
-  .modal-close-sticky .modal-close::after {
-    content: '';
+  .modal-close-sticky .ball {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 61px;
-    height: 61px;
-    background: #1e90ff;
-    border-radius: 50%;
     transform: translate(-50%, -50%) scale(0.015);
-    opacity: 0;
-    pointer-events: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #1e90ff;
     animation: none;
-    z-index: -1;
     overflow: hidden;
+    z-index: 1;
   }
 
   .modal-close-sticky .x-track {
     position: absolute;
-    top: calc(50% - 213px); /* Start position for 3 rotations - adjusted for 61px ball */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 61px;
-    height: calc(400% + 61px);
+    top: -192.5px; /* Start position for 3 rotations - adjusted for 55px ball */
+    left: 0;
+    width: 100%;
+    height: 400%;
+    animation: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 61px; /* One X every 61px (ball diameter) for perfect rolling */
-    z-index: 10;
-    opacity: 0;
-    animation: none;
+    gap: 55px; /* One X every 55px (ball diameter) for perfect rolling */
+    z-index: 3;
   }
 
   .modal-close-sticky .x-shape {
@@ -605,73 +542,52 @@
     width: 100%;
     height: 100%;
     stroke: white;
-    stroke-width: 10; /* Slightly thinner for mobile */
+    stroke-width: 12; /* Slightly thinner for mobile */
     stroke-linecap: round;
     fill: none;
   }
 
   .modal-close-sticky .fade-grey {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 61px;
-    height: 61px;
+    top: 0;
+    left: 0;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background: rgba(45, 45, 47, 0.8);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transform: translate(-50%, -50%) scale(0);
+    transform: scale(0);
+    animation: none;
     pointer-events: none;
-    z-index: 9;
-    opacity: 0;
+    z-index: 2;
   }
 
-  .modal-close-sticky.visible .modal-close {
-    transform: translateX(-50%) scale(1) !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-
-  .modal-close-sticky.visible .modal-close::after {
-    animation: mobile-ball-grow 2s ease-out forwards;
-  }
-
-  .modal-close-sticky.visible .x-track {
-    animation: mobile-x-roll 2s ease-out forwards;
+  .modal-close-sticky.visible .rolling-ball-container {
     opacity: 1;
   }
 
+  .modal-close-sticky.visible .ball {
+    animation: mobile-ball-grow 2s forwards ease-out;
+  }
+
+  .modal-close-sticky.visible .x-track {
+    animation: mobile-x-roll 2s forwards ease-out;
+  }
+
   @keyframes mobile-ball-grow {
-    0% { 
-      transform: translate(-50%, -50%) scale(0.015);
-      opacity: 1;
-    }
-    100% { 
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
+    0% { transform: translate(-50%, -50%) scale(0.015); }
+    100% { transform: translate(-50%, -50%) scale(1); }
   }
 
   @keyframes mobile-x-roll {
-    0% { 
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-    100% { 
-      transform: translateX(-50%) translateY(222px); /* Adjusted for 61px ball */
-      opacity: 1;
-    }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(201px); } /* Adjusted for 55px ball */
   }
 
   @keyframes mobile-grey-wipe {
-    0% {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
   }
 
   /* Mobile material info section styling */
