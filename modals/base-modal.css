@@ -147,7 +147,7 @@
 /* Container that moves the Xs - needs to travel 3 complete cycles + position final X at center */
 .x-track {
   position: absolute;
-  top: -227.5px; /* Start position for 3 rotations */
+  top: -227.5px; /* Start position for 3.5 rotations: 3.5 * 65px = 227.5px above center */
   left: 0;
   width: 100%;
   height: 400%;
@@ -200,7 +200,7 @@
 
 @keyframes x-roll {
   0% { transform: translateY(0); }
-  100% { transform: translateY(238px); } /* Split the difference: (227.5 + 250) / 2 = 238.75 ≈ 238 */
+  100% { transform: translateY(227.5px); } /* Move exactly 227.5px to center the final X */
 }
 
 @keyframes grey-wipe {
@@ -519,7 +519,7 @@
 
   .modal-close-sticky .x-track {
     position: absolute;
-    top: -192.5px; /* Start position for 3 rotations - adjusted for 55px ball */
+    top: -192.5px; /* Start position for 3.5 rotations - adjusted for 55px ball: 3.5 * 55 = 192.5px */
     left: 0;
     width: 100%;
     height: 400%;
@@ -582,7 +582,7 @@
 
   @keyframes mobile-x-roll {
     0% { transform: translateY(0); }
-    100% { transform: translateY(201px); } /* Adjusted for 55px ball */
+    100% { transform: translateY(192.5px); } /* Move exactly 192.5px to center the final X for 55px ball */
   }
 
   @keyframes mobile-grey-wipe {
