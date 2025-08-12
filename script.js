@@ -607,31 +607,18 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         // Style the button inside to match original but allow CSS animations
-        const stickyButton = stickyCloseButton.querySelector('.modal-close');
-        stickyButton.style.cssText = `
+        const stickyBallContainer = stickyCloseButton.querySelector('.rolling-ball-container');
+        stickyBallContainer.style.cssText = `
           position: absolute;
           left: 50%;
           bottom: 0;
-          transform: translateX(-50%) scale(0);
-          background: rgba(45, 45, 47, 0.8);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 8px solid transparent;
-          color: #f5f5f7;
+          transform: translateX(-50%);
+          width: 55px;
+          height: 55px;
           cursor: pointer;
-          padding: 13.6px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 64px;
-          height: 64px;
+          pointer-events: auto;
           opacity: 0;
-          pointer-events: none;
-          transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
-                      opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
-                      background-color 0.2s ease;
-          will-change: transform, opacity;
+          transition: opacity 0.75s ease;
         `;
         
         // Add click handler

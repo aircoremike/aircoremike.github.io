@@ -484,11 +484,6 @@
     order: 3 !important; /* paragraph last */
   }
   
-  .modal-close {
-    /* Center vertically in the 80px padding: (80px - 61.2px)/2 + 10 = 19.4px from bottom */
-    bottom: 20px;
-  }
-
   /* Mobile sticky rolling ball button */
   .modal-close-sticky .rolling-ball-container {
     position: absolute;
