@@ -490,6 +490,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
             <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
             <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+            <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+            <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
           </div>
         </div>
       </div>
@@ -584,6 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="rolling-ball-container">
             <div class="ball" id="modal-ball-mobile">
               <div class="x-track" id="modal-xtrack-mobile">
+                <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
+                <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
                 <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
                 <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>
                 <div class="x-shape"><svg viewBox="0 0 100 100"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></svg></div>

@@ -140,17 +140,17 @@
   border-radius: 50%;
   background: #1e90ff;
   animation: none;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible to show X elements */
   z-index: 1;
 }
 
 /* Container that moves the Xs - needs to travel 3 complete cycles + position final X at center */
 .x-track {
   position: absolute;
-  top: -227.5px; /* Start position for 3.5 rotations: 3.5 * 65px = 227.5px above center */
+  top: -260px; /* Start higher to show more X elements: 4 * 65px = 260px above center */
   left: 0;
   width: 100%;
-  height: 400%;
+  height: 500%; /* Increased height to accommodate more X elements */
   animation: none;
   display: flex;
   flex-direction: column;
@@ -200,7 +200,7 @@
 
 @keyframes x-roll {
   0% { transform: translateY(0); }
-  100% { transform: translateY(227.5px); } /* Move exactly 227.5px to center the final X */
+  100% { transform: translateY(227.5px); } /* Move 227.5px to show exactly 3.5 rotations and center final X */
 }
 
 @keyframes grey-wipe {
@@ -508,16 +508,16 @@
     border-radius: 50%;
     background: #1e90ff;
     animation: none;
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to visible to show X elements */
     z-index: 1;
   }
 
   .modal-close-sticky .x-track {
     position: absolute;
-    top: -192.5px; /* Start position for 3.5 rotations - adjusted for 55px ball: 3.5 * 55 = 192.5px */
+    top: -220px; /* Start higher to show more X elements: 4 * 55px = 220px above center */
     left: 0;
     width: 100%;
-    height: 400%;
+    height: 500%; /* Increased height to accommodate more X elements */
     animation: none;
     display: flex;
     flex-direction: column;
