@@ -147,10 +147,10 @@
 /* Container that moves the Xs - needs to travel 3 complete cycles + position final X at center */
 .x-track {
   position: absolute;
-  top: -390px; /* Start much higher: 6 * 65px = 390px above center to show Xs before ball starts growing */
+  top: -650px; /* Start much higher: 10 * 65px = 650px above center so Xs start off-screen */
   left: 0;
   width: 100%;
-  height: 700%; /* Increased height to accommodate more X elements */
+  height: 1000%; /* Much taller to accommodate all X elements */
   animation: none;
   display: flex;
   flex-direction: column;
@@ -200,7 +200,7 @@
 
 @keyframes x-roll {
   0% { transform: translateY(0); }
-  100% { transform: translateY(227.5px); } /* Move 227.5px to show exactly 3.5 rotations and center final X */
+  100% { transform: translateY(487.5px); } /* Move 487.5px to show exactly 3.5 rotations and center final X (7.5 * 65px) */
 }
 
 @keyframes grey-wipe {
@@ -214,11 +214,11 @@
 }
 
 .modal-close-container.visible .ball {
-  animation: ball-grow 2s forwards ease-out;
+  animation: ball-grow 0.8s forwards ease-out;
 }
 
 .modal-close-container.visible .x-track {
-  animation: x-roll 2s forwards ease-out;
+  animation: x-roll 0.8s forwards ease-out;
 }
 
 /* Modal Container and Content Styles */
@@ -514,10 +514,10 @@
 
   .modal-close-sticky .x-track {
     position: absolute;
-    top: -330px; /* Start much higher: 6 * 55px = 330px above center to show Xs before ball starts growing */
+    top: -550px; /* Start much higher: 10 * 55px = 550px above center so Xs start off-screen */
     left: 0;
     width: 100%;
-    height: 700%; /* Increased height to accommodate more X elements */
+    height: 1000%; /* Much taller to accommodate all X elements */
     animation: none;
     display: flex;
     flex-direction: column;
@@ -563,11 +563,11 @@
   }
 
   .modal-close-sticky.visible .ball {
-    animation: mobile-ball-grow 2s forwards ease-out;
+    animation: mobile-ball-grow 0.8s forwards ease-out;
   }
 
   .modal-close-sticky.visible .x-track {
-    animation: mobile-x-roll 2s forwards ease-out;
+    animation: mobile-x-roll 0.8s forwards ease-out;
   }
 
   @keyframes mobile-ball-grow {
@@ -577,7 +577,7 @@
 
   @keyframes mobile-x-roll {
     0% { transform: translateY(0); }
-    100% { transform: translateY(192.5px); } /* Move exactly 192.5px to center the final X for 55px ball */
+    100% { transform: translateY(412.5px); } /* Move exactly 412.5px to center the final X for 55px ball (7.5 * 55px) */
   }
 
   @keyframes mobile-grey-wipe {
