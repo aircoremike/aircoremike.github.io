@@ -281,6 +281,18 @@ body {
   }
 }
 
+/* Very short windows (like phones in landscape) - ensure grey space above slides */
+@media (max-height: 500px) {
+  .materials-carousel {
+    justify-content: center !important; /* Override flex-start to center content */
+    padding-top: 1.5rem; /* Add top padding to ensure grey space */
+    padding-bottom: 1.5rem; /* Add bottom padding for balance */
+  }
+  .materials-carousel-bg {
+    min-height: 400px; /* Reduce minimum height for very short screens */
+  }
+}
+
 /* Carousel Pagination and Arrows */
 
 .carousel-pagination {
