@@ -303,6 +303,7 @@
   gap: 0 !important; /* No gap between grade-column containers */
   align-items: flex-start !important;
   margin-top: 0.75rem !important; /* Specific gap between h3 and columns */
+  margin-left: 1.5rem !important; /* Indent relative to h3 */
 }
 
 #nickel-modal .grade-column {
