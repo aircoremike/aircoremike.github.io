@@ -86,8 +86,8 @@ body {
   box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
   padding: 2.5rem 0 2.5rem 0;
   z-index: 0;
-  min-height: 450px;
-  height: 60vh;
+  min-height: 550px; /* Increased to account for arrows */
+  height: max(60vh, 550px); /* Use max to ensure minimum on short windows */
   display: flex;
   align-items: center;
 }
@@ -101,12 +101,13 @@ body {
   padding: 0;
   z-index: 1;
   height: 100%;
-  min-height: 350px;
+  min-height: 450px; /* Increased to ensure space for arrows */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center to flex-start */
   align-items: center;
   overflow: hidden;
+  gap: 2rem; /* Add gap between track and arrows */
 }
 
 .carousel-track {
@@ -114,9 +115,11 @@ body {
   flex-direction: row;
   transition: transform 0.5s cubic-bezier(.77,0,.18,1);
   width: 100%;
-  height: 100%;
-  min-height: 250px;
+  height: auto; /* Changed from 100% to auto */
+  min-height: 280px; /* Match slide min-height */
   gap: 2rem;
+  flex: 1; /* Take up available space but leave room for arrows */
+  max-height: calc(100% - 120px); /* Reserve space for arrows (38px + 2.5rem margin + gap) */
 }
 
 .carousel-slide {
@@ -202,8 +205,8 @@ body {
 
 @media (max-width: 700px) {
   .materials-carousel-bg {
-    height: max(75vh, 500px);
-    min-height: 500px;
+    height: 85vh;
+    min-height: 85vh;
   }
   .materials-carousel {
     overflow: visible;
@@ -219,8 +222,7 @@ body {
   .carousel-slide {
     min-width: 80vw;
     max-width: 80vw;
-    height: max(70vh, 400px);
-    min-height: 400px;
+    height: 85vh;
   }
   .slide-content {
     flex-direction: column;
@@ -315,7 +317,7 @@ body {
 
 .carousel-arrows {
   position: static;
-  margin-top: 2.5rem;
+  margin-top: 0; /* Removed fixed margin, now using gap from parent */
   width: auto;
   display: flex;
   flex-direction: row;
@@ -325,6 +327,7 @@ body {
   pointer-events: none;
   z-index: 10;
   transform: none;
+  flex-shrink: 0; /* Prevent arrows from shrinking */
 }
 
 .carousel-arrow {
