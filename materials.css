@@ -376,6 +376,19 @@ body {
    ===================== */
 /* Tablet Portrait - Balanced grey space and taller slides */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
+  /* Debug: Add a visual indicator this media query is active */
+  .materials-carousel-bg::before {
+    content: "TABLET PORTRAIT ACTIVE" !important;
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    background: red !important;
+    color: white !important;
+    padding: 5px !important;
+    z-index: 9999 !important;
+    font-size: 12px !important;
+  }
+  
   /* Adjust overall container for better proportion */
   .materials-carousel-bg {
     height: 75vh !important;
@@ -417,6 +430,19 @@ body {
 
 /* Tablet Landscape - Balanced grey space, same slide size */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  /* Debug: Add a visual indicator this media query is active */
+  .materials-carousel-bg::before {
+    content: "TABLET LANDSCAPE ACTIVE" !important;
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    background: blue !important;
+    color: white !important;
+    padding: 5px !important;
+    z-index: 9999 !important;
+    font-size: 12px !important;
+  }
+  
   /* Adjust overall container for balanced spacing */
   .materials-carousel-bg {
     height: 70vh !important;
