@@ -187,8 +187,8 @@ body {
 }
 
 .carousel-arrow svg {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2.5;
@@ -409,8 +409,8 @@ body {
   }
   
   .carousel-arrow svg {
-    width: 16px;
-    height: 16px;
+    width: 32px;
+    height: 32px;
   }
 }
 
