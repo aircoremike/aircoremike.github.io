@@ -72,6 +72,17 @@ body {
 }
 
 /* =====================
+   DEBUG BORDERS - Image elements only
+   ===================== */
+.slide-image {
+  border: 2px solid cyan !important; /* Image container */
+}
+
+.slide-image img {
+  border: 1px solid magenta !important; /* Actual image */
+}
+
+/* =====================
    Carousel Section - Refactored for Universal Responsivity
    ===================== */
 .materials-carousel-bg {
@@ -362,10 +373,10 @@ body {
   .slide-image img {
     max-height: 100% !important;
     max-width: 100% !important;
-    width: 100% !important; /* Ensure full width coverage */
-    height: 100% !important; /* Ensure full height coverage */
-    object-fit: cover !important; /* Cover the container */
-    object-position: bottom center !important; /* Center horizontally, align to bottom */
+    width: auto !important; /* Let width be determined by aspect ratio */
+    height: auto !important; /* Let height be determined by aspect ratio */
+    object-fit: contain !important; /* Shrink to fit container while maintaining aspect ratio */
+    object-position: bottom right !important; /* Position at bottom right */
     border-bottom-left-radius: 1.2rem !important; /* Preserve both bottom corners */
     border-bottom-right-radius: 1.2rem !important; /* Preserve both bottom corners */
   }
@@ -374,37 +385,80 @@ body {
 /* =====================
    TABLETS (Touch devices with larger screens) - Follow desktop layout but hide nav
    ===================== */
-@media (min-width: 769px) and (hover: none) and (pointer: coarse) {
-  /* Use desktop carousel sizing but with reduced track height */
+/* Tablet Portrait - Balanced grey space and taller slides */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
+  /* Adjust overall container for better proportion */
   .materials-carousel-bg {
-    height: 70vh !important;
-    min-height: 600px !important;
-    max-height: 800px !important;
-    padding: 2rem 0 !important;
+    height: 75vh !important;
+    min-height: 650px !important;
+    max-height: 850px !important;
+    padding: 1.5rem 0 !important; /* Reduced padding for better space distribution */
+    display: flex !important;
+    align-items: center !important; /* Center the track vertically */
+    justify-content: center !important;
   }
   
-  /* Constrain the track height and reduce grey space */
+  /* Center the track with balanced spacing */
   .carousel-track-container {
-    padding: 10px 0 !important; /* Reduced top/bottom padding */
+    padding: 15px 0 !important; /* Balanced top/bottom padding */
     min-height: auto !important;
-    max-height: 480px !important; /* Increased height (20% more than 400px) */
+    max-height: 550px !important; /* 15% taller than previous 480px */
     flex: none !important; /* Don't grow to fill space */
   }
   
   .carousel-track {
     height: 100% !important;
-    max-height: 460px !important; /* Slightly less than container for padding */
+    max-height: 520px !important; /* Slightly less than container for padding */
   }
   
-  /* Increase slide width and height */
+  /* Make slides 15% taller */
   .carousel-slide {
-    min-width: 80vw !important; /* Increased from 60vw to 80vw */
-    max-width: 80vw !important; /* Ensure consistent sizing */
+    min-width: 80vw !important;
+    max-width: 80vw !important;
     height: 100% !important;
-    max-height: 440px !important; /* 20% taller (340px → 408px, rounded to 440px) */
+    max-height: 500px !important; /* 15% taller than previous 440px (440 * 1.15 = 506, rounded to 500) */
     flex-direction: row !important; /* Desktop layout */
   }
+}
+
+/* Tablet Landscape - Balanced grey space, same slide size */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  /* Adjust overall container for balanced spacing */
+  .materials-carousel-bg {
+    height: 70vh !important;
+    min-height: 600px !important;
+    max-height: 800px !important;
+    padding: 1rem 0 !important; /* Reduced padding */
+    display: flex !important;
+    align-items: center !important; /* Center the track vertically */
+    justify-content: center !important;
+  }
   
+  /* Center the track with equal top/bottom space */
+  .carousel-track-container {
+    padding: 20px 0 !important; /* Equal top/bottom padding */
+    min-height: auto !important;
+    max-height: 480px !important; /* Keep existing slide height */
+    flex: none !important; /* Don't grow to fill space */
+  }
+  
+  .carousel-track {
+    height: 100% !important;
+    max-height: 440px !important; /* Slightly less than container for padding */
+  }
+  
+  /* Keep existing slide size for landscape */
+  .carousel-slide {
+    min-width: 80vw !important;
+    max-width: 80vw !important;
+    height: 100% !important;
+    max-height: 420px !important; /* Slightly reduced to ensure balanced spacing */
+    flex-direction: row !important; /* Desktop layout */
+  }
+}
+
+/* Shared tablet styles for both orientations */
+@media (min-width: 769px) and (max-width: 1024px) and (hover: none) and (pointer: coarse) {
   /* Override mobile slide content */
   .slide-content {
     flex-direction: row !important; /* Desktop layout */
@@ -431,6 +485,7 @@ body {
     /* Remove mobile border radius overrides */
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 1.2rem !important;
+    border: 2px solid cyan !important; /* Debug border for image container */
   }
   
   .slide-image img {
@@ -443,6 +498,7 @@ body {
     /* Remove mobile border radius overrides */
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 1.2rem !important;
+    border: 1px solid magenta !important; /* Debug border for image */
   }
   
   /* Hide navigation buttons on tablets */
