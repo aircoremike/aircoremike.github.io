@@ -276,9 +276,9 @@ body {
 }
 
 /* =====================
-   MOBILE DEVICES (Touch Devices)
+   MOBILE PHONES ONLY (Touch Devices with small screens)
    ===================== */
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
     /* Full height minus navbar and footer on mobile */
     height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
@@ -309,7 +309,7 @@ body {
     overflow: hidden; /* Prevent content from breaking rounded corners */
   }
   
-  /* Hide navigation buttons on mobile */
+  /* Hide navigation buttons on mobile phones */
   .carousel-navigation {
     display: none;
   }
@@ -364,14 +364,25 @@ body {
   }
 }
 
+/* =====================
+   TABLETS (Touch devices with larger screens) - Follow desktop layout but hide nav
+   ===================== */
+@media (min-width: 769px) and (hover: none) and (pointer: coarse) {
+  /* Hide navigation buttons on tablets */
+  .carousel-navigation {
+    display: none;
+  }
+}
+
 /* Phones in landscape - side-by-side layout */
-@media (max-width: 900px) and (orientation: landscape) and (hover: none) {
+@media (max-width: 768px) and (orientation: landscape) and (hover: none) {
   .carousel-slide {
     flex-direction: row !important; /* Override column layout for landscape */
     min-width: 90vw;
     max-width: 90vw;
     border-radius: 1.2rem;
     overflow: hidden;
+    height: 100%;
   }
   
   .slide-content {
@@ -381,30 +392,37 @@ body {
   }
   
   .slide-text {
-    flex: 0 0 50%; /* Take 50% width */
-    padding: 1rem;
+    flex: 0 0 45%; /* Take 45% width to leave more room for image */
+    padding: 0.8rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribute content evenly */
-    min-height: 0; /* Allow flex shrinking */
+    justify-content: flex-start; /* Align to top */
+    gap: 0.4rem; /* Small gaps between elements */
   }
   
   .slide-title h2 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.2;
   }
   
   .slide-desc p {
-    font-size: 0.9rem;
-    line-height: 1.2;
+    font-size: 0.85rem;
+    line-height: 1.1;
     margin: 0;
-    flex: 1; /* Take available space */
+    flex: 1; /* Take available space but don't expand too much */
+    overflow: hidden; /* Prevent text overflow */
   }
   
   .slide-button {
-    margin-top: 0.5rem;
-    padding-left: 0;
+    margin: 0;
+    padding: 0;
+    align-self: flex-start; /* Align button to start */
+  }
+  
+  .learn-more-btn {
+    padding: 6px 12px; /* Smaller button for landscape */
+    font-size: 0.8rem;
   }
   
   .slide-image {
