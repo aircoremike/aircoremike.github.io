@@ -378,7 +378,7 @@ body {
 /* Tablet Portrait - 15% taller slides with balanced spacing */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    height: 50vh;
+    height: 20vh;
     min-height: 700px;
     max-height: 900px;
     padding: 3rem 0;
@@ -425,7 +425,7 @@ body {
 /* Tablet Landscape - Balanced spacing, proper centering */
 @media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    height: 60vh;
+    height: 20vh;
     min-height: 600px;
     max-height: 800px;
     padding: 4rem 0; /* Equal padding for balanced spacing */
