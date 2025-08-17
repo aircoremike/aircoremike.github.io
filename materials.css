@@ -372,193 +372,100 @@ body {
 }
 
 /* =====================
-   TABLETS (Touch devices with larger screens) - Follow desktop layout but hide nav
+   TABLETS (Touch devices with larger screens) - Clean Implementation
    ===================== */
-/* Tablet Portrait - Balanced grey space and taller slides */
+
+/* Tablet Portrait - 15% taller slides with balanced spacing */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
-  /* Debug: Add a visual indicator this media query is active */
-  .materials-carousel-bg::before {
-    content: "TABLET PORTRAIT ACTIVE" !important;
-    position: absolute !important;
-    top: 10px !important;
-    left: 10px !important;
-    background: red !important;
-    color: white !important;
-    padding: 5px !important;
-    z-index: 9999 !important;
-    font-size: 12px !important;
-  }
-  
-  /* Adjust overall container for better proportion */
   .materials-carousel-bg {
-    height: 75vh !important;
-    min-height: 650px !important;
-    max-height: 850px !important;
-    padding: 1.5rem 0 !important; /* Reduced padding for better space distribution */
-    margin-top: 2rem !important; /* Add space above carousel */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; /* Center the track vertically */
-    justify-content: center !important;
-    position: relative !important;
+    height: 80vh;
+    min-height: 700px;
+    max-height: 900px;
+    padding: 3rem 0;
   }
   
-  /* Center the track with balanced spacing */
-  .carousel-track-container {
-    padding: 15px 0 !important; /* Balanced top/bottom padding */
-    margin: 0 !important; /* Remove any margins */
-    min-height: auto !important;
-    max-height: 550px !important; /* 15% taller than previous 480px */
-    height: auto !important; /* Let content determine height */
-    flex: none !important; /* Don't grow to fill space */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-  }
-  
-  .carousel-track {
-    height: 100% !important;
-    max-height: 520px !important; /* Slightly less than container for padding */
-    min-height: auto !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative !important;
-  }
-  
-  /* Make slides 15% taller */
   .carousel-slide {
-    min-width: 80vw !important;
-    max-width: 80vw !important;
-    height: 100% !important;
-    max-height: 500px !important; /* 15% taller than previous 440px (440 * 1.15 = 506, rounded to 500) */
-    min-height: 500px !important; /* Force consistent height */
-    flex-direction: row !important; /* Desktop layout */
-    position: relative !important;
+    min-width: 75vw;
+    max-width: 75vw;
+    height: 500px; /* 15% taller than standard */
+    flex-direction: row;
   }
   
-  /* Hide navigation buttons on tablet portrait */
-  .carousel-navigation {
-    display: none !important;
-  }
-}
-
-/* Tablet Landscape - Balanced grey space, same slide size */
-@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
-  /* Debug: Add a visual indicator this media query is active */
-  .materials-carousel-bg::before {
-    content: "TABLET LANDSCAPE ACTIVE" !important;
-    position: absolute !important;
-    top: 10px !important;
-    left: 10px !important;
-    background: blue !important;
-    color: white !important;
-    padding: 5px !important;
-    z-index: 9999 !important;
-    font-size: 12px !important;
-  }
-  
-  /* Adjust overall container for balanced spacing */
-  .materials-carousel-bg {
-    height: 75vh !important; /* Slightly increased height */
-    min-height: 550px !important; /* Reduced min-height */
-    max-height: 750px !important; /* Reduced max-height */
-    padding: 0 !important; /* Remove all padding to let flexbox handle spacing */
-    margin-top: 3rem !important; /* Add space above carousel */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; /* Center horizontally */
-    justify-content: center !important; /* Center vertically */
-    position: relative !important; /* Ensure proper positioning */
-  }
-  
-  /* Center the track with balanced space */
-  .carousel-track-container {
-    padding: 0 !important; /* Remove padding, let flexbox center it */
-    margin: 0 !important; /* Remove any margins */
-    min-height: auto !important;
-    max-height: none !important; /* Remove height constraints */
-    height: auto !important; /* Let content determine height */
-    flex: 0 0 auto !important; /* Don't grow or shrink */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-  }
-  
-  .carousel-track {
-    height: auto !important; /* Let content determine height */
-    max-height: none !important; /* Remove height constraints */
-    min-height: auto !important; /* Remove height constraints */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative !important;
-  }
-  
-  /* Adjust slide size for better proportion */
-  .carousel-slide {
-    min-width: 75vw !important; /* Slightly smaller for better balance */
-    max-width: 75vw !important;
-    height: 450px !important; /* Fixed height for consistency */
-    max-height: 450px !important;
-    min-height: 450px !important; /* Force consistent height */
-    flex-direction: row !important; /* Desktop layout */
-    position: relative !important;
-  }
-  
-  /* Hide navigation buttons on tablet landscape */
-  .carousel-navigation {
-    display: none !important;
-  }
-}
-
-/* Shared tablet styles for both orientations */
-@media (min-width: 769px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
-  /* Override mobile slide content */
   .slide-content {
-    flex-direction: row !important; /* Desktop layout */
-    align-items: stretch !important;
+    flex-direction: row;
+    align-items: stretch;
   }
   
-  /* Reset text container to desktop behavior */
   .slide-text {
-    flex: 0 0 55% !important; /* Desktop text width */
-    padding-top: 1.5rem !important;
-    padding-left: 1.5rem !important;
-    gap: 1rem !important;
-    justify-content: flex-start !important;
+    flex: 0 0 55%;
+    padding: 1.5rem;
+    justify-content: flex-start;
   }
   
-  /* Reset image container to desktop behavior */
   .slide-image {
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: flex-end !important;
-    flex: 1 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    /* Remove mobile border radius overrides */
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 1.2rem !important;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 0;
   }
   
   .slide-image img {
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-position: bottom right !important;
-    width: auto !important; /* Override mobile full width */
-    height: auto !important; /* Override mobile full height */
-    object-fit: contain !important; /* Override mobile cover */
-    /* Remove mobile border radius overrides */
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 1.2rem !important;
+    object-fit: contain;
+    object-position: bottom right;
+    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 0;
   }
   
-  /* Hide navigation buttons on tablets */
   .carousel-navigation {
-    display: none !important;
+    display: none;
+  }
+}
+
+/* Tablet Landscape - Balanced spacing, proper centering */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .materials-carousel-bg {
+    height: 75vh;
+    min-height: 600px;
+    max-height: 800px;
+    padding: 4rem 0; /* Equal padding for balanced spacing */
+  }
+  
+  .carousel-slide {
+    min-width: 70vw;
+    max-width: 70vw;
+    height: 420px;
+    flex-direction: row;
+  }
+  
+  .slide-content {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  
+  .slide-text {
+    flex: 0 0 55%;
+    padding: 1.5rem;
+    justify-content: flex-start;
+  }
+  
+  .slide-image {
+    flex: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 0;
+  }
+  
+  .slide-image img {
+    object-fit: contain;
+    object-position: bottom right;
+    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 0;
+  }
+  
+  .carousel-navigation {
+    display: none;
   }
 }
 
