@@ -197,6 +197,14 @@ body {
   transition: all 0.2s ease;
 }
 
+.carousel-arrow-left svg {
+  transform: translateX(-2px);
+}
+
+.carousel-arrow-right svg {
+  transform: translateX(2px);
+}
+
 .carousel-arrow:hover svg {
   stroke-width: 3;
 }
