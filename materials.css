@@ -429,7 +429,7 @@ body {
 }
 
 /* Tablet Landscape - Balanced grey space, same slide size */
-@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
   /* Debug: Add a visual indicator this media query is active */
   .materials-carousel-bg::before {
     content: "TABLET LANDSCAPE ACTIVE" !important;
@@ -483,7 +483,7 @@ body {
 }
 
 /* Shared tablet styles for both orientations */
-@media (min-width: 769px) and (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+@media (min-width: 769px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
   /* Override mobile slide content */
   .slide-content {
     flex-direction: row !important; /* Desktop layout */
