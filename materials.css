@@ -318,6 +318,10 @@ body {
     height: 100%;
   }
   
+  .slide-text {
+    padding: 1.5rem 1.5rem 1rem 1.5rem; /* Equal left/right padding */
+  }
+  
   .slide-title h2 {
     font-size: 1.4rem;
     margin-bottom: 0.8rem;
@@ -327,12 +331,21 @@ body {
     font-size: 1.1rem;
     line-height: 1.4;
     margin: 0;
+    padding-left: 0; /* Remove left padding for mobile */
+  }
+  
+  .slide-button {
+    padding-left: 0; /* Remove left padding for mobile */
   }
   
   .slide-image {
     flex: 1;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end; /* Align to bottom */
+    justify-content: flex-end; /* Align to right */
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin */
+    overflow: hidden; /* Ensure image doesn't overflow */
+    border-bottom-right-radius: 1.2rem; /* Preserve rounded corner */
   }
   
   .slide-image img {
@@ -340,8 +353,9 @@ body {
     max-width: 100%;
     width: auto;
     height: auto;
-    object-fit: contain;
-    object-position: center;
+    object-fit: cover; /* Changed from contain to cover */
+    object-position: bottom right; /* Align to bottom right */
+    border-bottom-right-radius: 1.2rem; /* Preserve rounded corner */
   }
 }
 
@@ -367,35 +381,14 @@ body {
 }
 
 /* =====================
-   SPECIFIC BREAKPOINTS
+   SPECIFIC BREAKPOINTS - Simplified
    ===================== */
 
-/* Small phones in portrait */
-@media (max-width: 480px) and (orientation: portrait) {
+/* Small phones in portrait - only adjust slide width */
+@media (max-width: 480px) and (orientation: portrait) and (hover: none) {
   .carousel-slide {
     min-width: 90vw;
     max-width: 90vw;
-  }
-}
-
-/* Phones in landscape */
-@media (max-width: 900px) and (orientation: landscape) and (hover: none) {
-  .materials-carousel-bg {
-    height: calc(100vh - var(--navbar-height, 60px) - var(--footer-height, 50px));
-    min-height: calc(100vh - var(--navbar-height, 60px) - var(--footer-height, 50px));
-  }
-  
-  .carousel-slide {
-    min-width: 80vw;
-    max-width: 80vw;
-  }
-}
-
-/* Tablets in portrait */
-@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) {
-  .carousel-slide {
-    min-width: 75vw;
-    max-width: 75vw;
   }
 }
 
