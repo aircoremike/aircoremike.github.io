@@ -72,41 +72,6 @@ body {
 }
 
 /* =====================
-   DEBUG BORDERS - Remove when layout is fixed
-   ===================== */
-.carousel-slide {
-  border: 3px solid red !important; /* Slide container */
-}
-
-.slide-content {
-  border: 2px solid blue !important; /* Content wrapper */
-}
-
-.slide-text {
-  border: 2px solid green !important; /* Text container */
-}
-
-.slide-title {
-  border: 1px solid yellow !important; /* Title wrapper */
-}
-
-.slide-desc {
-  border: 1px solid orange !important; /* Description wrapper */
-}
-
-.slide-button {
-  border: 1px solid purple !important; /* Button wrapper */
-}
-
-.slide-image {
-  border: 2px solid cyan !important; /* Image container */
-}
-
-.slide-image img {
-  border: 1px solid magenta !important; /* Actual image */
-}
-
-/* =====================
    Carousel Section - Refactored for Universal Responsivity
    ===================== */
 .materials-carousel-bg {
@@ -356,7 +321,7 @@ body {
   }
   
   .slide-text {
-    padding: 1.5rem 1.5rem 1rem 1.5rem !important; /* Equal left/right padding */
+    padding: 1.5rem 1.5rem 0 1.5rem !important; /* Remove bottom padding */
     flex-shrink: 0 !important; /* Don't allow it to shrink */
     flex-grow: 0 !important; /* Don't allow it to grow */
     flex-basis: auto !important; /* Size based on content only */
@@ -410,26 +375,33 @@ body {
    TABLETS (Touch devices with larger screens) - Follow desktop layout but hide nav
    ===================== */
 @media (min-width: 769px) and (hover: none) and (pointer: coarse) {
-  /* Override mobile carousel height and use desktop sizing */
+  /* Use desktop carousel sizing but with reduced track height */
   .materials-carousel-bg {
     height: 70vh !important;
     min-height: 600px !important;
     max-height: 800px !important;
-    padding: 2rem 0 !important; /* Override mobile padding */
+    padding: 2rem 0 !important;
   }
   
-  /* Reduce grey space above and below slides on tablets */
+  /* Constrain the track height and reduce grey space */
   .carousel-track-container {
-    padding: 20px 0 !important; /* Only 20px top/bottom padding */
-    min-height: 300px !important; /* Ensure proper minimum height */
+    padding: 20px 0 !important; /* Minimal top/bottom padding */
+    min-height: auto !important;
+    max-height: 400px !important; /* Constrain track height */
+    flex: none !important; /* Don't grow to fill space */
   }
   
-  /* Ensure desktop slide sizing */
-  .carousel-slide {
-    min-width: 40vw !important; /* Desktop sizing */
-    max-width: 900px !important; /* Desktop sizing */
+  .carousel-track {
     height: 100% !important;
-    max-height: calc(100% - 2rem) !important;
+    max-height: 360px !important; /* Slightly less than container for padding */
+  }
+  
+  /* Reduce slide width so multiple slides are visible */
+  .carousel-slide {
+    min-width: 60vw !important; /* Smaller than desktop's 40vw */
+    max-width: 60vw !important; /* Ensure consistent sizing */
+    height: 100% !important;
+    max-height: 340px !important; /* Fit within track */
     flex-direction: row !important; /* Desktop layout */
   }
   
