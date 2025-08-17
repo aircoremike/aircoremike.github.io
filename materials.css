@@ -321,46 +321,46 @@ body {
   }
   
   .slide-text {
-    padding: 1.5rem 1.5rem 1rem 1.5rem; /* Equal left/right padding */
+    padding: 1.5rem 1.5rem 1rem 1.5rem !important; /* Equal left/right padding */
   }
   
   .slide-title h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.4rem !important;
+    margin-bottom: 0.8rem !important;
   }
   
   .slide-desc p {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    margin: 0;
-    padding-left: 0; /* Remove left padding for mobile */
+    font-size: 1.1rem !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding-left: 0 !important; /* Remove left padding for mobile */
   }
   
   .slide-button {
-    padding-left: 0; /* Remove left padding for mobile */
+    padding-left: 0 !important; /* Remove left padding for mobile */
   }
   
   .slide-image {
-    flex: 1;
-    align-items: flex-end; /* Align to bottom */
-    justify-content: flex-end; /* Align to right */
-    padding: 0; /* Remove any padding */
-    margin: 0; /* Remove any margin */
-    overflow: hidden; /* Ensure image doesn't overflow */
-    border-bottom-left-radius: 1.2rem; /* Preserve bottom left corner too */
-    border-bottom-right-radius: 1.2rem; /* Preserve bottom right corner */
-    min-height: 0; /* Allow flex shrinking */
+    flex: 1 !important;
+    align-items: flex-end !important; /* Align to bottom */
+    justify-content: flex-end !important; /* Align to right */
+    padding: 0 !important; /* Remove any padding */
+    margin: 0 !important; /* Remove any margin */
+    overflow: hidden !important; /* Ensure image doesn't overflow */
+    border-bottom-left-radius: 1.2rem !important; /* Preserve bottom left corner too */
+    border-bottom-right-radius: 1.2rem !important; /* Preserve bottom right corner */
+    min-height: 0 !important; /* Allow flex shrinking */
   }
   
   .slide-image img {
-    max-height: 100%;
-    max-width: 100%;
-    width: 100%; /* Ensure full width coverage */
-    height: 100%; /* Ensure full height coverage */
-    object-fit: cover; /* Cover the container */
-    object-position: bottom center; /* Center horizontally, align to bottom */
-    border-bottom-left-radius: 1.2rem; /* Preserve both bottom corners */
-    border-bottom-right-radius: 1.2rem; /* Preserve both bottom corners */
+    max-height: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important; /* Ensure full width coverage */
+    height: 100% !important; /* Ensure full height coverage */
+    object-fit: cover !important; /* Cover the container */
+    object-position: bottom center !important; /* Center horizontally, align to bottom */
+    border-bottom-left-radius: 1.2rem !important; /* Preserve both bottom corners */
+    border-bottom-right-radius: 1.2rem !important; /* Preserve both bottom corners */
   }
 }
 
@@ -371,6 +371,11 @@ body {
   /* Hide navigation buttons on tablets */
   .carousel-navigation {
     display: none;
+  }
+  
+  /* Reduce grey space above and below slides on tablets */
+  .carousel-track-container {
+    padding: 20px 0; /* Only 20px top/bottom padding */
   }
 }
 
