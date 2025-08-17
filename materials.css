@@ -357,11 +357,17 @@ body {
   
   .slide-text {
     padding: 1.5rem 1.5rem 1rem 1.5rem !important; /* Equal left/right padding */
+    flex-shrink: 0 !important; /* Don't allow it to shrink */
+    flex-grow: 0 !important; /* Don't allow it to grow */
+    flex-basis: auto !important; /* Size based on content only */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important; /* Tight spacing between elements */
   }
   
   .slide-title h2 {
     font-size: 1.4rem !important;
-    margin-bottom: 0.8rem !important;
+    margin: 0 !important; /* Remove all margin */
   }
   
   .slide-desc p {
@@ -373,6 +379,7 @@ body {
   
   .slide-button {
     padding-left: 0 !important; /* Remove left padding for mobile */
+    margin: 0 !important; /* Remove all margin */
   }
   
   .slide-image {
@@ -403,14 +410,72 @@ body {
    TABLETS (Touch devices with larger screens) - Follow desktop layout but hide nav
    ===================== */
 @media (min-width: 769px) and (hover: none) and (pointer: coarse) {
-  /* Hide navigation buttons on tablets */
-  .carousel-navigation {
-    display: none;
+  /* Override mobile carousel height and use desktop sizing */
+  .materials-carousel-bg {
+    height: 70vh !important;
+    min-height: 600px !important;
+    max-height: 800px !important;
+    padding: 2rem 0 !important; /* Override mobile padding */
   }
   
   /* Reduce grey space above and below slides on tablets */
   .carousel-track-container {
-    padding: 20px 0; /* Only 20px top/bottom padding */
+    padding: 20px 0 !important; /* Only 20px top/bottom padding */
+    min-height: 300px !important; /* Ensure proper minimum height */
+  }
+  
+  /* Ensure desktop slide sizing */
+  .carousel-slide {
+    min-width: 40vw !important; /* Desktop sizing */
+    max-width: 900px !important; /* Desktop sizing */
+    height: 100% !important;
+    max-height: calc(100% - 2rem) !important;
+    flex-direction: row !important; /* Desktop layout */
+  }
+  
+  /* Override mobile slide content */
+  .slide-content {
+    flex-direction: row !important; /* Desktop layout */
+    align-items: stretch !important;
+  }
+  
+  /* Reset text container to desktop behavior */
+  .slide-text {
+    flex: 0 0 55% !important; /* Desktop text width */
+    padding-top: 1.5rem !important;
+    padding-left: 1.5rem !important;
+    gap: 1rem !important;
+    justify-content: flex-start !important;
+  }
+  
+  /* Reset image container to desktop behavior */
+  .slide-image {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+    flex: 1 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    /* Remove mobile border radius overrides */
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 1.2rem !important;
+  }
+  
+  .slide-image img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-position: bottom right !important;
+    width: auto !important; /* Override mobile full width */
+    height: auto !important; /* Override mobile full height */
+    object-fit: contain !important; /* Override mobile cover */
+    /* Remove mobile border radius overrides */
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 1.2rem !important;
+  }
+  
+  /* Hide navigation buttons on tablets */
+  .carousel-navigation {
+    display: none !important;
   }
 }
 
