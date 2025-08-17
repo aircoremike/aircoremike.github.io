@@ -445,34 +445,40 @@ body {
   
   /* Adjust overall container for balanced spacing */
   .materials-carousel-bg {
-    height: 70vh !important;
-    min-height: 600px !important;
-    max-height: 800px !important;
-    padding: 1rem 0 !important; /* Reduced padding */
+    height: 75vh !important; /* Slightly increased height */
+    min-height: 550px !important; /* Reduced min-height */
+    max-height: 750px !important; /* Reduced max-height */
+    padding: 0 !important; /* Remove all padding to let flexbox handle spacing */
     display: flex !important;
-    align-items: center !important; /* Center the track vertically */
-    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Center horizontally */
+    justify-content: center !important; /* Center vertically */
   }
   
-  /* Center the track with equal top/bottom space */
+  /* Center the track with balanced space */
   .carousel-track-container {
-    padding: 20px 0 !important; /* Equal top/bottom padding */
+    padding: 0 !important; /* Remove padding, let flexbox center it */
     min-height: auto !important;
-    max-height: 480px !important; /* Keep existing slide height */
-    flex: none !important; /* Don't grow to fill space */
+    max-height: none !important; /* Remove height constraints */
+    flex: 0 0 auto !important; /* Don't grow or shrink */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
   .carousel-track {
-    height: 100% !important;
-    max-height: 440px !important; /* Slightly less than container for padding */
+    height: auto !important; /* Let content determine height */
+    max-height: none !important; /* Remove height constraints */
+    display: flex !important;
+    align-items: center !important;
   }
   
-  /* Keep existing slide size for landscape */
+  /* Adjust slide size for better proportion */
   .carousel-slide {
-    min-width: 80vw !important;
-    max-width: 80vw !important;
-    height: 100% !important;
-    max-height: 420px !important; /* Slightly reduced to ensure balanced spacing */
+    min-width: 75vw !important; /* Slightly smaller for better balance */
+    max-width: 75vw !important;
+    height: 450px !important; /* Fixed height for consistency */
+    max-height: 450px !important;
     flex-direction: row !important; /* Desktop layout */
   }
   
