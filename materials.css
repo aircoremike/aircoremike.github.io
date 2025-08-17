@@ -72,7 +72,7 @@ body {
 }
 
 /* =====================
-   Carousel Section
+   Carousel Section - Refactored for Universal Responsivity
    ===================== */
 .materials-carousel-bg {
   width: 100vw;
@@ -84,30 +84,31 @@ body {
   background: #161617;
   border-radius: 0;
   box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
-  padding: 2.5rem 0 2.5rem 0;
   z-index: 0;
-  min-height: 550px; /* Increased to account for arrows */
-  height: max(60vh, 550px); /* Use max to ensure minimum on short windows */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  /* Dynamic height based on device */
+  height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
+  min-height: 500px;
+  padding: 2rem 0;
 }
 
 .materials-carousel {
   position: relative;
   width: 100%;
-  margin: 0 auto;
-  background: none;
-  border-radius: 1.5rem;
-  padding: 0;
-  z-index: 1;
   height: 100%;
-  min-height: 450px; /* Increased to ensure space for arrows */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Changed from center to flex-start */
-  align-items: center;
   overflow: hidden;
-  gap: 2rem; /* Add gap between track and arrows */
+}
+
+.carousel-track-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 1rem 0;
 }
 
 .carousel-track {
@@ -115,11 +116,9 @@ body {
   flex-direction: row;
   transition: transform 0.5s cubic-bezier(.77,0,.18,1);
   width: 100%;
-  height: auto; /* Changed from 100% to auto */
-  min-height: 280px; /* Match slide min-height */
+  height: 100%;
   gap: 2rem;
-  flex: 1; /* Take up available space but leave room for arrows */
-  max-height: calc(100% - 120px); /* Reserve space for arrows (38px + 2.5rem margin + gap) */
+  align-items: center;
 }
 
 .carousel-slide {
@@ -133,10 +132,71 @@ body {
   background: #000;
   border-radius: 1.2rem;
   overflow: hidden;
-  height: 100%;
-  min-height: 280px; /* Increased to ensure content fits */
-  max-height: 100%;
   flex-shrink: 0;
+  /* Height will be set responsively */
+  height: auto;
+  min-height: 300px;
+  max-height: 100%;
+}
+
+/* Desktop Navigation Buttons Container */
+.carousel-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  padding: 1rem 0;
+  flex-shrink: 0;
+}
+
+.carousel-arrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  height: 100%;
+}
+
+.carousel-arrow {
+  background: #37373A;
+  color: #F5F5E7;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+  background: #4a4a4d;
+  transform: scale(1.05);
+}
+
+.carousel-arrow[disabled] {
+  opacity: 0.3;
+  cursor: default;
+  transform: none;
+}
+
+.carousel-arrow span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: 1;
+  margin-top: -2px;
 }
 
 .slide-content {
@@ -201,205 +261,152 @@ body {
   object-position: bottom right;
 }
 
-/* Mobile Carousel Adjustments */
-
-@media (max-width: 700px) {
+/* =====================
+   MOBILE DEVICES (Touch Devices)
+   ===================== */
+@media (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    height: 85vh;
-    min-height: 85vh;
+    /* Full height minus navbar and footer on mobile */
+    height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
+    min-height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
+    padding: 1rem 0;
   }
-  .materials-carousel {
-    overflow: visible;
-    min-height: 400px;
+  
+  .carousel-track-container {
+    flex: 1;
+    min-height: auto;
+    padding: 0;
   }
+  
   .carousel-track {
+    height: 100%;
+    gap: 1rem;
     overflow: visible;
     justify-content: flex-start;
-    padding: 0;
-    gap: 1rem;
-    min-height: 350px;
   }
+  
   .carousel-slide {
-    min-width: 80vw;
-    max-width: 80vw;
-    height: 85vh;
-  }
-  .slide-content {
+    min-width: 85vw;
+    max-width: 85vw;
+    height: 100%;
+    min-height: auto;
     flex-direction: column;
   }
-  .slide-title h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+  
+  /* Hide navigation buttons on mobile */
+  .carousel-navigation {
+    display: none;
   }
+  
+  /* Mobile slide content adjustments */
+  .slide-content {
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .slide-title h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
   .slide-desc p {
     font-size: 1.1rem;
     line-height: 1.4;
     margin: 0;
   }
+  
   .slide-image {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     flex: 1;
-    padding: 0;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
   }
+  
   .slide-image img {
     max-height: 100%;
     max-width: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
-    object-position: bottom right;
-    display: block;
+    object-position: center;
   }
 }
 
-@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+/* =====================
+   DESKTOP AND TABLET (Non-touch devices)
+   ===================== */
+@media (hover: hover) and (pointer: fine) {
   .materials-carousel-bg {
-    height: max(50vh, 400px);
-    min-height: 400px;
+    height: 70vh;
+    min-height: 600px;
+    max-height: 800px;
   }
+  
   .carousel-slide {
-    min-width: 85vw;
-    max-width: 85vw;
     height: 100%;
-    min-height: 320px;
+    max-height: calc(100% - 2rem);
+  }
+  
+  /* Ensure navigation is visible on desktop */
+  .carousel-navigation {
+    display: flex;
   }
 }
 
-@media (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
-  .materials-carousel-bg {
-    height: max(60vh, 450px);
-    min-height: 450px;
+/* =====================
+   SPECIFIC BREAKPOINTS
+   ===================== */
+
+/* Small phones in portrait */
+@media (max-width: 480px) and (orientation: portrait) {
+  .carousel-slide {
+    min-width: 90vw;
+    max-width: 90vw;
   }
+}
+
+/* Phones in landscape */
+@media (max-width: 900px) and (orientation: landscape) and (hover: none) {
+  .materials-carousel-bg {
+    height: calc(100vh - var(--navbar-height, 60px) - var(--footer-height, 50px));
+    min-height: calc(100vh - var(--navbar-height, 60px) - var(--footer-height, 50px));
+  }
+  
   .carousel-slide {
     min-width: 80vw;
     max-width: 80vw;
-    height: 100%;
-    min-height: 350px;
   }
 }
 
-/* Very short windows (like phones in landscape) - ensure grey space above slides */
-@media (max-height: 500px) {
-  .materials-carousel {
-    justify-content: center !important; /* Override flex-start to center content */
-    padding-top: 1.5rem; /* Add top padding to ensure grey space */
-    padding-bottom: 1.5rem; /* Add bottom padding for balance */
+/* Tablets in portrait */
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) {
+  .carousel-slide {
+    min-width: 75vw;
+    max-width: 75vw;
   }
+}
+
+/* Very short desktop windows */
+@media (max-height: 600px) and (hover: hover) {
   .materials-carousel-bg {
-    min-height: 400px; /* Reduce minimum height for very short screens */
+    height: 90vh;
+    min-height: 500px;
   }
-}
-
-/* Carousel Pagination and Arrows */
-
-.carousel-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.7rem;
-  margin: 1.2rem 0 0.2rem 0;
-  pointer-events: none;
-}
-
-.carousel-pagination .carousel-dot {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #444;
-  border: 2px solid #fff;
-  opacity: 0.6;
-  transition: background 0.2s, opacity 0.2s;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.carousel-pagination .carousel-dot.active {
-  background: #fff;
-  opacity: 1;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .carousel-pagination {
-    display: none;
+  
+  .carousel-navigation {
+    min-height: 60px;
+    padding: 0.5rem 0;
   }
-}
-
-.carousel-arrows {
-  position: static;
-  margin-top: 0; /* Removed fixed margin, now using gap from parent */
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  pointer-events: none;
-  z-index: 10;
-  transform: none;
-  flex-shrink: 0; /* Prevent arrows from shrinking */
-}
-
-.carousel-arrow {
-  background: #37373A;
-  color: #F5F5E7;
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: normal;
-  vertical-align: unset;
-  padding: 0;
-  font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
-  overflow: visible;
-}
-
-.carousel-arrow span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: auto;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  line-height: 1;
-  margin-top: -8px;
-  margin-bottom: 0;
-  padding: 0;
-}
-
-.carousel-arrow[disabled] {
-  opacity: 0.3;
-  cursor: default;
-}
-
-@media (max-width: 700px) {
+  
   .carousel-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 1.2rem;
-  }
-  .carousel-arrows {
-    bottom: 1.2rem;
-    gap: 0.7rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.6rem;
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .carousel-arrows {
-    display: none !important;
-  }
-}
+/* =====================
+   LEGACY CLEANUP - Remove old pagination
+   ===================== */
 
 /* Learn More Button */
 .learn-more-btn {
