@@ -165,16 +165,14 @@ body {
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  font-size: 1.8rem;
-  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
-  font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  padding: 0;
 }
 
 .carousel-arrow:hover {
@@ -188,15 +186,23 @@ body {
   transform: none;
 }
 
+.carousel-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover svg {
+  stroke-width: 3;
+}
+
 .carousel-arrow span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  line-height: 1;
-  margin-top: -2px;
+  display: none; /* Hide the old text spans */
 }
 
 .slide-content {
@@ -400,7 +406,11 @@ body {
   .carousel-arrow {
     width: 40px;
     height: 40px;
-    font-size: 1.6rem;
+  }
+  
+  .carousel-arrow svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
