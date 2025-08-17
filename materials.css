@@ -72,6 +72,41 @@ body {
 }
 
 /* =====================
+   DEBUG BORDERS - Remove when layout is fixed
+   ===================== */
+.carousel-slide {
+  border: 3px solid red !important; /* Slide container */
+}
+
+.slide-content {
+  border: 2px solid blue !important; /* Content wrapper */
+}
+
+.slide-text {
+  border: 2px solid green !important; /* Text container */
+}
+
+.slide-title {
+  border: 1px solid yellow !important; /* Title wrapper */
+}
+
+.slide-desc {
+  border: 1px solid orange !important; /* Description wrapper */
+}
+
+.slide-button {
+  border: 1px solid purple !important; /* Button wrapper */
+}
+
+.slide-image {
+  border: 2px solid cyan !important; /* Image container */
+}
+
+.slide-image img {
+  border: 1px solid magenta !important; /* Actual image */
+}
+
+/* =====================
    Carousel Section - Refactored for Universal Responsivity
    ===================== */
 .materials-carousel-bg {
