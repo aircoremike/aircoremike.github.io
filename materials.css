@@ -351,7 +351,7 @@ body {
     flex: 1 !important;
     align-items: flex-end !important; /* Align to bottom */
     justify-content: flex-end !important; /* Align to right */
-    padding: 0 !important; /* Remove any padding */
+    padding: 0 0 0 1rem !important; /* Add left padding for space from slide edge */
     margin: 0 !important; /* Remove any margin */
     overflow: hidden !important; /* Ensure image doesn't overflow */
     border-bottom-left-radius: 1.2rem !important; /* Preserve bottom left corner too */
@@ -385,23 +385,23 @@ body {
   
   /* Constrain the track height and reduce grey space */
   .carousel-track-container {
-    padding: 20px 0 !important; /* Minimal top/bottom padding */
+    padding: 10px 0 !important; /* Reduced top/bottom padding */
     min-height: auto !important;
-    max-height: 400px !important; /* Constrain track height */
+    max-height: 480px !important; /* Increased height (20% more than 400px) */
     flex: none !important; /* Don't grow to fill space */
   }
   
   .carousel-track {
     height: 100% !important;
-    max-height: 360px !important; /* Slightly less than container for padding */
+    max-height: 460px !important; /* Slightly less than container for padding */
   }
   
-  /* Reduce slide width so multiple slides are visible */
+  /* Increase slide width and height */
   .carousel-slide {
-    min-width: 60vw !important; /* Smaller than desktop's 40vw */
-    max-width: 60vw !important; /* Ensure consistent sizing */
+    min-width: 80vw !important; /* Increased from 60vw to 80vw */
+    max-width: 80vw !important; /* Ensure consistent sizing */
     height: 100% !important;
-    max-height: 340px !important; /* Fit within track */
+    max-height: 440px !important; /* 20% taller (340px → 408px, rounded to 440px) */
     flex-direction: row !important; /* Desktop layout */
   }
   
