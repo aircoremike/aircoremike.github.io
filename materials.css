@@ -72,17 +72,6 @@ body {
 }
 
 /* =====================
-   DEBUG BORDERS - Image elements only
-   ===================== */
-.slide-image {
-  border: 2px solid cyan !important; /* Image container */
-}
-
-.slide-image img {
-  border: 1px solid magenta !important; /* Actual image */
-}
-
-/* =====================
    Carousel Section - Refactored for Universal Responsivity
    ===================== */
 .materials-carousel-bg {
@@ -362,7 +351,7 @@ body {
     flex: 1 !important;
     align-items: flex-end !important; /* Align to bottom */
     justify-content: flex-end !important; /* Align to right */
-    padding: 0 0 0 1rem !important; /* Add left padding for space from slide edge */
+    padding: 0 !important; /* Remove any padding */
     margin: 0 !important; /* Remove any margin */
     overflow: hidden !important; /* Ensure image doesn't overflow */
     border-bottom-left-radius: 1.2rem !important; /* Preserve bottom left corner too */
@@ -485,7 +474,6 @@ body {
     /* Remove mobile border radius overrides */
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 1.2rem !important;
-    border: 2px solid cyan !important; /* Debug border for image container */
   }
   
   .slide-image img {
@@ -498,7 +486,6 @@ body {
     /* Remove mobile border radius overrides */
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 1.2rem !important;
-    border: 1px solid magenta !important; /* Debug border for image */
   }
   
   /* Hide navigation buttons on tablets */
