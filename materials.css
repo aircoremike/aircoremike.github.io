@@ -408,6 +408,11 @@ body {
     max-height: 500px !important; /* 15% taller than previous 440px (440 * 1.15 = 506, rounded to 500) */
     flex-direction: row !important; /* Desktop layout */
   }
+  
+  /* Hide navigation buttons on tablet portrait */
+  .carousel-navigation {
+    display: none !important;
+  }
 }
 
 /* Tablet Landscape - Balanced grey space, same slide size */
@@ -443,6 +448,11 @@ body {
     height: 100% !important;
     max-height: 420px !important; /* Slightly reduced to ensure balanced spacing */
     flex-direction: row !important; /* Desktop layout */
+  }
+  
+  /* Hide navigation buttons on tablet landscape */
+  .carousel-navigation {
+    display: none !important;
   }
 }
 
