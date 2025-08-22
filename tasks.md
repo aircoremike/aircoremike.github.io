@@ -1,10 +1,12 @@
 Tasks
     - Global Edits:
+        - tiny navbar for mobile landscape with hamburger
 
     - Home page
 
     - Materials page
-        - Per material spec pages
+        - tablet slide height refinements
+        - mobile landscape modal refinements
 
     - Research page
         - white papers:

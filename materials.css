@@ -339,7 +339,8 @@ body {
     font-size: 1.1rem !important;
     line-height: 1.4 !important;
     margin: 0 !important;
-    padding-left: 0 !important; /* Remove left padding for mobile */
+    padding-left: 1rem !important; /* Indent relative to title */
+    margin-bottom: 1rem !important; /* Add space below description */
   }
   
   .slide-button {
