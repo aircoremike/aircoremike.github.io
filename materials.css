@@ -299,14 +299,14 @@ body {
     justify-content: flex-start;
   }
   
-  .carousel-slide {
+  .materials-carousel .carousel-slide {
     min-width: 80vw !important;
     max-width: 80vw !important;
-    height: 100%;
-    min-height: auto;
-    flex-direction: column;
-    border-radius: 1.2rem; /* Ensure border radius is maintained */
-    overflow: hidden; /* Prevent content from breaking rounded corners */
+    height: 100% !important;
+    min-height: auto !important;
+    flex-direction: column !important;
+    border-radius: 1.2rem !important; /* Ensure border radius is maintained */
+    overflow: hidden !important; /* Prevent content from breaking rounded corners */
   }
   
   /* Hide navigation buttons on mobile phones */
@@ -570,9 +570,9 @@ body {
 
 /* Small phones in portrait - only adjust slide width */
 @media (max-width: 480px) and (orientation: portrait) and (hover: none) {
-  .carousel-slide {
-    min-width: 90vw !important;
-    max-width: 90vw !important;
+  .materials-carousel .carousel-slide {
+    min-width: 95vw !important;
+    max-width: 95vw !important;
   }
 }
 
