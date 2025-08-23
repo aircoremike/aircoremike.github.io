@@ -373,98 +373,11 @@ body {
 }
 
 /* =====================
-   TABLETS (Touch devices with larger screens) - Clean Implementation
+   TABLETS (Touch devices with larger screens) - Just hide navigation
    ===================== */
 
-/* Tablet Portrait - 15% taller slides with balanced spacing */
-@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
-  .materials-carousel-bg {
-    height: 50vh;
-    min-height: 400px; /* Reduced so it doesn't override the vh value */
-    max-height: 900px;
-    padding: 3rem 0;
-  }
-  
-  .carousel-slide {
-    min-width: 75vw;
-    max-width: 75vw;
-    height: 500px; /* 15% taller than standard */
-    flex-direction: row;
-  }
-  
-  .slide-content {
-    flex-direction: row;
-    align-items: stretch;
-  }
-  
-  .slide-text {
-    flex: 0 0 55%;
-    padding: 1.5rem;
-    justify-content: flex-start;
-  }
-  
-  .slide-image {
-    flex: 1;
-    align-items: flex-end;
-    justify-content: flex-end;
-    border-bottom-right-radius: 1.2rem;
-    border-bottom-left-radius: 0;
-  }
-  
-  .slide-image img {
-    object-fit: contain;
-    object-position: bottom right;
-    border-bottom-right-radius: 1.2rem;
-    border-bottom-left-radius: 0;
-  }
-  
-  .carousel-navigation {
-    display: none;
-  }
-}
-
-/* Tablet Landscape - Balanced spacing, proper centering */
-@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
-  .materials-carousel-bg {
-    height: 60vh;
-    min-height: 350px; /* Reduced so it doesn't override the vh value */
-    max-height: 800px;
-    padding: 4rem 0; /* Equal padding for balanced spacing */
-  }
-  
-  .carousel-slide {
-    min-width: 70vw;
-    max-width: 70vw;
-    height: 420px;
-    flex-direction: row;
-  }
-  
-  .slide-content {
-    flex-direction: row;
-    align-items: stretch;
-  }
-  
-  .slide-text {
-    flex: 0 0 55%;
-    padding: 1.5rem;
-    justify-content: flex-start;
-  }
-  
-  .slide-image {
-    flex: 1;
-    align-items: flex-end;
-    justify-content: flex-end;
-    border-bottom-right-radius: 1.2rem;
-    border-bottom-left-radius: 0;
-  }
-  
-  .slide-image img {
-    object-fit: contain;
-    object-position: bottom right;
-    border-bottom-right-radius: 1.2rem;
-    border-bottom-left-radius: 0;
-  }
-  
+/* All tablets - just hide navigation and use desktop sizing */
+@media (min-width: 769px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
   .carousel-navigation {
     display: none;
   }
