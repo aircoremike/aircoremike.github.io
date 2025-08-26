@@ -38,8 +38,6 @@
   display: block;
   position: relative;
   bottom: 0;
-  max-height: 100%; /* Ensure it doesn't exceed container height */
-  height: auto; /* Let it scale naturally */
 }
 
 #copper-modal .modal-hero-text {
