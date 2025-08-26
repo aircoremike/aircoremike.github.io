@@ -321,9 +321,9 @@ body {
    ===================== */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    /* Calculate height: full screen minus navbar, footer, and extra space */
-    height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
-    min-height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
+    /* Calculate exact height: full screen minus navbar and footer */
+    height: calc(100vh - var(--navbar-height, 80px) - 25px);
+    min-height: calc(100vh - var(--navbar-height, 80px) - 25px);
     padding: 1rem 0 0 0;
     margin-bottom: 0; /* Remove margin since we're calculating exact height */
     display: flex;
