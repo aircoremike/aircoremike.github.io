@@ -325,7 +325,7 @@ body {
     height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
     min-height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
     padding: 1rem 0 0 0;
-    margin-bottom: 0; /* No margin needed since indicator is outside */
+    margin-bottom: 6rem; /* Create space between carousel and footer for indicator */
     display: flex;
     flex-direction: column;
   }
