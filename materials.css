@@ -321,10 +321,11 @@ body {
    ===================== */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    /* Full height minus navbar, footer, and indicator space on mobile */
-    height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px) - 100px);
-    min-height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px) - 100px);
+    /* Full height minus navbar and footer on mobile */
+    height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
+    min-height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
     padding: 1rem 0 0 0; /* Remove bottom padding to give indicator more space */
+    margin-bottom: 2rem; /* Add margin to create space between carousel and footer */
   }
   
   .carousel-track-container {
