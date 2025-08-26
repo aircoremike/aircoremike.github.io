@@ -226,11 +226,6 @@
   text-align: left;
 }
 
-/* Custom container styling */
-#copper-modal .modal-container {
-  box-shadow: 0 8px 32px rgba(184, 115, 51, 0.2);
-}
-
 /* Custom learn more button styling */
 #copper-modal .learn-more-btn {
   background: linear-gradient(90deg, var(--modal-accent) 0%, var(--modal-highlight) 100%);
