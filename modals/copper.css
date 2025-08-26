@@ -262,12 +262,6 @@
     font-size: 1.4rem !important;
   }
 
-  #copper-modal .modal-hero-image {
-    max-height: 50vh;
-    min-height: 20vh;
-    padding: 0 !important;
-  }
-
   /* Mobile layout for all modal image items - image above, text below */
   #copper-modal .modal-image-item {
     flex-direction: column !important;
