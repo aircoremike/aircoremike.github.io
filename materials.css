@@ -321,9 +321,9 @@ body {
    ===================== */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    /* Full height minus navbar and footer on mobile, with extra space for indicator */
-    height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
-    min-height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
+    /* Full height minus navbar, footer, and indicator space on mobile */
+    height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px) - 100px);
+    min-height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px) - 100px);
     padding: 1rem 0 0 0; /* Remove bottom padding to give indicator more space */
   }
   
@@ -358,7 +358,7 @@ body {
   /* Show slide indicator on mobile */
   .carousel-indicator {
     display: flex;
-    padding: 2rem 0 3rem 0; /* Increased padding for better visibility on phones */
+    padding: 2rem 0 4rem 0; /* Extra bottom padding to clear the footer */
     min-height: 50px; /* Increased minimum height */
   }
   
