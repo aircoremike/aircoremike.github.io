@@ -325,7 +325,7 @@ body {
     height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
     min-height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
     padding: 1rem 0 0 0;
-    margin-bottom: 0; /* Remove margin since we're calculating exact height */
+    margin-bottom: 3rem; /* Add margin back to create space for indicator */
     display: flex;
     flex-direction: column;
   }
