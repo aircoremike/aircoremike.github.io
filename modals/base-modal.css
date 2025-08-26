@@ -514,8 +514,9 @@
     bottom: 20px;
   }
 
-  /* Mobile sticky close button animations - same as desktop */
-  .modal-close-sticky .modal-close::before {
+  /* Mobile close button styles - use the same class as desktop for consistency */
+  /* Ensure mobile-specific styles don't break the animation */
+  .modal-close-container .modal-close::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -531,13 +532,17 @@
     z-index: -1;
   }
 
-  .modal-close-sticky.visible .modal-close {
+  /* Re-apply the visibility styles with higher specificity for mobile */
+  #material-modals-container .modal-close-container.visible .modal-close,
+  .modal-close-container.visible .modal-close {
     transform: translateX(-50%) scale(1);
     opacity: 1;
     pointer-events: auto;
+    z-index: 1010; /* Ensure it's above everything else */
   }
 
-  .modal-close-sticky.visible .modal-close::before {
+  #material-modals-container .modal-close-container.visible .modal-close::before,
+  .modal-close-container.visible .modal-close::before {
     animation: border-expand 0.7s ease-out, border-shrink 0.25s ease-in 0.7s;
   }
 
