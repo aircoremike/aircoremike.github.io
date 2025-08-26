@@ -339,8 +339,4 @@
     width: 50%;
     margin: 0;
   }
-  #copper-modal .modal-hero-image {
-    max-height: 40vh;
-    min-height: 20vh;
-  }
 }
