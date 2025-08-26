@@ -321,15 +321,17 @@ body {
    ===================== */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    /* Full height minus navbar and reduced footer on mobile */
-    height: calc(100vh - var(--navbar-height, 80px) - 35px);
-    min-height: calc(100vh - var(--navbar-height, 80px) - 35px);
-    padding: 1rem 0 0 0; /* Remove bottom padding to give indicator more space */
-    margin-bottom: 2rem; /* Add margin to create space between carousel and footer */
+    /* Calculate exact height: full screen minus navbar and footer */
+    height: calc(100vh - var(--navbar-height, 80px) - 25px);
+    min-height: calc(100vh - var(--navbar-height, 80px) - 25px);
+    padding: 1rem 0 0 0;
+    margin-bottom: 0; /* Remove margin since we're calculating exact height */
+    display: flex;
+    flex-direction: column;
   }
   
   .carousel-track-container {
-    flex: 1;
+    flex: 1; /* Take all remaining space after indicator */
     min-height: auto;
     padding: 0;
   }
@@ -359,14 +361,15 @@ body {
   /* Show slide indicator on mobile */
   .carousel-indicator {
     display: flex;
-    padding: 2rem 0 4rem 0; /* Extra bottom padding to clear the footer */
-    min-height: 50px; /* Increased minimum height */
+    padding: 1.5rem 0 1.5rem 0; /* Balanced padding, not too much space */
+    min-height: 50px;
+    flex-shrink: 0; /* Don't let it shrink */
   }
   
   /* Reduce footer height on mobile to give indicator more space */
   .footer-flex {
-    height: 35px; /* Reduced from 50px */
-    font-size: 1rem; /* Slightly smaller text */
+    height: 25px; /* Further reduced from 35px */
+    font-size: 0.9rem; /* Smaller text to fit better */
   }
   
   /* Mobile slide content adjustments */
