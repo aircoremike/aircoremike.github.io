@@ -308,11 +308,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Calculate the position of the circle based on current slide
     const dotSpacing = 20; // 8px dot width + 12px gap
-    const firstDotOffset = 0; // Starting position
-    const targetPosition = firstDotOffset + (currentIndex * dotSpacing);
+    const totalDots = indicatorDots.length;
+    const totalWidth = (totalDots - 1) * dotSpacing; // Total width of all gaps
+    const startOffset = -totalWidth / 2; // Start from the left edge, centered
+    const targetPosition = startOffset + (currentIndex * dotSpacing);
     
     // Move the circle to the current dot position
-    indicatorCircle.style.transform = `translateY(-50%) translateX(${targetPosition}px)`;
+    indicatorCircle.style.transform = `translate(-50%, -50%) translateX(${targetPosition}px)`;
   }
   
   // Navigation functions
