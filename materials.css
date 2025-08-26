@@ -178,7 +178,7 @@ body {
 .indicator-circle {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 0;
   transform: translate(-50%, -50%);
   width: 16px;
   height: 16px;
@@ -321,10 +321,10 @@ body {
    ===================== */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    /* Full height minus navbar and footer on mobile */
+    /* Full height minus navbar and footer on mobile, with extra space for indicator */
     height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
     min-height: calc(100vh - var(--navbar-height, 80px) - var(--footer-height, 50px));
-    padding: 1rem 0;
+    padding: 1rem 0 0 0; /* Remove bottom padding to give indicator more space */
   }
   
   .carousel-track-container {
@@ -358,8 +358,8 @@ body {
   /* Show slide indicator on mobile */
   .carousel-indicator {
     display: flex;
-    padding: 1.5rem 0 2rem 0; /* Extra padding to ensure circle is fully visible */
-    min-height: 40px; /* Ensure enough height for the circle */
+    padding: 2rem 0 3rem 0; /* Increased padding for better visibility on phones */
+    min-height: 50px; /* Increased minimum height */
   }
   
   /* Mobile slide content adjustments */

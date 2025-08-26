@@ -308,9 +308,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Calculate the position of the circle based on current slide
     const dotSpacing = 20; // 8px dot width + 12px gap
-    const totalDots = indicatorDots.length;
-    const totalWidth = (totalDots - 1) * dotSpacing; // Total width of all gaps
-    const startOffset = -totalWidth / 2; // Start from the left edge, centered
+    const dotWidth = 8; // Width of each dot
+    const startOffset = dotWidth / 2; // Start at center of first dot
     const targetPosition = startOffset + (currentIndex * dotSpacing);
     
     // Move the circle to the current dot position
