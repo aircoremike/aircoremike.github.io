@@ -321,19 +321,20 @@ body {
    ===================== */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   .materials-carousel-bg {
-    /* Calculate height: full screen minus navbar, footer, and extra space */
-    height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
-    min-height: calc(100vh - var(--navbar-height, 80px) - 25px - 50px);
+    /* Calculate height properly: screen minus navbar, footer, and indicator space */
+    height: calc(100vh - var(--navbar-height, 80px) - 25px);
+    min-height: calc(100vh - var(--navbar-height, 80px) - 25px);
     padding: 1rem 0 0 0;
-    margin-bottom: 6rem; /* Create space between carousel and footer for indicator */
+    margin-bottom: 0;
     display: flex;
     flex-direction: column;
   }
   
   .carousel-track-container {
-    flex: 1; /* Take all remaining space after indicator */
+    flex: 1; /* Take remaining space after indicator */
     min-height: auto;
     padding: 0;
+    margin-bottom: 1rem; /* Create space between slides and indicator */
   }
   
   .carousel-track {
@@ -361,7 +362,7 @@ body {
   /* Show slide indicator on mobile */
   .carousel-indicator {
     display: flex;
-    padding: 1.5rem 0 1.5rem 0; /* Balanced padding, not too much space */
+    padding: 1rem 0 1rem 0; /* Reasonable padding */
     min-height: 50px;
     flex-shrink: 0; /* Don't let it shrink */
   }
