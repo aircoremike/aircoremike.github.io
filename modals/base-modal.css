@@ -406,8 +406,12 @@
     padding-top: 30px; /* Add padding between grey section and first image */
   }
 
-  /* Mobile hero section styles */
+  /* Mobile hero section styles - using higher specificity instead of !important */
+  #material-modals-container .modal-container .modal-content .modal-hero,
+  .modal-container .modal-content .modal-hero,
+  .modal-content .modal-hero,
   .modal-hero {
+    display: flex;
     flex-direction: column;
     text-align: left;
     align-items: center; /* Center items horizontally */
@@ -424,11 +428,25 @@
     margin: 0;
   }
   
+  /* Explicitly set the order for mobile view to ensure image is above text - with higher specificity */
+  .modal-content .modal-hero .modal-hero-image,
+  #material-modals-container .modal-hero .modal-hero-image,
+  .modal-hero-image {
+    order: 1; /* Make image appear first (top) */
+    width: 100%; /* Ensure full width in mobile column layout */
+    max-width: 100%; /* Override desktop max-width of 50% */
+  }
+  
+  .modal-content .modal-hero .modal-hero-text,
+  #material-modals-container .modal-hero .modal-hero-text,
   .modal-hero-text {
+    order: 2; /* Make text appear second (below image) */
     padding: 0 20px; /* Match modal-body horizontal padding on mobile */
     box-sizing: border-box;
     background: #1d1d1f; /* Match modal-body background for seamless appearance */
     border-radius: 0; /* No rounded corners */
+    width: 100%; /* Ensure full width in column layout */
+    min-width: 100%; /* Override desktop min-width to ensure full width */
   }
 
   /* Higher specificity mobile hero text padding for all modals */
