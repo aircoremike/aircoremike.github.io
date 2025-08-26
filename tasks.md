@@ -1,6 +1,7 @@
 Tasks
     - Global Edits:
         - tiny navbar for mobile landscape with hamburger
+        - footer as vh? check for good practice. Recalculate materials page carousel for this.
 
     - Home page
 
