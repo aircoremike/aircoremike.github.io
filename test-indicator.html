@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Indicator</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        
+        /* Copy relevant styles from materials.css */
+        .carousel-indicator {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0 1.5rem 0;
+            flex-shrink: 0;
+            background: #161617;
+        }
+
+        .indicator-dots {
+            display: flex;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #37373A;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .indicator-circle {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 2px solid #37373A;
+            border-radius: 50%;
+            background: transparent;
+            transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+            z-index: 1;
+            pointer-events: none;
+            margin-left: -4px;
+        }
+        
+        .test-controls {
+            padding: 20px;
+            text-align: center;
+            background: #f0f0f0;
+        }
+        
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-controls">
+        <h2>Slide Indicator Test</h2>
+        <p>Click buttons to test the indicator movement:</p>
+        <button onclick="goToSlide(0)">Slide 1</button>
+        <button onclick="goToSlide(1)">Slide 2</button>
+        <button onclick="goToSlide(2)">Slide 3</button>
+        <button onclick="goToSlide(3)">Slide 4</button>
+        <button onclick="goToSlide(4)">Slide 5</button>
+        <button onclick="goToSlide(5)">Slide 6</button>
+    </div>
+
+    <div class="carousel-indicator">
+        <div class="indicator-dots">
+            <div class="indicator-dot" data-slide="0"></div>
+            <div class="indicator-dot" data-slide="1"></div>
+            <div class="indicator-dot" data-slide="2"></div>
+            <div class="indicator-dot" data-slide="3"></div>
+            <div class="indicator-dot" data-slide="4"></div>
+            <div class="indicator-dot" data-slide="5"></div>
+        </div>
+        <div class="indicator-circle"></div>
+    </div>
+
+    <script>
+        const indicatorCircle = document.querySelector('.indicator-circle');
+        let currentIndex = 0;
+        
+        function updateIndicator() {
+            if (!indicatorCircle) return;
+            
+            // Calculate the position of the circle based on current slide
+            const dotSpacing = 20; // 8px dot width + 12px gap
+            const firstDotOffset = 0; // Starting position
+            const targetPosition = firstDotOffset + (currentIndex * dotSpacing);
+            
+            // Move the circle to the current dot position
+            indicatorCircle.style.transform = `translateY(-50%) translateX(${targetPosition}px)`;
+        }
+        
+        function goToSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, 5)); // 6 slides total
+            updateIndicator();
+            console.log(`Going to slide ${currentIndex}`);
+        }
+        
+        // Initialize
+        goToSlide(0);
+    </script>
+</body>
+</html>

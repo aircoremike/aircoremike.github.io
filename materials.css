@@ -149,6 +149,48 @@ body {
   flex-shrink: 0;
 }
 
+/* Mobile Slide Indicator */
+.carousel-indicator {
+  display: none; /* Hidden by default, shown only on mobile */
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 1.5rem 0;
+  flex-shrink: 0;
+}
+
+.indicator-dots {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #37373A;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.indicator-circle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #37373A;
+  border-radius: 50%;
+  background: transparent;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  z-index: 1;
+  pointer-events: none;
+  margin-left: -4px; /* Center the circle on the dot */
+}
+
 .carousel-arrows {
   display: flex;
   flex-direction: row;
@@ -314,6 +356,11 @@ body {
     display: none;
   }
   
+  /* Show slide indicator on mobile */
+  .carousel-indicator {
+    display: flex;
+  }
+  
   /* Mobile slide content adjustments */
   .slide-content {
     flex-direction: column;
@@ -381,6 +428,11 @@ body {
   .carousel-navigation {
     display: none;
   }
+  
+  /* Show slide indicator on tablets */
+  .carousel-indicator {
+    display: flex;
+  }
 }
 
 /* Tablet Portrait - Fix slide width for narrower screens */
@@ -394,10 +446,20 @@ body {
     min-width: 80vw;
     max-width: 80vw;
   }
+  
+  /* Show slide indicator on tablet portrait */
+  .carousel-indicator {
+    display: flex;
+  }
 }
 
 /* Phones in landscape - side-by-side layout */
 @media (max-width: 768px) and (orientation: landscape) and (hover: none) {
+  /* Show slide indicator on landscape phones too */
+  .carousel-indicator {
+    display: flex;
+  }
+  
   .carousel-slide {
     flex-direction: row; /* Override column layout for landscape */
     min-width: 90vw;

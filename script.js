@@ -214,6 +214,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const slides = Array.from(document.querySelectorAll('.carousel-slide'));
   const arrowLeft = document.getElementById('carouselArrowLeft');
   const arrowRight = document.getElementById('carouselArrowRight');
+  const indicatorDots = document.querySelectorAll('.indicator-dot');
+  const indicatorCircle = document.querySelector('.indicator-circle');
   
   if (!track || slides.length === 0) return;
   
@@ -291,12 +293,26 @@ document.addEventListener('DOMContentLoaded', function() {
     track.style.transform = `translateX(${position}px)`;
     
     updateArrows();
+    updateIndicator();
   }
   
   // Update arrow states
   function updateArrows() {
     if (arrowLeft) arrowLeft.disabled = currentIndex === 0;
     if (arrowRight) arrowRight.disabled = currentIndex === totalSlides - 1;
+  }
+  
+  // Update indicator position
+  function updateIndicator() {
+    if (!indicatorCircle || indicatorDots.length === 0) return;
+    
+    // Calculate the position of the circle based on current slide
+    const dotSpacing = 20; // 8px dot width + 12px gap
+    const firstDotOffset = 0; // Starting position
+    const targetPosition = firstDotOffset + (currentIndex * dotSpacing);
+    
+    // Move the circle to the current dot position
+    indicatorCircle.style.transform = `translateY(-50%) translateX(${targetPosition}px)`;
   }
   
   // Navigation functions
