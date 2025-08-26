@@ -4,6 +4,7 @@ Tasks
         - footer as vh? check for good practice. Recalculate materials page carousel for this.
 
     - Home page
+        - application images checkerboard
 
     - Materials page
         - tablet slide height refinements
