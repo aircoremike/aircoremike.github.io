@@ -28,17 +28,18 @@
   flex-direction: row;
   align-items: flex-end;
   position: relative;
-  overflow: hidden;
 }
 
 #copper-modal .modal-hero-image {
   align-self: flex-end;
-  object-fit: cover;
-  object-position: bottom;
+  object-fit: contain; /* Use contain instead of cover to show full image */
+  object-position: bottom; /* Keep bottom alignment */
   margin-bottom: 0;
   display: block;
   position: relative;
   bottom: 0;
+  max-height: 100%; /* Ensure it doesn't exceed container height */
+  height: auto; /* Let it scale naturally */
 }
 
 #copper-modal .modal-hero-text {
