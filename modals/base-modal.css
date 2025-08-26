@@ -460,9 +460,9 @@
   }
   
   .modal-hero-image {
-    height: 35vh; /* Fixed height for portrait mode */
-    min-height: 35vh;
-    max-height: 35vh;
+    height: 40vh; /* Fixed height for portrait mode */
+    min-height: 40vh;
+    max-height: 40vh;
     width: auto;
     max-width: 100%;
     padding: 0;
