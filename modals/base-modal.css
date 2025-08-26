@@ -569,9 +569,9 @@
   }
 
   .modal-close-sticky.visible .modal-close {
-    transform: translateX(-50%) scale(1);
-    opacity: 1;
-    pointer-events: auto;
+    transform: translateX(-50%) scale(1) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .modal-close-sticky.visible .modal-close::before {
