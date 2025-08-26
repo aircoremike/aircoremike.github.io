@@ -254,7 +254,7 @@
 /* Desktop: Hero text padding should match modal-body padding */
 @media (min-width: 769px) {
   .modal-hero-text {
-    padding: 0 32px !important; /* Match modal-body horizontal padding on desktop */
+    padding: 0 32px; /* Match modal-body horizontal padding on desktop */
   }
 }
 
@@ -390,30 +390,32 @@
   }
   
   .modal-header h1 {
-    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
-    padding: 0 10px !important;
-    white-space: nowrap !important; /* Keep on one line */
-    overflow: visible !important; /* Allow text to be visible */
-    text-overflow: clip !important; /* No ellipses */
-    line-height: 1.2 !important; /* Tighter line height for better fit */
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding: 0 10px;
+    white-space: nowrap; /* Keep on one line */
+    overflow: visible; /* Allow text to be visible */
+    text-overflow: clip; /* No ellipses */
+    line-height: 1.2; /* Tighter line height for better fit */
   }
 
   .modal-body {
     flex-direction: column;
     padding: 20px;
     gap: 20px;
-    background: #1d1d1f !important; /* Match modal container background */
-    padding-top: 30px !important; /* Add padding between grey section and first image */
+    background: #1d1d1f; /* Match modal container background */
+    padding-top: 30px; /* Add padding between grey section and first image */
   }
 
   /* Mobile hero section styles */
   .modal-hero {
-    flex-direction: column !important;
+    flex-direction: column;
     text-align: left;
-    align-items: stretch;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
     max-height: none;
-    padding: 0 !important;
-    background: #000 !important; /* Keep black background for hero section only */
+    padding: 0;
+    background: #000; /* Keep black background for hero section only */
+    overflow: hidden; /* Prevent any overflow */
   }
   
   .modal-hero-text, 
@@ -423,9 +425,9 @@
   }
   
   .modal-hero-text {
-    padding: 0 20px !important; /* Match modal-body horizontal padding on mobile */
-    box-sizing: border-box !important;
-    background: #1d1d1f !important; /* Match modal-body background for seamless appearance */
+    padding: 0 20px; /* Match modal-body horizontal padding on mobile */
+    box-sizing: border-box;
+    background: #1d1d1f; /* Match modal-body background for seamless appearance */
     border-radius: 0; /* No rounded corners */
   }
 
@@ -436,13 +438,20 @@
   #titanium-modal .modal-hero-text,
   #tungsten-modal .modal-hero-text,
   #hccr-modal .modal-hero-text {
-    padding: 0 30px !important; /* Match total effective padding of modal-body + image-item */
+    padding: 0 30px; /* Match total effective padding of modal-body + image-item */
   }
   
   .modal-hero-image {
-    max-height: 50vh;
-    min-height: 20vh;
-    padding: 0 !important;
+    height: 35vh; /* Fixed height for portrait mode */
+    min-height: 35vh;
+    max-height: 35vh;
+    width: auto;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto; /* Center the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .modal-description {
@@ -460,7 +469,7 @@
   #titanium-modal .modal-image-item:first-child img,
   #tungsten-modal .modal-image-item:first-child img,
   #hccr-modal .modal-image-item:first-child img {
-    order: 1 !important; /* Image first */
+    order: 1; /* Image first */
   }
   
   #nickel-modal .modal-image-item:first-child h3,
@@ -469,8 +478,8 @@
   #titanium-modal .modal-image-item:first-child h3,
   #tungsten-modal .modal-image-item:first-child h3,
   #hccr-modal .modal-image-item:first-child h3 {
-    order: 2 !important; /* h3 after image */
-    margin-top: 16px !important; /* Add some spacing after image */
+    order: 2; /* h3 after image */
+    margin-top: 16px; /* Add some spacing after image */
   }
   
   #nickel-modal .modal-image-item:first-child p,
@@ -479,7 +488,7 @@
   #titanium-modal .modal-image-item:first-child p,
   #tungsten-modal .modal-image-item:first-child p,
   #hccr-modal .modal-image-item:first-child p {
-    order: 3 !important; /* paragraph last */
+    order: 3; /* paragraph last */
   }
   
   .modal-close {
@@ -505,9 +514,9 @@
   }
 
   .modal-close-sticky.visible .modal-close {
-    transform: translateX(-50%) scale(1) !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .modal-close-sticky.visible .modal-close::before {
@@ -539,31 +548,31 @@
 
   /* Mobile material info section styling */
   .material-info {
-    margin: 0 !important; /* No margins needed - this is now a direct child of modal-content */
-    padding: 16px 20px 100px 20px !important; /* Match mobile modal-body padding, plus close button space */
-    max-height: none !important;
-    min-height: auto !important;
-    background: #000 !important;
-    border-radius: 0 0 18px 18px !important; /* Bottom corners rounded on mobile too */
-    flex-direction: row !important; /* Keep as row even on mobile */
+    margin: 0; /* No margins needed - this is now a direct child of modal-content */
+    padding: 16px 20px 100px 20px; /* Match mobile modal-body padding, plus close button space */
+    max-height: none;
+    min-height: auto;
+    background: #000;
+    border-radius: 0 0 18px 18px; /* Bottom corners rounded on mobile too */
+    flex-direction: row; /* Keep as row even on mobile */
   }
 
   .material-info img {
-    height: 100% !important; /* Same height as the grades list */
-    width: auto !important;
-    max-width: 30% !important; /* Limit width to be proportional to the list */
-    object-fit: contain !important;
-    align-self: center !important;
-    order: 1 !important;
+    height: 100%; /* Same height as the grades list */
+    width: auto;
+    max-width: 30%; /* Limit width to be proportional to the list */
+    object-fit: contain;
+    align-self: center;
+    order: 1;
     flex-shrink: 0;
   }
 
   .material-info .grades-section {
-    order: 2 !important;
-    align-items: flex-start !important;
+    order: 2;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    padding-left: 0 !important; /* Remove padding to align with icon */
+    padding-left: 0; /* Remove padding to align with icon */
   }
 
   /* Mobile grades layout */
@@ -572,22 +581,22 @@
     gap: 3rem;
     justify-content: flex-start;
     order: 2; /* Ensure this comes after the heading */
-    margin-top: 0 !important; /* Remove top margin for tighter spacing */
+    margin-top: 0; /* Remove top margin for tighter spacing */
   }
 
   /* Mobile: ensure consistent spacing in grade columns */
   .grade-column {
-    gap: 0.5rem !important; /* Consistent gap for all items */
+    gap: 0.5rem; /* Consistent gap for all items */
   }
 
   .grade-column span {
-    margin: 0 !important; /* Remove any extra margins */
+    margin: 0; /* Remove any extra margins */
   }
 
   .grades-section h3 {
-    text-align: left !important; /* Left align the heading on mobile to match columns */
+    text-align: left; /* Left align the heading on mobile to match columns */
     order: 1; /* Ensure heading comes first */
-    margin-bottom: 0.1rem !important; /* Much tighter spacing */
+    margin-bottom: 0.1rem; /* Much tighter spacing */
     width: 100%;
     display: block;
     font-size: 1.3rem; /* Consistent with desktop */
